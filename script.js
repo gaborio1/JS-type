@@ -103,7 +103,7 @@ const commonWords = [
     "part",
 ];
 
-const sequenceLength = 10;
+const sequenceLength = 40;
 
 // GET RANDOM WORD FROM ARRAY
 const getRandom = (arr) => {
@@ -134,12 +134,23 @@ const getStrLength = (arr) => {
 
 // BUILD STRING BY ADDING RANDNOM WORDS ONE BY ONE UNTIL LENGTH IS REACHED
 while (true) {
-    let currWord = getRandom();
     if (getStrLength(wordsArr) >= sequenceLength) break;
+    let currWord = getRandom();
     wordsArr.push(currWord);
 }
+
 console.log(wordsArr);
 stringWords = wordsArr.join(" ");
 console.log(stringWords);
 
 textContainer.textContent = stringWords;
+
+// MAKE EACH CHARACTER OF THE STRING A span AND APPEND AS A CHILD ELEMENT TO ITS CONTAINER
+const textSpanContainer = document.querySelector(".text-span-container");
+for (let char of stringWords) {
+    // console.log(char);
+    const span = document.createElement("span");
+    span.innerText = char;
+    span.className = "span";
+    textSpanContainer.appendChild(span);
+}
