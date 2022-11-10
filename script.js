@@ -154,3 +154,57 @@ for (let char of stringWords) {
     span.className = "span";
     textSpanContainer.appendChild(span);
 }
+
+/*
+//creates a listener for when you press a key
+window.onkeyup = keyup;
+
+//creates a global Javascript variable
+var inputTextValue;
+
+function keyup(e) {
+    //setting your input text to the global Javascript Variable for every key press
+    inputTextValue = e.target.value;
+    // ALL TEXT
+    // console.log(inputTextValue);
+    // CURRENT KEYCODE
+    console.log(e.keyCode);
+    // CONVERT KEYCODE TO CHARACTER
+    // console.log(String.fromCharCode(e.keyCode));
+    console.log(String.fromCharCode((96 <= e.keyCode && e.keyCode <= 105) ? e.keyCode - 48 : e.keyCode));
+
+    //listens for you to press the ENTER key, at which point your web address will change to the one you have input in the search box
+    if (e.keyCode == 13) {
+        window.location = "http://www.myurl.com/search/" + inputTextValue;
+    }
+}
+*/
+
+// document.onkeypress = function (evt) {
+//     evt = evt || window.event;
+//     var charCode = evt.keyCode || evt.which;
+//     var charStr = String.fromCharCode(charCode);
+//     console.log(charStr);
+// };
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+        const current = event.key;
+        console.log("event.key: ", event.key);
+        console.log("event.code", event.code)
+        // const reChar = new RegExp(/[A-Za-z]/, "g");
+        // const reChar = new RegExp(/[A-Za-z]/);
+        if (current === "Shift") {
+            console.log("SHIFT");
+        }
+        if (event.code === "Space") {
+            console.log("SPACE");
+        }
+        // if (reChar.test(current)) {
+        //     console.log("character typed: ", current);
+        // }
+        if (current === "a") console.log("a");
+        if (current === "A") console.log("A");
+    },
+);
