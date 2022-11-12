@@ -194,6 +194,20 @@ document.addEventListener(
             console.log("SHIFT");
         }
 
+        // BACKSPACE
+        if (typedKey === "Backspace") {
+            console.log("BACKSPACE");
+            console.log("current char:", wordsArr[wordIdx], "/", wordsArr[wordIdx][charIdx]);
+            charIdx -= 1;
+            strIdx -= 1;
+            charSpans[strIdx].style.color = "orange";
+            charSpans[strIdx + 1].style.background = "none";
+            charSpans[strIdx + 1].style.border = "none";
+            charSpans[strIdx].style.border = "1px solid black";
+            charSpans[strIdx].style.background = "lightgrey";
+            console.log("current char:", wordsArr[wordIdx], "/", wordsArr[wordIdx][charIdx]);
+        }
+
         // SPACE
         // if (event.code === "Space") {
         if (typedKey === " ") {
@@ -275,14 +289,21 @@ document.addEventListener(
 
         // WRONG KEY OR SHIFT FOR CAPITAL LETTERS
         // !!! LOOK INT && ITS A TEMP FIX FOR UNDEFINED LAST CHARACTER !!!
-        else if (typedKey !== wordsArr[wordIdx][charIdx] && typedKey !== " " && typedKey !== "Shift") {
+        else if (typedKey !== wordsArr[wordIdx][charIdx] && typedKey !== " " && typedKey !== "Shift" && typedKey !== "Backspace") {
 
 
             // !!!
             console.log("WRONG KEY!", "typed:", typedKey, "actual:", wordsArr[wordIdx][charIdx]);
             charSpans[strIdx].style.color = "red";
-            // charIdx += 1;
-            // strIdx += 1;
+            // GO TO NEXT CHAR IF WRONG CHAR TYPED
+            charIdx += 1;
+            strIdx += 1;
+            // MOVE BORDER / BACKGROUND TO NEXT CHAR AFTER WRONG CHAR TYPED(JUST ADD BORDER)
+            charSpans[strIdx].style.border = "1px solid black";
+            charSpans[strIdx].style.background = "lightgrey";
+            // REMOVE BORDER AND BACKGROUND FROM WRONG CHAR
+            charSpans[strIdx - 1].style.border = "none";
+            charSpans[strIdx - 1].style.background = "none";
         }
 
         // if (typedKey === stringWords[strIdx]) {
