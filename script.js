@@ -111,10 +111,10 @@ const getRandom = (arr) => {
     return commonWords[randIdx];
 };
 
-console.log(getRandom());
+// console.log(getRandom());
 
 const textContainer = document.querySelector(".text-container");
-// textContainer.textContent = getRandom();
+const txtInput = document.getElementById("input");
 
 // CREATE TEXT STRING FROM RANDOM WORDS UP TO sequenceLength IN LENGTH
 let stringWords = "";
@@ -176,6 +176,7 @@ element.style.background = "lightgrey";
 element.style.border = "1px solid black";
 // element.classList.add("blink");
 
+// LISTEN FOR KEY EVENTS
 document.addEventListener(
     "keydown",
     function (event) {
@@ -198,10 +199,12 @@ document.addEventListener(
         if (typedKey === " ") {
 
             // !!!
+            // CLEAR INPUT IF WORD IS COMPLETE
             if (wordsArr[wordIdx][charIdx] === undefined) {
                 console.log("UNDEFINED!");
                 charSpans[strIdx + 1].style.background = "none";
                 // charIdx -= 1;
+                txtInput.value = '';
             }
 
 
@@ -224,6 +227,8 @@ document.addEventListener(
                 }
                 // SKIP TO NEXT WORD
                 strIdx = nextWordIdx;
+                // CLEAR INPUT IF GOT WORD WRONG
+                txtInput.value = '';
                 // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
                 // charSpans[strIdx].style.background = "none";
                 // charSpans[strIdx + 1].style.background = "lightgrey";
@@ -268,8 +273,9 @@ document.addEventListener(
 
         // else if (typedKey !== wordsArr[wordIdx][charIdx] && wordsArr[wordIdx][charIdx] === undefined) {
 
+        // WRONG KEY OR SHIFT FOR CAPITAL LETTERS
         // !!! LOOK INT && ITS A TEMP FIX FOR UNDEFINED LAST CHARACTER !!!
-        else if (typedKey !== wordsArr[wordIdx][charIdx] && typedKey !== " ") {
+        else if (typedKey !== wordsArr[wordIdx][charIdx] && typedKey !== " " && typedKey !== "Shift") {
 
 
             // !!!
