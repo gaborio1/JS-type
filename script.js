@@ -1,6 +1,6 @@
 // console.log("connected");
 
-const commonWords = [
+let commonWords = [
     "the",
     "of",
     "and",
@@ -139,6 +139,10 @@ while (true) {
     wordsArr.push(currWord);
 }
 
+// OR USE OWN CUSTOM TEXT
+// wordsArr = ["your", "custom", "text"];
+
+
 console.log(wordsArr);
 stringWords = wordsArr.join(" ");
 console.log(stringWords);
@@ -155,56 +159,136 @@ for (let char of stringWords) {
     textSpanContainer.appendChild(span);
 }
 
-/*
-//creates a listener for when you press a key
-window.onkeyup = keyup;
+// TRACK WORDS IN SEQUENCE AND CHARACTERS OF CURRENT WORD
+let wordIdx = 0;
+let strIdx = 0;
+let charIdx = 0;
+// NODELIST OF ALL CHAR SPANS
+const charSpans = document.querySelectorAll(".span");
+// console.log(charSpans);
 
-//creates a global Javascript variable
-var inputTextValue;
+console.log(charSpans[strIdx]);
 
-function keyup(e) {
-    //setting your input text to the global Javascript Variable for every key press
-    inputTextValue = e.target.value;
-    // ALL TEXT
-    // console.log(inputTextValue);
-    // CURRENT KEYCODE
-    console.log(e.keyCode);
-    // CONVERT KEYCODE TO CHARACTER
-    // console.log(String.fromCharCode(e.keyCode));
-    console.log(String.fromCharCode((96 <= e.keyCode && e.keyCode <= 105) ? e.keyCode - 48 : e.keyCode));
-
-    //listens for you to press the ENTER key, at which point your web address will change to the one you have input in the search box
-    if (e.keyCode == 13) {
-        window.location = "http://www.myurl.com/search/" + inputTextValue;
-    }
-}
-*/
-
-// document.onkeypress = function (evt) {
-//     evt = evt || window.event;
-//     var charCode = evt.keyCode || evt.which;
-//     var charStr = String.fromCharCode(charCode);
-//     console.log(charStr);
-// };
+// !!! HAS TO SAVE ELEMENT IN VARIABLE TO ADD CLASS !!!
+const element = document.querySelector(".span");
+// ONLY ONE OF THE TWO WORKS AT ONCE
+element.style.background = "lightgrey";
+element.style.border = "1px solid black";
+// element.classList.add("blink");
 
 document.addEventListener(
     "keydown",
     function (event) {
-        const current = event.key;
+        // charSpans[2].style.color = "yellow";
+        console.log("---EVENT---", "word: ", wordIdx, "char: ", charIdx, "string: ", strIdx);
+        const typedKey = event.key;
         console.log("event.key: ", event.key);
-        console.log("event.code", event.code)
+        // console.log("event.code:", event.code)
+
         // const reChar = new RegExp(/[A-Za-z]/, "g");
         // const reChar = new RegExp(/[A-Za-z]/);
-        if (current === "Shift") {
+
+        // SHIFT
+        if (typedKey === "Shift") {
             console.log("SHIFT");
         }
-        if (event.code === "Space") {
-            console.log("SPACE");
+
+        // SPACE
+        // if (event.code === "Space") {
+        if (typedKey === " ") {
+
+            // !!!
+            if (wordsArr[wordIdx][charIdx] === undefined) {
+                console.log("UNDEFINED!");
+                charSpans[strIdx + 1].style.background = "none";
+                // charIdx -= 1;
+            }
+
+
+            console.log("current char:", wordsArr[wordIdx], "/", wordsArr[wordIdx][charIdx]);
+            wordIdx += 1;
+            charIdx = 0;
+            console.log("current char:", wordsArr[wordIdx], "/", wordsArr[wordIdx][charIdx]);
+
+            // JUMP IDX TO THE NEXT WORD IN STRING
+            if (charIdx < wordsArr[wordIdx].length) {
+                let nextWordIdx;
+                console.log("STRING IDX TO JUMP TO NEXT WORD IN STRING!");
+                for (let i = strIdx; i < stringWords.length; i += 1) {
+                    if (stringWords[i] === " ") {
+                        console.log("space found at index: ", i);
+                        nextWordIdx = i;
+                        charSpans[strIdx].style.border = "2px solid red";
+                        break;
+                    }
+                }
+                // SKIP TO NEXT WORD
+                strIdx = nextWordIdx;
+                // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
+                // charSpans[strIdx].style.background = "none";
+                // charSpans[strIdx + 1].style.background = "lightgrey";
+            }
+            // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
+            charSpans[strIdx].style.background = "none";
+            charSpans[strIdx + 1].style.background = "lightgrey";
+            charSpans[strIdx + 1].style.border = "1px solid black";
+            charSpans[strIdx].style.border = "none";
+
+
+            strIdx += 1;
+            console.log("SPACE! ", "word: ", wordIdx, "char: ", charIdx, "string: ", strIdx);
         }
         // if (reChar.test(current)) {
         //     console.log("character typed: ", current);
         // }
-        if (current === "a") console.log("a");
-        if (current === "A") console.log("A");
+
+        // if (typedKey === "a") console.log("a");
+        // if (typedKey === "A") console.log("A");
+
+        // CORRECT KEY
+        if (typedKey === wordsArr[wordIdx][charIdx]) {
+
+            charSpans[strIdx].style.color = "green";
+            // charSpans[strIdx + 1].style.color = "tomato";
+            // charSpans[strIdx + 1].classList.add("blink");
+            // charSpans[strIdx + 1].classList.add("highlight");
+
+            // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
+            charSpans[strIdx + 1].style.background = "lightgrey";
+            charSpans[strIdx].style.background = "none";
+            charSpans[strIdx + 1].style.border = "1px solid black";
+            charSpans[strIdx].style.border = "none";
+
+            charSpans[strIdx].style.fontSize = "35px";
+
+
+            charIdx += 1;
+            strIdx += 1;
+        }
+
+        // else if (typedKey !== wordsArr[wordIdx][charIdx] && wordsArr[wordIdx][charIdx] === undefined) {
+
+        // !!! LOOK INT && ITS A TEMP FIX FOR UNDEFINED LAST CHARACTER !!!
+        else if (typedKey !== wordsArr[wordIdx][charIdx] && typedKey !== " ") {
+
+
+            // !!!
+            console.log("WRONG KEY!", "typed:", typedKey, "actual:", wordsArr[wordIdx][charIdx]);
+            charSpans[strIdx].style.color = "red";
+            // charIdx += 1;
+            // strIdx += 1;
+        }
+
+        // if (typedKey === stringWords[strIdx]) {
+        //     charSpans[strIdx].style.color = "green";
+        //     // charSpans[strIdx].style.fontSize = "35px";
+        //     strIdx += 1;
+        // }
+
+        // if (current !== stringWords[strIdx]) {
+        //     charSpans[strIdx].style.color = "red";
+        //     // charSpans[strIdx].style.fontSize = "35px";
+        //     strIdx += 1;
+        // }
     },
 );
