@@ -38,11 +38,32 @@ h1 {
     font-size: 30px;
 }
 
-/* BLINKING CURRENT CHARACTER */
-.highlight {
+/* COLOURS */
+.green {
+    color: green;
+}
+
+.orange {
     color: orange
 }
 
+.red {
+    color: red;
+}
+
+.cursor {
+    background: lightgrey;
+    border: 1px solid black;
+}
+
+.incomplete {
+    background: lightgrey;
+    border: 2px solid tomato;
+}
+
+
+
+/* BLINKING CURRENT CHARACTER */
 .blink {
     -webkit-animation: blink-text 800ms linear infinite;
     -moz-animation: blink-text 800ms linear infinite;

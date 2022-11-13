@@ -162,6 +162,23 @@ for (let char of stringWords) {
 let wordIdx = 0;
 let strIdx = 0;
 let charIdx = 0;
+
+// 
+const nextChar = () => {
+    charIdx += 1;
+    strIdx += 1;
+}
+
+const prevChar = () => {
+    charIdx -= 1;
+    strIdx -= 1;
+}
+
+const nextWord = () => {
+    wordIdx += 1;
+    charIdx = 0;
+}
+
 // NODELIST OF ALL CHAR SPANS
 const charSpans = document.querySelectorAll(".span");
 // console.log(charSpans);
@@ -175,9 +192,13 @@ element.style.background = "lightgrey";
 element.style.border = "1px solid black";
 // element.classList.add("blink");
 
+// const addCursor = (char) => {
+//     char.classlist.add("cursor");
+// }
+
 // LISTEN FOR KEY EVENTS
 document.addEventListener("keydown", function (event) {
-    // charSpans[2].style.color = "yellow";
+
     console.log(
         "---EVENT---",
         "word: ",
@@ -187,6 +208,7 @@ document.addEventListener("keydown", function (event) {
         "string: ",
         strIdx
     );
+
     const typedKey = event.key;
     console.log("event.key: ", event.key);
     // console.log("event.code:", event.code)
@@ -200,7 +222,8 @@ document.addEventListener("keydown", function (event) {
     }
 
     // BACKSPACE
-    if (typedKey === "Backspace") {
+    // PREVENT CURSOR FROM GOING BACK IF ITS ON FIRST CHAR OF WORD (&& charIdx > 0)
+    if (typedKey === "Backspace" && charIdx > 0) {
         console.log("BACKSPACE");
         console.log(
             "current char:",
@@ -209,13 +232,18 @@ document.addEventListener("keydown", function (event) {
             wordsArr[wordIdx][charIdx]
         );
 
-        charIdx -= 1;
-        strIdx -= 1;
+        prevChar();
+
         charSpans[strIdx].style.color = "orange";
+        //
         charSpans[strIdx + 1].style.background = "none";
         charSpans[strIdx + 1].style.border = "none";
-        charSpans[strIdx].style.border = "1px solid black";
+
+        // addCursor(charSpans[strIdx]);
+
         charSpans[strIdx].style.background = "lightgrey";
+        charSpans[strIdx].style.border = "1px solid black";
+
         console.log(
             "current char:",
             wordsArr[wordIdx],
@@ -242,8 +270,9 @@ document.addEventListener("keydown", function (event) {
             "/",
             wordsArr[wordIdx][charIdx]
         );
-        wordIdx += 1;
-        charIdx = 0;
+
+        nextWord();
+
         console.log(
             "current char:",
             wordsArr[wordIdx],
@@ -310,8 +339,7 @@ document.addEventListener("keydown", function (event) {
 
         charSpans[strIdx].style.fontSize = "35px";
 
-        charIdx += 1;
-        strIdx += 1;
+        nextChar();
     }
 
     // else if (typedKey !== wordsArr[wordIdx][charIdx] && wordsArr[wordIdx][charIdx] === undefined) {
@@ -334,8 +362,8 @@ document.addEventListener("keydown", function (event) {
         );
         charSpans[strIdx].style.color = "red";
         // GO TO NEXT CHAR IF WRONG CHAR TYPED
-        charIdx += 1;
-        strIdx += 1;
+        nextChar();
+
         // MOVE BORDER / BACKGROUND TO NEXT CHAR AFTER WRONG CHAR TYPED(JUST ADD BORDER)
         charSpans[strIdx].style.border = "1px solid black";
         charSpans[strIdx].style.background = "lightgrey";
@@ -360,6 +388,8 @@ document.addEventListener("keydown", function (event) {
 /*
 TODOS
 
+   TODOS
+
     STATISTICS / MONITOR:
         TIMER (1 MIN)
         SPEEDOMETER (WPM)
@@ -368,14 +398,18 @@ TODOS
         COMPLETE WORDS COUNTER
         CORRECT WORDS COUNTER
 
-    FUNCTIONS:
+    FEATURES:
         START / NEW BUTTON
         LEVEL SELECTOR (100, 200, 500 ETC...)
+        CAPS LOCK WARNING
+        BUILD RANDOM WORDS FROM PROBLEM CHARACTERS / WORDS
 
     CODE:
-        MAKE FUNCTIONS FOR STYLING CHARACTERS
-        ASSIGN STYLES TO CSS (ADD AND REMOVE CLASS WITH JS)
-        SET CURSOR POSITION WITH FUNCTIONS (FORWARD, BACK)
+        FUNCTIONS:
+            STYLING CHARACTERS ASSIGN STYLES TO CSS (ADD AND REMOVE CLASS WITH JS)
+            ☑️ SET CURSOR POSITION (FORWARD, BACK)
+            CLEAR INPUT
+
 
 
 */
