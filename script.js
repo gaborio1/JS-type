@@ -150,11 +150,17 @@ textContainer.textContent = stringWords;
 
 // MAKE EACH CHARACTER OF THE STRING A span AND APPEND AS A CHILD ELEMENT TO ITS CONTAINER
 const textSpanContainer = document.querySelector(".text-span-container");
-for (let char of stringWords) {
-    // console.log(char);
+
+// !!! ACCESS INDEX OF ITERATION IN FOR OF LOOP WITH DESTRUCTURING SYNTAX + entries() METHOD
+for (const [idx, char] of stringWords.split("").entries()) {
+    console.log(idx, char);
+    // CREATE ELEMENT
     const span = document.createElement("span");
+    // SET TEXT CONTENT / CLASS / ID
     span.innerText = char;
     span.className = "span";
+    span.id = `span-${idx - 1}`;
+    // APPEND TO PARENT DIV
     textSpanContainer.appendChild(span);
 }
 
