@@ -7,7 +7,7 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     text-align: center;
     background-color: antiquewhite;
 }
@@ -44,11 +44,15 @@ h1 {
 }
 
 .orange {
-    color: orange
+    color: orange;
 }
 
 .red {
     color: red;
+}
+
+.enlarged {
+    font-size: 40px;
 }
 
 .cursor {
@@ -60,8 +64,6 @@ h1 {
     background: lightgrey;
     border: 2px solid tomato;
 }
-
-
 
 /* BLINKING CURRENT CHARACTER */
 .blink {
@@ -80,22 +82,22 @@ h1 {
 
     20% {
         color: black;
-        opacity: .8;
+        opacity: 0.8;
     }
 
     30% {
         color: black;
-        opacity: .6;
+        opacity: 0.6;
     }
 
     40% {
         color: black;
-        opacity: .4;
+        opacity: 0.4;
     }
 
     50% {
         color: black;
-        opacity: .2;
+        opacity: 0.2;
     }
 
     60% {
@@ -105,22 +107,22 @@ h1 {
 
     70% {
         color: black;
-        opacity: .2;
+        opacity: 0.2;
     }
 
     80% {
         color: black;
-        opacity: .4;
+        opacity: 0.4;
     }
 
     90% {
         color: black;
-        opacity: .6;
+        opacity: 0.6;
     }
 
     98% {
         color: black;
-        opacity: .8;
+        opacity: 0.8;
     }
 
     100% {
@@ -137,22 +139,22 @@ h1 {
 
     20% {
         color: black;
-        opacity: .8;
+        opacity: 0.8;
     }
 
     30% {
         color: black;
-        opacity: .6;
+        opacity: 0.6;
     }
 
     40% {
         color: black;
-        opacity: .4;
+        opacity: 0.4;
     }
 
     50% {
         color: black;
-        opacity: .2;
+        opacity: 0.2;
     }
 
     60% {
@@ -162,22 +164,22 @@ h1 {
 
     70% {
         color: black;
-        opacity: .2;
+        opacity: 0.2;
     }
 
     80% {
         color: black;
-        opacity: .4;
+        opacity: 0.4;
     }
 
     90% {
         color: black;
-        opacity: .6;
+        opacity: 0.6;
     }
 
     98% {
         color: black;
-        opacity: .8;
+        opacity: 0.8;
     }
 
     100% {
@@ -194,22 +196,22 @@ h1 {
 
     20% {
         color: black;
-        opacity: .8;
+        opacity: 0.8;
     }
 
     30% {
         color: black;
-        opacity: .6;
+        opacity: 0.6;
     }
 
     40% {
         color: black;
-        opacity: .4;
+        opacity: 0.4;
     }
 
     50% {
         color: black;
-        opacity: .2;
+        opacity: 0.2;
     }
 
     60% {
@@ -219,22 +221,22 @@ h1 {
 
     70% {
         color: black;
-        opacity: .2;
+        opacity: 0.2;
     }
 
     80% {
         color: black;
-        opacity: .4;
+        opacity: 0.4;
     }
 
     90% {
         color: black;
-        opacity: .6;
+        opacity: 0.6;
     }
 
     98% {
         color: black;
-        opacity: .8;
+        opacity: 0.8;
     }
 
     100% {
@@ -251,22 +253,22 @@ h1 {
 
     20% {
         color: black;
-        opacity: .8;
+        opacity: 0.8;
     }
 
     30% {
         color: black;
-        opacity: .6;
+        opacity: 0.6;
     }
 
     40% {
         color: black;
-        opacity: .4;
+        opacity: 0.4;
     }
 
     50% {
         color: black;
-        opacity: .2;
+        opacity: 0.2;
     }
 
     60% {
@@ -276,22 +278,22 @@ h1 {
 
     70% {
         color: black;
-        opacity: .2;
+        opacity: 0.2;
     }
 
     80% {
         color: black;
-        opacity: .4;
+        opacity: 0.4;
     }
 
     90% {
         color: black;
-        opacity: .6;
+        opacity: 0.6;
     }
 
     98% {
         color: black;
-        opacity: .8;
+        opacity: 0.8;
     }
 
     100% {
@@ -308,22 +310,22 @@ h1 {
 
     20% {
         color: black;
-        opacity: .8;
+        opacity: 0.8;
     }
 
     30% {
         color: black;
-        opacity: .6;
+        opacity: 0.6;
     }
 
     40% {
         color: black;
-        opacity: .4;
+        opacity: 0.4;
     }
 
     50% {
         color: black;
-        opacity: .2;
+        opacity: 0.2;
     }
 
     60% {
@@ -333,22 +335,22 @@ h1 {
 
     70% {
         color: black;
-        opacity: .2;
+        opacity: 0.2;
     }
 
     80% {
         color: black;
-        opacity: .4;
+        opacity: 0.4;
     }
 
     90% {
         color: black;
-        opacity: .6;
+        opacity: 0.6;
     }
 
     98% {
         color: black;
-        opacity: .8;
+        opacity: 0.8;
     }
 
     100% {

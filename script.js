@@ -159,7 +159,7 @@ for (const [idx, char] of stringWords.split("").entries()) {
     // SET TEXT CONTENT / CLASS / ID
     span.innerText = char;
     span.className = "span";
-    span.id = `span-${idx - 1}`;
+    span.id = `span-${idx}`;
     // APPEND TO PARENT DIV
     textSpanContainer.appendChild(span);
 }
@@ -169,42 +169,49 @@ let wordIdx = 0;
 let strIdx = 0;
 let charIdx = 0;
 
-// 
+//
 const nextChar = () => {
     charIdx += 1;
     strIdx += 1;
-}
+};
 
 const prevChar = () => {
     charIdx -= 1;
     strIdx -= 1;
-}
+};
 
 const nextWord = () => {
     wordIdx += 1;
     charIdx = 0;
-}
+};
+
+const clearInput = () => {
+    txtInput.value = "";
+};
 
 // NODELIST OF ALL CHAR SPANS
 const charSpans = document.querySelectorAll(".span");
 // console.log(charSpans);
 
-console.log(charSpans[strIdx]);
+// ADD CURSOR TO FIRST CHARACTER WHEN PAGE LOADS
 
 // !!! HAS TO SAVE ELEMENT IN VARIABLE TO ADD CLASS !!!
-const element = document.querySelector(".span");
+const firstChar = document.getElementById("span-0");
+firstChar.classList.add("cursor");
+// firstChar.classList.add("blink");
 // ONLY ONE OF THE TWO WORKS AT ONCE
-element.style.background = "lightgrey";
-element.style.border = "1px solid black";
-// element.classList.add("blink");
+// element.style.background = "lightgrey";
+// element.style.border = "1px solid black";
 
-// const addCursor = (char) => {
-//     char.classlist.add("cursor");
-// }
+// const addCursorStyle = (id) => {
+//     const element = document.getElementById(`span-${id}`);
+//     console.log("ELEMENT", element);
+//     element.classlist.add("cursor");
+//     console.log("ELEMENT", element);
+// };
 
 // LISTEN FOR KEY EVENTS
-document.addEventListener("keydown", function (event) {
-
+document.addEventListener("keydown", (event) => {
     console.log(
         "---EVENT---",
         "word: ",
@@ -218,9 +225,6 @@ document.addEventListener("keydown", function (event) {
     const typedKey = event.key;
     console.log("event.key: ", event.key);
     // console.log("event.code:", event.code)
-
-    // const reChar = new RegExp(/[A-Za-z]/, "g");
-    // const reChar = new RegExp(/[A-Za-z]/);
 
     // SHIFT
     if (typedKey === "Shift") {
@@ -267,24 +271,25 @@ document.addEventListener("keydown", function (event) {
             console.log("UNDEFINED!");
             charSpans[strIdx + 1].style.background = "none";
             // charIdx -= 1;
-            txtInput.value = "";
+            clearInput();
+            // txtInput.value = "";
         }
 
-        console.log(
-            "current char:",
-            wordsArr[wordIdx],
-            "/",
-            wordsArr[wordIdx][charIdx]
-        );
+        // console.log(
+        //     "current char:",
+        //     wordsArr[wordIdx],
+        //     "/",
+        //     wordsArr[wordIdx][charIdx]
+        // );
 
         nextWord();
 
-        console.log(
-            "current char:",
-            wordsArr[wordIdx],
-            "/",
-            wordsArr[wordIdx][charIdx]
-        );
+        // console.log(
+        //     "current char:",
+        //     wordsArr[wordIdx],
+        //     "/",
+        //     wordsArr[wordIdx][charIdx]
+        // );
 
         // JUMP IDX TO THE NEXT WORD IN STRING
         if (charIdx < wordsArr[wordIdx].length) {
@@ -298,52 +303,63 @@ document.addEventListener("keydown", function (event) {
                     break;
                 }
             }
-            // SKIP TO NEXT WORD
+            // SKIP TO NEXT WORD IN STRING
             strIdx = nextWordIdx;
             // CLEAR INPUT IF GOT WORD WRONG
-            txtInput.value = "";
+            clearInput();
+            // txtInput.value = "";
             // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
             // charSpans[strIdx].style.background = "none";
             // charSpans[strIdx + 1].style.background = "lightgrey";
         }
         // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
         charSpans[strIdx].style.background = "none";
-        charSpans[strIdx + 1].style.background = "lightgrey";
-        charSpans[strIdx + 1].style.border = "1px solid black";
         charSpans[strIdx].style.border = "none";
+        const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
+        nextCharacter.classList.add("cursor");
+        // charSpans[strIdx + 1].style.background = "lightgrey";
+        // charSpans[strIdx + 1].style.border = "1px solid black";
 
         strIdx += 1;
-        console.log(
-            "SPACE! ",
-            "word: ",
-            wordIdx,
-            "char: ",
-            charIdx,
-            "string: ",
-            strIdx
-        );
-    }
-    // if (reChar.test(current)) {
-    //     console.log("character typed: ", current);
-    // }
 
-    // if (typedKey === "a") console.log("a");
-    // if (typedKey === "A") console.log("A");
+        // console.log(
+        //     "SPACE! ",
+        //     "word: ",
+        //     wordIdx,
+        //     "char: ",
+        //     charIdx,
+        //     "string: ",
+        //     strIdx
+        // );
+    }
 
     // CORRECT KEY
     if (typedKey === wordsArr[wordIdx][charIdx]) {
         charSpans[strIdx].style.color = "green";
-        // charSpans[strIdx + 1].style.color = "tomato";
         // charSpans[strIdx + 1].classList.add("blink");
-        // charSpans[strIdx + 1].classList.add("highlight");
 
         // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
-        charSpans[strIdx + 1].style.background = "lightgrey";
-        charSpans[strIdx].style.background = "none";
-        charSpans[strIdx + 1].style.border = "1px solid black";
-        charSpans[strIdx].style.border = "none";
+        // !!! COMPARE TO charSpans[strIdx + 1] BELOW !!!
 
-        charSpans[strIdx].style.fontSize = "35px";
+        // addCursorStyle(strIdx);
+
+        const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
+        console.log("NEXT CHAR", nextCharacter);
+        nextCharacter.classList.add("cursor");
+        //===
+        // charSpans[strIdx + 1].style.background = "lightgrey";
+        // charSpans[strIdx + 1].style.border = "1px solid black";
+
+        const currentChar = document.getElementById(`span-${strIdx}`);
+        console.log("CURRENT CHAR", currentChar);
+        currentChar.classList.remove("cursor");
+        currentChar.classList.add("green");
+        currentChar.classList.add("enlarged");
+
+        // charSpans[strIdx].style.background = "none";
+        // charSpans[strIdx].style.border = "none";
+
+        // charSpans[strIdx].style.fontSize = "35px";
 
         nextChar();
     }
@@ -366,16 +382,21 @@ document.addEventListener("keydown", function (event) {
             "actual:",
             wordsArr[wordIdx][charIdx]
         );
-        charSpans[strIdx].style.color = "red";
+        // charSpans[strIdx].style.color = "red";
+        const currentChar = document.getElementById(`span-${strIdx}`);
+        currentChar.classList.add("red");
         // GO TO NEXT CHAR IF WRONG CHAR TYPED
         nextChar();
 
         // MOVE BORDER / BACKGROUND TO NEXT CHAR AFTER WRONG CHAR TYPED(JUST ADD BORDER)
-        charSpans[strIdx].style.border = "1px solid black";
-        charSpans[strIdx].style.background = "lightgrey";
+        // charSpans[strIdx].style.border = "1px solid black";
+        // charSpans[strIdx].style.background = "lightgrey";
+        currentChar.classList.add("cursor");
         // REMOVE BORDER AND BACKGROUND FROM WRONG CHAR
-        charSpans[strIdx - 1].style.border = "none";
-        charSpans[strIdx - 1].style.background = "none";
+        const prevChar = document.getElementById(`span-${strIdx - 1}`);
+        prevChar.classList.remove("cursor");
+        // charSpans[strIdx - 1].style.border = "none";
+        // charSpans[strIdx - 1].style.background = "none";
     }
 
     // if (typedKey === stringWords[strIdx]) {
