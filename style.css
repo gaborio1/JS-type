@@ -51,8 +51,16 @@ h1 {
     color: red;
 }
 
+.background {
+    background: lightgrey;
+}
+
 .no-background {
     background: none;
+}
+
+.black-border {
+    border: 1px solid black;
 }
 
 .red-border {
@@ -61,16 +69,6 @@ h1 {
 
 .enlarged {
     font-size: 40px;
-}
-
-.cursor {
-    background: lightgrey;
-    border: 1px solid black;
-}
-
-.incomplete {
-    background: lightgrey;
-    border: 2px solid tomato;
 }
 
 /* BLINKING CURRENT CHARACTER */
