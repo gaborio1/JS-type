@@ -196,12 +196,14 @@ const charSpans = document.querySelectorAll(".span");
 // ADD CURSOR TO FIRST CHARACTER WHEN PAGE LOADS
 
 // !!! HAS TO SAVE ELEMENT IN VARIABLE TO ADD CLASS !!!
+// ---
 const firstChar = document.getElementById("span-0");
-firstChar.classList.add("cursor");
+// firstChar.classList.add("cursor");
+// ---
 // firstChar.classList.add("blink");
 // ONLY ONE OF THE TWO WORKS AT ONCE
-// element.style.background = "lightgrey";
-// element.style.border = "1px solid black";
+firstChar.style.background = "lightgrey";
+firstChar.style.border = "1px solid black";
 
 // const addCursorStyle = (id) => {
 //     const element = document.getElementById(`span-${id}`);
@@ -234,32 +236,46 @@ document.addEventListener("keydown", (event) => {
     // BACKSPACE
     // PREVENT CURSOR FROM GOING BACK IF ITS ON FIRST CHAR OF WORD (&& charIdx > 0)
     if (typedKey === "Backspace" && charIdx > 0) {
-        console.log("BACKSPACE");
-        console.log(
-            "current char:",
-            wordsArr[wordIdx],
-            "/",
-            wordsArr[wordIdx][charIdx]
-        );
+        // console.log("BACKSPACE");
+        // console.log(
+        //     "current char:",
+        //     wordsArr[wordIdx],
+        //     "/",
+        //     wordsArr[wordIdx][charIdx]
+        // );
 
         prevChar();
 
+        // ---
+        // const currentChar = document.getElementById(`span-${strIdx}`);
+        // console.log("CURRENT CHAR ORANGE", currentChar);
+        // currentChar.classList.add("orange");
+        // currentChar.classList.remove("green");
+        // ---
         charSpans[strIdx].style.color = "orange";
-        //
+
+
+
+
+        // ---
+        // const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
+        // nextCharacter.classList.remove("cursor");
+        // ---
         charSpans[strIdx + 1].style.background = "none";
         charSpans[strIdx + 1].style.border = "none";
 
-        // addCursor(charSpans[strIdx]);
-
+        // ---
+        // currentChar.classList.add("cursor");
+        // ---
         charSpans[strIdx].style.background = "lightgrey";
         charSpans[strIdx].style.border = "1px solid black";
 
-        console.log(
-            "current char:",
-            wordsArr[wordIdx],
-            "/",
-            wordsArr[wordIdx][charIdx]
-        );
+        // console.log(
+        //     "current char:",
+        //     wordsArr[wordIdx],
+        //     "/",
+        //     wordsArr[wordIdx][charIdx]
+        // );
     }
 
     // SPACE
@@ -269,10 +285,13 @@ document.addEventListener("keydown", (event) => {
         // CLEAR INPUT IF WORD IS COMPLETE
         if (wordsArr[wordIdx][charIdx] === undefined) {
             console.log("UNDEFINED!");
+            // ---
+            // const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
+            // nextCharacter.classList.add("no-background");
+            // ---
             charSpans[strIdx + 1].style.background = "none";
-            // charIdx -= 1;
+
             clearInput();
-            // txtInput.value = "";
         }
 
         // console.log(
@@ -299,6 +318,10 @@ document.addEventListener("keydown", (event) => {
                 if (stringWords[i] === " ") {
                     console.log("space found at index: ", i);
                     nextWordIdx = i;
+                    // ---
+                    // const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
+                    // nextCharacter.classList.add("red-border");
+                    // ---
                     charSpans[strIdx].style.border = "2px solid red";
                     break;
                 }
@@ -309,16 +332,23 @@ document.addEventListener("keydown", (event) => {
             clearInput();
             // txtInput.value = "";
             // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
-            // charSpans[strIdx].style.background = "none";
-            // charSpans[strIdx + 1].style.background = "lightgrey";
+            charSpans[strIdx].style.background = "none";
+            charSpans[strIdx + 1].style.background = "lightgrey";
         }
         // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
+
+        // ---
+        // const currentChar = document.getElementById(`span-${strIdx}`);
+        // currentChar.classList.remove("cursor");
+        // ---
         charSpans[strIdx].style.background = "none";
         charSpans[strIdx].style.border = "none";
-        const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
-        nextCharacter.classList.add("cursor");
-        // charSpans[strIdx + 1].style.background = "lightgrey";
-        // charSpans[strIdx + 1].style.border = "1px solid black";
+        // ---
+        // const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
+        // nextCharacter.classList.add("cursor");
+        // ---
+        charSpans[strIdx + 1].style.background = "lightgrey";
+        charSpans[strIdx + 1].style.border = "1px solid black";
 
         strIdx += 1;
 
@@ -335,31 +365,37 @@ document.addEventListener("keydown", (event) => {
 
     // CORRECT KEY
     if (typedKey === wordsArr[wordIdx][charIdx]) {
+        // ---
+        // currentChar = document.getElementById(`span-${strIdx}`);
+        // currentChar.classList.add("green");
+        // ---
         charSpans[strIdx].style.color = "green";
+
         // charSpans[strIdx + 1].classList.add("blink");
 
         // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
         // !!! COMPARE TO charSpans[strIdx + 1] BELOW !!!
 
         // addCursorStyle(strIdx);
+        // ---
+        // const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
+        // console.log("NEXT CHAR", nextCharacter);
+        // nextCharacter.classList.add("cursor");
+        // ---
+        charSpans[strIdx + 1].style.background = "lightgrey";
+        charSpans[strIdx + 1].style.border = "1px solid black";
 
-        const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
-        console.log("NEXT CHAR", nextCharacter);
-        nextCharacter.classList.add("cursor");
-        //===
-        // charSpans[strIdx + 1].style.background = "lightgrey";
-        // charSpans[strIdx + 1].style.border = "1px solid black";
+        // ---
+        // const currentChar = document.getElementById(`span-${strIdx}`);
+        // console.log("CURRENT CHAR", currentChar);
+        // currentChar.classList.remove("cursor");
+        // currentChar.classList.add("green");
+        // currentChar.classList.add("enlarged");
+        // ---
+        charSpans[strIdx].style.background = "none";
+        charSpans[strIdx].style.border = "none";
 
-        const currentChar = document.getElementById(`span-${strIdx}`);
-        console.log("CURRENT CHAR", currentChar);
-        currentChar.classList.remove("cursor");
-        currentChar.classList.add("green");
-        currentChar.classList.add("enlarged");
-
-        // charSpans[strIdx].style.background = "none";
-        // charSpans[strIdx].style.border = "none";
-
-        // charSpans[strIdx].style.fontSize = "35px";
+        charSpans[strIdx].style.fontSize = "35px";
 
         nextChar();
     }
@@ -382,21 +418,27 @@ document.addEventListener("keydown", (event) => {
             "actual:",
             wordsArr[wordIdx][charIdx]
         );
-        // charSpans[strIdx].style.color = "red";
-        const currentChar = document.getElementById(`span-${strIdx}`);
-        currentChar.classList.add("red");
+        charSpans[strIdx].style.color = "red";
+        // ---
+        // const currentChar = document.getElementById(`span-${strIdx}`);
+        // currentChar.classList.add("red");
+        // ---
         // GO TO NEXT CHAR IF WRONG CHAR TYPED
         nextChar();
 
         // MOVE BORDER / BACKGROUND TO NEXT CHAR AFTER WRONG CHAR TYPED(JUST ADD BORDER)
-        // charSpans[strIdx].style.border = "1px solid black";
-        // charSpans[strIdx].style.background = "lightgrey";
-        currentChar.classList.add("cursor");
+        charSpans[strIdx].style.border = "1px solid black";
+        charSpans[strIdx].style.background = "lightgrey";
+        // ---
+        // currentChar.classList.add("cursor");
+        // ---
         // REMOVE BORDER AND BACKGROUND FROM WRONG CHAR
-        const prevChar = document.getElementById(`span-${strIdx - 1}`);
-        prevChar.classList.remove("cursor");
-        // charSpans[strIdx - 1].style.border = "none";
-        // charSpans[strIdx - 1].style.background = "none";
+        // ---
+        // const prevChar = document.getElementById(`span-${strIdx - 1}`);
+        // prevChar.classList.remove("cursor");
+        // ---
+        charSpans[strIdx - 1].style.border = "none";
+        charSpans[strIdx - 1].style.background = "none";
     }
 
     // if (typedKey === stringWords[strIdx]) {

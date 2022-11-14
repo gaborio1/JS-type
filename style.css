@@ -51,6 +51,14 @@ h1 {
     color: red;
 }
 
+.no-background {
+    background: none;
+}
+
+.red-border {
+    border: 2px solid red;
+}
+
 .enlarged {
     font-size: 40px;
 }
