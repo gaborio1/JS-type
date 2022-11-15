@@ -105,6 +105,14 @@ let commonWords = [
 
 const sequenceLength = 40;
 
+// SET CURSOR TO INPUT BOX
+const input = document.getElementById("input");
+// SETS CURSOR AT FIRST CHAR IF TEXT-ALIGN IS DISABLED IN CSS
+// input.setSelectionRange(0, 0);
+input.focus();
+// NOT NECESSARY ?
+// input.select();
+
 // GET RANDOM WORD FROM ARRAY
 const getRandom = (arr) => {
     const randIdx = Math.floor(Math.random() * commonWords.length);
@@ -204,6 +212,12 @@ firstChar.classList.add("background", "black-border");
 
 // LISTEN FOR KEY EVENTS
 document.addEventListener("keydown", (event) => {
+
+    // DETECT CAPSLOCK
+    if (event.getModifierState('CapsLock')) {
+        console.log("CAPSLOCK IS ON!");
+    }
+
     console.log(
         "---EVENT---",
         "word: ",
@@ -448,6 +462,8 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
+
+
 /*
 TODOS
 
@@ -464,14 +480,15 @@ TODOS
     FEATURES:
         START / NEW BUTTON
         LEVEL SELECTOR (100, 200, 500 ETC...)
-        CAPS LOCK WARNING
+        ☑️ DETECT CAPSLOCK
+        CAPS LOCK WARNING MESSAGE
         BUILD RANDOM WORDS FROM PROBLEM CHARACTERS / WORDS
 
     CODE:
         FUNCTIONS:
-            STYLING CHARACTERS ASSIGN STYLES TO CSS (ADD AND REMOVE CLASS WITH JS)
+            ☑️ STYLING CHARACTERS ASSIGN STYLES TO CSS (ADD AND REMOVE CLASS WITH JS)
             ☑️ SET CURSOR POSITION (FORWARD, BACK)
-            CLEAR INPUT
+            ☑️ CLEAR INPUT
 
 
 
