@@ -18,7 +18,7 @@ h1 {
 
 .container {
     width: 1000px;
-    height: 500px;
+    height: 650px;
     margin: 50px auto;
     padding: 25px;
     border: 3px solid tomato;
@@ -381,7 +381,7 @@ h1 {
     height: 50px;
     padding: 0px 20px 0px 20px;
     font-size: 30px;
-    text-align: center;
+    text-align: left;
     border: none;
-    background-color: rgba(240, 128, 128, 0.74);
+    background-color: lightsteelblue;
 }

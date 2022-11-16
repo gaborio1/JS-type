@@ -103,7 +103,7 @@ let commonWords = [
     "part",
 ];
 
-const sequenceLength = 40;
+const sequenceLength = 12;
 
 // SET CURSOR TO INPUT BOX
 const input = document.getElementById("input");
@@ -111,7 +111,7 @@ const input = document.getElementById("input");
 // input.setSelectionRange(0, 0);
 input.focus();
 // NOT NECESSARY ?
-// input.select();
+// input.select(); 
 
 // GET RANDOM WORD FROM ARRAY
 const getRandom = (arr) => {
@@ -127,6 +127,13 @@ const txtInput = document.getElementById("input");
 // CREATE TEXT STRING FROM RANDOM WORDS UP TO sequenceLength IN LENGTH
 let stringWords = "";
 let wordsArr = [];
+let wordArrays = [];
+
+// TRACK LINES(ARRAY OF WORDS), WORDS IN SEQUENCE AND CHARACTERS OF CURRENT WORD
+let lineIdx = 0;
+let wordIdx = 0;
+let strIdx = 0;
+let charIdx = 0;
 
 // GET CURRENT LENGTH OF WORDS PLUS SPACES IN BETWEEN
 const getStrLength = (arr) => {
@@ -140,16 +147,43 @@ const getStrLength = (arr) => {
     return length;
 };
 
-// BUILD STRING BY ADDING RANDNOM WORDS ONE BY ONE UNTIL LENGTH IS REACHED
-while (true) {
-    if (getStrLength(wordsArr) >= sequenceLength) break;
-    let currWord = getRandom();
-    wordsArr.push(currWord);
+// BUILD STRING BY ADDING RANDOM WORDS ONE BY ONE UNTIL LENGTH IS REACHED
+
+// === === === === === === === === START === === === === === === === === ===
+// POPULATE wordArrays WITH ARRAYS OF WORDS (wordsArr), ONE FOR EACH TEXT LINE
+const buidWordArrays = (numOfLines) => {
+    for (let i = 0; i < numOfLines; i += 1) {
+        let arr = [];
+        while (true) {
+            if (getStrLength(arr) >= sequenceLength) break;
+            let currWord = getRandom();
+            arr.push(currWord);
+        }
+        wordArrays.push(arr);
+    }
 }
+
+// TEST FOR ARRAY OF 3 ARRAYS
+buidWordArrays(3);
+console.log(wordArrays);
+// === === === === === === === === END === === === === === === === === ===
+
+
+const buildWordsArr = () => {
+    while (true) {
+        if (getStrLength(wordsArr) >= sequenceLength) break;
+        let currWord = getRandom();
+        wordsArr.push(currWord);
+    }
+}
+
+buildWordsArr();
+
 
 // OR USE OWN CUSTOM TEXT
 // wordsArr = ["your", "custom", "text"];
 
+// CREATE STRING OF WORDS WITH SPACES
 console.log(wordsArr);
 stringWords = wordsArr.join(" ");
 console.log(stringWords);
@@ -157,11 +191,37 @@ console.log(stringWords);
 textContainer.textContent = stringWords;
 
 // MAKE EACH CHARACTER OF THE STRING A span AND APPEND AS A CHILD ELEMENT TO ITS CONTAINER
-const textSpanContainer = document.querySelector(".text-span-container");
+const textSpanContainerActive = document.getElementById("text-span-active");
 
+const textSpanContainerNext = document.getElementById("text-span-next");
+
+// === === === === === === === === START === === === === === === === === ===
+// CREATE SPANS FROM wordArrays' ARRAY OF WORDS, JOIN ELEMENS TO ONE STRING WITH SPACES AND THEN SPLIT
+// wordArrays[lineIdx] WILL BE INCREMENTED IN EVETNLISTENER 
+console.log("WORDARRAYS FIRST LINE:", wordArrays[lineIdx])
+const createSpans = (lineIdx) => {
+    for (const [idx, char] of wordArrays[lineIdx].join(" ").split("").entries()) {
+        // console.log(idx, char); 
+        // CREATE ELEMENT
+        const span = document.createElement("span");
+        // SET TEXT CONTENT / CLASS / ID
+        span.innerText = char;
+        span.className = "span";
+        span.id = `span-${idx}`;
+        // APPEND TO PARENT DIV
+        textSpanContainerNext.appendChild(span);
+    }
+}
+
+// TEST
+createSpans(1);
+// === === === === === === === === END === === === === === === === === ===
+
+
+// LOOP OVER STRINGWORSD TO CREATE SPANS(EVERY CHAR INCLUDING SPACES IN BETWEEN)
 // !!! ACCESS INDEX OF ITERATION IN FOR OF LOOP WITH DESTRUCTURING SYNTAX + entries() METHOD
 for (const [idx, char] of stringWords.split("").entries()) {
-    console.log(idx, char);
+    // console.log(idx, char);
     // CREATE ELEMENT
     const span = document.createElement("span");
     // SET TEXT CONTENT / CLASS / ID
@@ -169,13 +229,9 @@ for (const [idx, char] of stringWords.split("").entries()) {
     span.className = "span";
     span.id = `span-${idx}`;
     // APPEND TO PARENT DIV
-    textSpanContainer.appendChild(span);
+    textSpanContainerActive.appendChild(span);
 }
 
-// TRACK WORDS IN SEQUENCE AND CHARACTERS OF CURRENT WORD
-let wordIdx = 0;
-let strIdx = 0;
-let charIdx = 0;
 
 //
 const nextChar = () => {
@@ -192,6 +248,12 @@ const nextWord = () => {
     wordIdx += 1;
     charIdx = 0;
 };
+
+const nextLine = () => {
+    lineIdx += 1;
+    wordIdx = 0;
+    charIdx = 0;
+}
 
 const clearInput = () => {
     txtInput.value = "";
@@ -315,6 +377,9 @@ document.addEventListener("keydown", (event) => {
         //     wordsArr[wordIdx][charIdx]
         // );
 
+
+
+
         // JUMP IDX TO THE NEXT WORD IN STRING
         if (charIdx < wordsArr[wordIdx].length) {
             let nextWordIdx;
@@ -365,11 +430,6 @@ document.addEventListener("keydown", (event) => {
         nextCharacter.classList.add("background", "black-border");
         // ---
 
-
-
-
-
-
         // charSpans[strIdx + 1].style.background = "lightgrey";
         // charSpans[strIdx + 1].style.border = "1px solid black";
 
@@ -384,6 +444,26 @@ document.addEventListener("keydown", (event) => {
         //     "string: ",
         //     strIdx
         // );
+
+        // === === === === === === === === START === === === === === === === === ===
+
+        // !!! FIND A WAY TO PREVENT STRIDX GOING OVER STRING.LENGTH !!!
+
+        // DETECT LAST CHARACTER IN LINE OR LAST UNCOMPLETED WORD
+        // JUMP TO NEXT LINE
+        // let lastWordIdx = 
+        // if (wordIdx === wordsArr[wordsArr.length - 1] && charIdx === wordsArr[wordsArr.length - 1][wordsArr[wordsArr.length - 1].length - 1]) {
+        if (wordIdx === wordsArr[wordsArr.length - 1]) {
+            console.log("--------END OF LINE, SKIP TO NEXT ARRAY--------");
+        }
+        console.log("string idx:", strIdx, "string length:", stringWords.length);
+        console.log("word index:", wordIdx, "char index:", charIdx);
+        console.log(stringWords);
+        // if (strIdx === stringWords.length - 1) {
+        //     console.log("--------END OF LINE, SKIP TO NEXT ARRAY--------");
+        // }
+        // === === === === === === === === END === === === === === === === === ===
+
     }
 
     // CORRECT KEY
@@ -401,6 +481,11 @@ document.addEventListener("keydown", (event) => {
 
         // ---
         // console.log("NEXT CHAR", nextCharacter);
+
+        // ❗️❗️❗️ ERROR ❗️❗️❗️
+        //     script.js:485 Uncaught TypeError: Cannot read properties of null (reading 'classList')
+        // at HTMLDocument.<anonymous> (script.js:485:23)
+        // !!! THERE IS NO NEXT CHARACTER WHEN LAST CHAR IS TYPED !!!
         let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
         nextCharacter.classList.add("background", "black-border");
         // console.log("NEXT CHAR", nextCharacter);
@@ -460,6 +545,7 @@ document.addEventListener("keydown", (event) => {
         // GO TO NEXT CHAR IF WRONG CHAR TYPED
         nextChar();
     }
+
 });
 
 
