@@ -37,7 +37,10 @@ h1 {
 .text-span-container {
     height: 80px;
     padding-top: 0px;
-    overflow: scroll;
+    padding-left: 200px;
+    padding-right: 200px;
+    /* overflow: scroll; */
+    overflow: hidden;
     /* inline-size: 400px; */
 }
 

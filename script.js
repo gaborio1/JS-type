@@ -161,7 +161,7 @@ const textSpanContainer = document.querySelector(".text-span-container");
 
 // !!! ACCESS INDEX OF ITERATION IN FOR OF LOOP WITH DESTRUCTURING SYNTAX + entries() METHOD
 for (const [idx, char] of stringWords.split("").entries()) {
-    console.log(idx, char);
+    // console.log(idx, char);
     // CREATE ELEMENT
     const span = document.createElement("span");
     // SET TEXT CONTENT / CLASS / ID
@@ -212,6 +212,22 @@ firstChar.classList.add("background", "black-border");
 
 // LISTEN FOR KEY EVENTS
 document.addEventListener("keydown", (event) => {
+
+    // === === === === === START === === === === === 
+
+    //  OVERFLOW: HIDDEN IS BETTER
+
+    // !!! HAVE TO DYNAMICALLY INCREASE top BEFORE EVERY SCROLL BY 35 !!!
+    if (Number.isInteger(strIdx / 25) && strIdx / 30 > 0) {
+        // if (Number.isInteger(strIdx % 30) && (strIdx % 30 > 0)) {
+        textSpanContainer.scroll({
+            top: 35,
+            // left: 100,
+            behavior: 'smooth'
+        });
+
+    }
+    // === === === === === END === === === === === 
 
     // DETECT CAPSLOCK
     if (event.getModifierState('CapsLock')) {
@@ -356,11 +372,7 @@ document.addEventListener("keydown", (event) => {
         }
 
         nextWord();
-        textSpanContainer.scroll({
-            top: 35,
-            // left: 100,
-            behavior: 'smooth'
-        });
+
 
         // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
 
@@ -471,6 +483,12 @@ document.addEventListener("keydown", (event) => {
         nextChar();
     }
 });
+
+// textSpanContainer.scroll({
+//     top: 35,
+//     // left: 100,
+//     behavior: 'smooth'
+// });
 
 
 
