@@ -103,7 +103,7 @@ let commonWords = [
     "part",
 ];
 
-const sequenceLength = 40;
+const sequenceLength = 300;
 
 // SET CURSOR TO INPUT BOX
 const input = document.getElementById("input");
@@ -341,6 +341,11 @@ document.addEventListener("keydown", (event) => {
             // CLEAR INPUT IF GOT WORD WRONG
             clearInput();
             // txtInput.value = "";
+
+
+
+
+
             // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
             let currentChar = document.getElementById(`span-${strIdx}`);
             currentChar.classList.remove("background")
@@ -351,6 +356,11 @@ document.addEventListener("keydown", (event) => {
         }
 
         nextWord();
+        textSpanContainer.scroll({
+            top: 35,
+            // left: 100,
+            behavior: 'smooth'
+        });
 
         // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
 
