@@ -176,6 +176,16 @@ console.log(wordArrays[lineIdx]);
 stringWords = wordArrays[lineIdx].join(" ");
 console.log(stringWords);
 
+// === === === === === === === === START === === === === === === === === ===
+const buildStringWords = (arr) => {
+    return arr.join(" ");
+}
+const testString = buildStringWords(wordArrays[2]);
+console.log("TEST STRING", testString);
+// === === === === === === === === END === === === === === === === === ===
+
+
+
 textContainer.textContent = stringWords;
 
 // MAKE EACH CHARACTER OF THE STRING A span AND APPEND AS A CHILD ELEMENT TO ITS CONTAINER
@@ -187,7 +197,7 @@ const textSpanContainerNext = document.getElementById("text-span-next");
 // CREATE SPANS FROM wordArrays' ARRAY OF WORDS, JOIN ELEMENS TO ONE STRING WITH SPACES AND THEN SPLIT
 // wordArrays[lineIdx] WILL BE INCREMENTED IN EVETLISTENER
 console.log("WORDARRAYS FIRST LINE:", wordArrays[lineIdx]);
-const createSpans = (lineIdx) => {
+const createSpans = (lineIdx, location) => {
     for (const [idx, char] of wordArrays[lineIdx]
         .join(" ")
         .split("")
@@ -200,12 +210,12 @@ const createSpans = (lineIdx) => {
         span.className = "span";
         span.id = `span-${idx}`;
         // APPEND TO PARENT DIV
-        textSpanContainerNext.appendChild(span);
+        location.appendChild(span);
     }
 };
 
 // TEST
-createSpans(1);
+// createSpans(1, textSpanContainerNext);
 // === === === === === === === === END === === === === === === === === ===
 
 // LOOP OVER STRINGWORSD TO CREATE SPANS(EVERY CHAR INCLUDING SPACES IN BETWEEN)
@@ -343,15 +353,34 @@ document.addEventListener("keydown", (event) => {
             }
         }
 
+
+
+
+
         // JUMP IDX TO THE NEXT WORD IN STRING
         if (charIdx < wordArrays[lineIdx][wordIdx].length) {
-            // IF SPACE IS PRESSED ANYWHERE ON LAST WORD
+            // IF SPACE IS PRESSED ANYWHERE ON LAST WORD 
+            console.log("INCOMPLETE WORD, NEXT LINE()");
+
+            // === === === === === === === === START === === === === === === === === ===
+
+            // !!! THIS DOES NOT RUN ON LAST WORD !!!
             if (
                 wordIdx === wordArrays[lineIdx][wordArrays[lineIdx].length - 1]
             ) {
-                console.log("NEXT LINE()");
+                console.log("INCOMPLETE WORD, NEXT LINE()");
+                // START NEW LINE
                 nextLine();
+                // DELETE SPANS FROM ACTIVE DIV
+                textSpanContainerActive.innerHTML = "";
+                // APPEND SPANS CREATED FROM NEXT LINE
+                createSpans(lineIdx, textSpanContainerActive);
             }
+            // === === === === === === === === START === === === === === === === === ===
+
+
+
+
 
             let nextWordIdx;
             console.log(
@@ -398,11 +427,27 @@ document.addEventListener("keydown", (event) => {
             strIdx += 1;
         }
 
-        // NOW START A NEW LINE
+
+        // === === === === === === === === START === === === === === === === === ===
+
+        // START A NEW LINE
         if (strIdx === undefined) {
             console.log("NEXT LINE()");
+            // START NEW LINE
             nextLine();
+            // DELETE SPANS FROM ACTIVE DIV
+            textSpanContainerActive.innerHTML = "";
+            // APPEND SPANS CREATED FROM NEXT LINE
+            createSpans(lineIdx, textSpanContainerActive);
+            // UPDATE STRWORDS
+
+            // APPEND NEXT LINE TO TEXTSPAN NEXT DIV
+            createSpans(lineIdx + 1, textSpanContainerNext);
         }
+
+        // === === === === === === === === START === === === === === === === === ===
+
+
 
         // let currentChar = document.getElementById(`span-${strIdx}`);
         // currentChar.classList.remove("background", "black-border");
@@ -424,7 +469,7 @@ document.addEventListener("keydown", (event) => {
             console.log("--------END OF LINE, SKIP TO NEXT ARRAY--------");
         }
 
-        // === === === === === === === === END === === === === === === === === ===
+        // === === === === === === === === START === === === === === === === === ===
     }
 
     // CORRECT KEY
