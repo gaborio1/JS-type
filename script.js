@@ -169,17 +169,6 @@ console.log(wordArrays);
 // === === === === === === === === END === === === === === === === === ===
 
 
-// const buildWordsArr = () => {
-//     while (true) {
-//         if (getStrLength(wordsArr) >= sequenceLength) break;
-//         let currWord = getRandom();
-//         wordsArr.push(currWord);
-//     }
-// }
-
-// buildWordsArr();
-
-
 // OR USE OWN CUSTOM TEXT
 // wordsArr = ["your", "custom", "text"];
 
@@ -264,18 +253,16 @@ const charSpans = document.querySelectorAll(".span");
 // console.log(charSpans);
 
 // ADD CURSOR TO FIRST CHARACTER WHEN PAGE LOADS
-// ---
 const firstChar = document.getElementById("span-0");
 firstChar.classList.add("background", "black-border");
-// ---
-// firstChar.style.background = "lightgrey";
-// firstChar.style.border = "1px solid black";
-// firstChar.classList.add("blink");
+
 
 // LISTEN FOR KEY EVENTS
 document.addEventListener("keydown", (event) => {
     console.log(
         "---EVENT START---------------------",
+        "line idx: ",
+        lineIdx,
         "word idx: ",
         wordIdx,
         "/",
@@ -290,10 +277,7 @@ document.addEventListener("keydown", (event) => {
         stringWords.length - 1
     );
 
-    // console.log("string idx:", strIdx, "string length:", stringWords.length);
-    // console.log("word index:", wordIdx, "char index:", charIdx);
 
-    // if (wordIdx === wordsArr[wordsArr.length - 1]) {
     if (wordIdx === wordArrays[lineIdx].length - 1) {
         console.log("--------LAST WORD IN LINE--------");
     }
@@ -316,52 +300,22 @@ document.addEventListener("keydown", (event) => {
     // PREVENT CURSOR FROM GOING BACK IF ITS ON FIRST CHAR OF WORD (&& charIdx > 0)
     if (typedKey === "Backspace" && charIdx > 0) {
         // console.log("BACKSPACE");
-        // console.log(
-        //     "current char:",
-        //     wordsArr[wordIdx],
-        //     "/",
-        //     wordsArr[wordIdx][charIdx]
-        // );
 
         prevChar();
 
-        // ---
         const currentChar = document.getElementById(`span-${strIdx}`);
         console.log("CURRENT CHAR ORANGE", currentChar);
         currentChar.classList.add("orange", "background", "black-border");
         currentChar.classList.remove("red", "green");
-        // ---
-        // charSpans[strIdx].style.color = "orange";
 
-
-
-
-        // ---
         const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
         nextCharacter.classList.remove("background", "black-border");
-        // ---
-        // charSpans[strIdx + 1].style.background = "none";
-        // charSpans[strIdx + 1].style.border = "none";
-
-        // ---
-        // currentChar.classList.add("cursor");
-        // ---
-        // charSpans[strIdx].style.background = "lightgrey";
-        // charSpans[strIdx].style.border = "1px solid black";
-
-        // console.log(
-        //     "current char:",
-        //     wordsArr[wordIdx],
-        //     "/",
-        //     wordsArr[wordIdx][charIdx]
-        // );
     }
 
     // SPACE
     // if (event.code === "Space") {
     if (typedKey === " ") {
 
-        // if (wordIdx === wordsArr[wordsArr.length - 1]) {
         if (wordIdx === wordArrays[lineIdx].length - 1) {
             console.log("--------LAST WORD IN LINE--------");
         }
@@ -374,33 +328,12 @@ document.addEventListener("keydown", (event) => {
             const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
             // ???
             // nextCharacter.classList.add("no-background");
-            // ---
-            // charSpans[strIdx + 1].style.background = "none";
+
 
             clearInput();
         }
 
-        // console.log(
-        //     "current char:",
-        //     wordsArr[wordIdx],
-        //     "/",
-        //     wordsArr[wordIdx][charIdx]
-        // );
-
-        // nextWord();
-
-        // console.log(
-        //     "current char:",
-        //     wordsArr[wordIdx],
-        //     "/",
-        //     wordsArr[wordIdx][charIdx]
-        // );
-
-
-
-
         // JUMP IDX TO THE NEXT WORD IN STRING
-        // if (charIdx < wordsArr[wordIdx].length) {
         if (charIdx < wordArrays[lineIdx][wordIdx].length) {
             let nextWordIdx;
             console.log("charIdx:", charIdx, "word length:", wordArrays[lineIdx][wordIdx].length);
@@ -409,15 +342,9 @@ document.addEventListener("keydown", (event) => {
                 if (stringWords[i] === " ") {
                     console.log("space found at index: ", i);
                     nextWordIdx = i;
-                    // ---
-                    // let nextCharacter = document.getElementById(`span-${strIdx}`);
+
                     let currentChar = document.getElementById(`span-${strIdx}`);
                     currentChar.classList.add("red-border");
-                    // let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
-                    // nextCharacter.classList.remove("background", "black-border");
-
-                    // ---
-                    // charSpans[strIdx].style.border = "2px solid red";
                     break;
                 }
             }
@@ -429,41 +356,21 @@ document.addEventListener("keydown", (event) => {
             // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
             let currentChar = document.getElementById(`span-${strIdx}`);
             currentChar.classList.remove("background")
-            // charSpans[strIdx].style.background = "none";
             let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
             nextCharacter.classList.add("background")
-            // charSpans[strIdx + 1].style.background = "lightgrey";
         }
 
         nextWord();
 
         // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
 
-        // ---
         let currentChar = document.getElementById(`span-${strIdx}`);
         currentChar.classList.remove("background", "black-border");
-        // ---
-        // charSpans[strIdx].style.background = "none";
-        // charSpans[strIdx].style.border = "none";
-        // ---
+
         const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
         nextCharacter.classList.add("background", "black-border");
-        // ---
-
-        // charSpans[strIdx + 1].style.background = "lightgrey";
-        // charSpans[strIdx + 1].style.border = "1px solid black";
 
         strIdx += 1;
-
-        // console.log(
-        //     "SPACE! ",
-        //     "word: ",
-        //     wordIdx,
-        //     "char: ",
-        //     charIdx,
-        //     "string: ",
-        //     strIdx
-        // );
 
         // === === === === === === === === START === === === === === === === === ===
 
@@ -471,30 +378,20 @@ document.addEventListener("keydown", (event) => {
 
         // DETECT LAST CHARACTER IN LINE OR LAST UNCOMPLETED WORD
         // JUMP TO NEXT LINE
-        // let lastWordIdx = 
-        // if (wordIdx === wordsArr[wordsArr.length - 1] && charIdx === wordsArr[wordsArr.length - 1][wordsArr[wordsArr.length - 1].length - 1]) {
-        // if (wordIdx === wordsArr[wordsArr.length - 1]) {
+
         if (wordIdx === wordArrays[lineIdx][wordArrays[lineIdx].length - 1]) {
             console.log("--------END OF LINE, SKIP TO NEXT ARRAY--------");
         }
-        // console.log("string idx:", strIdx, "string length:", stringWords.length);
-        // console.log("word index:", wordIdx, "char index:", charIdx);
-        // console.log(stringWords);
 
-        // if (strIdx === stringWords.length - 1) {
-        //     console.log("--------END OF LINE, SKIP TO NEXT ARRAY--------");
-        // }
         // === === === === === === === === END === === === === === === === === ===
 
     }
 
     // CORRECT KEY
-    // if (typedKey === wordsArr[wordIdx][charIdx]) {
     if (typedKey === wordArrays[lineIdx][wordIdx][charIdx]) {
         // ---
         // ADD BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
         let currentChar = document.getElementById(`span-${strIdx}`);
-        // currentChar = document.getElementById(`span-${strIdx}`);
         currentChar.classList.add("green", "enlarged");
         currentChar.classList.remove("red", "orange", "background", "black-border");
         // charSpans[strIdx + 1].classList.add("blink");
@@ -514,10 +411,6 @@ document.addEventListener("keydown", (event) => {
             console.log("LAST CHARACTER");
         }
 
-        // if (wordIdx === wordsArr.length - 1 && charIdx < wordsArr[wordIdx].length) {
-        //     console.log("LAST WORD, CHAR IDX:", charIdx);
-        // }
-
         // DON'T ACCESS NEXT SPAN(UNDEFINED) AFTER LAST CHARACTER
         if (strIdx < stringWords.length - 1) {
             console.log("+++++++++++++++", strIdx);
@@ -526,18 +419,11 @@ document.addEventListener("keydown", (event) => {
             nextChar();
         }
 
+        // LAST CHARACTER TYPED IN LINE
         if (wordIdx === wordArrays[lineIdx].length - 1 && charIdx === wordArrays[lineIdx][wordIdx].length - 1) {
             console.log("LAST WORD, LAST CHAR! CHAR IDX:", charIdx);
         }
 
-        // STYLE NEXT CHAR
-        // let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
-        // nextCharacter.classList.add("background", "black-border");
-
-        // console.log("NEXT CHAR", nextCharacter);
-        // ---
-
-        // nextChar();
     }
 
     // WRONG KEY OR SHIFT FOR CAPITAL LETTERS
@@ -557,35 +443,25 @@ document.addEventListener("keydown", (event) => {
             wordArrays[lineIdx][wordIdx][charIdx]
         );
 
-        // charSpans[strIdx].style.color = "red";
-        // ---
+
         let currentChar = document.getElementById(`span-${strIdx}`);
         currentChar.classList.add("red", "enlarged");
-        // ---
 
-        // NEXTCHAR()
-
-        // MOVE BORDER / BACKGROUND TO NEXT CHAR AFTER WRONG CHAR TYPED(JUST ADD BORDER)
-        // charSpans[strIdx].style.border = "1px solid black";
-        // charSpans[strIdx].style.background = "lightgrey";
-        // ---
         let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
         nextCharacter.classList.add("background", "black-border");
-        // ---
 
         // REMOVE BORDER AND BACKGROUND FROM WRONG CHAR
-        // ---
         const prevChar = document.getElementById(`span-${strIdx}`);
         prevChar.classList.remove("background", "black-border");
-        // ---
-        // charSpans[strIdx - 1].style.border = "none";
-        // charSpans[strIdx - 1].style.background = "none";
+
         // GO TO NEXT CHAR IF WRONG CHAR TYPED
         nextChar();
     }
 
     console.log(
         "---------------------EVENT END---",
+        "line idx: ",
+        lineIdx,
         "word idx: ",
         wordIdx,
         "/",
@@ -635,6 +511,11 @@ TODOS
             ☑️ STYLING CHARACTERS ASSIGN STYLES TO CSS (ADD AND REMOVE CLASS WITH JS)
             ☑️ SET CURSOR POSITION (FORWARD, BACK)
             ☑️ CLEAR INPUT
+
+    PROBLEMS:
+        INCREMENT LINEIDX WHEN LAST WORD IS ALL GREEN AND SPACE IS PRESSED
+        INCREMENT LINEIDX WHEN SPACE IS PRESSED ON LAST WORD OF LINE
+            INITIALISE STRIDX
 
 
 
