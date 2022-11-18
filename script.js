@@ -126,7 +126,6 @@ const txtInput = document.getElementById("input");
 
 // CREATE TEXT STRING FROM RANDOM WORDS UP TO sequenceLength IN LENGTH
 let stringWords = "";
-// let wordsArr = [];
 let wordArrays = [];
 
 // TRACK LINES(ARRAY OF WORDS), WORDS IN SEQUENCE AND CHARACTERS OF CURRENT WORD
@@ -149,7 +148,6 @@ const getStrLength = (arr) => {
 
 // BUILD STRING BY ADDING RANDOM WORDS ONE BY ONE UNTIL LENGTH IS REACHED
 
-// === === === === === === === === START === === === === === === === === ===
 // POPULATE wordArrays WITH ARRAYS OF WORDS (wordsArr), ONE FOR EACH TEXT LINE
 const buidWordArrays = (numOfLines) => {
     for (let i = 0; i < numOfLines; i += 1) {
@@ -163,27 +161,22 @@ const buidWordArrays = (numOfLines) => {
     }
 };
 
-// TEST FOR ARRAY OF 3 ARRAYS
+// TEST FOR ARRAY OF 5 ARRAYS
 buidWordArrays(5);
 console.log(wordArrays);
-// === === === === === === === === END === === === === === === === === ===
 
 // OR USE OWN CUSTOM TEXT
 // wordsArr = ["your", "custom", "text"];
 
 // CREATE STRING OF WORDS WITH SPACES
-// console.log(wordArrays[lineIdx]);
 stringWords = wordArrays[lineIdx].join(" ");
 console.log(stringWords);
 
-// === === === === === === === === START === === === === === === === === ===
 const buildStringWords = (arr) => {
     return arr.join(" ");
 }
 // const testString = buildStringWords(wordArrays[2]);
 // console.log("TEST STRING", testString);
-// === === === === === === === === END === === === === === === === === ===
-
 
 
 textContainer.textContent = stringWords;
@@ -193,7 +186,6 @@ const textSpanContainerActive = document.getElementById("text-span-active");
 
 const textSpanContainerNext = document.getElementById("text-span-next");
 
-// === === === === === === === === START === === === === === === === === ===
 // CREATE SPANS FROM wordArrays' ARRAY OF WORDS, JOIN ELEMENS TO ONE STRING WITH SPACES AND THEN SPLIT
 // wordArrays[lineIdx] WILL BE INCREMENTED IN EVETLISTENER
 console.log("WORDARRAYS FIRST LINE:", wordArrays[lineIdx]);
@@ -216,10 +208,6 @@ const createSpans = (lineIdx, location) => {
 
 // INITIALISE TEXTSPANCONTAINER NEXT
 createSpans(lineIdx + 1, textSpanContainerNext);
-
-// TEST
-// createSpans(1, textSpanContainerNext);
-// === === === === === === === === END === === === === === === === === ===
 
 // LOOP OVER STRINGWORSD TO CREATE SPANS(EVERY CHAR INCLUDING SPACES IN BETWEEN)
 // !!! ACCESS INDEX OF ITERATION IN FOR OF LOOP WITH DESTRUCTURING SYNTAX + entries() METHOD
@@ -298,10 +286,6 @@ document.addEventListener("keydown", (event) => {
         console.log("LAST WORD, LAST CHAR! CHAR IDX:", charIdx);
     }
 
-    // if (wordIdx === wordArrays[lineIdx].length - 1) {
-    //     console.log("--------LAST WORD IN LINE--------");
-    // }
-
     // DETECT CAPSLOCK
     if (event.getModifierState("CapsLock")) {
         console.log("CAPSLOCK IS ON!");
@@ -348,17 +332,10 @@ document.addEventListener("keydown", (event) => {
             // ???
             // nextCharacter.classList.add("no-background");
 
-
-
-
-
-            // === === === === === === === === START === === === === === === === === ===
             //REMOVE RED BORDER FROM SPACE IF IT HAS BEEN CORRECTED
             const currentChar = document.getElementById(`span-${strIdx}`);
             // console.log(currentChar);
             currentChar.classList.remove("red-border");
-            // === === === === === === === === START === === === === === === === === ===
-
 
             clearInput();
 
@@ -367,9 +344,6 @@ document.addEventListener("keydown", (event) => {
                 nextLine();
             }
         }
-
-
-
 
 
         // JUMP IDX TO THE NEXT WORD IN STRING
@@ -393,10 +367,6 @@ document.addEventListener("keydown", (event) => {
             // }
             // === === === === === === === === START === === === === === === === === ===
 
-
-
-
-
             let nextWordIdx;
             console.log(
                 "charIdx:",
@@ -419,17 +389,8 @@ document.addEventListener("keydown", (event) => {
             strIdx = nextWordIdx;
             // CLEAR INPUT IF GOT WORD WRONG
             clearInput();
-            // txtInput.value = "";
 
-            // ???
-            // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
-            // let currentChar = document.getElementById(`span-${strIdx}`);
-            // currentChar.classList.remove("background");
-            // let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
-            // nextCharacter.classList.add("background");
         }
-
-        // nextWord();
 
         // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
         // ON ALL CHARACTERS BUT LAST
@@ -442,8 +403,6 @@ document.addEventListener("keydown", (event) => {
             strIdx += 1;
         }
 
-
-        // === === === === === === === === START === === === === === === === === ===
 
         // START A NEW LINE
         if (strIdx === undefined) {
@@ -463,18 +422,6 @@ document.addEventListener("keydown", (event) => {
             createSpans(lineIdx + 1, textSpanContainerNext);
         }
 
-        // === === === === === === === === START === === === === === === === === ===
-
-
-
-        // let currentChar = document.getElementById(`span-${strIdx}`);
-        // currentChar.classList.remove("background", "black-border");
-
-        // const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
-        // nextCharacter.classList.add("background", "black-border");
-
-        // nextWord();
-        // strIdx += 1;
 
         // === === === === === === === === START === === === === === === === === ===
 
@@ -600,12 +547,9 @@ document.addEventListener("keydown", (event) => {
 });
 
 /*
-MASTER
+MASTER/multiple
 
 TODOS
-
-   TODOS
-
     STATISTICS / MONITOR:
         TIMER (1 MIN)
         SPEEDOMETER (WPM)
@@ -613,7 +557,6 @@ TODOS
         RED KEYS COUNTER
         COMPLETE WORDS COUNTER
         CORRECT WORDS COUNTER
-
     FEATURES:
         START / NEW BUTTON
         ALLOW USER TO SET CUSTOM LINE LENGTH
@@ -621,13 +564,20 @@ TODOS
         ☑️ DETECT CAPSLOCK
         CAPS LOCK WARNING MESSAGE
         BUILD RANDOM WORDS FROM PROBLEM CHARACTERS / WORDS
-
     CODE:
         FUNCTIONS:
             ☑️ STYLING CHARACTERS ASSIGN STYLES TO CSS (ADD AND REMOVE CLASS WITH JS)
             ☑️ SET CURSOR POSITION (FORWARD, BACK)
             ☑️ CLEAR INPUT
-
+    PROBLEMS:
+        STOP MOVING CURSOR WHEN LETTER CHARACTER IS PRESSED INSTEAD OF SPACE AFTER WORD IS TYPED
+        ☑️ ADD CURSOR TO ACTIVE LINE
+        DON'T APPEND TEXT AS SPANS TO NEXT LINE DIV, JUST DISPLAY IT AS PARAGRAPH ?
+        INCREMENT LINEIDX WHEN LAST WORD IS ALL GREEN AND SPACE IS PRESSED
+        INCREMENT LINEIDX WHEN SPACE IS PRESSED ON LAST WORD OF LINE
+            INITIALISE STRIDX
+        DYNAMICALLY GENERATE NEXT LINE + 1 ?
+        SHOW ALL TEXT AS ONE BLOCK
 
 
 */
