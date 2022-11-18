@@ -103,7 +103,7 @@ let commonWords = [
     "part",
 ];
 
-const sequenceLength = 12;
+const sequenceLength = 40;
 
 // SET CURSOR TO INPUT BOX
 const input = document.getElementById("input");
@@ -164,7 +164,7 @@ const buidWordArrays = (numOfLines) => {
 };
 
 // TEST FOR ARRAY OF 3 ARRAYS
-buidWordArrays(3);
+buidWordArrays(5);
 console.log(wordArrays);
 // === === === === === === === === END === === === === === === === === ===
 
@@ -172,7 +172,7 @@ console.log(wordArrays);
 // wordsArr = ["your", "custom", "text"];
 
 // CREATE STRING OF WORDS WITH SPACES
-console.log(wordArrays[lineIdx]);
+// console.log(wordArrays[lineIdx]);
 stringWords = wordArrays[lineIdx].join(" ");
 console.log(stringWords);
 
@@ -180,8 +180,8 @@ console.log(stringWords);
 const buildStringWords = (arr) => {
     return arr.join(" ");
 }
-const testString = buildStringWords(wordArrays[2]);
-console.log("TEST STRING", testString);
+// const testString = buildStringWords(wordArrays[2]);
+// console.log("TEST STRING", testString);
 // === === === === === === === === END === === === === === === === === ===
 
 
@@ -213,6 +213,9 @@ const createSpans = (lineIdx, location) => {
         location.appendChild(span);
     }
 };
+
+// INITIALISE TEXTSPANCONTAINER NEXT
+createSpans(lineIdx + 1, textSpanContainerNext);
 
 // TEST
 // createSpans(1, textSpanContainerNext);
@@ -321,7 +324,7 @@ document.addEventListener("keydown", (event) => {
         prevChar();
 
         const currentChar = document.getElementById(`span-${strIdx}`);
-        console.log("CURRENT CHAR ORANGE", currentChar);
+        // console.log("CURRENT CHAR ORANGE", currentChar);
         currentChar.classList.add("orange", "background", "black-border");
         currentChar.classList.remove("red", "green");
 
@@ -345,6 +348,18 @@ document.addEventListener("keydown", (event) => {
             // ???
             // nextCharacter.classList.add("no-background");
 
+
+
+
+
+            // === === === === === === === === START === === === === === === === === ===
+            //REMOVE RED BORDER FROM SPACE IF IT HAS BEEN CORRECTED
+            const currentChar = document.getElementById(`span-${strIdx}`);
+            // console.log(currentChar);
+            currentChar.classList.remove("red-border");
+            // === === === === === === === === START === === === === === === === === ===
+
+
             clearInput();
 
             if (wordIdx === wordArrays[lineIdx].length - 1) {
@@ -365,17 +380,17 @@ document.addEventListener("keydown", (event) => {
             // === === === === === === === === START === === === === === === === === ===
 
             // !!! THIS DOES NOT RUN ON LAST WORD !!!
-            if (
-                wordIdx === wordArrays[lineIdx][wordArrays[lineIdx].length - 1]
-            ) {
-                console.log("INCOMPLETE WORD, NEXT LINE()");
-                // START NEW LINE
-                nextLine();
-                // DELETE SPANS FROM ACTIVE DIV
-                textSpanContainerActive.innerHTML = "";
-                // APPEND SPANS CREATED FROM NEXT LINE
-                createSpans(lineIdx, textSpanContainerActive);
-            }
+            // if (
+            //     wordIdx === wordArrays[lineIdx][wordArrays[lineIdx].length - 1]
+            // ) {
+            //     console.log("INCOMPLETE WORD, NEXT LINE()");
+            //     // START NEW LINE
+            //     nextLine();
+            //     // DELETE SPANS FROM ACTIVE DIV
+            //     textSpanContainerActive.innerHTML = "";
+            //     // APPEND SPANS CREATED FROM NEXT LINE
+            //     createSpans(lineIdx, textSpanContainerActive);
+            // }
             // === === === === === === === === START === === === === === === === === ===
 
 
@@ -435,13 +450,16 @@ document.addEventListener("keydown", (event) => {
             console.log("NEXT LINE()");
             // START NEW LINE
             nextLine();
-            // DELETE SPANS FROM ACTIVE DIV
+            // DELETE SPANS FROM ACTIVE DIV / APPEND SPANS CREATED FROM NEXT LINE
             textSpanContainerActive.innerHTML = "";
-            // APPEND SPANS CREATED FROM NEXT LINE
             createSpans(lineIdx, textSpanContainerActive);
+            // ADD CURSOR TO FIRST CHAR IN LINE
+            const firstChar = document.getElementById("span-0");
+            firstChar.classList.add("background", "black-border");
             // UPDATE STRWORDS
-
-            // APPEND NEXT LINE TO TEXTSPAN NEXT DIV
+            stringWords = wordArrays[lineIdx].join(" ");
+            // DELETE CONTENT / APPEND NEXT LINE TO TEXTSPAN NEXT DIV
+            textSpanContainerNext.innerHTML = "";
             createSpans(lineIdx + 1, textSpanContainerNext);
         }
 
@@ -536,12 +554,21 @@ document.addEventListener("keydown", (event) => {
         );
 
         let currentChar = document.getElementById(`span-${strIdx}`);
+        let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
+        // === === === === === === === === START === === === === === === === === ===
+        // BUG !!! DO NOT MOVE CURSOR FORWARD, ADD SPACE A RED BORDER AND KEEP CURSOR ON SPACE
+        if (stringWords[strIdx] === " ") {
+            console.log("CHARACTER TYPED ON SPACE!");
+            currentChar.classList.add("red-border");
+        }
+        // === === === === === === === === START === === === === === === === === ===
+
+
         currentChar.classList.add("red", "enlarged");
 
-        let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
         nextCharacter.classList.add("background", "black-border");
 
-        // REMOVE BORDER AND BACKGROUND FROM WRONG CHAR
+        // REMOVE BORDER 
         const prevChar = document.getElementById(`span-${strIdx}`);
         prevChar.classList.remove("background", "black-border");
 
@@ -589,6 +616,7 @@ TODOS
 
     FEATURES:
         START / NEW BUTTON
+        ALLOW USER TO SET CUSTOM LINE LENGTH
         LEVEL SELECTOR (100, 200, 500 ETC...)
         ☑️ DETECT CAPSLOCK
         CAPS LOCK WARNING MESSAGE
@@ -601,9 +629,14 @@ TODOS
             ☑️ CLEAR INPUT
 
     PROBLEMS:
+        STOP MOVING CURSOR WHEN LETTER CHARACTER IS PRESSED INSTEAD OF SPACE AFTER WORD IS TYPED
+        ☑️ ADD CURSOR TO ACTIVE LINE
+        DON'T APPEND TEXT AS SPANS TO NEXT LINE DIV, JUST DISPLAY IT AS PARAGRAPH ?
         INCREMENT LINEIDX WHEN LAST WORD IS ALL GREEN AND SPACE IS PRESSED
         INCREMENT LINEIDX WHEN SPACE IS PRESSED ON LAST WORD OF LINE
             INITIALISE STRIDX
+        DYNAMICALLY GENERATE NEXT LINE + 1 ?
+        SHOW ALL TEXT AS ONE BLOCK
 
 
 
