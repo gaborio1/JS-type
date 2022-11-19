@@ -12,26 +12,84 @@ body {
     background-color: antiquewhite;
 }
 
-h1 {
-    margin-top: 50px;
-}
+/* h1 {
+    margin-top: 10px;
+} */
 
 .container {
     width: 1000px;
-    height: 650px;
+    height: 800px;
     margin: 50px auto;
     padding: 25px;
-    border: 3px solid tomato;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 4px;
+    background-color: rgba(245, 245, 245, 0.206);
+}
+
+.active-container,
+.next-container,
+.input-container,
+.controls-container,
+.stats-container,
+.colour-code-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 50px;
+    margin: 20px;
+    /* background-color: beige; */
+    border: 3px solid lightcoral;
+    border-radius: 4px;
+}
+
+.colour-code-container {
+    height: 75px;
+}
+
+.colour-code-wrap {
+    width: 140px;
+    height: 60px;
+    border: 3px solid darkgoldenrod;
+    border-radius: 4px;
+}
+
+.active-container {
+    padding: 0px 0px 0px opx;
+}
+
+.controls-container {
+    height: 150px;
+}
+
+.input-container {
+    height: 100px;
+}
+
+.stats-container {
+    height: 150px;
 }
 
 .text-container,
-.text-span-container,
-.input-container {
+.text-span-container {
     width: 750px;
-    height: 100px;
-    margin: 10px auto;
-    padding-top: 25px;
+    height: 50px;
+    /* margin: 10px auto; */
+    padding-top: 4px;
+    padding-bottom: 3px;
     border: 3px solid darkgoldenrod;
+    border-radius: 4px;
+}
+
+.form input {
+    width: 500px;
+    height: 50px;
+    padding: 0px 20px 0px 20px;
+    font-size: 30px;
+    text-align: left;
+    border: none;
+    /* border: 2px solid black; */
+    /* border-radius: 4px; */
+    background-color: rgba(176, 196, 222, 0.538);
 }
 
 .span {
@@ -61,15 +119,17 @@ h1 {
 
 .black-border {
     border: 1px solid black;
+    border-radius: 4px;
 }
 
 .red-border {
-    border: 2px solid red;
+    border: 1px solid red;
+    border-radius: 4px;
 }
 
-.enlarged {
+/* .enlarged {
     font-size: 35px;
-}
+} */
 
 /* BLINKING CURRENT CHARACTER */
 .blink {
@@ -371,17 +431,3 @@ h1 {
     margin: 50px auto;
     border: 3px solid darkgoldenrod;
 } */
-
-.form {
-    margin: auto;
-}
-
-.form input {
-    width: 250px;
-    height: 50px;
-    padding: 0px 20px 0px 20px;
-    font-size: 30px;
-    text-align: left;
-    border: none;
-    background-color: lightsteelblue;
-}

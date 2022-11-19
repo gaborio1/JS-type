@@ -103,7 +103,7 @@ let commonWords = [
     "part",
 ];
 
-const sequenceLength = 40;
+const sequenceLength = 45;
 
 // SET CURSOR TO INPUT BOX
 const input = document.getElementById("input");
@@ -178,8 +178,8 @@ const buildStringWords = (arr) => {
 // const testString = buildStringWords(wordArrays[2]);
 // console.log("TEST STRING", testString);
 
-
-textContainer.textContent = stringWords;
+// DISABLED
+// textContainer.textContent = stringWords;
 
 // MAKE EACH CHARACTER OF THE STRING A span AND APPEND AS A CHILD ELEMENT TO ITS CONTAINER
 const textSpanContainerActive = document.getElementById("text-span-active");

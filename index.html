@@ -13,21 +13,68 @@
 </head>
 
 <body>
-    <h1>JS touch type</h1>
+
     <div class="container">
-        <h2>Text container</h2>
-        <div class="text-container"></div>
-        <h2>Text span - active</h2>
-        <div id="text-span-active" class="text-span-container"></div>
-        <h2>Text span - next</h2>
-        <div id="text-span-next" class="text-span-container"></div>
-        <h2>Input container</h2>
+        <h1>JS touch type</h1>
+        <!-- <h2>Text container</h2>
+        <div class="text-container"></div> -->
+        <div class="controls-container">
+            <h2>Controls container</h2>
+        </div>
+
+        <div class="active-container">
+            <h2>Active:</h2>
+            <div id="text-span-active" class="text-span-container"></div>
+        </div>
+
+        <div class="next-container">
+            <h2>Next:</h2>
+            <div id="text-span-next" class="text-span-container"></div>
+        </div>
+
         <div class="input-container">
+            <h2>Input:</h2>
             <form action="" class="form">
                 <label for="input"></label>
                 <input type="text" id="input" name="input" placeholder="Start typing">
             </form>
         </div>
+        <div class="colour-code-container">
+            <div class="colour-code-wrap">
+                <h3>Correct:</h2>
+                    <h2 class="green">Abc</h2>
+            </div>
+            <div class="colour-code-wrap">
+                <h3>Wrong:</h2>
+                    <h2 class="red">Abc</h2>
+            </div>
+            <div class="colour-code-wrap">
+                <h3>Backspace:</h2>
+                    <h2 class="orange">Abc</h2>
+            </div>
+            <div class="colour-code-wrap">
+                <h3>Space:</h2>
+                    <span class="red-border">__</span>
+            </div>
+            <div class="colour-code-wrap">
+                <h3>Skipped word:</h3>
+                <h2>
+                    <span class="green">A</span>
+                    <span class="red-border background">b</span>
+                    <span>c</span>
+                </h2>
+
+            </div>
+            <div class="colour-code-wrap">
+                <h3>Not typed:</h2>
+                    <h2>Abc</h2>
+            </div>
+        </div>
+        <div class="stats-container">
+            <h2>Stats container</h2>
+        </div>
+
+
     </div>
     <script src="script.js" type="text/javascript"></script>
 </body>
