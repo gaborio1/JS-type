@@ -174,7 +174,7 @@ console.log(stringWords);
 
 const buildStringWords = (arr) => {
     return arr.join(" ");
-}
+};
 // const testString = buildStringWords(wordArrays[2]);
 // console.log("TEST STRING", testString);
 
@@ -345,10 +345,9 @@ document.addEventListener("keydown", (event) => {
             }
         }
 
-
         // JUMP IDX TO THE NEXT WORD IN STRING
         if (charIdx < wordArrays[lineIdx][wordIdx].length) {
-            // IF SPACE IS PRESSED ANYWHERE ON LAST WORD 
+            // IF SPACE IS PRESSED ANYWHERE ON LAST WORD
             console.log("INCOMPLETE WORD, NEXT LINE()");
 
             // === === === === === === === === START === === === === === === === === ===
@@ -389,7 +388,6 @@ document.addEventListener("keydown", (event) => {
             strIdx = nextWordIdx;
             // CLEAR INPUT IF GOT WORD WRONG
             clearInput();
-
         }
 
         // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
@@ -402,7 +400,6 @@ document.addEventListener("keydown", (event) => {
             nextWord();
             strIdx += 1;
         }
-
 
         // START A NEW LINE
         if (strIdx === undefined) {
@@ -421,7 +418,6 @@ document.addEventListener("keydown", (event) => {
             textSpanContainerNext.innerHTML = "";
             createSpans(lineIdx + 1, textSpanContainerNext);
         }
-
 
         // === === === === === === === === START === === === === === === === === ===
 
@@ -510,12 +506,11 @@ document.addEventListener("keydown", (event) => {
         }
         // === === === === === === === === START === === === === === === === === ===
 
-
         currentChar.classList.add("red", "enlarged");
 
         nextCharacter.classList.add("background", "black-border");
 
-        // REMOVE BORDER 
+        // REMOVE BORDER
         const prevChar = document.getElementById(`span-${strIdx}`);
         prevChar.classList.remove("background", "black-border");
 
@@ -550,6 +545,7 @@ document.addEventListener("keydown", (event) => {
 MASTER/multiple
 
 TODOS
+
     STATISTICS / MONITOR:
         TIMER (1 MIN)
         SPEEDOMETER (WPM)
@@ -557,6 +553,7 @@ TODOS
         RED KEYS COUNTER
         COMPLETE WORDS COUNTER
         CORRECT WORDS COUNTER
+
     FEATURES:
         START / NEW BUTTON
         ALLOW USER TO SET CUSTOM LINE LENGTH
@@ -564,11 +561,13 @@ TODOS
         ☑️ DETECT CAPSLOCK
         CAPS LOCK WARNING MESSAGE
         BUILD RANDOM WORDS FROM PROBLEM CHARACTERS / WORDS
+
     CODE:
         FUNCTIONS:
             ☑️ STYLING CHARACTERS ASSIGN STYLES TO CSS (ADD AND REMOVE CLASS WITH JS)
             ☑️ SET CURSOR POSITION (FORWARD, BACK)
             ☑️ CLEAR INPUT
+            
     PROBLEMS:
         STOP MOVING CURSOR WHEN LETTER CHARACTER IS PRESSED INSTEAD OF SPACE AFTER WORD IS TYPED
         ☑️ ADD CURSOR TO ACTIVE LINE
