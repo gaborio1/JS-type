@@ -21,10 +21,34 @@
         <div class="controls-container">
             <!-- <h2>Controls container</h2> -->
             <div class="control-wrap">
-                Difficulty
+                <!-- MAKE THIS RADIO INSTEAD ??? -->
+                <!-- <form action="">
+                    <label class="" for="difficulty">Difficulty:</label>
+                    <select name="difficulty" id="difficulty" class="">
+                        <option class="note-name"></option>
+                        <option value="100" class="difficulty">100</option>
+                        <option value="200" class="difficulty">200</option>
+                        <option value="500" class="difficulty">500</option>
+                        <option value="1000" class="difficulty">1000</option>
+                    </select>
+                </form> -->
+                <form action="">
+                      <input type="radio" id="100" name="difficulty" value="100">
+                      <label for="100">100</label><br>
+                      <input type="radio" id="200" name="difficulty" value="200">
+                      <label for="200">200</label><br>
+                      <input type="radio" id="500" name="difficulty" value="500">
+                      <label for="500">500</label><br><br>
+                    <input type="submit" value="Apply">
+                </form>
             </div>
             <div class="control-wrap">
-                Line length
+                <form>
+                    <!-- <label for="length">Line length (20 - 50):</label> -->
+                    Line length (20 - 50)<input type="range" id="length" name="length" min="20" max="50" value="40">
+                    <!-- <button onclick="getLength()">Apply</button> -->
+                    <!-- <input type="submit" value="Apply"> -->
+                </form>
             </div>
             <div class="control-wrap">
                 Set timer
