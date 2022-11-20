@@ -103,15 +103,15 @@ let commonWords = [
     "part",
 ];
 
-
-function myFunction() {
-    var x = document.getElementById("myRange").value;
-    document.getElementById("demo").innerHTML = x;
-}
-
 // GET VALUES FROM CONTROL PANEL
-let sequenceLength = 45;
-// let sequenceLength = 0;
+
+const lengthButton = document.getElementById("length-button");
+lengthButton.addEventListener("click", function () {
+    console.log("LENGTH CLICKED");
+});
+
+// let sequenceLength = 45;
+let sequenceLength = 0;
 
 // function getLength() {
 //     console.log("HELLO");
@@ -125,17 +125,13 @@ let sequenceLength = 45;
 // console.log(sequenceLength);
 // console.log(document.getElementById("length").value);
 
-
 var slider = document.getElementById("length");
 slider.onchange = function (event) {
     console.log("SLIDER VALUE:", slider.value);
-    //   var output = document.getElementById("outputVar");
-    //   output.innerHTML = slider.value;
     sequenceLength = slider.value;
-}
+};
 
 console.log(sequenceLength);
-
 
 // SET CURSOR TO INPUT BOX
 const input = document.getElementById("input");
