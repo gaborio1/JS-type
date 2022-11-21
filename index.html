@@ -33,7 +33,7 @@
                     </select>
                 </form> -->
                 <form action="">
-                      <input type="radio" id="100" name="difficulty" value="100">
+                      <input type="radio" id="100" name="difficulty" value="100" checked>
                       <label for="100">100</label><br>
                       <input type="radio" id="200" name="difficulty" value="200">
                       <label for="200">200</label><br>
@@ -44,11 +44,12 @@
             </div>
             <div class="control-wrap">
                 <!-- <form> -->
-                    <!-- <label for="length">Line length (20 - 50):</label> -->
-                    Line length (20 - 50)<input type="range" id="length" name="length" min="20" max="50" value="40">
-                    <button id="length-button"">Apply</button>
-                    <!-- <input type="submit" value="Apply"> -->
-                <!-- </form> -->
+                <!-- <label for="length">Line length (20 - 50):</label> -->
+                Line length (20 - 50)<input type="range" id="length" name="length" min="20" max="50" value="40">
+                <span id="length-display-span">30</span>
+                <button id="length-button"">Apply</button>
+                    <!-- <input type=" submit" value="Apply"> -->
+                    <!-- </form> -->
             </div>
             <div class="control-wrap">
                 Set timer
@@ -74,7 +75,7 @@
                 <label for="input"></label>
                 <input type="text" id="input" name="input" placeholder="Start typing">
             </form>
-            <button class="button new-text-button">Restart</button>
+            <button id="start-button" class="button new-text-button">Start</button>
         </div>
         <div class="colour-code-container">
             <div class="colour-code-wrap">
