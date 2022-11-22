@@ -45,6 +45,7 @@ body {
 .control-wrap {
     width: 140px;
     height: 100px;
+    /* padding: 5px; */
     border: 2px solid darkgoldenrod;
     border-radius: 4px;
 }

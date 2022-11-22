@@ -1,6 +1,7 @@
 // console.log("connected");
 
-let testWords = ["a",
+let commonTest = [
+    "a",
     "about",
     "act",
     "actually",
@@ -26,10 +27,10 @@ let testWords = ["a",
     "area",
     "as",
     "ask",
-    "at"];
+    "at",
+];
 
-
-let commonWords = [
+let common100 = [
     "the",
     "of",
     "and",
@@ -137,28 +138,35 @@ let commonWords = [
 // ================== DIFFICULTY ==================
 const radios = document.getElementsByClassName("radio");
 const difficultySubmitButton = document.getElementById("diffuculty-button");
+let targetArray = [...common100];
 
 difficultySubmitButton.addEventListener("click", function () {
     for (let i = 0, length = radios.length; i < length; i++) {
         if (radios[i].checked) {
             // do whatever you want with the checked radio
-            alert(radios[i].value);
+            console.log("RADIOS VALUE:", radios[i].value);
+            if (radios[i].value === "100") {
+                console.log("100");
+                targetArray = [...common100];
+            }
+            if (radios[i].value === "200") {
+                console.log("200");
+                targetArray = [...commonTest];
+            }
 
             // only one radio can be logically checked, don't check the rest
             break;
         }
     }
-})
-
+    console.log("TARGET ARRAY:", targetArray);
+});
 
 // =================================================
-
-
 
 const startButton = document.getElementById("start-button");
 
 // ================== LINE LENGTH ==================
-// DEFAULT LINE LENGTH, ALSO HARD CODED IN HTML 
+// DEFAULT LINE LENGTH, ALSO HARD CODED IN HTML
 let sequenceLength = 30;
 
 const slider = document.getElementById("length");
@@ -190,11 +198,8 @@ lengthSubmitButton.addEventListener("click", function () {
 // console.log(sequenceLength);
 // console.log(document.getElementById("length").value);
 
-
-
-console.log(sequenceLength);
+// console.log(sequenceLength);
 // =================================================
-
 
 // SET CURSOR TO INPUT BOX
 /*
@@ -208,8 +213,8 @@ input.focus();
 
 // GET RANDOM WORD FROM ARRAY
 const getRandom = (arr) => {
-    const randIdx = Math.floor(Math.random() * commonWords.length);
-    return commonWords[randIdx];
+    const randIdx = Math.floor(Math.random() * targetArray.length);
+    return targetArray[randIdx];
 };
 
 // console.log(getRandom());
@@ -253,7 +258,6 @@ const buidWordArrays = (numOfLines) => {
         wordArrays.push(arr);
     }
 };
-
 
 startButton.addEventListener("click", function () {
     // SET CURSOR TO INPUT BOX
@@ -429,7 +433,9 @@ startButton.addEventListener("click", function () {
             if (wordArrays[lineIdx][wordIdx][charIdx] === undefined) {
                 console.log("UNDEFINED, SPACE!");
                 // ---
-                const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
+                const nextCharacter = document.getElementById(
+                    `span-${strIdx + 1}`
+                );
                 // ???
                 // nextCharacter.classList.add("no-background");
 
@@ -480,7 +486,9 @@ startButton.addEventListener("click", function () {
                         console.log("space found at index: ", i);
                         nextWordIdx = i;
 
-                        let currentChar = document.getElementById(`span-${strIdx}`);
+                        let currentChar = document.getElementById(
+                            `span-${strIdx}`
+                        );
                         currentChar.classList.add("red-border");
                         break;
                     }
@@ -496,7 +504,9 @@ startButton.addEventListener("click", function () {
             if (strIdx < stringWords.length) {
                 let currentChar = document.getElementById(`span-${strIdx}`);
                 currentChar.classList.remove("background", "black-border");
-                const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
+                const nextCharacter = document.getElementById(
+                    `span-${strIdx + 1}`
+                );
                 nextCharacter.classList.add("background", "black-border");
                 nextWord();
                 strIdx += 1;
@@ -527,7 +537,9 @@ startButton.addEventListener("click", function () {
             // DETECT LAST CHARACTER IN LINE OR LAST UNCOMPLETED WORD
             // JUMP TO NEXT LINE
 
-            if (wordIdx === wordArrays[lineIdx][wordArrays[lineIdx].length - 1]) {
+            if (
+                wordIdx === wordArrays[lineIdx][wordArrays[lineIdx].length - 1]
+            ) {
                 console.log("--------END OF LINE, SKIP TO NEXT ARRAY--------");
             }
 
@@ -555,7 +567,9 @@ startButton.addEventListener("click", function () {
             // at HTMLDocument.<anonymous> (script.js:485:23)
             // !!! THERE IS NO NEXT CHARACTER WHEN LAST CHAR IS TYPED !!!
             // if (wordIdx === wordsArr.length - 1) {
-            if (wordIdx === wordArrays[lineIdx][wordArrays[lineIdx].length - 1]) {
+            if (
+                wordIdx === wordArrays[lineIdx][wordArrays[lineIdx].length - 1]
+            ) {
                 console.log("LAST WORD");
             }
             // if (charIdx === wordsArr[wordIdx].length - 1) {
@@ -566,7 +580,9 @@ startButton.addEventListener("click", function () {
             // DON'T ACCESS NEXT SPAN(UNDEFINED) AFTER LAST CHARACTER
             if (strIdx < stringWords.length - 1) {
                 console.log("+++++++++++++++", strIdx);
-                let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
+                let nextCharacter = document.getElementById(
+                    `span-${strIdx + 1}`
+                );
                 nextCharacter.classList.add("background", "black-border");
                 nextChar();
             }
@@ -641,8 +657,7 @@ startButton.addEventListener("click", function () {
             console.log("LAST WORD IN LINE");
         }
     });
-})
-
+});
 
 /*
 MASTER/multiple

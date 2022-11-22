@@ -21,6 +21,8 @@
         <div class="controls-container">
             <!-- <h2>Controls container</h2> -->
             <div class="control-wrap">
+                Difficulty
+                <br>
                 <!-- MAKE THIS RADIO INSTEAD ??? -->
                 <!-- <form action="">
                     <label class="" for="difficulty">Difficulty:</label>
@@ -33,12 +35,12 @@
                     </select>
                 </form> -->
                 <!-- <form action=""> -->
-                  <input type="radio" id="100" class="radio" name="difficulty" value="100" checked="checked">
-                  <label for="100">100</label><br>
-                  <input type="radio" id="200" class="radio" name="difficulty" value="200">
-                  <label for="200">200</label><br>
-                  <input type="radio" id="500" class="radio" name="difficulty" value="500">
-                  <label for="500">500</label><br>
+                <input type="radio" id="100" class="radio" name="difficulty" value="100" checked="checked">
+                <label for="100">Top 100</label><br>
+                <input type="radio" id="200" class="radio" name="difficulty" value="200">
+                <label for="200">Top 200</label><br>
+                <input type="radio" id="500" class="radio" name="difficulty" value="500">
+                <label for="500">Top 500</label><br>
                 <button id="diffuculty-button">Apply</button>
                 <!-- <input type=" submit" value="Apply"> -->
                 <!-- </form> -->
@@ -46,7 +48,7 @@
             <div class="control-wrap">
                 <!-- <form> -->
                 <!-- <label for="length">Line length (20 - 50):</label> -->
-                Line length (20 - 50)<input type="range" id="length" name="length" min="20" max="50" value="40">
+                Line length <br> (20 - 50)<input type="range" id="length" name="length" min="20" max="50" value="40">
                 <span id="length-display-span">30</span>
                 <button id="length-button"">Apply</button>
                     <!-- <input type=" submit" value="Apply"> -->
@@ -54,12 +56,27 @@
             </div>
             <div class="control-wrap">
                 Punctuation
+                <br>
+                <br>
+                <button id="punctuation-button">Off</button>
+                Toggle
             </div>
             <div class="control-wrap">
                 Capital letters
+                <br>
+                <br>
+                <button id="capital-button">Off</button>
+                Toggle
             </div>
             <div class="control-wrap">
-                Set timer
+                Timer
+                <br>
+                <input type="radio" id="no-timer" class="radio" name="timer" value="none" ">
+                <label for="no-timer">No timer</label><br>
+                <input type="radio" id="1min" class="radio" name="timer" value="1min" checked="checked>
+                <label for="1min">1 min</label><br>
+                <button id="timer-button"">Apply</button>
+
             </div>
 
         </div>
