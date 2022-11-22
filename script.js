@@ -1,5 +1,34 @@
 // console.log("connected");
 
+let testWords = ["a",
+    "about",
+    "act",
+    "actually",
+    "add",
+    "after",
+    "again",
+    "against",
+    "age",
+    "ago",
+    "air",
+    "all",
+    "also",
+    "always",
+    "am",
+    "among",
+    "an",
+    "and",
+    "animal",
+    "another",
+    "answer",
+    "appear",
+    "are",
+    "area",
+    "as",
+    "ask",
+    "at"];
+
+
 let commonWords = [
     "the",
     "of",
@@ -104,8 +133,31 @@ let commonWords = [
 ];
 
 // GET VALUES FROM CONTROL PANEL
+
+// ================== DIFFICULTY ==================
+const radios = document.getElementsByClassName("radio");
+const difficultySubmitButton = document.getElementById("diffuculty-button");
+
+difficultySubmitButton.addEventListener("click", function () {
+    for (let i = 0, length = radios.length; i < length; i++) {
+        if (radios[i].checked) {
+            // do whatever you want with the checked radio
+            alert(radios[i].value);
+
+            // only one radio can be logically checked, don't check the rest
+            break;
+        }
+    }
+})
+
+
+// =================================================
+
+
+
 const startButton = document.getElementById("start-button");
 
+// ================== LINE LENGTH ==================
 // DEFAULT LINE LENGTH, ALSO HARD CODED IN HTML 
 let sequenceLength = 30;
 
@@ -117,8 +169,8 @@ slider.onchange = function (event) {
     lengthDisplaySpan.textContent = sequenceLength;
 };
 
-const lengthButton = document.getElementById("length-button");
-lengthButton.addEventListener("click", function () {
+const lengthSubmitButton = document.getElementById("length-button");
+lengthSubmitButton.addEventListener("click", function () {
     console.log("LENGTH CLICKED");
     console.log(sequenceLength);
 });
@@ -141,6 +193,8 @@ lengthButton.addEventListener("click", function () {
 
 
 console.log(sequenceLength);
+// =================================================
+
 
 // SET CURSOR TO INPUT BOX
 /*
