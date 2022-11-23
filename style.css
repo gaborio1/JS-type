@@ -21,7 +21,7 @@ body {
     height: 800px;
     margin: 50px auto;
     padding: 25px;
-    border: 3px solid rgb(0, 0, 0);
+    border: 3px solid darkgoldenrod;
     border-radius: 4px;
     background-color: rgba(245, 245, 245, 0.206);
 }
@@ -38,14 +38,15 @@ body {
     height: 50px;
     margin: 20px;
     /* background-color: beige; */
-    border: 3px solid lightcoral;
+    /* border: 3px solid lightcoral; */
     border-radius: 4px;
 }
 
 .control-wrap {
-    width: 140px;
-    height: 100px;
+    width: 150px;
+    height: 120px;
     /* padding: 5px; */
+    padding: 8px;
     border: 2px solid darkgoldenrod;
     border-radius: 4px;
 }
@@ -56,8 +57,16 @@ body {
 
 .colour-code-wrap {
     width: 140px;
-    height: 60px;
+    height: 75px;
+    padding: 8px;
     border: 2px solid darkgoldenrod;
+    border-radius: 4px;
+}
+
+.control-panel-button {
+    width: 45px;
+    height: 25px;
+    border: 1px solid black;
     border-radius: 4px;
 }
 
@@ -79,8 +88,9 @@ body {
 
 /* SAME AS CONTROL WRAP */
 .stat-wrap {
-    width: 140px;
-    height: 100px;
+    width: 175px;
+    height: 120px;
+    padding: 8px;
     border: 2px solid darkgoldenrod;
     border-radius: 4px;
 }

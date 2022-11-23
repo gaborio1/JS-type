@@ -133,6 +133,8 @@ let common100 = [
     "part",
 ];
 
+const punctMarks = [",", ".", "!", "?", ":", ";"];
+
 // GET VALUES FROM CONTROL PANEL
 
 // ================== DIFFICULTY ==================
@@ -201,6 +203,54 @@ lengthSubmitButton.addEventListener("click", function () {
 // console.log(sequenceLength);
 // =================================================
 
+// GET RANDOM WORD FROM ARRAY
+const getRandom = (arr) => {
+    const randIdx = Math.floor(Math.random() * targetArray.length);
+    return targetArray[randIdx];
+};
+
+// ================== PUNCTUATION ==================
+const punctuationButton = document.getElementById("punctuation-button");
+let punctuationOn = false;
+
+// TOGGLE BUTTON (ON / OFF)
+const toggleButtonStyle = (element) => {
+    if (element.classList.contains("toggle-on")) {
+        element.classList.remove("toggle-on");
+        element.classList.add("toggle-off");
+        element.innerText = "Off";
+    } else {
+        element.classList.remove("toggle-off");
+        element.classList.add("toggle-on");
+        element.innerText = "On";
+    }
+}
+
+// TOGGLE BOOLEAN BUTTON STATE BASED ON CLASS
+const toggleButtonState = (element) => {
+    // console.log(element);
+    if (element.classList.contains("toggle-on")) {
+        if (element === punctuationButton) {
+            punctuationOn = true;
+            console.log("PUNCTUATION:", punctuationOn);
+        }
+    } else {
+        if (element === punctuationButton) {
+            punctuationOn = false;
+            console.log("PUNCTUATION", punctuationOn);
+        }
+    }
+}
+
+punctuationButton.addEventListener("click", function () {
+    toggleButtonStyle(punctuationButton);
+    toggleButtonState(punctuationButton);
+});
+
+// =================================================
+
+
+
 // SET CURSOR TO INPUT BOX
 /*
 const input = document.getElementById("input");
@@ -211,11 +261,7 @@ input.focus();
 // input.select();
 */
 
-// GET RANDOM WORD FROM ARRAY
-const getRandom = (arr) => {
-    const randIdx = Math.floor(Math.random() * targetArray.length);
-    return targetArray[randIdx];
-};
+
 
 // console.log(getRandom());
 
