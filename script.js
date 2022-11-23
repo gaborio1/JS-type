@@ -266,6 +266,13 @@ console.log("RANDOM PUNCT MARK:", randomPunctMark());
 
 // ================== CAPITAL ==================
 
+const capitaliseWord = (str) => {
+    const lettersArr = str.split("");
+    lettersArr[0] = lettersArr[0].toUpperCase();
+    // console.log(lettersArr.join(""));
+    return lettersArr.join("");
+};
+
 const capitalButton = document.getElementById("capital-button");
 let capitalOn = false;
 // TOGGLE BUTTON STYLE AND STATE
@@ -321,7 +328,18 @@ const buidWordArrays = (numOfLines) => {
         let arr = [];
         while (true) {
             if (getStrLength(arr) >= sequenceLength) break;
+            // GET RANDOM WORD
             let currWord = getRandom();
+            // CONCAT RANDOM PUNCT MARK
+            if (punctuationOn) {
+                currWord += randomPunctMark();
+            }
+            // CAPITAL ON, MAKE FIRST CHAR UPPERCASE
+            if (capitalOn) {
+                // !!! MAKE ADJUSTMENTS FOR WORD "I" !!!
+                currWord = capitaliseWord(currWord);
+            }
+
             arr.push(currWord);
         }
         wordArrays.push(arr);
