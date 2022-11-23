@@ -213,7 +213,7 @@ const getRandom = (arr) => {
 const punctuationButton = document.getElementById("punctuation-button");
 let punctuationOn = false;
 
-// TOGGLE BUTTON (ON / OFF)
+// TOGGLE BUTTON STYLE (ON / OFF)
 const toggleButtonStyle = (element) => {
     if (element.classList.contains("toggle-on")) {
         element.classList.remove("toggle-on");
@@ -224,7 +224,7 @@ const toggleButtonStyle = (element) => {
         element.classList.add("toggle-on");
         element.innerText = "On";
     }
-}
+};
 
 // TOGGLE BOOLEAN BUTTON STATE BASED ON CLASS
 const toggleButtonState = (element) => {
@@ -234,22 +234,47 @@ const toggleButtonState = (element) => {
             punctuationOn = true;
             console.log("PUNCTUATION:", punctuationOn);
         }
+        if (element === capitalButton) {
+            capitalOn = true;
+            console.log("CAPITAL:", capitalOn);
+        }
     } else {
         if (element === punctuationButton) {
             punctuationOn = false;
             console.log("PUNCTUATION", punctuationOn);
         }
+        if (element === capitalButton) {
+            capitalOn = false;
+            console.log("CAPITAL", capitalOn);
+        }
     }
-}
+};
 
 punctuationButton.addEventListener("click", function () {
     toggleButtonStyle(punctuationButton);
     toggleButtonState(punctuationButton);
 });
 
+// GENERATE RANDOM PUNCT MARK
+const randomPunctMark = () => {
+    const randIdx = Math.floor(Math.random() * punctMarks.length);
+    return punctMarks[randIdx];
+};
+console.log("RANDOM PUNCT MARK:", randomPunctMark());
+
 // =================================================
 
+// ================== CAPITAL ==================
 
+const capitalButton = document.getElementById("capital-button");
+let capitalOn = false;
+// TOGGLE BUTTON STYLE AND STATE
+capitalButton.addEventListener("click", function () {
+    toggleButtonStyle(capitalButton);
+    toggleButtonState(capitalButton);
+});
+
+// =================================================
 
 // SET CURSOR TO INPUT BOX
 /*
@@ -260,8 +285,6 @@ input.focus();
 // NOT NECESSARY ?
 // input.select();
 */
-
-
 
 // console.log(getRandom());
 
