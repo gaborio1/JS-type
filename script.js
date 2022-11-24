@@ -135,6 +135,22 @@ let common100 = [
 
 const punctMarks = [",", ".", "!", "?", ":", ";"];
 
+const textSpanContainerActive = document.getElementById("text-span-active");
+const textSpanContainerNext = document.getElementById("text-span-next");
+
+const clearInput = () => {
+    txtInput.value = "";
+};
+
+// CLEAR TEXT FIELDS ACTIVE / NEXT, INPUT, AND INITIALISE WORDARRAYS
+const clearActiveNext = () => {
+    textSpanContainerActive.innerHTML = "";
+    textSpanContainerNext.innerHTML = "";
+    clearInput();
+    wordArrays = [];
+    stringWords = "";
+}
+
 // GET VALUES FROM CONTROL PANEL
 
 // ================== DIFFICULTY ==================
@@ -143,6 +159,9 @@ const difficultySubmitButton = document.getElementById("diffuculty-button");
 let targetArray = [...common100];
 
 difficultySubmitButton.addEventListener("click", function () {
+
+    clearActiveNext();
+
     for (let i = 0, length = radios.length; i < length; i++) {
         if (radios[i].checked) {
             // do whatever you want with the checked radio
@@ -203,11 +222,25 @@ lengthSubmitButton.addEventListener("click", function () {
 // console.log(sequenceLength);
 // =================================================
 
+
+
+
+
+
 // GET RANDOM WORD FROM ARRAY
+// const getRandom = (arr) => {
+//     const randIdx = Math.floor(Math.random() * targetArray.length);
+//     return targetArray[randIdx];
+// };
 const getRandom = (arr) => {
-    const randIdx = Math.floor(Math.random() * targetArray.length);
-    return targetArray[randIdx];
+    const randIdx = Math.floor(Math.random() * arr.length);
+    return arr[randIdx];
 };
+
+
+
+
+
 
 // ================== PUNCTUATION ==================
 const punctuationButton = document.getElementById("punctuation-button");
@@ -260,7 +293,6 @@ const randomPunctMark = () => {
     const randIdx = Math.floor(Math.random() * punctMarks.length);
     return punctMarks[randIdx];
 };
-console.log("RANDOM PUNCT MARK:", randomPunctMark());
 
 // =================================================
 
@@ -324,12 +356,13 @@ const getStrLength = (arr) => {
 
 // POPULATE wordArrays WITH ARRAYS OF WORDS (wordsArr), ONE FOR EACH TEXT LINE
 const buidWordArrays = (numOfLines) => {
+    console.log("TARGET ARRAY FROM BUILDARRAYS:", targetArray);
     for (let i = 0; i < numOfLines; i += 1) {
         let arr = [];
         while (true) {
             if (getStrLength(arr) >= sequenceLength) break;
             // GET RANDOM WORD
-            let currWord = getRandom();
+            let currWord = getRandom(targetArray);
             // CONCAT RANDOM PUNCT MARK
             if (punctuationOn) {
                 currWord += randomPunctMark();
@@ -346,7 +379,12 @@ const buidWordArrays = (numOfLines) => {
     }
 };
 
-startButton.addEventListener("click", function () {
+
+
+startButton.addEventListener("click", (event) => {
+    // event.Handled = true;
+    // event.preventDefault();
+
     // SET CURSOR TO INPUT BOX
     const input = document.getElementById("input");
     // SETS CURSOR AT FIRST CHAR IF TEXT-ALIGN IS DISABLED IN CSS
@@ -355,14 +393,14 @@ startButton.addEventListener("click", function () {
 
     // TEST FOR ARRAY OF 5 ARRAYS
     buidWordArrays(5);
-    console.log(wordArrays);
+    console.log("WORDARRAYS:", wordArrays);
 
     // OR USE OWN CUSTOM TEXT
     // wordsArr = ["your", "custom", "text"];
 
     // CREATE STRING OF WORDS WITH SPACES
     stringWords = wordArrays[lineIdx].join(" ");
-    console.log(stringWords);
+    console.log("STRINGWORDS:", stringWords);
 
     const buildStringWords = (arr) => {
         return arr.join(" ");
@@ -374,9 +412,6 @@ startButton.addEventListener("click", function () {
     // textContainer.textContent = stringWords;
 
     // MAKE EACH CHARACTER OF THE STRING A span AND APPEND AS A CHILD ELEMENT TO ITS CONTAINER
-    const textSpanContainerActive = document.getElementById("text-span-active");
-
-    const textSpanContainerNext = document.getElementById("text-span-next");
 
     // CREATE SPANS FROM wordArrays' ARRAY OF WORDS, JOIN ELEMENS TO ONE STRING WITH SPACES AND THEN SPLIT
     // wordArrays[lineIdx] WILL BE INCREMENTED IN EVETLISTENER
@@ -438,9 +473,6 @@ startButton.addEventListener("click", function () {
         strIdx = 0;
     };
 
-    const clearInput = () => {
-        txtInput.value = "";
-    };
 
     // NODELIST OF ALL CHAR SPANS
     const charSpans = document.querySelectorAll(".span");
@@ -451,7 +483,9 @@ startButton.addEventListener("click", function () {
     firstChar.classList.add("background", "black-border");
 
     // LISTEN FOR KEY EVENTS
-    document.addEventListener("keydown", (event) => {
+    document.addEventListener("keyup", (event) => {
+        // event.Handled = true;
+        // event.preventDefault();
         console.log(
             "---EVENT START---------------------",
             "line idx: ",
@@ -760,8 +794,8 @@ TODOS
         CORRECT WORDS COUNTER
 
     FEATURES:
-        START / NEW BUTTON
-        ALLOW USER TO SET CUSTOM LINE LENGTH
+        ☑️ START / NEW BUTTON
+        ☑️ ALLOW USER TO SET CUSTOM LINE LENGTH
         LEVEL SELECTOR (100, 200, 500 ETC...)
         ☑️ DETECT CAPSLOCK
         CAPS LOCK WARNING MESSAGE
@@ -774,6 +808,15 @@ TODOS
             ☑️ CLEAR INPUT
             
     PROBLEMS:
+        REMOVE EVENTLISTENER WHEN APPLY CHANGES AS START BUTTON WILL ADD IT AGAIN !!!
+        CLEAR SPANS AFTER CHANGES ARE MADE TO
+            DIFFICULTY
+            LENGTH
+            PUNCTUATION
+            CAPITAL
+        THEN,
+        HIGHLIGHT START BUTTON
+
         STOP MOVING CURSOR WHEN LETTER CHARACTER IS PRESSED INSTEAD OF SPACE AFTER WORD IS TYPED
         ☑️ ADD CURSOR TO ACTIVE LINE
         DON'T APPEND TEXT AS SPANS TO NEXT LINE DIV, JUST DISPLAY IT AS PARAGRAPH ?
