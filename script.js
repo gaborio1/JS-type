@@ -135,8 +135,31 @@ let common100 = [
 
 const punctMarks = [",", ".", "!", "?", ":", ";"];
 
+// VARIABLES
 const textSpanContainerActive = document.getElementById("text-span-active");
 const textSpanContainerNext = document.getElementById("text-span-next");
+const startButton = document.getElementById("start-button");
+const radios = document.getElementsByClassName("radio");
+const difficultySubmitButton = document.getElementById("diffuculty-button");
+let targetArray = [...common100];
+let sequenceLength = 30;
+const lengthDisplaySpan = document.getElementById("length-display-span");
+const slider = document.getElementById("length");
+const lengthSubmitButton = document.getElementById("length-button");
+const punctuationButton = document.getElementById("punctuation-button");
+let punctuationOn = false;
+const capitalButton = document.getElementById("capital-button");
+let capitalOn = false;
+const textContainer = document.querySelector(".text-container");
+const txtInput = document.getElementById("input");
+// CREATE TEXT STRING FROM RANDOM WORDS UP TO sequenceLength IN LENGTH
+let stringWords = "";
+let wordArrays = [];
+// TRACK LINES(ARRAY OF WORDS), WORDS IN SEQUENCE AND CHARACTERS OF CURRENT WORD
+let lineIdx = 0;
+let wordIdx = 0;
+let strIdx = 0;
+let charIdx = 0;
 
 const clearInput = () => {
     txtInput.value = "";
@@ -155,9 +178,6 @@ const clearDataAndDisplay = () => {
 // GET VALUES FROM CONTROL PANEL
 
 // ================== DIFFICULTY ==================
-const radios = document.getElementsByClassName("radio");
-const difficultySubmitButton = document.getElementById("diffuculty-button");
-let targetArray = [...common100];
 
 difficultySubmitButton.addEventListener("click", function () {
     clearDataAndDisplay();
@@ -184,22 +204,15 @@ difficultySubmitButton.addEventListener("click", function () {
 
 // =================================================
 
-const startButton = document.getElementById("start-button");
-
 // ================== LINE LENGTH ==================
 // DEFAULT LINE LENGTH, ALSO HARD CODED IN HTML
-let sequenceLength = 30;
-const lengthDisplaySpan = document.getElementById("length-display-span");
 
-const slider = document.getElementById("length");
 // DISPLAY CURRENT VALUE OF SLIDER
 slider.onchange = function (event) {
     console.log("SLIDER VALUE HAS BEEN CHANGED:", slider.value);
     // DISPLAY CURRENT VALUE
     lengthDisplaySpan.textContent = slider.value;
 };
-
-const lengthSubmitButton = document.getElementById("length-button");
 
 // GET SLIDER FINAL VALUE AND ASSIGN TO SEQUENCE LENGTH
 lengthSubmitButton.addEventListener("click", function () {
@@ -222,8 +235,6 @@ const getRandom = (arr) => {
 };
 
 // ================== PUNCTUATION ==================
-const punctuationButton = document.getElementById("punctuation-button");
-let punctuationOn = false;
 
 // TOGGLE BUTTON STYLE (ON / OFF)
 const toggleButtonStyle = (element) => {
@@ -284,8 +295,6 @@ const capitaliseWord = (str) => {
     return lettersArr.join("");
 };
 
-const capitalButton = document.getElementById("capital-button");
-let capitalOn = false;
 // TOGGLE BUTTON STYLE AND STATE
 capitalButton.addEventListener("click", function () {
     toggleButtonStyle(capitalButton);
@@ -305,19 +314,6 @@ input.focus();
 */
 
 // console.log(getRandom());
-
-const textContainer = document.querySelector(".text-container");
-const txtInput = document.getElementById("input");
-
-// CREATE TEXT STRING FROM RANDOM WORDS UP TO sequenceLength IN LENGTH
-let stringWords = "";
-let wordArrays = [];
-
-// TRACK LINES(ARRAY OF WORDS), WORDS IN SEQUENCE AND CHARACTERS OF CURRENT WORD
-let lineIdx = 0;
-let wordIdx = 0;
-let strIdx = 0;
-let charIdx = 0;
 
 // GET CURRENT LENGTH OF WORDS PLUS SPACES IN BETWEEN
 const getStrLength = (arr) => {
@@ -427,7 +423,6 @@ startButton.addEventListener("click", (event) => {
         textSpanContainerActive.appendChild(span);
     }
 
-    //
     const nextChar = () => {
         charIdx += 1;
         strIdx += 1;
