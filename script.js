@@ -135,21 +135,35 @@ let common100 = [
 
 const punctMarks = [",", ".", "!", "?", ":", ";"];
 
-// ELEMENT VARIABLES
-const textSpanContainerActive = document.getElementById("text-span-active");
-const textSpanContainerNext = document.getElementById("text-span-next");
-const startButton = document.getElementById("start-button");
-const radios = document.getElementsByClassName("radio");
-const difficultySubmitButton = document.getElementById("diffuculty-button");
+// === === === === === === === ELEMENT VARIABLES === === === === === === === ===
 
-const lengthDisplaySpan = document.getElementById("length-display-span");
+// DIFFICULTY
+const difficultySubmitButton = document.getElementById("diffuculty-button");
+// LENGTH
 const slider = document.getElementById("length");
 const lengthSubmitButton = document.getElementById("length-button");
-const punctuationButton = document.getElementById("punctuation-button");
-const capitalButton = document.getElementById("capital-button");
+const lengthDisplaySpan = document.getElementById("length-display-span");
+// PUNCTUATION
+const punctuationToggleButton = document.getElementById(
+    "punctuation-toggle-button"
+);
+// CAPITAL
+const capitalToggleButton = document.getElementById("capital-toggle-button");
 
-const textContainer = document.querySelector(".text-container");
+// ACTIVE SPAN
+const textSpanContainerActive = document.getElementById("text-span-active");
+// NEXT SPAN
+const textSpanContainerNext = document.getElementById("text-span-next");
+// TEXT INPUT
 const txtInput = document.getElementById("input");
+// START BUTTON
+const startButton = document.getElementById("start-button");
+// ALL RADIOS
+const radios = document.getElementsByClassName("radio");
+
+// TEXTCONTAINER
+// DISABLED
+// const textContainer = document.querySelector(".text-container");
 
 // LOGIC VARIABLES
 let targetArray = [...common100];
@@ -168,24 +182,6 @@ const clearTextInput = () => {
     // AFTER WORD IS COMPLETED CLEAR PLACEHOLDER TOO, ITS HARDCODED IN HTML
     txtInput.placeholder = "";
 };
-
-// ================== LINE LENGTH ==================
-// DEFAULT LINE LENGTH, ALSO HARD CODED IN HTML
-
-// DISPLAY CURRENT VALUE OF SLIDER
-slider.onchange = function (event) {
-    // console.log("SLIDER VALUE HAS BEEN CHANGED:", slider.value);
-    // DISPLAY CURRENT VALUE
-    lengthDisplaySpan.textContent = slider.value;
-};
-
-// GET SLIDER FINAL VALUE AND ASSIGN TO SEQUENCE LENGTH
-lengthSubmitButton.addEventListener("click", function () {
-    sequenceLength = slider.value;
-    // console.log("SLIDER CHANGED, NEW VALUE TO SUBMIT:", sequenceLength);
-});
-
-// =================================================
 
 // GET RANDOM WORD FROM ARRAY
 // const getRandom = (arr) => {
@@ -218,38 +214,79 @@ const toggleButtonStyle = (element) => {
 const toggleButtonState = (element) => {
     // console.log(element);
     if (element.classList.contains("toggle-on")) {
-        if (element === punctuationButton) {
+        if (element === punctuationToggleButton) {
             punctuationOn = true;
             console.log("PUNCTUATION:", punctuationOn);
         }
-        if (element === capitalButton) {
+        if (element === capitalToggleButton) {
             capitalOn = true;
             console.log("CAPITAL:", capitalOn);
         }
     } else {
-        if (element === punctuationButton) {
+        if (element === punctuationToggleButton) {
             punctuationOn = false;
             console.log("PUNCTUATION", punctuationOn);
         }
-        if (element === capitalButton) {
+        if (element === capitalToggleButton) {
             capitalOn = false;
             console.log("CAPITAL", capitalOn);
         }
     }
 };
-// APPLY CHANGES WHEN CLICKED
-punctuationButton.addEventListener("click", function () {
-    toggleButtonStyle(punctuationButton);
-    toggleButtonState(punctuationButton);
-});
 
-// GENERATE RANDOM PUNCT MARK
-const randomPunctMark = () => {
-    const randIdx = Math.floor(Math.random() * punctMarks.length);
-    return punctMarks[randIdx];
-};
+// === === === === === === === CONTROL PANEL: === === === === === === ===
 
-// =================================================
+// ================== DIFFICULTY ==================
+
+// difficultySubmitButton.addEventListener("click", function () {
+//     // REMOVE LISTENER FOR KEYUP
+//     document.removeEventListener("keyup", handleKeyEvent);
+//     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
+//     clearDataAndDisplay();
+//     clearArrAndString();
+
+//     for (let i = 0, length = radios.length; i < length; i++) {
+//         if (radios[i].checked) {
+//             // do whatever you want with the checked radio
+//             console.log("RADIOS VALUE:", radios[i].value);
+//             if (radios[i].value === "100") {
+//                 console.log("100");
+//                 targetArray = [...common100];
+//             }
+//             if (radios[i].value === "200") {
+//                 console.log("200");
+//                 targetArray = [...commonTest];
+//             }
+
+//             // only one radio can be logically checked, don't check the rest
+//             break;
+//         }
+//     }
+//     console.log("TARGET ARRAY:", targetArray);
+// });
+
+// // ================== LINE LENGTH ==================
+// // DEFAULT LINE LENGTH, ALSO HARD CODED IN HTML
+
+// // DISPLAY CURRENT VALUE OF SLIDER
+// slider.onchange = function (event) {
+//     // console.log("SLIDER VALUE HAS BEEN CHANGED:", slider.value);
+//     // DISPLAY CURRENT VALUE
+//     lengthDisplaySpan.textContent = slider.value;
+// };
+
+// // GET SLIDER FINAL VALUE AND ASSIGN TO SEQUENCE LENGTH
+// lengthSubmitButton.addEventListener("click", function () {
+//     // REMOVE LISTENER FOR KEYUP
+//     document.removeEventListener("keyup", handleKeyEvent);
+//     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
+//     clearDataAndDisplay();
+//     clearArrAndString();
+//     sequenceLength = slider.value;
+//     // console.log("SLIDER CHANGED, NEW VALUE TO SUBMIT:", sequenceLength);
+// });
+
+// === === === === === === === === === === === === === === === === === === ===
 
 // ================== CAPITAL ==================
 
@@ -260,12 +297,6 @@ const capitaliseWord = (str) => {
     // console.log(lettersArr.join(""));
     return lettersArr.join("");
 };
-
-// APPLY CHANGES WHEN CLICKED
-capitalButton.addEventListener("click", function () {
-    toggleButtonStyle(capitalButton);
-    toggleButtonState(capitalButton);
-});
 
 // =================================================
 
@@ -295,7 +326,8 @@ const buidWordArrays = (numOfLines) => {
             let currWord = getRandom(targetArray);
             // CONCAT RANDOM PUNCT MARK
             if (punctuationOn) {
-                currWord += randomPunctMark();
+                // currWord += randomPunctMark();
+                currWord += getRandom(punctMarks);
             }
             // CAPITAL ON, MAKE FIRST CHAR UPPERCASE
             if (capitalOn) {
@@ -315,13 +347,13 @@ const clearIdxTrackers = () => {
     wordIdx = 0;
     lineIdx = 0;
     strIdx = 0;
-}
+};
 
 // CLEAR WORDARRAYS AND STRINGWORDS
 const clearArrAndString = () => {
     wordArrays = [];
     stringWords = "";
-}
+};
 // CLEAR TEXT FIELDS ACTIVE / NEXT, INPUT, AND INITIALISE WORDARRAYS
 const clearDataAndDisplay = () => {
     textSpanContainerActive.innerHTML = "";
@@ -333,7 +365,6 @@ const clearDataAndDisplay = () => {
 };
 
 startButton.addEventListener("click", (event) => {
-
     clearIdxTrackers();
 
     // SET CURSOR TO INPUT BOX  AT FIRST CHAR IF TEXT-ALIGN IS DISABLED IN CSS
@@ -351,12 +382,12 @@ startButton.addEventListener("click", (event) => {
     // CREATE TEXT STRING FROM RANDOM WORDS UP TO sequenceLength IN LENGTH
     // CREATE STRING OF WORDS WITH SPACES
     // USE THIS FUNCTION BELOW?
+
     const buildStringWords = (arr) => {
         return arr.join(" ");
     };
     stringWords = wordArrays[lineIdx].join(" ");
     // console.log("STRINGWORDS:", stringWords);
-
 
     // const testString = buildStringWords(wordArrays[2]);
     // console.log("TEST STRING", testString);
@@ -433,8 +464,6 @@ startButton.addEventListener("click", (event) => {
     // ADD CURSOR TO FIRST CHARACTER WHEN PAGE LOADS
     const firstChar = document.getElementById("span-0");
     firstChar.classList.add("background", "black-border");
-
-    //=== === === === === START === === === === ===
 
     const handleKeyEvent = (event) => {
         console.log(
@@ -738,10 +767,7 @@ startButton.addEventListener("click", (event) => {
     // LISTEN FOR KEY EVENTS
     document.addEventListener("keyup", handleKeyEvent);
 
-    //=== === === === === END === === === === ===
-
-
-    // CONTROL PANEL:
+    // === === === === === === === CONTROL PANEL: === === === === === === ===
 
     // ================== DIFFICULTY ==================
 
@@ -772,7 +798,58 @@ startButton.addEventListener("click", (event) => {
         console.log("TARGET ARRAY:", targetArray);
     });
 
+    // ================== LINE LENGTH ==================
+    // DEFAULT LINE LENGTH, ALSO HARD CODED IN HTML
 
+    // DISPLAY CURRENT VALUE OF SLIDER
+    slider.onchange = function (event) {
+        // console.log("SLIDER VALUE HAS BEEN CHANGED:", slider.value);
+        // DISPLAY CURRENT VALUE
+        lengthDisplaySpan.textContent = slider.value;
+    };
+
+    // GET SLIDER FINAL VALUE AND ASSIGN TO SEQUENCE LENGTH
+    lengthSubmitButton.addEventListener("click", function () {
+        // REMOVE LISTENER FOR KEYUP
+        document.removeEventListener("keyup", handleKeyEvent);
+        // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
+        clearDataAndDisplay();
+        clearArrAndString();
+        sequenceLength = slider.value;
+        // console.log("SLIDER CHANGED, NEW VALUE TO SUBMIT:", sequenceLength);
+    });
+
+    // =================================================
+
+    // ================== PUNCTUATION ==================
+
+    // APPLY CHANGES WHEN CLICKED
+    punctuationToggleButton.addEventListener("click", function () {
+        // REMOVE LISTENER FOR KEYUP
+        document.removeEventListener("keyup", handleKeyEvent);
+        // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
+        clearDataAndDisplay();
+        clearArrAndString();
+        toggleButtonStyle(punctuationToggleButton);
+        toggleButtonState(punctuationToggleButton);
+    });
+
+    // =================================================
+
+    // ================== CAPITAL ==================
+    // APPLY CHANGES WHEN CLICKED
+    capitalToggleButton.addEventListener("click", function () {
+        // REMOVE LISTENER FOR KEYUP
+        document.removeEventListener("keyup", handleKeyEvent);
+        // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
+        clearDataAndDisplay();
+        clearArrAndString();
+        toggleButtonStyle(capitalToggleButton);
+        toggleButtonState(capitalToggleButton);
+    });
+    // =================================================
+
+    // === === === === === === === === === === === === === === === === === === ===
 });
 
 /*
@@ -805,8 +882,8 @@ TODOS
             
     PROBLEMS:
         REMOVE EVENTLISTENER WHEN APPLY CHANGES AS START BUTTON WILL ADD IT AGAIN !!!
-        CLEAR SPANS AFTER CHANGES ARE MADE TO
-            DIFFICULTY
+        CLEAR SPANS / RESET TRACKERS AFTER CHANGES ARE MADE TO
+            ☑️DIFFICULTY
             LENGTH
             PUNCTUATION
             CAPITAL
