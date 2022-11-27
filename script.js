@@ -139,7 +139,6 @@ const punctMarks = [",", ".", "!", "?", ":", ";"];
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 ELEMENT VARIABLES 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-
 // DIFFICULTY
 const difficultyApply = document.getElementById("diffuculty-apply");
 // LENGTH
@@ -147,9 +146,7 @@ const slider = document.getElementById("length");
 const lengthApply = document.getElementById("length-apply");
 const lengthDisplaySpan = document.getElementById("length-display-span");
 // PUNCTUATION
-const punctuationToggle = document.getElementById(
-    "punctuation-toggle"
-);
+const punctuationToggle = document.getElementById("punctuation-toggle");
 const punctuationApply = document.getElementById("punctuation-apply");
 // CAPITAL
 const capitalToggle = document.getElementById("capital-toggle");
@@ -191,7 +188,6 @@ let capitalOn = false;
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 FUNCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
-
 
 const clearTextInput = () => {
     txtInput.value = "";
@@ -249,7 +245,6 @@ const toggleButtonState = (element) => {
         }
     }
 };
-
 
 // UPPERCASE FIRST LETTER IN WORD
 const capitaliseWord = (str) => {
@@ -324,7 +319,6 @@ const clearDataAndDisplay = () => {
     clearArrAndString();
     // document.removeEventListener("keyup", handleKeyEvent);
 };
-
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -436,6 +430,8 @@ startButton.addEventListener("click", (event) => {
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
     const handleKeyEvent = (event) => {
+        startCount();
+
         console.log(
             "---EVENT START---------------------",
             "line idx: ",
@@ -789,7 +785,6 @@ startButton.addEventListener("click", (event) => {
         // console.log("SLIDER CHANGED, NEW VALUE TO SUBMIT:", sequenceLength);
     });
 
-
     // ================== PUNCTUATION ==================
 
     // 1. ONLY TOGGLE STYLE
@@ -798,7 +793,7 @@ startButton.addEventListener("click", (event) => {
         document.removeEventListener("keyup", handleKeyEvent);
         toggleButtonStyle(punctuationToggle);
         // toggleButtonState(punctuationToggle);
-    }
+    };
 
     punctuationToggle.addEventListener("click", handlePunctuationToggle);
 
@@ -821,7 +816,7 @@ startButton.addEventListener("click", (event) => {
         document.removeEventListener("keyup", handleKeyEvent);
         toggleButtonStyle(capitalToggle);
         // toggleButtonState(punctuationToggle);
-    }
+    };
 
     capitalToggle.addEventListener("click", handleCapitalToggle);
 
@@ -836,10 +831,28 @@ startButton.addEventListener("click", (event) => {
         toggleButtonState(capitalToggle);
     });
 
-
     // =================================================
-
 });
+function countdown() {
+    var seconds = 5;
+    function tick() {
+        var counter = document.getElementById("counter-test");
+        seconds--;
+        counter.innerHTML = "0:" + (seconds < 10 ? "0" : "") + String(seconds);
+        if (seconds > 0) {
+            setTimeout(tick, 1000);
+        }
+        // else {
+        //     alert("Game over");
+        // }
+        if (seconds === 0) {
+            console.log("times up");
+        }
+    }
+    tick();
+}
+
+countdown();
 
 /*
 MASTER/multiple
