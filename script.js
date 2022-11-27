@@ -135,21 +135,25 @@ let common100 = [
 
 const punctMarks = [",", ".", "!", "?", ":", ";"];
 
-// === === === === === === === ELEMENT VARIABLES === === === === === === === ===
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 ELEMENT VARIABLES 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
 
 // DIFFICULTY
-const difficultySubmitButton = document.getElementById("diffuculty-button");
+const difficultyApply = document.getElementById("diffuculty-apply");
 // LENGTH
 const slider = document.getElementById("length");
-const lengthSubmitButton = document.getElementById("length-button");
+const lengthApply = document.getElementById("length-apply");
 const lengthDisplaySpan = document.getElementById("length-display-span");
 // PUNCTUATION
-const punctuationToggleButton = document.getElementById(
-    "punctuation-toggle-button"
+const punctuationToggle = document.getElementById(
+    "punctuation-toggle"
 );
+const punctuationApply = document.getElementById("punctuation-apply");
 // CAPITAL
-const capitalToggleButton = document.getElementById("capital-toggle-button");
-
+const capitalToggle = document.getElementById("capital-toggle");
+const capitalApply = document.getElementById("capital-apply");
 // ACTIVE SPAN
 const textSpanContainerActive = document.getElementById("text-span-active");
 // NEXT SPAN
@@ -160,12 +164,19 @@ const txtInput = document.getElementById("input");
 const startButton = document.getElementById("start-button");
 // ALL RADIOS
 const radios = document.getElementsByClassName("radio");
+// TIMER
+const timerApply = document.getElementById("timer-apply");
 
 // TEXTCONTAINER
 // DISABLED
 // const textContainer = document.querySelector(".text-container");
 
-// LOGIC VARIABLES
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 LOGIC VARIABLES 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+// 🁢
+
 let targetArray = [...common100];
 let sequenceLength = 30;
 let stringWords = "";
@@ -176,6 +187,11 @@ let strIdx = 0;
 let charIdx = 0;
 let punctuationOn = false;
 let capitalOn = false;
+
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 FUNCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
 
 const clearTextInput = () => {
     txtInput.value = "";
@@ -214,81 +230,26 @@ const toggleButtonStyle = (element) => {
 const toggleButtonState = (element) => {
     // console.log(element);
     if (element.classList.contains("toggle-on")) {
-        if (element === punctuationToggleButton) {
+        if (element === punctuationToggle) {
             punctuationOn = true;
             console.log("PUNCTUATION:", punctuationOn);
         }
-        if (element === capitalToggleButton) {
+        if (element === capitalToggle) {
             capitalOn = true;
             console.log("CAPITAL:", capitalOn);
         }
     } else {
-        if (element === punctuationToggleButton) {
+        if (element === punctuationToggle) {
             punctuationOn = false;
             console.log("PUNCTUATION", punctuationOn);
         }
-        if (element === capitalToggleButton) {
+        if (element === capitalToggle) {
             capitalOn = false;
             console.log("CAPITAL", capitalOn);
         }
     }
 };
 
-// === === === === === === === CONTROL PANEL: === === === === === === ===
-
-// ================== DIFFICULTY ==================
-
-// difficultySubmitButton.addEventListener("click", function () {
-//     // REMOVE LISTENER FOR KEYUP
-//     document.removeEventListener("keyup", handleKeyEvent);
-//     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
-//     clearDataAndDisplay();
-//     clearArrAndString();
-
-//     for (let i = 0, length = radios.length; i < length; i++) {
-//         if (radios[i].checked) {
-//             // do whatever you want with the checked radio
-//             console.log("RADIOS VALUE:", radios[i].value);
-//             if (radios[i].value === "100") {
-//                 console.log("100");
-//                 targetArray = [...common100];
-//             }
-//             if (radios[i].value === "200") {
-//                 console.log("200");
-//                 targetArray = [...commonTest];
-//             }
-
-//             // only one radio can be logically checked, don't check the rest
-//             break;
-//         }
-//     }
-//     console.log("TARGET ARRAY:", targetArray);
-// });
-
-// // ================== LINE LENGTH ==================
-// // DEFAULT LINE LENGTH, ALSO HARD CODED IN HTML
-
-// // DISPLAY CURRENT VALUE OF SLIDER
-// slider.onchange = function (event) {
-//     // console.log("SLIDER VALUE HAS BEEN CHANGED:", slider.value);
-//     // DISPLAY CURRENT VALUE
-//     lengthDisplaySpan.textContent = slider.value;
-// };
-
-// // GET SLIDER FINAL VALUE AND ASSIGN TO SEQUENCE LENGTH
-// lengthSubmitButton.addEventListener("click", function () {
-//     // REMOVE LISTENER FOR KEYUP
-//     document.removeEventListener("keyup", handleKeyEvent);
-//     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
-//     clearDataAndDisplay();
-//     clearArrAndString();
-//     sequenceLength = slider.value;
-//     // console.log("SLIDER CHANGED, NEW VALUE TO SUBMIT:", sequenceLength);
-// });
-
-// === === === === === === === === === === === === === === === === === === ===
-
-// ================== CAPITAL ==================
 
 // UPPERCASE FIRST LETTER IN WORD
 const capitaliseWord = (str) => {
@@ -363,6 +324,11 @@ const clearDataAndDisplay = () => {
     clearArrAndString();
     // document.removeEventListener("keyup", handleKeyEvent);
 };
+
+
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
 startButton.addEventListener("click", (event) => {
     clearIdxTrackers();
@@ -464,6 +430,10 @@ startButton.addEventListener("click", (event) => {
     // ADD CURSOR TO FIRST CHARACTER WHEN PAGE LOADS
     const firstChar = document.getElementById("span-0");
     firstChar.classList.add("background", "black-border");
+
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 KEY EVENTS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
     const handleKeyEvent = (event) => {
         console.log(
@@ -771,7 +741,7 @@ startButton.addEventListener("click", (event) => {
 
     // ================== DIFFICULTY ==================
 
-    difficultySubmitButton.addEventListener("click", function () {
+    difficultyApply.addEventListener("click", function () {
         // REMOVE LISTENER FOR KEYUP
         document.removeEventListener("keyup", handleKeyEvent);
         // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
@@ -809,7 +779,7 @@ startButton.addEventListener("click", (event) => {
     };
 
     // GET SLIDER FINAL VALUE AND ASSIGN TO SEQUENCE LENGTH
-    lengthSubmitButton.addEventListener("click", function () {
+    lengthApply.addEventListener("click", function () {
         // REMOVE LISTENER FOR KEYUP
         document.removeEventListener("keyup", handleKeyEvent);
         // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
@@ -819,37 +789,56 @@ startButton.addEventListener("click", (event) => {
         // console.log("SLIDER CHANGED, NEW VALUE TO SUBMIT:", sequenceLength);
     });
 
-    // =================================================
 
     // ================== PUNCTUATION ==================
 
-    // APPLY CHANGES WHEN CLICKED
-    punctuationToggleButton.addEventListener("click", function () {
+    // 1. ONLY TOGGLE STYLE
+    const handlePunctuationToggle = () => {
         // REMOVE LISTENER FOR KEYUP
         document.removeEventListener("keyup", handleKeyEvent);
+        toggleButtonStyle(punctuationToggle);
+        // toggleButtonState(punctuationToggle);
+    }
+
+    punctuationToggle.addEventListener("click", handlePunctuationToggle);
+
+    // 2. APPLY CHANGES WHEN CLICKED
+    punctuationApply.addEventListener("click", function () {
+        // REMOVE LISTENER FROM PUNCTUATION-TOGGLE
+        punctuationToggle.removeEventListener("click", handlePunctuationToggle);
         // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
         clearDataAndDisplay();
         clearArrAndString();
-        toggleButtonStyle(punctuationToggleButton);
-        toggleButtonState(punctuationToggleButton);
+        // TOGGLE STATE BOOLEAN
+        toggleButtonState(punctuationToggle);
     });
-
-    // =================================================
 
     // ================== CAPITAL ==================
-    // APPLY CHANGES WHEN CLICKED
-    capitalToggleButton.addEventListener("click", function () {
+
+    // 1. ONLY TOGGLE STYLE
+    const handleCapitalToggle = () => {
         // REMOVE LISTENER FOR KEYUP
         document.removeEventListener("keyup", handleKeyEvent);
+        toggleButtonStyle(capitalToggle);
+        // toggleButtonState(punctuationToggle);
+    }
+
+    capitalToggle.addEventListener("click", handleCapitalToggle);
+
+    // 2. APPLY CHANGES WHEN CLICKED
+    capitalApply.addEventListener("click", function () {
+        // REMOVE LISTENER FROM PUNCTUATION-TOGGLE
+        capitalToggle.removeEventListener("click", handleCapitalToggle);
         // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
         clearDataAndDisplay();
         clearArrAndString();
-        toggleButtonStyle(capitalToggleButton);
-        toggleButtonState(capitalToggleButton);
+        // TOGGLE STATE BOOLEAN
+        toggleButtonState(capitalToggle);
     });
+
+
     // =================================================
 
-    // === === === === === === === === === === === === === === === === === === ===
 });
 
 /*
@@ -881,12 +870,13 @@ TODOS
             ☑️RESET ALL INDEX TRACKERS (FOR START BUTTON - AND APPLY BUTTONS ON CONTROL PANEL ? MAYBE NOT NECESSARY)
             
     PROBLEMS:
+        ADD EVENTLISTENER TO CONTROL OPTIONS WHEN PAGE LOADS? BEFORE START BUTTON IS CLICKED?
         REMOVE EVENTLISTENER WHEN APPLY CHANGES AS START BUTTON WILL ADD IT AGAIN !!!
         CLEAR SPANS / RESET TRACKERS AFTER CHANGES ARE MADE TO
-            ☑️DIFFICULTY
-            LENGTH
-            PUNCTUATION
-            CAPITAL
+            ☑️ DIFFICULTY
+            ☑️ LENGTH
+            ☑️ PUNCTUATION
+            ☑️ CAPITAL
         THEN,
         HIGHLIGHT START BUTTON
 
