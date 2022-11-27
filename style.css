@@ -27,9 +27,13 @@ body {
 }
 
 .counter-test {
-    width: 100px;
+    width: 125px;
     height: 50px;
-    border: 2px solid darkgoldenrod;
+    font-size: 30px;
+    padding: 5px;
+    border-radius: 4px;
+    background: #EFEFEF;
+    border: 2px solid black;
 }
 
 .active-container,
@@ -117,10 +121,10 @@ body {
     padding: 0px 20px 0px 20px;
     font-size: 30px;
     text-align: left;
-    border: none;
-    /* border: 2px solid black; */
-    /* border-radius: 4px; */
-    background-color: rgba(176, 196, 222, 0.538);
+    /* border: none; */
+    border: 2px solid black;
+    border-radius: 4px;
+    background-color: rgb(225, 231, 240);
 }
 
 .span {

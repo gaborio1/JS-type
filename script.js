@@ -156,7 +156,7 @@ const textSpanContainerActive = document.getElementById("text-span-active");
 // NEXT SPAN
 const textSpanContainerNext = document.getElementById("text-span-next");
 // TEXT INPUT
-const txtInput = document.getElementById("input");
+const textInput = document.getElementById("input");
 // START BUTTON
 const startButton = document.getElementById("start-button");
 // ALL RADIOS
@@ -184,15 +184,17 @@ let strIdx = 0;
 let charIdx = 0;
 let punctuationOn = false;
 let capitalOn = false;
+// let counterOn = false;
+let keyStrokeCounter = 0;
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 FUNCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
 const clearTextInput = () => {
-    txtInput.value = "";
+    textInput.value = "";
     // AFTER WORD IS COMPLETED CLEAR PLACEHOLDER TOO, ITS HARDCODED IN HTML
-    txtInput.placeholder = "";
+    textInput.placeholder = "";
 };
 
 // GET RANDOM WORD FROM ARRAY
@@ -330,7 +332,7 @@ startButton.addEventListener("click", (event) => {
     // SET CURSOR TO INPUT BOX  AT FIRST CHAR IF TEXT-ALIGN IS DISABLED IN CSS
     // SETS CURSOR AT FIRST CHAR IF TEXT-ALIGN IS DISABLED IN CSS
     // txtInput.setSelectionRange(0, 0);
-    txtInput.focus();
+    textInput.focus();
 
     // TEST FOR ARRAY OF 5 ARRAYS
     buidWordArrays(5);
@@ -429,26 +431,37 @@ startButton.addEventListener("click", (event) => {
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 KEY EVENTS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-    const handleKeyEvent = (event) => {
-        startCount();
+    // let keyStrokeCounter = 0;
 
-        console.log(
-            "---EVENT START---------------------",
-            "line idx: ",
-            lineIdx,
-            "word idx: ",
-            wordIdx,
-            "/",
-            wordArrays[lineIdx].length - 1,
-            "char idx: ",
-            charIdx,
-            "/",
-            wordArrays[lineIdx][wordIdx].length - 1,
-            "string idx: ",
-            strIdx,
-            "/",
-            stringWords.length - 1
-        );
+    const handleKeyEvent = (event) => {
+        console.log("EVENT");
+        // counterOn = true;
+        keyStrokeCounter += 1;
+        console.log("KEYSTROKE COUNTER:", keyStrokeCounter);
+        // console.log(keyStrokeCounter);
+        // if (keyStrokeCounter = 1) {
+        // console.log("START");
+        // countdown();
+        // }
+        // countdown();
+
+        // console.log(
+        //     "---EVENT START---------------------",
+        //     "line idx: ",
+        //     lineIdx,
+        //     "word idx: ",
+        //     wordIdx,
+        //     "/",
+        //     wordArrays[lineIdx].length - 1,
+        //     "char idx: ",
+        //     charIdx,
+        //     "/",
+        //     wordArrays[lineIdx][wordIdx].length - 1,
+        //     "string idx: ",
+        //     strIdx,
+        //     "/",
+        //     stringWords.length - 1
+        // );
 
         // LAST CHARACTER TYPED IN LINE
         if (
@@ -464,7 +477,8 @@ startButton.addEventListener("click", (event) => {
         }
 
         const typedKey = event.key;
-        console.log("event.key: ", event.key);
+        // console.log("event.key: ", event.key);
+        //NOT USED
         // console.log("event.code:", event.code)
 
         // SHIFT
@@ -650,7 +664,7 @@ startButton.addEventListener("click", (event) => {
 
             // DON'T ACCESS NEXT SPAN(UNDEFINED) AFTER LAST CHARACTER
             if (strIdx < stringWords.length - 1) {
-                console.log("+++++++++++++++", strIdx);
+                // console.log("+++++++++++++++", strIdx);
                 let nextCharacter = document.getElementById(
                     `span-${strIdx + 1}`
                 );
@@ -707,23 +721,23 @@ startButton.addEventListener("click", (event) => {
         }
 
         // EVENT START/END
-        console.log(
-            "---------------------EVENT END---",
-            "line idx: ",
-            lineIdx,
-            "word idx: ",
-            wordIdx,
-            "/",
-            wordArrays[lineIdx].length - 1,
-            "char idx: ",
-            charIdx,
-            "/",
-            wordArrays[lineIdx][wordIdx].length - 1,
-            "string idx: ",
-            strIdx,
-            "/",
-            stringWords.length - 1
-        );
+        // console.log(
+        //     "---------------------EVENT END---",
+        //     "line idx: ",
+        //     lineIdx,
+        //     "word idx: ",
+        //     wordIdx,
+        //     "/",
+        //     wordArrays[lineIdx].length - 1,
+        //     "char idx: ",
+        //     charIdx,
+        //     "/",
+        //     wordArrays[lineIdx][wordIdx].length - 1,
+        //     "string idx: ",
+        //     strIdx,
+        //     "/",
+        //     stringWords.length - 1
+        // );
 
         if (wordIdx === wordArrays[lineIdx].length - 1) {
             console.log("LAST WORD IN LINE");
@@ -833,18 +847,18 @@ startButton.addEventListener("click", (event) => {
 
     // =================================================
 });
-function countdown() {
-    var seconds = 5;
-    function tick() {
-        var counter = document.getElementById("counter-test");
-        seconds--;
+
+// ONE TIME LISTENER FOR TIMER SETTIMEOUT
+const countdown = () => {
+    let seconds = 59;
+    const tick = () => {
+        const counter = document.getElementById("counter-test");
+        seconds -= 1;
         counter.innerHTML = "0:" + (seconds < 10 ? "0" : "") + String(seconds);
+        // counter.innerHTML = seconds;
         if (seconds > 0) {
             setTimeout(tick, 1000);
         }
-        // else {
-        //     alert("Game over");
-        // }
         if (seconds === 0) {
             console.log("times up");
         }
@@ -852,7 +866,17 @@ function countdown() {
     tick();
 }
 
-countdown();
+// ONE OFF FUNCTION RUNS ON FIRST KEYPRESS
+const startCountdown = () => {
+    // alert('Thanks for clicking!');
+    console.log("REMOVE LISTENER NOW!");
+    countdown();
+    textInput.removeEventListener('keydown', startCountdown);
+}
+
+textInput.addEventListener('keydown', startCountdown);
+
+
 
 /*
 MASTER/multiple
@@ -860,7 +884,7 @@ MASTER/multiple
 TODOS
 
     STATISTICS / MONITOR:
-        TIMER (1 MIN)
+        ☑️ TIMER (1 MIN)
         SPEEDOMETER (WPM)
         GREEN KEYS COUNTER
         RED KEYS COUNTER
@@ -883,6 +907,7 @@ TODOS
             ☑️RESET ALL INDEX TRACKERS (FOR START BUTTON - AND APPLY BUTTONS ON CONTROL PANEL ? MAYBE NOT NECESSARY)
             
     PROBLEMS:
+        LISTEN FOR KEYPRESS ON INPUT FIELD ONLY !!!
         ADD EVENTLISTENER TO CONTROL OPTIONS WHEN PAGE LOADS? BEFORE START BUTTON IS CLICKED?
         REMOVE EVENTLISTENER WHEN APPLY CHANGES AS START BUTTON WILL ADD IT AGAIN !!!
         CLEAR SPANS / RESET TRACKERS AFTER CHANGES ARE MADE TO
