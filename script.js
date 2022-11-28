@@ -184,12 +184,35 @@ let strIdx = 0;
 let charIdx = 0;
 let punctuationOn = false;
 let capitalOn = false;
-// let counterOn = false;
 let keyStrokeCounter = 0;
+// TEST: COUNT ALL COMPLETED WORDS (BOTH CORRECT AND INCORRECT)
+let wordCounterTest = 0;
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 FUNCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+const nextChar = () => {
+    charIdx += 1;
+    strIdx += 1;
+};
+
+const prevChar = () => {
+    charIdx -= 1;
+    strIdx -= 1;
+};
+
+const nextWord = () => {
+    wordIdx += 1;
+    charIdx = 0;
+};
+
+const nextLine = () => {
+    lineIdx += 1;
+    wordIdx = 0;
+    charIdx = 0;
+    strIdx = 0;
+};
 
 const clearTextInput = () => {
     textInput.value = "";
@@ -397,28 +420,6 @@ startButton.addEventListener("click", (event) => {
         textSpanContainerActive.appendChild(span);
     }
 
-    const nextChar = () => {
-        charIdx += 1;
-        strIdx += 1;
-    };
-
-    const prevChar = () => {
-        charIdx -= 1;
-        strIdx -= 1;
-    };
-
-    const nextWord = () => {
-        wordIdx += 1;
-        charIdx = 0;
-    };
-
-    const nextLine = () => {
-        lineIdx += 1;
-        wordIdx = 0;
-        charIdx = 0;
-        strIdx = 0;
-    };
-
     // NODELIST OF ALL CHAR SPANS
     const charSpans = document.querySelectorAll(".span");
     // console.log(charSpans);
@@ -437,7 +438,7 @@ startButton.addEventListener("click", (event) => {
         console.log("EVENT");
         // counterOn = true;
         keyStrokeCounter += 1;
-        console.log("KEYSTROKE COUNTER:", keyStrokeCounter);
+        // console.log("KEYSTROKE COUNTER:", keyStrokeCounter);
         // console.log(keyStrokeCounter);
         // if (keyStrokeCounter = 1) {
         // console.log("START");
@@ -513,6 +514,10 @@ startButton.addEventListener("click", (event) => {
             // CLEAR INPUT IF WORD IS COMPLETE
             if (wordArrays[lineIdx][wordIdx][charIdx] === undefined) {
                 console.log("UNDEFINED, SPACE!");
+
+                wordCounterTest += 1;
+                console.log(wordCounterTest);
+
                 // ---
                 const nextCharacter = document.getElementById(
                     `span-${strIdx + 1}`
@@ -536,6 +541,7 @@ startButton.addEventListener("click", (event) => {
             // JUMP IDX TO THE NEXT WORD IN STRING
             if (charIdx < wordArrays[lineIdx][wordIdx].length) {
                 // IF SPACE IS PRESSED ANYWHERE ON LAST WORD
+                // !!! CONCAT A SPACE TO THE LAST WORD !!!
                 console.log("INCOMPLETE WORD, NEXT LINE()");
 
                 // === === === === === === === === START === === === === === === === === ===
@@ -598,6 +604,9 @@ startButton.addEventListener("click", (event) => {
 
             // START A NEW LINE
             if (strIdx === undefined) {
+                wordCounterTest += 1;
+                console.log(wordCounterTest);
+
                 console.log("NEXT LINE()");
                 // START NEW LINE
                 nextLine();
@@ -844,9 +853,9 @@ startButton.addEventListener("click", (event) => {
         // TOGGLE STATE BOOLEAN
         toggleButtonState(capitalToggle);
     });
-
-    // =================================================
 });
+
+// ===================== TIMER ======================
 
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
@@ -862,21 +871,19 @@ const countdown = () => {
         if (seconds === 0) {
             console.log("times up");
         }
-    }
+    };
     tick();
-}
+};
 
 // ONE OFF FUNCTION RUNS ON FIRST KEYPRESS
 const startCountdown = () => {
     // alert('Thanks for clicking!');
     console.log("REMOVE LISTENER NOW!");
     countdown();
-    textInput.removeEventListener('keydown', startCountdown);
-}
+    textInput.removeEventListener("keydown", startCountdown);
+};
 
-textInput.addEventListener('keydown', startCountdown);
-
-
+textInput.addEventListener("keydown", startCountdown);
 
 /*
 MASTER/multiple
@@ -886,6 +893,7 @@ TODOS
     STATISTICS / MONITOR:
         ☑️ TIMER (1 MIN)
         SPEEDOMETER (WPM)
+            COUNT GREEN WORDS ONLY?
         GREEN KEYS COUNTER
         RED KEYS COUNTER
         COMPLETE WORDS COUNTER
