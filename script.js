@@ -403,9 +403,13 @@ startButton.addEventListener("click", (event) => {
     };
 
     // INITIALISE TEXTSPANCONTAINER NEXT
-    createSpans(lineIdx + 1, textSpanContainerNext);
+    // createSpans(lineIdx + 1, textSpanContainerNext);
+    // FILL THIS CONTAINER WITH TEXT, NOT SPANS
+    let stringWordsNext = "";
+    stringWordsNext = wordArrays[lineIdx + 1].join(" ");
+    textSpanContainerNext.innerText = stringWordsNext;
 
-    // LOOP OVER STRINGWORSD TO CREATE SPANS(EVERY CHAR INCLUDING SPACES IN BETWEEN)
+    // LOOP OVER STRINGWORDS TO CREATE SPANS(EVERY CHAR INCLUDING SPACES IN BETWEEN)
     // !!! ACCESS INDEX OF ITERATION IN FOR OF LOOP WITH DESTRUCTURING SYNTAX + entries() METHOD
 
     for (const [idx, char] of stringWords.split("").entries()) {
@@ -620,7 +624,11 @@ startButton.addEventListener("click", (event) => {
                 stringWords = wordArrays[lineIdx].join(" ");
                 // DELETE CONTENT / APPEND NEXT LINE TO TEXTSPAN NEXT DIV
                 textSpanContainerNext.innerHTML = "";
-                createSpans(lineIdx + 1, textSpanContainerNext);
+                // createSpans(lineIdx + 1, textSpanContainerNext);
+                // APPEND TEXT AS STRING INSTEAD OF SPANS !!!
+                stringWordsNext = wordArrays[lineIdx + 1].join(" ");
+                textSpanContainerNext.innerText = stringWordsNext;
+
             }
 
             // === === === === === === === === START === === === === === === === === ===
