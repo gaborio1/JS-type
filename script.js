@@ -636,7 +636,6 @@ startButton.addEventListener("click", (event) => {
                 // APPEND TEXT AS STRING INSTEAD OF SPANS !!!
                 stringWordsNext = wordArrays[lineIdx + 1].join(" ");
                 textSpanContainerNext.innerText = stringWordsNext;
-
             }
 
             // === === === === === === === === START === === === === === === === === ===
@@ -781,7 +780,7 @@ startButton.addEventListener("click", (event) => {
         radios[i].addEventListener("click", function () {
             console.log("difficulty selected");
             difficultyApply.classList.add("control-apply-active");
-        })
+        });
     }
 
     difficultyApply.addEventListener("click", function () {
