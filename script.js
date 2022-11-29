@@ -349,7 +349,15 @@ const clearDataAndDisplay = () => {
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
+// HIGHLIGHT START BUTTON
+startButton.classList.add("control-apply-active");
+
+// ADD LISTENER
 startButton.addEventListener("click", (event) => {
+    // REMOVE HIGHLIGHT START BUTTON
+    startButton.classList.remove("control-apply-active");
+    // CHANGE PLACEHOLDER TO "START TYPING"
+    textInput.placeholder = "Start typing or customise text";
     clearIdxTrackers();
 
     // SET CURSOR TO INPUT BOX  AT FIRST CHAR IF TEXT-ALIGN IS DISABLED IN CSS
@@ -768,7 +776,19 @@ startButton.addEventListener("click", (event) => {
 
     // ================== DIFFICULTY ==================
 
+    // MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
+    for (let i = 0, length = radios.length; i < length; i++) {
+        radios[i].addEventListener("click", function () {
+            console.log("difficulty selected");
+            difficultyApply.classList.add("control-apply-active");
+        })
+    }
+
     difficultyApply.addEventListener("click", function () {
+        // REMOVE ACTIVE STYLE
+        difficultyApply.classList.remove("control-apply-active");
+        // HIGHLIGHT START BUTTON
+        startButton.classList.add("control-apply-active");
         // REMOVE LISTENER FOR KEYUP
         document.removeEventListener("keyup", handleKeyEvent);
         // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
@@ -803,10 +823,14 @@ startButton.addEventListener("click", (event) => {
         // console.log("SLIDER VALUE HAS BEEN CHANGED:", slider.value);
         // DISPLAY CURRENT VALUE
         lengthDisplaySpan.textContent = slider.value;
+        console.log("slider changed");
+        lengthApply.classList.add("control-apply-active");
     };
 
     // GET SLIDER FINAL VALUE AND ASSIGN TO SEQUENCE LENGTH
     lengthApply.addEventListener("click", function () {
+        // HIGHLIGHT START BUTTON
+        startButton.classList.add("control-apply-active");
         // REMOVE LISTENER FOR KEYUP
         document.removeEventListener("keyup", handleKeyEvent);
         // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
@@ -814,6 +838,7 @@ startButton.addEventListener("click", (event) => {
         clearArrAndString();
         sequenceLength = slider.value;
         // console.log("SLIDER CHANGED, NEW VALUE TO SUBMIT:", sequenceLength);
+        lengthApply.classList.remove("control-apply-active");
     });
 
     // ================== PUNCTUATION ==================
@@ -824,12 +849,15 @@ startButton.addEventListener("click", (event) => {
         document.removeEventListener("keyup", handleKeyEvent);
         toggleButtonStyle(punctuationToggle);
         // toggleButtonState(punctuationToggle);
+        punctuationApply.classList.add("control-apply-active");
     };
 
     punctuationToggle.addEventListener("click", handlePunctuationToggle);
 
     // 2. APPLY CHANGES WHEN CLICKED
     punctuationApply.addEventListener("click", function () {
+        // HIGHLIGHT START BUTTON
+        startButton.classList.add("control-apply-active");
         // REMOVE LISTENER FROM PUNCTUATION-TOGGLE
         punctuationToggle.removeEventListener("click", handlePunctuationToggle);
         // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
@@ -837,6 +865,7 @@ startButton.addEventListener("click", (event) => {
         clearArrAndString();
         // TOGGLE STATE BOOLEAN
         toggleButtonState(punctuationToggle);
+        punctuationApply.classList.remove("control-apply-active");
     });
 
     // ================== CAPITAL ==================
@@ -847,12 +876,15 @@ startButton.addEventListener("click", (event) => {
         document.removeEventListener("keyup", handleKeyEvent);
         toggleButtonStyle(capitalToggle);
         // toggleButtonState(punctuationToggle);
+        capitalApply.classList.add("control-apply-active");
     };
 
     capitalToggle.addEventListener("click", handleCapitalToggle);
 
     // 2. APPLY CHANGES WHEN CLICKED
     capitalApply.addEventListener("click", function () {
+        // HIGHLIGHT START BUTTON
+        startButton.classList.add("control-apply-active");
         // REMOVE LISTENER FROM PUNCTUATION-TOGGLE
         capitalToggle.removeEventListener("click", handleCapitalToggle);
         // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
@@ -860,6 +892,7 @@ startButton.addEventListener("click", (event) => {
         clearArrAndString();
         // TOGGLE STATE BOOLEAN
         toggleButtonState(capitalToggle);
+        capitalApply.classList.remove("control-apply-active");
     });
 });
 
@@ -878,6 +911,7 @@ const countdown = () => {
         }
         if (seconds === 0) {
             console.log("times up");
+            textInput.placeholder = "Time is up!";
         }
     };
     tick();
@@ -908,7 +942,10 @@ TODOS
         CORRECT WORDS COUNTER
 
     FEATURES:
+        ☑️ HIGHLIGHT APPLY BUTTONS WHEN CHANGES ARE MADE
+            TIMER IS NOT DONE YET
         ☑️ START / NEW BUTTON
+        HIGHLIGHT START BUTTON AFTER CONTROL CHANGES HAVE BEEN APPLIED
         ☑️ ALLOW USER TO SET CUSTOM LINE LENGTH
         LEVEL SELECTOR (100, 200, 500 ETC...)
         ☑️ DETECT CAPSLOCK

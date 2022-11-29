@@ -165,6 +165,10 @@ body {
     color: red;
 }
 
+.control-apply-active {
+    background: lightgreen;
+}
+
 .background {
     background: lightgrey;
 }
@@ -186,6 +190,113 @@ body {
 /* .enlarged {
     font-size: 35px;
 } */
+
+/* CUSTOM RANGE STYLES */
+/* SOURCE: https://www.cssportal.com/style-input-range/ */
+input[type=range] {
+    /* DISABLED AS IT WILL ADD A WHITE BACKGROUND */
+    /* height: 17px; */
+    -webkit-appearance: none;
+    margin: 10px 0;
+    /* width: 100%; */
+    width: 125px;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 2px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 1px 1px 1px #000000;
+    background: #50555C;
+    border-radius: 14px;
+    border: 0px solid #FF6987;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    box-shadow: 0px 0px 0px #000000;
+    border: 0px solid #000000;
+    height: 11px;
+    width: 17px;
+    border-radius: 8px;
+    background: #529DE1;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -4.5px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #50555C;
+}
+
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 2px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 1px 1px 1px #000000;
+    background: #50555C;
+    border-radius: 14px;
+    border: 0px solid #FF6987;
+}
+
+input[type=range]::-moz-range-thumb {
+    box-shadow: 0px 0px 0px #000000;
+    border: 0px solid #000000;
+    height: 11px;
+    width: 17px;
+    border-radius: 8px;
+    background: #529DE1;
+    cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    height: 2px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+    background: #50555C;
+    border: 0px solid #FF6987;
+    border-radius: 28px;
+    box-shadow: 1px 1px 1px #000000;
+}
+
+input[type=range]::-ms-fill-upper {
+    background: #50555C;
+    border: 0px solid #FF6987;
+    border-radius: 28px;
+    box-shadow: 1px 1px 1px #000000;
+}
+
+input[type=range]::-ms-thumb {
+    margin-top: 1px;
+    box-shadow: 0px 0px 0px #000000;
+    border: 0px solid #000000;
+    height: 11px;
+    width: 17px;
+    border-radius: 8px;
+    background: #529DE1;
+    cursor: pointer;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+    background: #50555C;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+    background: #50555C;
+}
+
 
 /* BLINKING CURRENT CHARACTER */
 .blink {
