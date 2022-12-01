@@ -298,7 +298,7 @@ const getStrLength = (arr) => {
 
 // POPULATE wordArrays WITH ARRAYS OF WORDS (wordsArr), ONE FOR EACH TEXT LINE
 const buidWordArrays = (numOfLines) => {
-    console.log("TARGET ARRAY FROM BUILDARRAYS:", targetArray);
+    // console.log("TARGET ARRAY FROM BUILDARRAYS:", targetArray);
     for (let i = 0; i < numOfLines; i += 1) {
         let arr = [];
         while (true) {
@@ -349,11 +349,25 @@ const clearDataAndDisplay = () => {
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
+let startButtonCounter = 0;
+
 // HIGHLIGHT START BUTTON
 startButton.classList.add("control-apply-active");
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
+
+    // TRACK NUMBER OF START BUTTON CLICKS
+    startButtonCounter += 1;
+    // console.log("START BUTTON COUNTER", startButtonCounter);
+
+    // CLEAR ALL STRING DATA FROM TEXT FIELDS AND EMPTY ARRAYS
+    // clearArrAndString();
+    textSpanContainerActive.innerHTML = "";
+    textSpanContainerNext.innerHTML = "";
+    // clearIdxTrackers();
+
+
     // REMOVE HIGHLIGHT START BUTTON
     startButton.classList.remove("control-apply-active");
     // CHANGE PLACEHOLDER TO "START TYPING"
@@ -447,16 +461,11 @@ startButton.addEventListener("click", (event) => {
     // let keyStrokeCounter = 0;
 
     const handleKeyEvent = (event) => {
-        console.log("EVENT");
+        console.log("EVENT: KEYUP");
         // counterOn = true;
         keyStrokeCounter += 1;
         // console.log("KEYSTROKE COUNTER:", keyStrokeCounter);
         // console.log(keyStrokeCounter);
-        // if (keyStrokeCounter = 1) {
-        // console.log("START");
-        // countdown();
-        // }
-        // countdown();
 
         // console.log(
         //     "---EVENT START---------------------",
@@ -768,8 +777,32 @@ startButton.addEventListener("click", (event) => {
         }
     };
 
-    // LISTEN FOR KEY EVENTS
-    document.addEventListener("keyup", handleKeyEvent);
+    // ADD HANDLEKEYEVENT FOR KEYUP EVENT ONLY ONCE, REMOVE IT IF START IS CLICKED AGAIN, SEE IF BLOCK BELOW
+    document.addEventListener("keydown", handleKeyEvent);
+
+    // /*
+    // IF START BUTTON CLICKED AGAIN, RESET EVERYTHING AND GENERATE NEW DATA
+    if (startButtonCounter > 1) {
+
+        // REMOVE LISTENER
+        document.removeEventListener("keydown", handleKeyEvent);
+        // console.log("EVENT LISTENER REMOVED FROM DOCUMENT FOR KEYUP");
+
+        // RESET
+        textSpanContainerActive.innerHTML = "";
+        textSpanContainerNext.innerHTML = "";
+        clearTextInput();
+        clearIdxTrackers();
+        clearArrAndString();
+        // INITIALISE
+        buidWordArrays(5);
+        createSpans(lineIdx, textSpanContainerActive);
+        stringWords = wordArrays[lineIdx].join(" ");
+        stringWordsNext = wordArrays[lineIdx + 1].join(" ");
+        textSpanContainerNext.innerText = stringWordsNext;
+
+    }
+    // */
 
     // === === === === === === === CONTROL PANEL: === === === === === === ===
 
@@ -789,7 +822,8 @@ startButton.addEventListener("click", (event) => {
         // HIGHLIGHT START BUTTON
         startButton.classList.add("control-apply-active");
         // REMOVE LISTENER FOR KEYUP
-        document.removeEventListener("keyup", handleKeyEvent);
+        // !!!
+        // document.removeEventListener("keydown", handleKeyEvent);
         // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
         clearDataAndDisplay();
         clearArrAndString();
@@ -831,7 +865,8 @@ startButton.addEventListener("click", (event) => {
         // HIGHLIGHT START BUTTON
         startButton.classList.add("control-apply-active");
         // REMOVE LISTENER FOR KEYUP
-        document.removeEventListener("keyup", handleKeyEvent);
+        // !!!
+        // document.removeEventListener("keydown", handleKeyEvent);
         // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
         clearDataAndDisplay();
         clearArrAndString();
@@ -845,7 +880,8 @@ startButton.addEventListener("click", (event) => {
     // 1. ONLY TOGGLE STYLE
     const handlePunctuationToggle = () => {
         // REMOVE LISTENER FOR KEYUP
-        document.removeEventListener("keyup", handleKeyEvent);
+        // !!!
+        // document.removeEventListener("keydown", handleKeyEvent);
         toggleButtonStyle(punctuationToggle);
         // toggleButtonState(punctuationToggle);
         punctuationApply.classList.add("control-apply-active");
@@ -872,7 +908,8 @@ startButton.addEventListener("click", (event) => {
     // 1. ONLY TOGGLE STYLE
     const handleCapitalToggle = () => {
         // REMOVE LISTENER FOR KEYUP
-        document.removeEventListener("keyup", handleKeyEvent);
+        // !!!
+        // document.removeEventListener("keydown", handleKeyEvent);
         toggleButtonStyle(capitalToggle);
         // toggleButtonState(punctuationToggle);
         capitalApply.classList.add("control-apply-active");
@@ -941,6 +978,7 @@ TODOS
         CORRECT WORDS COUNTER
 
     FEATURES:
+        RESET TIMER IF START BUTTON IS CLICKED?
         ☑️ HIGHLIGHT APPLY BUTTONS WHEN CHANGES ARE MADE
             TIMER IS NOT DONE YET
         ☑️ START / NEW BUTTON
@@ -959,6 +997,8 @@ TODOS
             ☑️RESET ALL INDEX TRACKERS (FOR START BUTTON - AND APPLY BUTTONS ON CONTROL PANEL ? MAYBE NOT NECESSARY)
             
     PROBLEMS:
+        CONTROL PANEL SETTINGS DON'T WORK TOGETHER WELL (PROBLEM WITH LISTENERS)
+        ☑️ INITIALISE (CLEAR) ALL TEXT DATA WHEN CLICKING START
         LISTEN FOR KEYPRESS ON INPUT FIELD ONLY !!!
         ADD EVENTLISTENER TO CONTROL OPTIONS WHEN PAGE LOADS? BEFORE START BUTTON IS CLICKED?
         REMOVE EVENTLISTENER WHEN APPLY CHANGES AS START BUTTON WILL ADD IT AGAIN !!!
