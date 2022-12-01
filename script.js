@@ -160,9 +160,14 @@ const textInput = document.getElementById("input");
 // START BUTTON
 const startButton = document.getElementById("start-button");
 // ALL RADIOS
-const radios = document.getElementsByClassName("radio");
+// const radios = document.getElementsByClassName("radio");
+const difficultyRadios = document.getElementsByClassName("difficulty-radio");
+const timerRadios = document.getElementsByClassName("timer-radio");
+
 // TIMER
 const timerApply = document.getElementById("timer-apply");
+// SPEEDOMETER DISPLAY SPAN
+const speedSpan = document.getElementById("speed-span");
 
 // TEXTCONTAINER
 // DISABLED
@@ -356,7 +361,6 @@ startButton.classList.add("control-apply-active");
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
-
     // TRACK NUMBER OF START BUTTON CLICKS
     startButtonCounter += 1;
     // console.log("START BUTTON COUNTER", startButtonCounter);
@@ -366,7 +370,6 @@ startButton.addEventListener("click", (event) => {
     textSpanContainerActive.innerHTML = "";
     textSpanContainerNext.innerHTML = "";
     // clearIdxTrackers();
-
 
     // REMOVE HIGHLIGHT START BUTTON
     startButton.classList.remove("control-apply-active");
@@ -783,7 +786,6 @@ startButton.addEventListener("click", (event) => {
     // /*
     // IF START BUTTON CLICKED AGAIN, RESET EVERYTHING AND GENERATE NEW DATA
     if (startButtonCounter > 1) {
-
         // REMOVE LISTENER
         document.removeEventListener("keydown", handleKeyEvent);
         // console.log("EVENT LISTENER REMOVED FROM DOCUMENT FOR KEYUP");
@@ -800,136 +802,267 @@ startButton.addEventListener("click", (event) => {
         stringWords = wordArrays[lineIdx].join(" ");
         stringWordsNext = wordArrays[lineIdx + 1].join(" ");
         textSpanContainerNext.innerText = stringWordsNext;
-
+        textInput.placeholder = "Start typing or customise text";
     }
     // */
 
     // === === === === === === === CONTROL PANEL: === === === === === === ===
 
-    // ================== DIFFICULTY ==================
+    // // ================== DIFFICULTY ==================
 
-    // MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
-    for (let i = 0, length = radios.length; i < length; i++) {
-        radios[i].addEventListener("click", function () {
-            console.log("difficulty selected");
-            difficultyApply.classList.add("control-apply-active");
-        });
-    }
+    // // MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
+    // for (let i = 0, length = radios.length; i < length; i++) {
+    //     radios[i].addEventListener("click", function () {
+    //         console.log("difficulty selected");
+    //         difficultyApply.classList.add("control-apply-active");
+    //     });
+    // }
 
-    difficultyApply.addEventListener("click", function () {
-        // REMOVE ACTIVE STYLE
-        difficultyApply.classList.remove("control-apply-active");
-        // HIGHLIGHT START BUTTON
-        startButton.classList.add("control-apply-active");
-        // REMOVE LISTENER FOR KEYUP
-        // !!!
-        // document.removeEventListener("keydown", handleKeyEvent);
-        // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
-        clearDataAndDisplay();
-        clearArrAndString();
+    // difficultyApply.addEventListener("click", function () {
+    //     // REMOVE ACTIVE STYLE
+    //     difficultyApply.classList.remove("control-apply-active");
+    //     // HIGHLIGHT START BUTTON
+    //     startButton.classList.add("control-apply-active");
+    //     // REMOVE LISTENER FOR KEYUP
+    //     // !!!
+    //     // document.removeEventListener("keydown", handleKeyEvent);
+    //     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
+    //     clearDataAndDisplay();
+    //     clearArrAndString();
 
-        for (let i = 0, length = radios.length; i < length; i++) {
-            if (radios[i].checked) {
-                // do whatever you want with the checked radio
-                console.log("RADIOS VALUE:", radios[i].value);
-                if (radios[i].value === "100") {
-                    console.log("100");
-                    targetArray = [...common100];
-                }
-                if (radios[i].value === "200") {
-                    console.log("200");
-                    targetArray = [...commonTest];
-                }
+    //     for (let i = 0, length = radios.length; i < length; i++) {
+    //         if (radios[i].checked) {
+    //             // do whatever you want with the checked radio
+    //             console.log("RADIOS VALUE:", radios[i].value);
+    //             if (radios[i].value === "100") {
+    //                 console.log("100");
+    //                 targetArray = [...common100];
+    //             }
+    //             if (radios[i].value === "200") {
+    //                 console.log("200");
+    //                 targetArray = [...commonTest];
+    //             }
 
-                // only one radio can be logically checked, don't check the rest
-                break;
+    //             // only one radio can be logically checked, don't check the rest
+    //             break;
+    //         }
+    //     }
+    //     console.log("TARGET ARRAY:", targetArray);
+    // });
+
+    // // ================== LINE LENGTH ==================
+    // // DEFAULT LINE LENGTH, ALSO HARD CODED IN HTML
+
+    // // DISPLAY CURRENT VALUE OF SLIDER
+    // slider.onchange = function (event) {
+    //     // console.log("SLIDER VALUE HAS BEEN CHANGED:", slider.value);
+    //     // DISPLAY CURRENT VALUE
+    //     lengthDisplaySpan.textContent = slider.value;
+    //     console.log("slider changed");
+    //     lengthApply.classList.add("control-apply-active");
+    // };
+
+    // // GET SLIDER FINAL VALUE AND ASSIGN TO SEQUENCE LENGTH
+    // lengthApply.addEventListener("click", function () {
+    //     // HIGHLIGHT START BUTTON
+    //     startButton.classList.add("control-apply-active");
+    //     // REMOVE LISTENER FOR KEYUP
+    //     // !!!
+    //     // document.removeEventListener("keydown", handleKeyEvent);
+    //     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
+    //     clearDataAndDisplay();
+    //     clearArrAndString();
+    //     sequenceLength = slider.value;
+    //     // console.log("SLIDER CHANGED, NEW VALUE TO SUBMIT:", sequenceLength);
+    //     lengthApply.classList.remove("control-apply-active");
+    // });
+
+    // // ================== PUNCTUATION ==================
+
+    // // 1. ONLY TOGGLE STYLE
+    // const handlePunctuationToggle = () => {
+    //     // REMOVE LISTENER FOR KEYUP
+    //     // !!!
+    //     // document.removeEventListener("keydown", handleKeyEvent);
+    //     toggleButtonStyle(punctuationToggle);
+    //     // toggleButtonState(punctuationToggle);
+    //     punctuationApply.classList.add("control-apply-active");
+    // };
+
+    // punctuationToggle.addEventListener("click", handlePunctuationToggle);
+
+    // // 2. APPLY CHANGES WHEN CLICKED
+    // punctuationApply.addEventListener("click", function () {
+    //     // HIGHLIGHT START BUTTON
+    //     startButton.classList.add("control-apply-active");
+    //     // REMOVE LISTENER FROM PUNCTUATION-TOGGLE
+    //     punctuationToggle.removeEventListener("click", handlePunctuationToggle);
+    //     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
+    //     clearDataAndDisplay();
+    //     clearArrAndString();
+    //     // TOGGLE STATE BOOLEAN
+    //     toggleButtonState(punctuationToggle);
+    //     punctuationApply.classList.remove("control-apply-active");
+    // });
+
+    // // ================== CAPITAL ==================
+
+    // // 1. ONLY TOGGLE STYLE
+    // const handleCapitalToggle = () => {
+    //     // REMOVE LISTENER FOR KEYUP
+    //     // !!!
+    //     // document.removeEventListener("keydown", handleKeyEvent);
+    //     toggleButtonStyle(capitalToggle);
+    //     // toggleButtonState(punctuationToggle);
+    //     capitalApply.classList.add("control-apply-active");
+    // };
+
+    // capitalToggle.addEventListener("click", handleCapitalToggle);
+
+    // // 2. APPLY CHANGES WHEN CLICKED
+    // capitalApply.addEventListener("click", function () {
+    //     // HIGHLIGHT START BUTTON
+    //     startButton.classList.add("control-apply-active");
+    //     // REMOVE LISTENER FROM PUNCTUATION-TOGGLE
+    //     capitalToggle.removeEventListener("click", handleCapitalToggle);
+    //     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
+    //     clearDataAndDisplay();
+    //     clearArrAndString();
+    //     // TOGGLE STATE BOOLEAN
+    //     toggleButtonState(capitalToggle);
+    //     capitalApply.classList.remove("control-apply-active");
+    // });
+});
+
+// === === === === === === === CONTROL PANEL: === === === === === === ===
+
+// ================== DIFFICULTY ==================
+
+// MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
+for (let i = 0, length = difficultyRadios.length; i < length; i++) {
+    difficultyRadios[i].addEventListener("click", function () {
+        console.log("difficulty selected");
+        difficultyApply.classList.add("control-apply-active");
+    });
+}
+
+difficultyApply.addEventListener("click", function () {
+    // REMOVE ACTIVE STYLE
+    difficultyApply.classList.remove("control-apply-active");
+    // HIGHLIGHT START BUTTON
+    startButton.classList.add("control-apply-active");
+    // REMOVE LISTENER FOR KEYUP
+    // !!!
+    // document.removeEventListener("keydown", handleKeyEvent);
+    // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
+    clearDataAndDisplay();
+    clearArrAndString();
+
+    for (let i = 0, length = difficultyRadios.length; i < length; i++) {
+        if (difficultyRadios[i].checked) {
+            // do whatever you want with the checked radio
+            console.log("RADIOS VALUE:", difficultyRadios[i].value);
+            if (difficultyRadios[i].value === "100") {
+                console.log("100");
+                targetArray = [...common100];
             }
+            if (difficultyRadios[i].value === "200") {
+                console.log("200");
+                targetArray = [...commonTest];
+            }
+
+            // only one radio can be logically checked, don't check the rest
+            break;
         }
-        console.log("TARGET ARRAY:", targetArray);
-    });
+    }
+    console.log("TARGET ARRAY:", targetArray);
+});
 
-    // ================== LINE LENGTH ==================
-    // DEFAULT LINE LENGTH, ALSO HARD CODED IN HTML
+// ================== LINE LENGTH ==================
+// DEFAULT LINE LENGTH, ALSO HARD CODED IN HTML
 
-    // DISPLAY CURRENT VALUE OF SLIDER
-    slider.onchange = function (event) {
-        // console.log("SLIDER VALUE HAS BEEN CHANGED:", slider.value);
-        // DISPLAY CURRENT VALUE
-        lengthDisplaySpan.textContent = slider.value;
-        console.log("slider changed");
-        lengthApply.classList.add("control-apply-active");
-    };
+// DISPLAY CURRENT VALUE OF SLIDER
+slider.onchange = function (event) {
+    // console.log("SLIDER VALUE HAS BEEN CHANGED:", slider.value);
+    // DISPLAY CURRENT VALUE
+    lengthDisplaySpan.textContent = slider.value;
+    console.log("slider changed");
+    lengthApply.classList.add("control-apply-active");
+};
 
-    // GET SLIDER FINAL VALUE AND ASSIGN TO SEQUENCE LENGTH
-    lengthApply.addEventListener("click", function () {
-        // HIGHLIGHT START BUTTON
-        startButton.classList.add("control-apply-active");
-        // REMOVE LISTENER FOR KEYUP
-        // !!!
-        // document.removeEventListener("keydown", handleKeyEvent);
-        // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
-        clearDataAndDisplay();
-        clearArrAndString();
-        sequenceLength = slider.value;
-        // console.log("SLIDER CHANGED, NEW VALUE TO SUBMIT:", sequenceLength);
-        lengthApply.classList.remove("control-apply-active");
-    });
+// GET SLIDER FINAL VALUE AND ASSIGN TO SEQUENCE LENGTH
+lengthApply.addEventListener("click", function () {
+    // HIGHLIGHT START BUTTON
+    startButton.classList.add("control-apply-active");
+    // REMOVE LISTENER FOR KEYUP
+    // !!!
+    // document.removeEventListener("keydown", handleKeyEvent);
+    // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
+    clearDataAndDisplay();
+    clearArrAndString();
+    sequenceLength = slider.value;
+    // console.log("SLIDER CHANGED, NEW VALUE TO SUBMIT:", sequenceLength);
+    lengthApply.classList.remove("control-apply-active");
+});
 
-    // ================== PUNCTUATION ==================
+// ================== PUNCTUATION ==================
 
-    // 1. ONLY TOGGLE STYLE
-    const handlePunctuationToggle = () => {
-        // REMOVE LISTENER FOR KEYUP
-        // !!!
-        // document.removeEventListener("keydown", handleKeyEvent);
-        toggleButtonStyle(punctuationToggle);
-        // toggleButtonState(punctuationToggle);
-        punctuationApply.classList.add("control-apply-active");
-    };
+// 1. ONLY TOGGLE STYLE
+const handlePunctuationToggle = () => {
+    // REMOVE LISTENER FOR KEYUP
+    // !!!
+    // document.removeEventListener("keydown", handleKeyEvent);
+    toggleButtonStyle(punctuationToggle);
+    // toggleButtonState(punctuationToggle);
+    punctuationApply.classList.add("control-apply-active");
+};
 
-    punctuationToggle.addEventListener("click", handlePunctuationToggle);
+punctuationToggle.addEventListener("click", handlePunctuationToggle);
 
-    // 2. APPLY CHANGES WHEN CLICKED
-    punctuationApply.addEventListener("click", function () {
-        // HIGHLIGHT START BUTTON
-        startButton.classList.add("control-apply-active");
-        // REMOVE LISTENER FROM PUNCTUATION-TOGGLE
-        punctuationToggle.removeEventListener("click", handlePunctuationToggle);
-        // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
-        clearDataAndDisplay();
-        clearArrAndString();
-        // TOGGLE STATE BOOLEAN
-        toggleButtonState(punctuationToggle);
-        punctuationApply.classList.remove("control-apply-active");
-    });
+// 2. APPLY CHANGES WHEN CLICKED
+punctuationApply.addEventListener("click", function () {
+    // HIGHLIGHT START BUTTON
+    startButton.classList.add("control-apply-active");
+    // REMOVE LISTENER FROM PUNCTUATION-TOGGLE
 
-    // ================== CAPITAL ==================
+    // punctuationToggle.removeEventListener("click", handlePunctuationToggle);
 
-    // 1. ONLY TOGGLE STYLE
-    const handleCapitalToggle = () => {
-        // REMOVE LISTENER FOR KEYUP
-        // !!!
-        // document.removeEventListener("keydown", handleKeyEvent);
-        toggleButtonStyle(capitalToggle);
-        // toggleButtonState(punctuationToggle);
-        capitalApply.classList.add("control-apply-active");
-    };
+    // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
+    clearDataAndDisplay();
+    clearArrAndString();
+    // TOGGLE STATE BOOLEAN
+    toggleButtonState(punctuationToggle);
+    punctuationApply.classList.remove("control-apply-active");
+});
 
-    capitalToggle.addEventListener("click", handleCapitalToggle);
+// ================== CAPITAL ==================
 
-    // 2. APPLY CHANGES WHEN CLICKED
-    capitalApply.addEventListener("click", function () {
-        // HIGHLIGHT START BUTTON
-        startButton.classList.add("control-apply-active");
-        // REMOVE LISTENER FROM PUNCTUATION-TOGGLE
-        capitalToggle.removeEventListener("click", handleCapitalToggle);
-        // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
-        clearDataAndDisplay();
-        clearArrAndString();
-        // TOGGLE STATE BOOLEAN
-        toggleButtonState(capitalToggle);
-        capitalApply.classList.remove("control-apply-active");
-    });
+// 1. ONLY TOGGLE STYLE
+const handleCapitalToggle = () => {
+    // REMOVE LISTENER FOR KEYUP
+    // !!!
+    // document.removeEventListener("keydown", handleKeyEvent);
+    toggleButtonStyle(capitalToggle);
+    // toggleButtonState(punctuationToggle);
+    capitalApply.classList.add("control-apply-active");
+};
+
+capitalToggle.addEventListener("click", handleCapitalToggle);
+
+// 2. APPLY CHANGES WHEN CLICKED
+capitalApply.addEventListener("click", function () {
+    // HIGHLIGHT START BUTTON
+    startButton.classList.add("control-apply-active");
+    // REMOVE LISTENER FROM CAPITAL-TOGGLE
+
+    // capitalToggle.removeEventListener("click", handleCapitalToggle);
+
+    // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
+    clearDataAndDisplay();
+    clearArrAndString();
+    // TOGGLE STATE BOOLEAN
+    toggleButtonState(capitalToggle);
+    capitalApply.classList.remove("control-apply-active");
 });
 
 // ===================== TIMER ======================
@@ -948,6 +1081,7 @@ const countdown = () => {
         if (seconds === 0) {
             console.log("times up");
             textInput.placeholder = "Time is up!";
+            speedSpan.innerText = wordCounterTest;
         }
     };
     tick();
@@ -962,6 +1096,14 @@ const startCountdown = () => {
 };
 
 textInput.addEventListener("keydown", startCountdown);
+
+// MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
+for (let i = 0, length = timerRadios.length; i < length; i++) {
+    timerRadios[i].addEventListener("click", function () {
+        console.log("timer selected");
+        timerApply.classList.add("control-apply-active");
+    });
+}
 
 /*
 MASTER/multiple

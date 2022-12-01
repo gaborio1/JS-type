@@ -36,11 +36,11 @@
                     </select>
                 </form> -->
                 <!-- <form action=""> -->
-                <input type="radio" id="100" class="radio" name="difficulty" value="100" checked="checked">
+                <input type="radio" id="100" class="radio difficulty-radio" name="difficulty" value="100" checked="checked">
                 <label for="100">Top 100</label><br>
-                <input type="radio" id="200" class="radio" name="difficulty" value="200">
+                <input type="radio" id="200" class="radio difficulty-radio" name="difficulty" value="200">
                 <label for="200">Top 200</label><br>
-                <input type="radio" id="500" class="radio" name="difficulty" value="500">
+                <input type="radio" id="500" class="radio difficulty-radio" name="difficulty" value="500">
                 <label for="500">Top 500</label><br>
                 <button id="diffuculty-apply" class="control-panel-button">Apply</button>
                 <!-- <input type=" submit" value="Apply"> -->
@@ -72,9 +72,9 @@
             <div class="control-wrap">
                 Timer
                 <br>
-                <input type="radio" id="no-timer" class="radio" name="timer" value="none" ">
+                <input type="radio" id="no-timer" class="radio timer-radio" name="timer" value="none" checked="checked">
                 <label for=" no-timer">No timer</label><br>
-                <input type="radio" id="1min" class="radio" name="timer" value="1min" checked="checked">
+                <input type="radio" id="1min" class="radio timer-radio" name="timer" value="1min">
                 <label for=" 1min">1 min</label>
                 <br>
                 <br>
@@ -106,7 +106,10 @@
 
         <div class="stats-container">
             <!-- <h2>Stats container</h2> -->
-            <div class="stat-wrap">Speed WPM</div>
+            <div class="stat-wrap">
+                Speed WPM
+                <span id="speed-span" class="speed-span"></span>
+            </div>
             <div class="stat-wrap">Accuracy</div>
             <div class="stat-wrap">Green/Orange/Red Counter</div>
             <div class="stat-wrap">Key speed</div>
