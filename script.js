@@ -342,10 +342,15 @@ const clearArrAndString = () => {
     wordArrays = [];
     stringWords = "";
 };
-// CLEAR TEXT FIELDS ACTIVE / NEXT, INPUT, AND INITIALISE WORDARRAYS
-const clearDataAndDisplay = () => {
+
+const clearTextFields = () => {
     textSpanContainerActive.innerHTML = "";
     textSpanContainerNext.innerHTML = "";
+}
+
+// CLEAR TEXT FIELDS ACTIVE / NEXT, INPUT, AND INITIALISE WORDARRAYS
+const clearDataAndDisplay = () => {
+    clearTextFields();
     clearTextInput();
     clearIdxTrackers();
     clearArrAndString();
@@ -374,8 +379,7 @@ startButton.addEventListener("click", (event) => {
 
     // CLEAR ALL STRING DATA FROM TEXT FIELDS AND EMPTY ARRAYS
     // clearArrAndString();
-    textSpanContainerActive.innerHTML = "";
-    textSpanContainerNext.innerHTML = "";
+    clearTextFields();
     // clearIdxTrackers();
 
     // REMOVE HIGHLIGHT START BUTTON
@@ -797,8 +801,7 @@ startButton.addEventListener("click", (event) => {
         // console.log("EVENT LISTENER REMOVED FROM DOCUMENT FOR KEYUP");
 
         // RESET
-        textSpanContainerActive.innerHTML = "";
-        textSpanContainerNext.innerHTML = "";
+        clearTextFields();
         clearTextInput();
         clearIdxTrackers();
         clearArrAndString();
@@ -963,8 +966,7 @@ const countdown = () => {
             textInput.placeholder = "Time is up!";
             speedSpan.innerText = wordCounterTest;
             startButton.classList.add("control-apply-active");
-            textSpanContainerActive.innerHTML = "";
-            textSpanContainerNext.innerHTML = "";
+            clearTextFields();
         }
     };
     tick();
