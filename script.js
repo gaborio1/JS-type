@@ -181,6 +181,8 @@ const speedSpan = document.getElementById("speed-span");
 
 let targetArray = [...common100];
 let sequenceLength = 30;
+// HARD CODED ARRAY LENGTH (TEMPORARY)
+const wordsArrLength = 20;
 let stringWords = "";
 let wordArrays = [];
 let lineIdx = 0;
@@ -361,6 +363,11 @@ startButton.classList.add("control-apply-active");
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
+
+    // ADD LISTENER FOR TIMER AND RESET WORDCOUNTER
+    textInput.addEventListener("keydown", startCountdown);
+    wordCounterTest = 0;
+
     // TRACK NUMBER OF START BUTTON CLICKS
     startButtonCounter += 1;
     // console.log("START BUTTON COUNTER", startButtonCounter);
@@ -383,7 +390,7 @@ startButton.addEventListener("click", (event) => {
     textInput.focus();
 
     // TEST FOR ARRAY OF 5 ARRAYS
-    buidWordArrays(5);
+    buidWordArrays(wordsArrLength);
     // console.log("WORDARRAYS:", wordArrays);
 
     // OR USE OWN CUSTOM TEXT
@@ -783,7 +790,6 @@ startButton.addEventListener("click", (event) => {
     // ADD HANDLEKEYEVENT FOR KEYUP EVENT ONLY ONCE, REMOVE IT IF START IS CLICKED AGAIN, SEE IF BLOCK BELOW
     document.addEventListener("keydown", handleKeyEvent);
 
-    // /*
     // IF START BUTTON CLICKED AGAIN, RESET EVERYTHING AND GENERATE NEW DATA
     if (startButtonCounter > 1) {
         // REMOVE LISTENER
@@ -797,141 +803,15 @@ startButton.addEventListener("click", (event) => {
         clearIdxTrackers();
         clearArrAndString();
         // INITIALISE
-        buidWordArrays(5);
+        buidWordArrays(wordsArrLength);
         createSpans(lineIdx, textSpanContainerActive);
         stringWords = wordArrays[lineIdx].join(" ");
         stringWordsNext = wordArrays[lineIdx + 1].join(" ");
         textSpanContainerNext.innerText = stringWordsNext;
         textInput.placeholder = "Start typing or customise text";
     }
-    // */
 
-    // === === === === === === === CONTROL PANEL: === === === === === === ===
 
-    // // ================== DIFFICULTY ==================
-
-    // // MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
-    // for (let i = 0, length = radios.length; i < length; i++) {
-    //     radios[i].addEventListener("click", function () {
-    //         console.log("difficulty selected");
-    //         difficultyApply.classList.add("control-apply-active");
-    //     });
-    // }
-
-    // difficultyApply.addEventListener("click", function () {
-    //     // REMOVE ACTIVE STYLE
-    //     difficultyApply.classList.remove("control-apply-active");
-    //     // HIGHLIGHT START BUTTON
-    //     startButton.classList.add("control-apply-active");
-    //     // REMOVE LISTENER FOR KEYUP
-    //     // !!!
-    //     // document.removeEventListener("keydown", handleKeyEvent);
-    //     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
-    //     clearDataAndDisplay();
-    //     clearArrAndString();
-
-    //     for (let i = 0, length = radios.length; i < length; i++) {
-    //         if (radios[i].checked) {
-    //             // do whatever you want with the checked radio
-    //             console.log("RADIOS VALUE:", radios[i].value);
-    //             if (radios[i].value === "100") {
-    //                 console.log("100");
-    //                 targetArray = [...common100];
-    //             }
-    //             if (radios[i].value === "200") {
-    //                 console.log("200");
-    //                 targetArray = [...commonTest];
-    //             }
-
-    //             // only one radio can be logically checked, don't check the rest
-    //             break;
-    //         }
-    //     }
-    //     console.log("TARGET ARRAY:", targetArray);
-    // });
-
-    // // ================== LINE LENGTH ==================
-    // // DEFAULT LINE LENGTH, ALSO HARD CODED IN HTML
-
-    // // DISPLAY CURRENT VALUE OF SLIDER
-    // slider.onchange = function (event) {
-    //     // console.log("SLIDER VALUE HAS BEEN CHANGED:", slider.value);
-    //     // DISPLAY CURRENT VALUE
-    //     lengthDisplaySpan.textContent = slider.value;
-    //     console.log("slider changed");
-    //     lengthApply.classList.add("control-apply-active");
-    // };
-
-    // // GET SLIDER FINAL VALUE AND ASSIGN TO SEQUENCE LENGTH
-    // lengthApply.addEventListener("click", function () {
-    //     // HIGHLIGHT START BUTTON
-    //     startButton.classList.add("control-apply-active");
-    //     // REMOVE LISTENER FOR KEYUP
-    //     // !!!
-    //     // document.removeEventListener("keydown", handleKeyEvent);
-    //     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
-    //     clearDataAndDisplay();
-    //     clearArrAndString();
-    //     sequenceLength = slider.value;
-    //     // console.log("SLIDER CHANGED, NEW VALUE TO SUBMIT:", sequenceLength);
-    //     lengthApply.classList.remove("control-apply-active");
-    // });
-
-    // // ================== PUNCTUATION ==================
-
-    // // 1. ONLY TOGGLE STYLE
-    // const handlePunctuationToggle = () => {
-    //     // REMOVE LISTENER FOR KEYUP
-    //     // !!!
-    //     // document.removeEventListener("keydown", handleKeyEvent);
-    //     toggleButtonStyle(punctuationToggle);
-    //     // toggleButtonState(punctuationToggle);
-    //     punctuationApply.classList.add("control-apply-active");
-    // };
-
-    // punctuationToggle.addEventListener("click", handlePunctuationToggle);
-
-    // // 2. APPLY CHANGES WHEN CLICKED
-    // punctuationApply.addEventListener("click", function () {
-    //     // HIGHLIGHT START BUTTON
-    //     startButton.classList.add("control-apply-active");
-    //     // REMOVE LISTENER FROM PUNCTUATION-TOGGLE
-    //     punctuationToggle.removeEventListener("click", handlePunctuationToggle);
-    //     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
-    //     clearDataAndDisplay();
-    //     clearArrAndString();
-    //     // TOGGLE STATE BOOLEAN
-    //     toggleButtonState(punctuationToggle);
-    //     punctuationApply.classList.remove("control-apply-active");
-    // });
-
-    // // ================== CAPITAL ==================
-
-    // // 1. ONLY TOGGLE STYLE
-    // const handleCapitalToggle = () => {
-    //     // REMOVE LISTENER FOR KEYUP
-    //     // !!!
-    //     // document.removeEventListener("keydown", handleKeyEvent);
-    //     toggleButtonStyle(capitalToggle);
-    //     // toggleButtonState(punctuationToggle);
-    //     capitalApply.classList.add("control-apply-active");
-    // };
-
-    // capitalToggle.addEventListener("click", handleCapitalToggle);
-
-    // // 2. APPLY CHANGES WHEN CLICKED
-    // capitalApply.addEventListener("click", function () {
-    //     // HIGHLIGHT START BUTTON
-    //     startButton.classList.add("control-apply-active");
-    //     // REMOVE LISTENER FROM PUNCTUATION-TOGGLE
-    //     capitalToggle.removeEventListener("click", handleCapitalToggle);
-    //     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
-    //     clearDataAndDisplay();
-    //     clearArrAndString();
-    //     // TOGGLE STATE BOOLEAN
-    //     toggleButtonState(capitalToggle);
-    //     capitalApply.classList.remove("control-apply-active");
-    // });
 });
 
 // === === === === === === === CONTROL PANEL: === === === === === === ===
@@ -1079,9 +959,12 @@ const countdown = () => {
             setTimeout(tick, 1000);
         }
         if (seconds === 0) {
-            console.log("times up");
+            // console.log("times up");
             textInput.placeholder = "Time is up!";
             speedSpan.innerText = wordCounterTest;
+            startButton.classList.add("control-apply-active");
+            textSpanContainerActive.innerHTML = "";
+            textSpanContainerNext.innerHTML = "";
         }
     };
     tick();
