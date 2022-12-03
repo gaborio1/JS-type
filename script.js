@@ -180,7 +180,7 @@ const speedSpan = document.getElementById("speed-span");
 // 🁢
 
 let targetArray = [...common100];
-let sequenceLength = 30;
+let sequenceLength = 10;
 // HARD CODED ARRAY LENGTH (TEMPORARY)
 const wordsArrLength = 20;
 let stringWords = "";
@@ -325,6 +325,9 @@ const buidWordArrays = (numOfLines) => {
 
             arr.push(currWord);
         }
+
+        //    CONCAT SPACE TO LAST WORD
+        arr[arr.length - 1] = arr[arr.length - 1].concat(" ");
         wordArrays.push(arr);
     }
 };
@@ -346,7 +349,7 @@ const clearArrAndString = () => {
 const clearTextFields = () => {
     textSpanContainerActive.innerHTML = "";
     textSpanContainerNext.innerHTML = "";
-}
+};
 
 // CLEAR TEXT FIELDS ACTIVE / NEXT, INPUT, AND INITIALISE WORDARRAYS
 const clearDataAndDisplay = () => {
@@ -368,9 +371,9 @@ startButton.classList.add("control-apply-active");
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
-
     // ADD LISTENER FOR TIMER AND RESET WORDCOUNTER
-    textInput.addEventListener("keydown", startCountdown);
+    // TEMPORARILY DISABLED
+    // textInput.addEventListener("keydown", startCountdown);
     wordCounterTest = 0;
 
     // TRACK NUMBER OF START BUTTON CLICKS
@@ -541,6 +544,12 @@ startButton.addEventListener("click", (event) => {
         // SPACE
         // if (event.code === "Space") {
         if (typedKey === " ") {
+            console.log(
+                "typed:",
+                typedKey,
+                "actual:",
+                wordArrays[lineIdx][wordIdx][charIdx]
+            );
             if (wordIdx === wordArrays[lineIdx].length - 1) {
                 console.log("--------LAST WORD IN LINE--------");
             }
@@ -813,8 +822,6 @@ startButton.addEventListener("click", (event) => {
         textSpanContainerNext.innerText = stringWordsNext;
         textInput.placeholder = "Start typing or customise text";
     }
-
-
 });
 
 // === === === === === === === CONTROL PANEL: === === === === === === ===
@@ -980,7 +987,8 @@ const startCountdown = () => {
     textInput.removeEventListener("keydown", startCountdown);
 };
 
-textInput.addEventListener("keydown", startCountdown);
+// TEMPORARILY DISABLED
+// textInput.addEventListener("keydown", startCountdown);
 
 // MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
 for (let i = 0, length = timerRadios.length; i < length; i++) {
