@@ -478,7 +478,7 @@ startButton.addEventListener("click", (event) => {
     // let keyStrokeCounter = 0;
 
     const handleKeyEvent = (event) => {
-        console.log("EVENT: KEYUP");
+        console.log("🟨🟨🟨🟨🟨 EVENT: KEYUP 🟨🟨🟨🟨🟨");
         console.log("STRINGWORDS:", stringWords);
         console.log("STRINGWORDS.LENGTH:", stringWords.length);
         // counterOn = true;
@@ -609,6 +609,10 @@ startButton.addEventListener("click", (event) => {
             // === === === END === === ===
 
             // JUMP IDX TO THE NEXT WORD IN STRING
+            if (wordIdx === wordArrays[lineIdx].length - 1) {
+                console.log("--- --- --- LAST WORD --- --- --- ");
+            }
+
             if (charIdx < wordArrays[lineIdx][wordIdx].length) {
                 // IF SPACE IS PRESSED ANYWHERE ON LAST WORD
                 console.log("INCOMPLETE WORD, NEXT LINE()");
@@ -644,6 +648,7 @@ startButton.addEventListener("click", (event) => {
 
             // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
             // ON ALL CHARACTERS BUT LAST
+
             if (strIdx < stringWords.length) {
                 let currentChar = document.getElementById(`span-${strIdx}`);
                 currentChar.classList.remove("background", "black-border");
@@ -698,6 +703,7 @@ startButton.addEventListener("click", (event) => {
 
         // CORRECT KEY
         if (typedKey === wordArrays[lineIdx][wordIdx][charIdx]) {
+            console.log("+++ CORRECT KEY +++++");
 
             // ADD BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
             let currentChar = document.getElementById(`span-${strIdx}`);
@@ -738,10 +744,6 @@ startButton.addEventListener("click", (event) => {
             ) {
                 console.log("LAST WORD, LAST CHAR! CHAR IDX:", charIdx);
             }
-
-
-
-
         }
 
         // WRONG KEY OR SHIFT FOR CAPITAL LETTERS
