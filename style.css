@@ -170,8 +170,7 @@ body {
     top: 2px;
     width: 16px;
     height: 24px;
-    /* margin-top: 20px; */
-    /* background: rgb(0, 229, 255); */
+    background: lightskyblue;
 }
 
 /* NEXT LINE STRING */
@@ -358,8 +357,8 @@ input[type="range"]:focus::-ms-fill-upper {
     left: -9999px;
 }
 
-[type="radio"]:checked + label,
-[type="radio"]:not(:checked) + label {
+[type="radio"]:checked+label,
+[type="radio"]:not(:checked)+label {
     position: relative;
     padding-left: 28px;
     cursor: pointer;
@@ -368,8 +367,8 @@ input[type="range"]:focus::-ms-fill-upper {
     color: #666;
 }
 
-[type="radio"]:checked + label:before,
-[type="radio"]:not(:checked) + label:before {
+[type="radio"]:checked+label:before,
+[type="radio"]:not(:checked)+label:before {
     content: "";
     position: absolute;
     left: 0;
@@ -381,8 +380,8 @@ input[type="range"]:focus::-ms-fill-upper {
     background: #fff;
 }
 
-[type="radio"]:checked + label:after,
-[type="radio"]:not(:checked) + label:after {
+[type="radio"]:checked+label:after,
+[type="radio"]:not(:checked)+label:after {
     content: "";
     width: 12px;
     height: 12px;
@@ -395,13 +394,13 @@ input[type="range"]:focus::-ms-fill-upper {
     transition: all 0.2s ease;
 }
 
-[type="radio"]:not(:checked) + label:after {
+[type="radio"]:not(:checked)+label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0);
 }
 
-[type="radio"]:checked + label:after {
+[type="radio"]:checked+label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
