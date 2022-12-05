@@ -699,29 +699,10 @@ startButton.addEventListener("click", (event) => {
         }
         */
 
-        // CORRECT KEY TYPED
+        // ==================== CORRECT KEY TYPED ======================
         if (typedKey === wordArrays[lineIdx][wordIdx][charIdx]) {
 
-            // END OF LINE SPACE
-            if (strIdx === stringWords.length - 1) {
-                // START NEW LINE
-                nextLine();
-                // DELETE SPANS FROM ACTIVE DIV / APPEND SPANS CREATED FROM NEXT LINE
-                textSpanContainerActive.innerHTML = "";
-                createSpans(lineIdx, textSpanContainerActive);
-                // ADD CURSOR TO FIRST CHAR IN LINE
-                const firstChar = document.getElementById("span-0");
-                firstChar.classList.add("background", "black-border");
-                // UPDATE STRWORDS
-                stringWords = wordArrays[lineIdx].join("");
-                // DELETE CONTENT / APPEND NEXT LINE TO TEXTSPAN NEXT DIV
-                textSpanContainerNext.innerHTML = "";
-                // createSpans(lineIdx + 1, textSpanContainerNext);
-                // APPEND TEXT AS STRING INSTEAD OF SPANS !!!
-                stringWordsNext = wordArrays[lineIdx + 1].join(" ");
-                textSpanContainerNext.innerText = stringWordsNext;
-                // nextLine();
-            }
+
 
 
 
@@ -754,27 +735,6 @@ startButton.addEventListener("click", (event) => {
                     nextCharacter.classList.add("background", "black-border");
                     strIdx += 1;
                 }
-
-
-                // else {
-                //     // if (strIdx < stringWords.length - 1) {
-                //     if (wordIdx < wordArrays[lineIdx].length - 1) {
-                //         console.log("<<<<< LAST CHARACER !!! >>>>>");
-                //         let nextCharacter = document.getElementById(
-                //             `span-${strIdx + 1}`
-                //         );
-                //         nextCharacter.classList.add("background", "black-border");
-                //         strIdx += 1;
-                //     }
-
-
-
-                // console.log("<<<<< LAST CHARACER !!! >>>>>");
-                // let nextCharacter = document.getElementById(
-                //     `span-${strIdx + 1}`
-                // );
-                // nextCharacter.classList.add("background", "black-border");
-                // strIdx += 1;
             }
 
             if (strIdx === stringWords.length - 1) {
@@ -786,76 +746,45 @@ startButton.addEventListener("click", (event) => {
             // REMOVE CURSOR FROM SPACE
             if (typedKey === " ") {
 
+
+                // END OF LINE SPACE
+                if (strIdx === stringWords.length - 1) {
+                    // START NEW LINE
+                    nextLine();
+                    // DELETE SPANS FROM ACTIVE DIV / APPEND SPANS CREATED FROM NEXT LINE
+                    textSpanContainerActive.innerHTML = "";
+                    createSpans(lineIdx, textSpanContainerActive);
+                    // ADD CURSOR TO FIRST CHAR IN LINE
+                    const firstChar = document.getElementById("span-0");
+                    firstChar.classList.add("background", "black-border");
+                    // UPDATE STRWORDS
+                    stringWords = wordArrays[lineIdx].join("");
+                    // DELETE CONTENT / APPEND NEXT LINE TO TEXTSPAN NEXT DIV
+                    textSpanContainerNext.innerHTML = "";
+                    // createSpans(lineIdx + 1, textSpanContainerNext);
+                    // APPEND TEXT AS STRING INSTEAD OF SPANS !!!
+                    stringWordsNext = wordArrays[lineIdx + 1].join(" ");
+                    textSpanContainerNext.innerText = stringWordsNext;
+                }
+
                 if (strIdx === stringWords.length - 1) {
                     console.log("<<<<< LAST WORD, LAST CHARACTER !!! >>>>>")
                 }
-
 
 
                 console.log("SPACE");
 
                 let currentChar = document.getElementById(`span-${strIdx - 1}`);
                 currentChar.classList.remove("background", "black-border");
-
-
-
-
-                // !!! IF ITS THE END OF LINE SPACE, DON'T DO THIS !!!
                 nextWord();
-
-
-
-
-
-
-
                 clearTextInput();
 
             }
 
 
-            // ---
-            // ADD BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
-            // let currentChar = document.getElementById(`span-${strIdx}`);
-            // currentChar.classList.add("green", "enlarged");
-            // currentChar.classList.remove(
-            //     "red",
-            //     "orange",
-            //     "background",
-            //     "black-border"
-            // );
-
-            // BLIND NEXT CHAR
-            // charSpans[strIdx + 1].classList.add("blink");
-
-            // console.log("NEXT CHAR", nextCharacter);
-
-
-
-            // DON'T ACCESS NEXT SPAN(UNDEFINED) AFTER LAST CHARACTER
-
-            // if (strIdx < stringWords.length - 1) {
-            // console.log("+++++++++++++++", strIdx);
-            // let nextCharacter = document.getElementById(
-            //     `span-${strIdx + 1}`
-            // );
-            // nextCharacter.classList.add("background", "black-border");
-
-            // nextChar();
-
-
-            // }
-
-            // LAST CHARACTER TYPED IN LINE
-            // if (
-            //     wordIdx === wordArrays[lineIdx].length - 1 &&
-            //     charIdx === wordArrays[lineIdx][wordIdx].length - 1
-            // ) {
-            //     console.log("LAST WORD, LAST CHAR! CHAR IDX:", charIdx);
-            // }
         }
 
-        // WRONG KEY OR SHIFT FOR CAPITAL LETTERS
+        // =========== WRONG KEY OR SHIFT FOR CAPITAL LETTERS ============
         else if (
             typedKey !== wordArrays[lineIdx][wordIdx][charIdx] &&
             typedKey !== " " &&
@@ -878,71 +807,22 @@ startButton.addEventListener("click", (event) => {
 
             // const prevChar = document.getElementById(`span-${strIdx}`);
             currentChar.classList.remove("background", "black-border");
+
+
+
+
+            if (currentChar === " ") {
+                console.log("<<<<< ADD RED BORDER TO SPACE >>>>>");
+                // currentChar.classList.add("red-border");
+            }
+
+
+
+
+
             nextChar();
         }
 
-
-        // else {
-        //     console.log(
-        //         "WRONG KEY!",
-        //         "typed:",
-        //         typedKey,
-        //         "actual:",
-        //         wordArrays[lineIdx][wordIdx][charIdx]
-        //     );
-
-        //     let currentChar = document.getElementById(`span-${strIdx}`);
-        //     let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
-
-        //     currentChar.classList.add("red", "enlarged");
-        //     nextCharacter.classList.add("background", "black-border");
-
-        //     // const prevChar = document.getElementById(`span-${strIdx}`);
-        //     currentChar.classList.remove("background", "black-border");
-        //     nextChar();
-        // }
-
-
-
-
-
-        // WRONG KEY OR SHIFT FOR CAPITAL LETTERS
-        // !!! LOOK INT && ITS A TEMP FIX FOR UNDEFINED LAST CHARACTER !!!
-        // else if (
-        //     typedKey !== wordArrays[lineIdx][wordIdx][charIdx] &&
-        //     typedKey !== " " &&
-        //     typedKey !== "Shift" &&
-        //     typedKey !== "Backspace"
-        // ) {
-        //     console.log(
-        //         "WRONG KEY!",
-        //         "typed:",
-        //         typedKey,
-        //         "actual:",
-        //         wordArrays[lineIdx][wordIdx][charIdx]
-        //     );
-
-        //     let currentChar = document.getElementById(`span-${strIdx}`);
-        //     let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
-        //     // === === === === === === === === START === === === === === === === === ===
-        //     // BUG !!! DO NOT MOVE CURSOR FORWARD, ADD SPACE A RED BORDER AND KEEP CURSOR ON SPACE
-        //     if (stringWords[strIdx] === " ") {
-        //         console.log("CHARACTER TYPED ON SPACE!");
-        //         currentChar.classList.add("red-border");
-        //     }
-        //     // === === === === === === === === START === === === === === === === === ===
-
-        //     currentChar.classList.add("red", "enlarged");
-
-        //     nextCharacter.classList.add("background", "black-border");
-
-        //     // REMOVE BORDER
-        //     const prevChar = document.getElementById(`span-${strIdx}`);
-        //     prevChar.classList.remove("background", "black-border");
-
-        //     // GO TO NEXT CHAR IF WRONG CHAR TYPED
-        //     nextChar();
-        // }
 
         // EVENT START/END
         console.log(
