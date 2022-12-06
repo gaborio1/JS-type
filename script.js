@@ -306,7 +306,6 @@ const getStrLength = (arr) => {
 
 // POPULATE wordArrays WITH ARRAYS OF WORDS (wordsArr), ONE FOR EACH TEXT LINE
 const buidWordArrays = (numOfLines) => {
-
     // console.log("TARGET ARRAY FROM BUILDARRAYS:", targetArray);
     for (let i = 0; i < numOfLines; i += 1) {
         let arr = [];
@@ -350,7 +349,7 @@ const clearArrAndString = () => {
 const clearTextFields = () => {
     textSpanContainerActive.innerHTML = "";
     textSpanContainerNext.innerHTML = "";
-}
+};
 
 // CLEAR TEXT FIELDS ACTIVE / NEXT, INPUT, AND INITIALISE WORDARRAYS
 const clearDataAndDisplay = () => {
@@ -372,7 +371,6 @@ startButton.classList.add("control-apply-active");
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
-
     // ADD LISTENER FOR TIMER AND RESET WORDCOUNTER
     textInput.addEventListener("keydown", startCountdown);
     wordCounterTest = 0;
@@ -415,7 +413,6 @@ startButton.addEventListener("click", (event) => {
     stringWords = wordArrays[lineIdx].join("");
 
     // console.log("STRINGWORDS:", stringWords);
-
 
     // DISABLED
     // textContainer.textContent = stringWords;
@@ -479,40 +476,39 @@ startButton.addEventListener("click", (event) => {
     // let keyStrokeCounter = 0;
 
     const handleKeyEvent = (event) => {
-        console.log("EVENT: KEYUP");
+        const typedKey = event.key;
+        console.log("EVENT: KEYUP", event.key);
+        //NOT USED
+        // console.log("event.code:", event.code)
         // counterOn = true;
         keyStrokeCounter += 1;
         // console.log("KEYSTROKE COUNTER:", keyStrokeCounter);
 
-
-        // console.log(
-        //     "🟩---EVENT START---------------------",
-        //     "line idx: ",
-        //     lineIdx,
-        //     "word idx: ",
-        //     wordIdx,
-        //     "/",
-        //     wordArrays[lineIdx].length - 1,
-        //     "char idx: ",
-        //     charIdx,
-        //     "/",
-        //     wordArrays[lineIdx][wordIdx].length - 1,
-        //     "string idx: ",
-        //     strIdx,
-        //     "/",
-        //     stringWords.length - 1
-        // );
+        console.log(
+            "🟩---EVENT START: ",
+            event.key,
+            " ---",
+            "line idx: ",
+            lineIdx,
+            "word idx: ",
+            wordIdx,
+            "/",
+            wordArrays[lineIdx].length - 1,
+            "char idx: ",
+            charIdx,
+            "/",
+            wordArrays[lineIdx][wordIdx].length - 1,
+            "string idx: ",
+            strIdx,
+            "/",
+            stringWords.length - 1
+        );
 
         // DETECT CAPSLOCK
 
         if (event.getModifierState("CapsLock")) {
             console.log("CAPSLOCK IS ON!");
         }
-
-        const typedKey = event.key;
-        console.log("event.key: ", event.key);
-        //NOT USED
-        // console.log("event.code:", event.code)
 
         // SHIFT
         if (typedKey === "Shift") {
@@ -539,7 +535,6 @@ startButton.addEventListener("click", (event) => {
             // JUMP IDX TO THE NEXT WORD IN STRING
             if (charIdx < wordArrays[lineIdx][wordIdx].length) {
                 // IF SPACE IS PRESSED ANYWHERE ON LAST WORD
-                // !!! CONCAT A SPACE TO THE LAST WORD !!!
                 console.log("INCOMPLETE WORD, NEXT LINE()");
 
                 let nextWordIdx;
@@ -603,7 +598,6 @@ startButton.addEventListener("click", (event) => {
 
         // ==================== CORRECT KEY TYPED ======================
         if (typedKey === wordArrays[lineIdx][wordIdx][charIdx]) {
-
             // NOT LAST CHARACTER IN WORD
             if (charIdx < wordArrays[lineIdx][wordIdx].length - 1) {
                 console.log("<<<<<  NOT LAST CHARACER >>>>>");
@@ -623,7 +617,6 @@ startButton.addEventListener("click", (event) => {
                 );
 
                 nextChar();
-
             }
 
             // LAST CHARACTER IN WORD
@@ -640,7 +633,6 @@ startButton.addEventListener("click", (event) => {
                     // MOVE CURSOR FORWARD
                     nextCharacter.classList.add("background", "black-border");
                     strIdx += 1;
-
                 }
             }
 
@@ -650,7 +642,6 @@ startButton.addEventListener("click", (event) => {
 
             // REMOVE CURSOR FROM SPACE
             if (typedKey === " ") {
-
                 // END OF LINE SPACE
                 if (strIdx === stringWords.length - 1) {
                     // START NEW LINE
@@ -679,14 +670,24 @@ startButton.addEventListener("click", (event) => {
 
                 // console.log("SPACE");
 
-                let currentChar = document.getElementById(`span-${strIdx - 1}`);
-                currentChar.classList.remove("background", "black-border");
-                nextWord();
-                clearTextInput();
+                // ONLY ACCESS CURRENTCHAR IF IT IS NOT END OF LINE (IF STATEMENT DOESNT WORK FOR CLASSLIST REMOVE, STILL GET TYPE ERROR )
+                // !!! ERROR: Uncaught TypeError: Cannot read properties of null (reading 'classList')at HTMLDocument.handleKeyEvent (script.js:680:33)
+                if (strIdx < stringWords.length - 1) {
+                    let currentChar = document.getElementById(
+                        `span-${strIdx - 1}`
+                    );
+                    currentChar.classList.remove("background", "black-border");
+                    nextWord();
+                    clearTextInput();
+                }
+
+                // let currentChar = document.getElementById(`span-${strIdx - 1}`);
+                // currentChar.classList.remove("background", "black-border");
+                // nextWord();
+                // clearTextInput();
+
                 wordCounterTest += 1;
-
             }
-
         }
 
         // =========== WRONG KEY OR SHIFT FOR CAPITAL LETTERS ============
@@ -717,7 +718,6 @@ startButton.addEventListener("click", (event) => {
             // const prevChar = document.getElementById(`span-${strIdx}`);
             currentChar.classList.remove("background", "black-border");
 
-
             if (stringWords[strIdx] === " ") {
                 // console.log("<<<<< ADD RED BORDER TO SPACE >>>>>");
                 currentChar.classList.add("red-border");
@@ -726,27 +726,104 @@ startButton.addEventListener("click", (event) => {
             nextChar();
         }
 
-        // console.log(
-        //     "---------------------EVENT END---",
-        //     "line idx: ",
-        //     lineIdx,
-        //     "word idx: ",
-        //     wordIdx,
-        //     "/",
-        //     wordArrays[lineIdx].length - 1,
-        //     "char idx: ",
-        //     charIdx,
-        //     "/",
-        //     wordArrays[lineIdx][wordIdx].length - 1,
-        //     "string idx: ",
-        //     strIdx,
-        //     "/",
-        //     stringWords.length - 1
-        // );
+        //               +++++ START +++++
+
+        // =========== SPACE ON WORD (WRONG CHAR AND SPACE) ===========
+        else if (
+            typedKey !== wordArrays[lineIdx][wordIdx][charIdx] &&
+            typedKey === " "
+        ) {
+            console.log("<<<<< SPACE ON WORD, SKIP TO NEXT WORD >>>>>");
+
+            // JUMP IDX TO THE NEXT WORD IN STRING
+            if (charIdx < wordArrays[lineIdx][wordIdx].length) {
+                // IF SPACE IS PRESSED ANYWHERE ON LAST WORD
+                console.log("INCOMPLETE WORD, NEXT LINE()");
+
+                let nextWordIdx;
+
+                // console.log(
+                //     "charIdx:",
+                //     charIdx,
+                //     "word length:",
+                //     wordArrays[lineIdx][wordIdx].length
+                // );
+
+                console.log("STRING IDX TO JUMP TO NEXT WORD IN STRING!");
+                // FIND NEXT SPACE IN STRING AND SET INDEX TO NEXT WORD AFTER SPACE
+                for (let i = strIdx; i < stringWords.length; i += 1) {
+                    if (stringWords[i] === " ") {
+                        console.log("space found at index: ", i);
+                        nextWordIdx = i + 1;
+
+                        let currentChar = document.getElementById(
+                            `span-${strIdx}`
+                        );
+                        currentChar.classList.add("red-border");
+                        break;
+                    }
+                }
+                // SKIP TO NEXT WORD IN STRING
+                strIdx = nextWordIdx;
+                // CLEAR INPUT IF GOT WORD WRONG
+                clearTextInput();
+            }
+
+            // ======= SPACE ON LAST WORD (WRONG CHAR AND SPACE) ==========
+            if (wordIdx === wordArrays[lineIdx].length - 1) {
+                console.log("<<<<< SPACE ON LAST WORD, NEW LINE! >>>>>");
+                // START NEW LINE
+                nextLine();
+                wordCounterTest += 1;
+                console.log("WORD COUNTER TEST:", wordCounterTest);
+                // DELETE SPANS FROM ACTIVE DIV / APPEND SPANS CREATED FROM NEXT LINE
+                textSpanContainerActive.innerHTML = "";
+                createSpans(lineIdx, textSpanContainerActive);
+                // ADD CURSOR TO FIRST CHAR IN LINE
+                const firstChar = document.getElementById("span-0");
+                firstChar.classList.add("background", "black-border");
+                // UPDATE STRWORDS
+                stringWords = wordArrays[lineIdx].join("");
+                // DELETE CONTENT / APPEND NEXT LINE TO TEXTSPAN NEXT DIV
+                textSpanContainerNext.innerHTML = "";
+                // createSpans(lineIdx + 1, textSpanContainerNext);
+                // APPEND TEXT AS STRING INSTEAD OF SPANS !!!
+                stringWordsNext = wordArrays[lineIdx + 1].join(" ");
+                textSpanContainerNext.innerText = stringWordsNext;
+            }
+
+            // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
+            // ON ALL CHARACTERS BUT LAST
+            if (strIdx < stringWords.length) {
+                let currentChar = document.getElementById(`span-${strIdx - 1}`);
+                currentChar.classList.remove("background", "black-border");
+                const nextCharacter = document.getElementById(`span-${strIdx}`);
+                nextCharacter.classList.add("background", "black-border");
+                nextWord();
+                // strIdx += 1;
+            }
+        }
+        //                  +++++ END +++++
+
+        console.log(
+            "---------------------EVENT END---",
+            "line idx: ",
+            lineIdx,
+            "word idx: ",
+            wordIdx,
+            "/",
+            wordArrays[lineIdx].length - 1,
+            "char idx: ",
+            charIdx,
+            "/",
+            wordArrays[lineIdx][wordIdx].length - 1,
+            "string idx: ",
+            strIdx,
+            "/",
+            stringWords.length - 1
+        );
 
         // console.log("WORD COUNTER TEST:", wordCounterTest);
-
-
     };
 
     // ADD HANDLEKEYEVENT FOR KEYUP EVENT ONLY ONCE, REMOVE IT IF START IS CLICKED AGAIN, SEE IF BLOCK BELOW
@@ -757,6 +834,8 @@ startButton.addEventListener("click", (event) => {
         // REMOVE LISTENER
         document.removeEventListener("keydown", handleKeyEvent);
         // console.log("EVENT LISTENER REMOVED FROM DOCUMENT FOR KEYUP");
+        textInput.removeEventListener("keydown", startCountdown);
+        // console.log("EVENT LISTENER REMOVED FROM DOCUMENT FOR TIMER");
 
         // RESET
         clearTextFields();
@@ -771,8 +850,6 @@ startButton.addEventListener("click", (event) => {
         textSpanContainerNext.innerText = stringWordsNext;
         textInput.placeholder = "Start typing or customise text";
     }
-
-
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -921,6 +998,13 @@ const countdown = () => {
         if (seconds > 0) {
             setTimeout(tick, 1000);
         }
+
+        // CALCULATE CURRENT SPEED EVERY SECOND
+        if (Number.isInteger(seconds / 1)) {
+            let currentSpeed = (60 / (60 - seconds)) * wordCounterTest;
+            speedSpan.innerText = currentSpeed.toFixed(2);
+        }
+
         if (seconds === 0) {
             // console.log("times up");
             textInput.placeholder = "Time is up!";
@@ -956,6 +1040,7 @@ TODOS
     STATISTICS / MONITOR:
         ☑️ TIMER (1 MIN)
         SPEEDOMETER (WPM)
+            CALCULATE SPEED IN REAL TIME? MAYBE EVERY 5 SECONDS?
             COUNT GREEN WORDS ONLY?
         GREEN KEYS COUNTER
         RED KEYS COUNTER
