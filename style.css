@@ -160,13 +160,13 @@ body {
 }
 
 /* ACTIVE LINE SPANS */
-.span {
+.active-txt-span {
     font-size: 30px;
     /* LETTER SPACING */
     padding: 0px 1px 0px 0px;
 }
 
-.span:last-child {
+.active-txt-span:last-child {
     display: inline-block;
     /* display: block; */
     position: relative;

@@ -427,6 +427,7 @@ startButton.addEventListener("click", (event) => {
     // wordArrays[lineIdx] WILL BE INCREMENTED IN EVETLISTENER
     // console.log("WORDARRAYS FIRST LINE:", wordArrays[lineIdx]);
     const createSpans = (lineIdx, location) => {
+        // console.log("hello from CREATESPANS");
         for (const [idx, char] of wordArrays[lineIdx]
             .join("")
             .split("")
@@ -436,12 +437,15 @@ startButton.addEventListener("click", (event) => {
             const span = document.createElement("span");
             // SET TEXT CONTENT / CLASS / ID
             span.innerText = char;
-            span.className = "span";
+            span.className = "active-txt-span";
             span.id = `span-${idx}`;
+            // console.log(span);
             // APPEND TO PARENT DIV
             location.appendChild(span);
         }
     };
+
+    createSpans(lineIdx, textSpanContainerActive);
 
     // INITIALISE TEXTSPANCONTAINER NEXT
     // createSpans(lineIdx + 1, textSpanContainerNext);
@@ -450,23 +454,29 @@ startButton.addEventListener("click", (event) => {
     stringWordsNext = wordArrays[lineIdx + 1].join("");
     textSpanContainerNext.innerText = stringWordsNext;
 
+    // ------------------------------------------------------------------------
+    // THIS IS NOW REPLACED WITH createSpans(lineIdx, textSpanContainerActive); ABOVE
+    // NO NEED FOR STRINGWORDS AS ARRAY WORDS NOW HAVE TRAILING SPACES
+
     // LOOP OVER STRINGWORDS TO CREATE SPANS(EVERY CHAR INCLUDING SPACES IN BETWEEN)
     // !!! ACCESS INDEX OF ITERATION IN FOR OF LOOP WITH DESTRUCTURING SYNTAX + entries() METHOD
 
-    for (const [idx, char] of stringWords.split("").entries()) {
-        // console.log(idx, char);
-        // CREATE ELEMENT
-        const span = document.createElement("span");
-        // SET TEXT CONTENT / CLASS / ID
-        span.innerText = char;
-        span.className = "span";
-        span.id = `span-${idx}`;
-        // APPEND TO PARENT DIV
-        textSpanContainerActive.appendChild(span);
-    }
+    // for (const [idx, char] of stringWords.split("").entries()) {
+    //     console.log("hello from LOOP");
+    //     // console.log(idx, char);
+    //     // CREATE ELEMENT
+    //     const span = document.createElement("span");
+    //     // SET TEXT CONTENT / CLASS / ID
+    //     span.innerText = char;
+    //     span.className = "span";
+    //     span.id = `span-${idx}`;
+    //     // APPEND TO PARENT DIV
+    //     textSpanContainerActive.appendChild(span);
+    // }
+    // ------------------------------------------------------------------------
 
     // NODELIST OF ALL CHAR SPANS
-    const charSpans = document.querySelectorAll(".span");
+    // const charSpans = document.querySelectorAll(".span");
     // console.log(charSpans);
 
     // ADD CURSOR TO FIRST CHARACTER WHEN PAGE LOADS
@@ -694,6 +704,27 @@ startButton.addEventListener("click", (event) => {
                 // clearTextInput();
 
                 wordCounterTest += 1;
+                console.log("<<< COUNT GREEN KEYS NOW >>>");
+                console.log(
+                    "LAST WORD COMPLETED:",
+                    wordArrays[lineIdx][wordIdx - 1],
+                    "length:",
+                    wordArrays[lineIdx][wordIdx - 1].length,
+                    "strIdx:",
+                    strIdx,
+                    "stringWords length:",
+                    stringWords.length
+                );
+
+                let lastWordLength = wordArrays[lineIdx][wordIdx - 1].length;
+                let charSpans = document.querySelectorAll(".active-txt-span");
+                // console.log(charSpans);
+
+                // START LOOP BACKWARDS AND COUNT SPANS WITH GREEN CLASS
+                for (let i = strIdx - 2; i >= strIdx - lastWordLength; i -= 1) {
+                    // console.log(wordArrays[lineIdx][wordIdx - 1][i]);
+                    console.log(charSpans[i]);
+                }
             }
         }
 
@@ -1002,7 +1033,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
-    // seconds = 10;
+    seconds = 10;
     const tick = () => {
         const counter = document.getElementById("counter-test");
         seconds -= 1;
