@@ -168,6 +168,10 @@ const timerRadios = document.getElementsByClassName("timer-radio");
 const timerApply = document.getElementById("timer-apply");
 // SPEEDOMETER DISPLAY SPAN
 const speedSpan = document.getElementById("speed-span");
+// GREEN / RED COUNTER SPANS
+const greenCounterSpan = document.getElementById("green-counter-span");
+const redCounterSpan = document.getElementById("red-counter-span");
+const accuracySpan = document.getElementById("accuracy-span");
 
 // TEXTCONTAINER
 // DISABLED
@@ -194,6 +198,9 @@ let capitalOn = false;
 let keyStrokeCounter = 0;
 // TEST: COUNT ALL COMPLETED WORDS (BOTH CORRECT AND INCORRECT)
 let wordCounterTest = 0;
+let greenCounter = 0;
+let redCounter = 0;
+let accuracy = 0;
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 FUNCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -724,7 +731,18 @@ startButton.addEventListener("click", (event) => {
                 for (let i = strIdx - 2; i >= strIdx - lastWordLength; i -= 1) {
                     // console.log(wordArrays[lineIdx][wordIdx - 1][i]);
                     console.log(charSpans[i]);
+                    if (charSpans[i].classList.contains("green")) {
+                        greenCounter += 1;
+                    }
+                    if (charSpans[i].classList.contains("red")) {
+                        redCounter += 1;
+                    }
                 }
+                console.log("<<< green:", greenCounter, "red:", redCounter);
+                greenCounterSpan.textContent = greenCounter;
+                redCounterSpan.textContent = redCounter;
+                accuracy = 100 / (greenCounter + redCounter) * greenCounter;
+                accuracySpan.textContent = Math.floor(accuracy);
             }
         }
 
