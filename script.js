@@ -133,7 +133,7 @@ let common100 = [
     "part",
 ];
 
-const punctMarks = [",", ".", "!", "?", ":", ";"];
+const punctMarks = [",", ".", "!", "?", ":", ";", "-", "'"];
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 ELEMENT VARIABLES 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1002,7 +1002,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
-    seconds = 10;
+    // seconds = 10;
     const tick = () => {
         const counter = document.getElementById("counter-test");
         seconds -= 1;
@@ -1012,7 +1012,7 @@ const countdown = () => {
             setTimeout(tick, 1000);
         }
 
-        // CALCULATE CURRENT SPEED EVERY SECOND
+        // CALCULATE CURRENT AVE SPEED EVERY SECOND
         if (Number.isInteger(seconds / 1)) {
             let currentSpeed = (60 / (60 - seconds)) * wordCounterTest;
             // DISABLED
@@ -1023,7 +1023,7 @@ const countdown = () => {
 
         if (seconds === 0) {
             // console.log("times up");
-            textInput.value = "Time is up!";
+            textInput.value = "                 Try Again ➡";
             speedSpan.innerText = wordCounterTest;
             startButton.classList.add("control-apply-active");
             clearTextFields();
@@ -1040,7 +1040,6 @@ const startCountdown = () => {
     countdown();
     textInput.removeEventListener("keydown", startCountdown);
     console.log("EVENT LISTENER REMOVED FROM TEXT INPUT FOR TIMER");
-
 };
 
 // textInput.addEventListener("keydown", startCountdown);
@@ -1057,10 +1056,11 @@ for (let i = 0, length = timerRadios.length; i < length; i++) {
 MASTER/multiple
 TODOS
     STATISTICS / MONITOR:
+        ☑️ MAKE NEXT LINE TEXT GREY 
         ☑️ TIMER (1 MIN)
         SPEEDOMETER (WPM)
-            CALCULATE SPEED IN REAL TIME? MAYBE EVERY 5 SECONDS?
-            COUNT GREEN WORDS ONLY?
+            ☑️ CALCULATE AVE SPEED IN REAL TIME EVERY SECOND
+        GREEN WORDS COUNTER
         GREEN KEYS COUNTER
         RED KEYS COUNTER
         COMPLETE WORDS COUNTER
