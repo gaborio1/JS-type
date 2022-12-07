@@ -367,6 +367,18 @@ const clearDataAndDisplay = () => {
     // document.removeEventListener("keyup", handleKeyEvent);
 };
 
+const resetAccuracyCounters = () => {
+    greenCounter = 0;
+    redCounter = 0;
+    accuracy = 0;
+}
+
+const resetAccuracyDisplays = () => {
+    greenCounterSpan.textContent = "0";
+    redCounterSpan.textContent = "0";
+    accuracySpan.textContent = "0";
+}
+
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -378,6 +390,9 @@ startButton.classList.add("control-apply-active");
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
+    // RESET ACCURACY COUNTERS / DISPLAYS
+    resetAccuracyCounters();
+    resetAccuracyDisplays();
     // ADD LISTENER FOR TIMER AND RESET WORDCOUNTER
     textInput.addEventListener("keydown", startCountdown);
     console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
@@ -742,7 +757,7 @@ startButton.addEventListener("click", (event) => {
                 greenCounterSpan.textContent = greenCounter;
                 redCounterSpan.textContent = redCounter;
                 accuracy = 100 / (greenCounter + redCounter) * greenCounter;
-                accuracySpan.textContent = Math.floor(accuracy);
+                accuracySpan.textContent = `${Math.floor(accuracy)}%`;
             }
         }
 
@@ -1051,7 +1066,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
-    seconds = 10;
+    // seconds = 10;
     const tick = () => {
         const counter = document.getElementById("counter-test");
         seconds -= 1;
@@ -1067,13 +1082,14 @@ const countdown = () => {
             // DISABLED
             // speedSpan.innerText = currentSpeed.toFixed(1);
             // ROUND DOWN SPEED TO NEAREST INTEGER
+            // speedSpan.innerText = `${Math.floor(currentSpeed)}WPM`;
             speedSpan.innerText = Math.floor(currentSpeed);
         }
 
         if (seconds === 0) {
             // console.log("times up");
             textInput.value = "                 Try Again ➡";
-            speedSpan.innerText = wordCounterTest;
+            speedSpan.innerText = currentSpeed;
             startButton.classList.add("control-apply-active");
             clearTextFields();
             textInput.removeEventListener("keydown", startCountdown);
@@ -1107,13 +1123,12 @@ TODOS
     STATISTICS / MONITOR:
         ☑️ MAKE NEXT LINE TEXT GREY 
         ☑️ TIMER (1 MIN)
-        SPEEDOMETER (WPM)
+        ☑️ SPEEDOMETER (WPM)
             ☑️ CALCULATE AVE SPEED IN REAL TIME EVERY SECOND
         GREEN WORDS COUNTER
-        GREEN KEYS COUNTER
-        RED KEYS COUNTER
+        ☑️ GREEN KEYS COUNTER
+        ☑️ RED KEYS COUNTER
         COMPLETE WORDS COUNTER
-        CORRECT WORDS COUNTER
     FEATURES:
         RESET TIMER IF START BUTTON IS CLICKED?
         ☑️ HIGHLIGHT APPLY BUTTONS WHEN CHANGES ARE MADE
@@ -1123,7 +1138,8 @@ TODOS
         ☑️ ALLOW USER TO SET CUSTOM LINE LENGTH
         ☑️ LEVEL SELECTOR (100, 200, 500 ETC...)
             TARGET ARRAY 200
-            TARTET ARRAY 500
+            TARGET ARRAY 500
+            TARGET ARRAY JAVASCRIPT SYNTAX
         ☑️ DETECT CAPSLOCK
         CAPS LOCK WARNING MESSAGE
         BUILD RANDOM WORDS FROM PROBLEM CHARACTERS / WORDS
@@ -1135,6 +1151,7 @@ TODOS
             ☑️RESET ALL INDEX TRACKERS (FOR START BUTTON - AND APPLY BUTTONS ON CONTROL PANEL ? MAYBE NOT NECESSARY)
             
     PROBLEMS:
+        TIMER IS NOT WORKING PROPERLY IF START BUTTON IS CLICKED BEFORE TIME RUNS OUT
         ☑️ CONTROL PANEL SETTINGS DON'T WORK TOGETHER WELL (PROBLEM WITH LISTENERS)
         ☑️ INITIALISE (CLEAR) ALL TEXT DATA WHEN CLICKING START
         LISTEN FOR KEYPRESS ON INPUT FIELD ONLY !!!
@@ -1150,8 +1167,8 @@ TODOS
         STOP MOVING CURSOR WHEN LETTER CHARACTER IS PRESSED INSTEAD OF SPACE AFTER WORD IS TYPED
         ☑️ ADD CURSOR TO ACTIVE LINE
         ☑️ DON'T APPEND TEXT AS SPANS TO NEXT LINE DIV, JUST DISPLAY IT AS PARAGRAPH ?
-        INCREMENT LINEIDX WHEN LAST WORD IS ALL GREEN AND SPACE IS PRESSED
-        INCREMENT LINEIDX WHEN SPACE IS PRESSED ON LAST WORD OF LINE
+        ☑️ INCREMENT LINEIDX WHEN LAST WORD IS ALL GREEN AND SPACE IS PRESSED
+        ☑️ INCREMENT LINEIDX WHEN SPACE IS PRESSED ON LAST WORD OF LINE
             INITIALISE STRIDX
         DYNAMICALLY GENERATE NEXT LINE + 1 ?
         SHOW ALL TEXT AS ONE BLOCK
