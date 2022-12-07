@@ -373,6 +373,10 @@ startButton.classList.add("control-apply-active");
 startButton.addEventListener("click", (event) => {
     // ADD LISTENER FOR TIMER AND RESET WORDCOUNTER
     textInput.addEventListener("keydown", startCountdown);
+    console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
+
+    // textInput.removeEventListener("keydown", startCountdown);
+    // console.log("EVENT LISTENER REMOVED FROM TEXT INPUT FOR TIMER");
     wordCounterTest = 0;
 
     // TRACK NUMBER OF START BUTTON CLICKS
@@ -481,8 +485,11 @@ startButton.addEventListener("click", (event) => {
         //NOT USED
         // console.log("event.code:", event.code)
         // counterOn = true;
+
+        // ADD LISTENER FOR TIMER
+        // textInput.addEventListener("keydown", startCountdown);
         keyStrokeCounter += 1;
-        // console.log("KEYSTROKE COUNTER:", keyStrokeCounter);
+        console.log("KEYSTROKE COUNTER:", keyStrokeCounter);
 
         console.log(
             "🟩---EVENT START: ",
@@ -834,8 +841,9 @@ startButton.addEventListener("click", (event) => {
         // REMOVE LISTENER
         document.removeEventListener("keydown", handleKeyEvent);
         // console.log("EVENT LISTENER REMOVED FROM DOCUMENT FOR KEYUP");
-        textInput.removeEventListener("keydown", startCountdown);
-        // console.log("EVENT LISTENER REMOVED FROM DOCUMENT FOR TIMER");
+
+        // textInput.removeEventListener("keydown", startCountdown);
+        // console.log("EVENT LISTENER REMOVED FROM TEXT INPUT FOR TIMER");
 
         // RESET
         clearTextFields();
@@ -850,6 +858,10 @@ startButton.addEventListener("click", (event) => {
         textSpanContainerNext.innerText = stringWordsNext;
         textInput.placeholder = "Start typing or customise text";
     }
+
+    // if (keyStrokeCounter >= 1) {
+    //     textInput.removeEventListener("keydown", startCountdown);
+    // }
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -990,6 +1002,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
+    seconds = 10;
     const tick = () => {
         const counter = document.getElementById("counter-test");
         seconds -= 1;
@@ -1002,15 +1015,19 @@ const countdown = () => {
         // CALCULATE CURRENT SPEED EVERY SECOND
         if (Number.isInteger(seconds / 1)) {
             let currentSpeed = (60 / (60 - seconds)) * wordCounterTest;
-            speedSpan.innerText = currentSpeed.toFixed(2);
+            // DISABLED
+            // speedSpan.innerText = currentSpeed.toFixed(1);
+            // ROUND DOWN SPEED TO NEAREST INTEGER
+            speedSpan.innerText = Math.floor(currentSpeed);
         }
 
         if (seconds === 0) {
             // console.log("times up");
-            textInput.placeholder = "Time is up!";
+            textInput.value = "Time is up!";
             speedSpan.innerText = wordCounterTest;
             startButton.classList.add("control-apply-active");
             clearTextFields();
+            textInput.removeEventListener("keydown", startCountdown);
         }
     };
     tick();
@@ -1019,12 +1036,14 @@ const countdown = () => {
 // ONE OFF FUNCTION RUNS ON FIRST KEYPRESS
 const startCountdown = () => {
     // alert('Thanks for clicking!');
-    console.log("REMOVE LISTENER NOW!");
+    // console.log("REMOVE LISTENER NOW!");
     countdown();
     textInput.removeEventListener("keydown", startCountdown);
+    console.log("EVENT LISTENER REMOVED FROM TEXT INPUT FOR TIMER");
+
 };
 
-textInput.addEventListener("keydown", startCountdown);
+// textInput.addEventListener("keydown", startCountdown);
 
 // MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
 for (let i = 0, length = timerRadios.length; i < length; i++) {

@@ -186,6 +186,8 @@ body {
     padding: 0px 20px 0px 20px;
     font-size: 30px;
     text-align: left;
+    /* color: grey; */
+    color: rgb(74, 73, 73);
     /* border: none; */
     border: 2px solid darkgoldenrod;
     border-radius: 4px;
