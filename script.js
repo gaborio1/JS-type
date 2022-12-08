@@ -171,6 +171,7 @@ const speedSpan = document.getElementById("speed-span");
 // GREEN / RED COUNTER SPANS
 const greenCounterSpan = document.getElementById("green-counter-span");
 const redCounterSpan = document.getElementById("red-counter-span");
+const keystrokesSpan = document.getElementById("keystrokes-span");
 const accuracySpan = document.getElementById("accuracy-span");
 
 // TEXTCONTAINER
@@ -195,9 +196,10 @@ let strIdx = 0;
 let charIdx = 0;
 let punctuationOn = false;
 let capitalOn = false;
+let timerOn = false;
 let keyStrokeCounter = 0;
 // TEST: COUNT ALL COMPLETED WORDS (BOTH CORRECT AND INCORRECT)
-let wordCounterTest = 0;
+let wordCounter = 0;
 let greenCounter = 0;
 let redCounter = 0;
 let accuracy = 0;
@@ -371,13 +373,13 @@ const resetAccuracyCounters = () => {
     greenCounter = 0;
     redCounter = 0;
     accuracy = 0;
-}
+};
 
 const resetAccuracyDisplays = () => {
     greenCounterSpan.textContent = "0";
     redCounterSpan.textContent = "0";
     accuracySpan.textContent = "0";
-}
+};
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -390,16 +392,20 @@ startButton.classList.add("control-apply-active");
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
-    // RESET ACCURACY COUNTERS / DISPLAYS
+    // RESET ACCURACY COUNTERS / DISPLAYS , KEYSTROKE COUNTER
+    speedSpan.textContent = 0;
     resetAccuracyCounters();
     resetAccuracyDisplays();
+    keyStrokeCounter = 0;
+    keystrokesSpan.textContent = 0;
+
     // ADD LISTENER FOR TIMER AND RESET WORDCOUNTER
     textInput.addEventListener("keydown", startCountdown);
     console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
 
     // textInput.removeEventListener("keydown", startCountdown);
     // console.log("EVENT LISTENER REMOVED FROM TEXT INPUT FOR TIMER");
-    wordCounterTest = 0;
+    wordCounter = 0;
 
     // TRACK NUMBER OF START BUTTON CLICKS
     startButtonCounter += 1;
@@ -502,14 +508,12 @@ startButton.addEventListener("click", (event) => {
     // console.log(charSpans);
 
     // ADD CURSOR TO FIRST CHARACTER WHEN PAGE LOADS
-    const firstChar = document.getElementById("span-0");
-    firstChar.classList.add("background", "black-border");
+    const firstCharacter = document.getElementById("span-0");
+    firstCharacter.classList.add("background", "black-border");
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 KEY EVENTS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
-
-    // let keyStrokeCounter = 0;
 
     const handleKeyEvent = (event) => {
         const typedKey = event.key;
@@ -520,8 +524,13 @@ startButton.addEventListener("click", (event) => {
 
         // ADD LISTENER FOR TIMER
         // textInput.addEventListener("keydown", startCountdown);
-        keyStrokeCounter += 1;
-        console.log("KEYSTROKE COUNTER:", keyStrokeCounter);
+
+        // ONLY KEEP TRACK OF KEYSTROKES WHILE CLOCK IS RUNNING
+        if (timerOn) {
+            keyStrokeCounter += 1;
+            console.log("KEYSTROKE COUNTER:", keyStrokeCounter);
+            keystrokesSpan.textContent = keyStrokeCounter;
+        }
 
         console.log(
             "🟩---EVENT START: ",
@@ -561,10 +570,14 @@ startButton.addEventListener("click", (event) => {
 
             prevChar();
 
-            const currentChar = document.getElementById(`span-${strIdx}`);
+            const currentCharacter = document.getElementById(`span-${strIdx}`);
             // console.log("CURRENT CHAR ORANGE", currentChar);
-            currentChar.classList.add("orange", "background", "black-border");
-            currentChar.classList.remove("red", "green");
+            currentCharacter.classList.add(
+                "orange",
+                "background",
+                "black-border"
+            );
+            currentCharacter.classList.remove("red", "green");
 
             const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
             nextCharacter.classList.remove("background", "black-border");
@@ -592,10 +605,10 @@ startButton.addEventListener("click", (event) => {
                         console.log("space found at index: ", i);
                         nextWordIdx = i;
 
-                        let currentChar = document.getElementById(
+                        let currentCharacter = document.getElementById(
                             `span-${strIdx}`
                         );
-                        currentChar.classList.add("red-border");
+                        currentCharacter.classList.add("red-border");
                         break;
                     }
                 }
@@ -608,8 +621,8 @@ startButton.addEventListener("click", (event) => {
             // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
             // ON ALL CHARACTERS BUT LAST
             if (strIdx < stringWords.length) {
-                let currentChar = document.getElementById(`span-${strIdx}`);
-                currentChar.classList.remove("background", "black-border");
+                let currentCharacter = document.getElementById(`span-${strIdx}`);
+                currentCharacter.classList.remove("background", "black-border");
                 const nextCharacter = document.getElementById(
                     `span-${strIdx + 1}`
                 );
@@ -644,9 +657,11 @@ startButton.addEventListener("click", (event) => {
                     `span-${strIdx + 1}`
                 );
                 nextCharacter.classList.add("background", "black-border");
-                let currentChar = document.getElementById(`span-${strIdx}`);
-                currentChar.classList.add("green", "enlarged");
-                currentChar.classList.remove(
+                let currentCharacter = document.getElementById(
+                    `span-${strIdx}`
+                );
+                currentCharacter.classList.add("green", "enlarged");
+                currentCharacter.classList.remove(
                     "red",
                     "orange",
                     "background",
@@ -667,8 +682,10 @@ startButton.addEventListener("click", (event) => {
                     );
 
                     // REMOVE RED BORDER FROM SPACE IF CORRECTED
-                    let currentChar = document.getElementById(`span-${strIdx}`);
-                    currentChar.classList.remove("red-border");
+                    let currentCharacter = document.getElementById(
+                        `span-${strIdx}`
+                    );
+                    currentCharacter.classList.remove("red-border");
                     // MOVE CURSOR FORWARD
                     nextCharacter.classList.add("background", "black-border");
                     strIdx += 1;
@@ -685,14 +702,14 @@ startButton.addEventListener("click", (event) => {
                 if (strIdx === stringWords.length - 1) {
                     // START NEW LINE
                     nextLine();
-                    wordCounterTest += 1;
-                    console.log("WORD COUNTER TEST:", wordCounterTest);
+                    wordCounter += 1;
+                    console.log("WORD COUNTER TEST:", wordCounter);
                     // DELETE SPANS FROM ACTIVE DIV / APPEND SPANS CREATED FROM NEXT LINE
                     textSpanContainerActive.innerHTML = "";
                     createSpans(lineIdx, textSpanContainerActive);
                     // ADD CURSOR TO FIRST CHAR IN LINE
-                    const firstChar = document.getElementById("span-0");
-                    firstChar.classList.add("background", "black-border");
+                    const firstCharacter = document.getElementById("span-0");
+                    firstCharacter.classList.add("background", "black-border");
                     // UPDATE STRWORDS
                     stringWords = wordArrays[lineIdx].join("");
                     // DELETE CONTENT / APPEND NEXT LINE TO TEXTSPAN NEXT DIV
@@ -712,20 +729,23 @@ startButton.addEventListener("click", (event) => {
                 // ONLY ACCESS CURRENTCHAR IF IT IS NOT END OF LINE (IF STATEMENT DOESNT WORK FOR CLASSLIST REMOVE, STILL GET TYPE ERROR )
                 // !!! ERROR: Uncaught TypeError: Cannot read properties of null (reading 'classList')at HTMLDocument.handleKeyEvent (script.js:680:33)
                 if (strIdx < stringWords.length - 1) {
-                    let currentChar = document.getElementById(
+                    let currentCharacter = document.getElementById(
                         `span-${strIdx - 1}`
                     );
-                    currentChar.classList.remove("background", "black-border");
+                    currentCharacter.classList.remove(
+                        "background",
+                        "black-border"
+                    );
                     nextWord();
                     clearTextInput();
                 }
 
-                // let currentChar = document.getElementById(`span-${strIdx - 1}`);
-                // currentChar.classList.remove("background", "black-border");
+                // let currentCharacter = document.getElementById(`span-${strIdx - 1}`);
+                // currentCharacter.classList.remove("background", "black-border");
                 // nextWord();
                 // clearTextInput();
 
-                wordCounterTest += 1;
+                wordCounter += 1;
                 console.log("<<< COUNT GREEN KEYS NOW >>>");
                 console.log(
                     "LAST WORD COMPLETED:",
@@ -756,7 +776,7 @@ startButton.addEventListener("click", (event) => {
                 console.log("<<< green:", greenCounter, "red:", redCounter);
                 greenCounterSpan.textContent = greenCounter;
                 redCounterSpan.textContent = redCounter;
-                accuracy = 100 / (greenCounter + redCounter) * greenCounter;
+                accuracy = (100 / (greenCounter + redCounter)) * greenCounter;
                 accuracySpan.textContent = `${Math.floor(accuracy)}%`;
             }
         }
@@ -776,10 +796,10 @@ startButton.addEventListener("click", (event) => {
                 wordArrays[lineIdx][wordIdx][charIdx]
             );
 
-            let currentChar = document.getElementById(`span-${strIdx}`);
+            let currentCharacter = document.getElementById(`span-${strIdx}`);
             let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
 
-            currentChar.classList.add("red");
+            currentCharacter.classList.add("red");
 
             // ONLY ACCESS NEXT CHAR IF IT IS NOT THE END OF LINE SPACE
             if (strIdx < stringWords.length - 1) {
@@ -787,11 +807,11 @@ startButton.addEventListener("click", (event) => {
             }
 
             // const prevChar = document.getElementById(`span-${strIdx}`);
-            currentChar.classList.remove("background", "black-border");
+            currentCharacter.classList.remove("background", "black-border");
 
             if (stringWords[strIdx] === " ") {
                 // console.log("<<<<< ADD RED BORDER TO SPACE >>>>>");
-                currentChar.classList.add("red-border");
+                currentCharacter.classList.add("red-border");
             }
 
             nextChar();
@@ -827,10 +847,10 @@ startButton.addEventListener("click", (event) => {
                         console.log("space found at index: ", i);
                         nextWordIdx = i + 1;
 
-                        let currentChar = document.getElementById(
+                        let currentCharacter = document.getElementById(
                             `span-${strIdx}`
                         );
-                        currentChar.classList.add("red-border");
+                        currentCharacter.classList.add("red-border");
                         break;
                     }
                 }
@@ -845,14 +865,14 @@ startButton.addEventListener("click", (event) => {
                 console.log("<<<<< SPACE ON LAST WORD, NEW LINE! >>>>>");
                 // START NEW LINE
                 nextLine();
-                wordCounterTest += 1;
-                console.log("WORD COUNTER TEST:", wordCounterTest);
+                wordCounter += 1;
+                console.log("WORD COUNTER TEST:", wordCounter);
                 // DELETE SPANS FROM ACTIVE DIV / APPEND SPANS CREATED FROM NEXT LINE
                 textSpanContainerActive.innerHTML = "";
                 createSpans(lineIdx, textSpanContainerActive);
                 // ADD CURSOR TO FIRST CHAR IN LINE
-                const firstChar = document.getElementById("span-0");
-                firstChar.classList.add("background", "black-border");
+                const firstCharacter = document.getElementById("span-0");
+                firstCharacter.classList.add("background", "black-border");
                 // UPDATE STRWORDS
                 stringWords = wordArrays[lineIdx].join("");
                 // DELETE CONTENT / APPEND NEXT LINE TO TEXTSPAN NEXT DIV
@@ -866,8 +886,10 @@ startButton.addEventListener("click", (event) => {
             // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
             // ON ALL CHARACTERS BUT LAST
             if (strIdx < stringWords.length) {
-                let currentChar = document.getElementById(`span-${strIdx - 1}`);
-                currentChar.classList.remove("background", "black-border");
+                let currentCharacter = document.getElementById(
+                    `span-${strIdx - 1}`
+                );
+                currentCharacter.classList.remove("background", "black-border");
                 const nextCharacter = document.getElementById(`span-${strIdx}`);
                 nextCharacter.classList.add("background", "black-border");
                 nextWord();
@@ -894,7 +916,7 @@ startButton.addEventListener("click", (event) => {
             stringWords.length - 1
         );
 
-        // console.log("WORD COUNTER TEST:", wordCounterTest);
+        // console.log("WORD COUNTER TEST:", wordCounter);
     };
 
     // ADD HANDLEKEYEVENT FOR KEYUP EVENT ONLY ONCE, REMOVE IT IF START IS CLICKED AGAIN, SEE IF BLOCK BELOW
@@ -1066,7 +1088,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
-    // seconds = 10;
+    seconds = 10;
     const tick = () => {
         const counter = document.getElementById("counter-test");
         seconds -= 1;
@@ -1074,11 +1096,13 @@ const countdown = () => {
         // counter.innerHTML = seconds;
         if (seconds > 0) {
             setTimeout(tick, 1000);
+            // MIGHT HAVE TO SET THIS TO TRUE WITH FIRST KEYPRESS
+            timerOn = true;
         }
 
         // CALCULATE CURRENT AVE SPEED EVERY SECOND
         if (Number.isInteger(seconds / 1)) {
-            let currentSpeed = (60 / (60 - seconds)) * wordCounterTest;
+            let currentSpeed = (60 / (60 - seconds)) * wordCounter;
             // DISABLED
             // speedSpan.innerText = currentSpeed.toFixed(1);
             // ROUND DOWN SPEED TO NEAREST INTEGER
@@ -1087,12 +1111,15 @@ const countdown = () => {
         }
 
         if (seconds === 0) {
+            timerOn = false;
             // console.log("times up");
             textInput.value = "                 Try Again ➡";
             speedSpan.innerText = currentSpeed;
             startButton.classList.add("control-apply-active");
             clearTextFields();
             textInput.removeEventListener("keydown", startCountdown);
+            const totalKeystrokes = keyStrokeCounter;
+            keystrokesSpan.textContent = totalKeystrokes;
         }
     };
     tick();
