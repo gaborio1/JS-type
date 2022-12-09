@@ -1,33 +1,106 @@
 // console.log("connected");
 
-let commonTest = [
-    "a",
-    "about",
-    "act",
-    "actually",
-    "add",
+let common200 = [
+    "over",
+    "new",
+    "sound",
+    "take",
+    "only",
+    "little",
+    "work",
+    "know",
+    "place",
+    "year",
+    "live",
+    "me",
+    "back",
+    "give",
+    "most",
+    "very",
     "after",
-    "again",
-    "against",
-    "age",
-    "ago",
-    "air",
-    "all",
+    "thing",
+    "our",
+    "just",
+    "name",
+    "good",
+    "sentence",
+    "man",
+    "think",
+    "say",
+    "great",
+    "where",
+    "help",
+    "through",
+    "much",
+    "before",
+    "line",
+    "right",
+    "too",
+    "mean",
+    "old",
+    "any",
+    "same",
+    "tell",
+    "boy",
+    "follow",
+    "came",
+    "want",
+    "show",
     "also",
-    "always",
-    "am",
-    "among",
-    "an",
-    "and",
-    "animal",
+    "around",
+    "form",
+    "three",
+    "small",
+    "set",
+    "put",
+    "end",
+    "does",
     "another",
-    "answer",
-    "appear",
-    "are",
-    "area",
-    "as",
+    "well",
+    "large",
+    "must",
+    "big",
+    "even",
+    "such",
+    "because",
+    "turn",
+    "here",
+    "why",
     "ask",
-    "at",
+    "went",
+    "men",
+    "read",
+    "need",
+    "land",
+    "different",
+    "home",
+    "us",
+    "move",
+    "try",
+    "kind",
+    "hand",
+    "picture",
+    "again",
+    "change",
+    "off",
+    "play",
+    "spell",
+    "air",
+    "away",
+    "animal",
+    "house",
+    "point",
+    "page",
+    "letter",
+    "mother",
+    "answer",
+    "found",
+    "study",
+    "still",
+    "learn",
+    "should",
+    "America",
+    "world",
 ];
 
 let common100 = [
@@ -202,6 +275,8 @@ let keyStrokeCounter = 0;
 let wordCounter = 0;
 let greenCounter = 0;
 let redCounter = 0;
+// NOT IN USE YET
+let orangeCounter = 0;
 let accuracy = 0;
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -392,6 +467,8 @@ startButton.classList.add("control-apply-active");
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
+    console.log("TARGET ARRAY LENGTH:", targetArray.length);
+
     // RESET ACCURACY COUNTERS / DISPLAYS , KEYSTROKE COUNTER
     speedSpan.textContent = 0;
     resetAccuracyCounters();
@@ -764,13 +841,17 @@ startButton.addEventListener("click", (event) => {
 
                 // START LOOP BACKWARDS AND COUNT SPANS WITH GREEN CLASS
                 for (let i = strIdx - 2; i >= strIdx - lastWordLength; i -= 1) {
-                    // console.log(wordArrays[lineIdx][wordIdx - 1][i]);
-                    console.log(charSpans[i]);
+                    // PRINT LAST WORD SPANS WITHOUT TRAILING SPACE
+                    // console.log(charSpans[i]);
                     if (charSpans[i].classList.contains("green")) {
                         greenCounter += 1;
                     }
                     if (charSpans[i].classList.contains("red")) {
                         redCounter += 1;
+                    }
+                    // NOT IN USE YET
+                    if (charSpans[i].classList.contains("orange")) {
+                        orangeCounter += 1;
                     }
                 }
                 console.log("<<< green:", greenCounter, "red:", redCounter);
@@ -778,6 +859,13 @@ startButton.addEventListener("click", (event) => {
                 redCounterSpan.textContent = redCounter;
                 accuracy = (100 / (greenCounter + redCounter)) * greenCounter;
                 accuracySpan.textContent = `${Math.floor(accuracy)}%`;
+                // ADD GREEN CLASS TO ACCURACY WHILE ITS 100%
+                if (accuracy < 100) {
+                    accuracySpan.classList.remove("green");
+                }
+                if (accuracy === 100) {
+                    accuracySpan.classList.add("green");
+                }
             }
         }
 
@@ -986,14 +1074,14 @@ difficultyApply.addEventListener("click", function () {
             }
             if (difficultyRadios[i].value === "200") {
                 console.log("200");
-                targetArray = [...commonTest];
+                targetArray = [...common200, ...common100];
             }
 
             // only one radio can be logically checked, don't check the rest
             break;
         }
     }
-    console.log("TARGET ARRAY:", targetArray);
+    // console.log("TARGET ARRAY:", targetArray);
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 LINE LENGTH 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1088,7 +1176,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
-    seconds = 10;
+    // seconds = 10;
     const tick = () => {
         const counter = document.getElementById("counter-test");
         seconds -= 1;
@@ -1164,7 +1252,8 @@ TODOS
         ☑️ HIGHLIGHT START BUTTON AFTER CONTROL CHANGES HAVE BEEN APPLIED
         ☑️ ALLOW USER TO SET CUSTOM LINE LENGTH
         ☑️ LEVEL SELECTOR (100, 200, 500 ETC...)
-            TARGET ARRAY 200
+            ☑️ TARGET ARRAY 100
+            ☑️ TARGET ARRAY 200
             TARGET ARRAY 500
             TARGET ARRAY JAVASCRIPT SYNTAX
         ☑️ DETECT CAPSLOCK
