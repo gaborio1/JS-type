@@ -737,16 +737,34 @@ startButton.addEventListener("click", (event) => {
             prevChar();
 
             const currentCharacter = document.getElementById(`span-${strIdx}`);
-            // console.log("CURRENT CHAR ORANGE", currentChar);
+            console.log("CURRENT CHAR ORANGE", currentCharacter);
+
+            // ADD ORANGE BORDER TO BACKSPACE'D SPACE
+            // !!! HAVE TO CHECK TEXTCONTENT !!!
+            if (currentCharacter.innerText === " ") {
+                currentCharacter.classList.add("orange-border");
+            }
+
+            //+++++
+            if (strIdx === stringWords.length - 1) {
+                currentCharacter.classList.add("orange-border");
+            }
+            //+++++
+
             currentCharacter.classList.add(
                 "orange",
                 "background",
                 "black-border"
             );
+
             currentCharacter.classList.remove("red", "green");
 
             const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
-            nextCharacter.classList.remove("background", "black-border");
+            nextCharacter.classList.remove(
+                "background",
+                "black-border",
+                "red-border"
+            );
         }
 
         /*
@@ -839,7 +857,7 @@ startButton.addEventListener("click", (event) => {
                 nextChar();
             }
 
-            // LAST CHARACTER IN WORD
+            // LAST CHARACTER IN WORD (SPACE)
             else if (charIdx === wordArrays[lineIdx][wordIdx].length - 1) {
                 if (wordIdx < wordArrays[lineIdx].length - 1) {
                     console.log("<<<<< LAST CHARACER !!! >>>>>");
@@ -851,7 +869,10 @@ startButton.addEventListener("click", (event) => {
                     let currentCharacter = document.getElementById(
                         `span-${strIdx}`
                     );
-                    currentCharacter.classList.remove("red-border");
+                    currentCharacter.classList.remove(
+                        "red-border",
+                        "orange-border"
+                    );
                     // MOVE CURSOR FORWARD
                     nextCharacter.classList.add("background", "black-border");
                     strIdx += 1;
@@ -1360,6 +1381,9 @@ TODOS
             ☑️RESET ALL INDEX TRACKERS (FOR START BUTTON - AND APPLY BUTTONS ON CONTROL PANEL ? MAYBE NOT NECESSARY)
             
     PROBLEMS:
+        ALLOW CORRECTION OF ANY CHAR IF SPACE HAS NOT BEEN CLICKED, BUT MULTIPLE RED CAHRACTERS OCCUR INTO NEXT WORD
+        IF ANY KEY WAS TYPED ON SPACE, NEXT WORD WILL NOT WORK CORRECTLY (RED ON CORRECT)
+            REASON: WORD COUNTER IS NOT INCREMENTED
         TIMER IS NOT WORKING PROPERLY IF START BUTTON IS CLICKED BEFORE TIME RUNS OUT
         ☑️ CONTROL PANEL SETTINGS DON'T WORK TOGETHER WELL (PROBLEM WITH LISTENERS)
         ☑️ INITIALISE (CLEAR) ALL TEXT DATA WHEN CLICKING START
@@ -1373,6 +1397,7 @@ TODOS
             ☑️ CAPITAL
         THEN,
         ☑️ HIGHLIGHT START BUTTON
+        ADD ORANGE BORDER TO SPACE WHEN BACKSPACE IS USED
         STOP MOVING CURSOR WHEN LETTER CHARACTER IS PRESSED INSTEAD OF SPACE AFTER WORD IS TYPED
         ☑️ ADD CURSOR TO ACTIVE LINE
         ☑️ DON'T APPEND TEXT AS SPANS TO NEXT LINE DIV, JUST DISPLAY IT AS PARAGRAPH ?
