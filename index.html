@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-</head>
+    <body>
+        <div class="container">
+            <div class="wrapper">
+                <h1>JS touch-typing practice</h1>
 
-<body>
-    <div class="container">
-        <div class="wrapper">
-            <h1>JS touch-typing practice</h1>
-
-            <!-- <h2>Text container</h2>
+                <!-- <h2>Text container</h2>
         <div class="text-container"></div> -->
-            <div class="controls-container">
-                <!-- <h2>Controls container</h2> -->
-                <div class="control-wrap">
-                    Difficulty
-                    <br />
-                    <!-- MAKE THIS RADIO INSTEAD ??? -->
-                    <!-- <form action="">
+                <div class="controls-container">
+                    <!-- <h2>Controls container</h2> -->
+                    <div class="control-wrap">
+                        Difficulty
+                        <br />
+                        <!-- MAKE THIS RADIO INSTEAD ??? -->
+                        <!-- <form action="">
                     <label class="" for="difficulty">Difficulty:</label>
                     <select name="difficulty" id="difficulty" class="">
                         <option class="note-name"></option>
@@ -35,162 +37,236 @@
                         <option value="1000" class="difficulty">1000</option>
                     </select>
                 </form> -->
-                    <!-- <form action=""> -->
-                    <input type="radio" id="100" class="radio difficulty-radio" name="difficulty" value="100"
-                        checked="checked" />
-                    <label for="100">Top 100</label>
-                    <br />
+                        <!-- <form action=""> -->
+                        <input
+                            type="radio"
+                            id="100"
+                            class="radio difficulty-radio"
+                            name="difficulty"
+                            value="100"
+                            checked="checked"
+                        />
+                        <label for="100">Top 100</label>
+                        <br />
 
-                    <input type="radio" id="200" class="radio difficulty-radio" name="difficulty" value="200" />
-                    <label for="200">Top 200</label>
-                    <br />
+                        <input
+                            type="radio"
+                            id="200"
+                            class="radio difficulty-radio"
+                            name="difficulty"
+                            value="200"
+                        />
+                        <label for="200">Top 200</label>
+                        <br />
 
-                    <input type="radio" id="JavaScript" class="radio difficulty-radio" name="difficulty"
-                        value="JavaScript" />
-                    <label for="JavaScript">JavaScript</label>
-                    <br />
+                        <input
+                            type="radio"
+                            id="JavaScript"
+                            class="radio difficulty-radio"
+                            name="difficulty"
+                            value="JavaScript"
+                        />
+                        <label for="JavaScript">JavaScript</label>
+                        <br />
 
-                    <button id="diffuculty-apply" class="control-panel-button">
-                        Apply
+                        <button
+                            id="diffuculty-apply"
+                            class="control-panel-button"
+                        >
+                            Apply
+                        </button>
+                        <!-- <input type=" submit" value="Apply"> -->
+                        <!-- </form> -->
+                    </div>
+                    <div class="control-wrap">
+                        <!-- <form> -->
+                        <!-- <label for="length">Line length (20 - 50):</label> -->
+                        Line length <br />
+                        (20 - 50)<input
+                            type="range"
+                            id="length"
+                            name="length"
+                            min="20"
+                            max="50"
+                            value="40"
+                        />
+                        <span id="length-display-span">30</span>
+                        <button id="length-apply" class="control-panel-button">
+                            Apply
+                        </button>
+                        <!-- <input type=" submit" value="Apply"> -->
+                        <!-- </form> -->
+                    </div>
+                    <div class="control-wrap">
+                        Punctuation
+                        <br />
+                        <br />
+                        <button
+                            id="punctuation-toggle"
+                            class="control-panel-button"
+                        >
+                            Off
+                        </button>
+                        <button
+                            id="punctuation-apply"
+                            class="control-panel-button"
+                        >
+                            Apply
+                        </button>
+                    </div>
+                    <div class="control-wrap">
+                        Capital letters
+                        <br />
+                        <br />
+                        <button
+                            id="capital-toggle"
+                            class="control-panel-button"
+                        >
+                            Off
+                        </button>
+                        <button id="capital-apply" class="control-panel-button">
+                            Apply
+                        </button>
+                    </div>
+                    <div class="control-wrap">
+                        Timer
+                        <br />
+                        <input
+                            type="radio"
+                            id="no-timer"
+                            class="radio timer-radio"
+                            name="timer"
+                            value="none"
+                        />
+                        <label for=" no-timer">No timer</label><br />
+                        <input
+                            type="radio"
+                            id="1min"
+                            class="radio timer-radio"
+                            name="timer"
+                            value="1min"
+                            checked="checked"
+                        />
+                        <label for=" 1min">1 min</label>
+                        <br />
+                        <br />
+                        <button id="timer-apply" class="control-panel-button">
+                            Apply
+                        </button>
+                    </div>
+                </div>
+
+                <div class="active-container">
+                    <!-- <h2>Active:</h2> -->
+                    <div
+                        id="text-span-active"
+                        class="text-span-container"
+                    ></div>
+                </div>
+
+                <div class="next-container">
+                    <!-- <h2>Next:</h2> -->
+                    <div
+                        id="text-span-next"
+                        class="text-span-container text-span-next"
+                    ></div>
+                </div>
+
+                <div class="input-container">
+                    <!-- <h2>Input:</h2> -->
+                    <div id="counter-test" class="counter-test"></div>
+                    <form action="" class="form">
+                        <label for="input"></label>
+                        <input
+                            type="text"
+                            id="input"
+                            name="input"
+                            placeholder="                 Click Start ➡"
+                        />
+                    </form>
+                    <button id="start-button" class="button new-text-button">
+                        Start
                     </button>
-                    <!-- <input type=" submit" value="Apply"> -->
-                    <!-- </form> -->
                 </div>
-                <div class="control-wrap">
-                    <!-- <form> -->
-                    <!-- <label for="length">Line length (20 - 50):</label> -->
-                    Line length <br />
-                    (20 - 50)<input type="range" id="length" name="length" min="20" max="50" value="40" />
-                    <span id="length-display-span">30</span>
-                    <button id="length-apply" class="control-panel-button">
-                        Apply
-                    </button>
-                    <!-- <input type=" submit" value="Apply"> -->
-                    <!-- </form> -->
-                </div>
-                <div class="control-wrap">
-                    Punctuation
-                    <br />
-                    <br />
-                    <button id="punctuation-toggle" class="control-panel-button">
-                        Off
-                    </button>
-                    <button id="punctuation-apply" class="control-panel-button">
-                        Apply
-                    </button>
-                </div>
-                <div class="control-wrap">
-                    Capital letters
-                    <br />
-                    <br />
-                    <button id="capital-toggle" class="control-panel-button">
-                        Off
-                    </button>
-                    <button id="capital-apply" class="control-panel-button">
-                        Apply
-                    </button>
-                </div>
-                <div class="control-wrap">
-                    Timer
-                    <br />
-                    <input type="radio" id="no-timer" class="radio timer-radio" name="timer" value="none" />
-                    <label for=" no-timer">No timer</label><br />
-                    <input type="radio" id="1min" class="radio timer-radio" name="timer" value="1min"
-                        checked="checked" />
-                    <label for=" 1min">1 min</label>
-                    <br />
-                    <br />
-                    <button id="timer-apply" class="control-panel-button">
-                        Apply
-                    </button>
-                </div>
-            </div>
 
-            <div class="active-container">
-                <!-- <h2>Active:</h2> -->
-                <div id="text-span-active" class="text-span-container"></div>
-            </div>
+                <div class="stats-container">
+                    <!-- <h2>Stats container</h2> -->
+                    <div class="stat-wrap">
+                        Average Speed
+                        <span id="speed-span" class="speed-span">0</span>
+                    </div>
+                    <div class="stat-wrap">
+                        Green/Red/Backspace
+                        <span
+                            id="green-counter-span"
+                            class="green colour-counter-span"
+                            >0</span
+                        >
+                        <div class="redOrangeDiv">
+                            <span
+                                id="red-counter-span"
+                                class="red colour-counter-span"
+                                >0</span
+                            >
 
-            <div class="next-container">
-                <!-- <h2>Next:</h2> -->
-                <div id="text-span-next" class="text-span-container text-span-next"></div>
-            </div>
+                            <span
+                                id="orange-counter-span"
+                                class="orange colour-counter-span"
+                                >0</span
+                            >
+                        </div>
+                    </div>
+                    <div class="stat-wrap">
+                        Keystrokes
+                        <span id="keystrokes-span" class="keystrokes-span">
+                            0
+                        </span>
+                    </div>
+                    <div class="stat-wrap">
+                        Accuracy
+                        <span id="accuracy-span" class="accuracy-span">0</span>
+                    </div>
+                </div>
 
-            <div class="input-container">
-                <!-- <h2>Input:</h2> -->
-                <div id="counter-test" class="counter-test"></div>
-                <form action="" class="form">
-                    <label for="input"></label>
-                    <input type="text" id="input" name="input" placeholder="                 Click Start ➡" />
-                </form>
-                <button id="start-button" class="button new-text-button">
-                    Start
-                </button>
-            </div>
-
-            <div class="stats-container">
-                <!-- <h2>Stats container</h2> -->
-                <div class="stat-wrap">
-                    Average Speed
-                    <span id="speed-span" class="speed-span">0</span>
-                </div>
-                <div class="stat-wrap">
-                    Green/Red Counter
-                    <span id="green-counter-span" class="green colour-counter-span">0</span>
-                    <span id="red-counter-span" class="red colour-counter-span">0</span>
-                </div>
-                <div class="stat-wrap">
-                    Keystrokes
-                    <span id="keystrokes-span" class="keystrokes-span">
-                        0
-                    </span>
-                </div>
-                <div class="stat-wrap">
-                    Accuracy
-                    <span id="accuracy-span" class="accuracy-span">0</span>
-                </div>
-            </div>
-
-            <div class="colour-code-container">
-                <div class="colour-code-wrap">
-                    <!-- <h3>Correct:</h2> -->
-                    Correct:
-                    <h2 class="green">Abc</h2>
-                </div>
-                <div class="colour-code-wrap">
-                    <!-- <h3>Wrong:</h2> -->
-                    Wrong:
-                    <h2 class="red">Abc</h2>
-                </div>
-                <div class="colour-code-wrap">
-                    <!-- <h3>Backspace:</h2> -->
-                    Backspace:
-                    <h2 class="orange">Abc</h2>
-                </div>
-                <!-- <div class="colour-code-wrap">
+                <div class="colour-code-container">
+                    <div class="colour-code-wrap">
+                        <!-- <h3>Correct:</h2> -->
+                        Correct:
+                        <h2 class="green">Abc</h2>
+                    </div>
+                    <div class="colour-code-wrap">
+                        <!-- <h3>Wrong:</h2> -->
+                        Wrong:
+                        <h2 class="red">Abc</h2>
+                    </div>
+                    <div class="colour-code-wrap">
+                        <!-- <h3>Backspace:</h2> -->
+                        Backspace:
+                        <h2 class="orange">Abc</h2>
+                    </div>
+                    <!-- <div class="colour-code-wrap">
                     <h3>Space:</h2>
                         <span class="red-border">__</span>
                 </div> -->
-                <div class="colour-code-wrap">
-                    <!-- <h3>Not typed:</h2> -->
-                    Not typed:
-                    <h2>Abc</h2>
-                </div>
-                <div class="colour-code-wrap">
-                    <!-- <h3>Skipped:</h3> -->
-                    Skipped:
-                    <h2>
-                        <span class="green">A</span>
-                        <span class="red-border background">b</span>
-                        <span>c</span>
-                        /
-                        <span class="red-border">__</span>
-                    </h2>
+                    <div class="colour-code-wrap">
+                        <!-- <h3>Not typed:</h2> -->
+                        Not typed:
+                        <h2>Abc</h2>
+                    </div>
+                    <div class="colour-code-wrap">
+                        <!-- <h3>Skipped:</h3> -->
+                        Skipped:
+                        <h2>
+                            <span class="green">A</span>
+                            <span class="red-border background">b</span>
+                            <span>c</span>
+                            /
+                            <span class="red-border">__</span>
+                        </h2>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script type="module" src="script.js" type="text/javascript"></script>
-</body>
-
+        <script type="module" src="script.js" type="text/javascript"></script>
+    </body>
 </html>

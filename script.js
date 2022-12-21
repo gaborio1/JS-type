@@ -1,8 +1,12 @@
-// console.log("connected");
-
+// IMPORT WORDS ARRAYS
 // import common100 from './words.js';
-import { common100, common200, jsReserved, jsObjPropMeth, punctMarks } from './words.js';
-
+import {
+    common100,
+    common200,
+    jsReserved,
+    jsObjPropMeth,
+    punctMarks,
+} from "./words.js";
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 ELEMENT VARIABLES 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -40,6 +44,7 @@ const speedSpan = document.getElementById("speed-span");
 // GREEN / RED COUNTER SPANS
 const greenCounterSpan = document.getElementById("green-counter-span");
 const redCounterSpan = document.getElementById("red-counter-span");
+const orangeCounterSpan = document.getElementById("orange-counter-span");
 const keystrokesSpan = document.getElementById("keystrokes-span");
 const accuracySpan = document.getElementById("accuracy-span");
 
@@ -51,21 +56,26 @@ const accuracySpan = document.getElementById("accuracy-span");
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 LOGIC VARIABLES 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-// 🁢
-
+// DEFAULT COMMON 100 WORDS
 let targetArray = [...common100];
+// DEFAULT LINE LENGTH
 let sequenceLength = 30;
-// HARD CODED ARRAY LENGTH (TEMPORARY)
+// DEFAULT HARD CODED ARRAY LENGTH (NUMBER OF LINES GENERATED WITH START BUTTON)
 const wordsArrLength = 20;
-let stringWords = "";
+// ARRAY OF WORDARRAYS (LINES)
 let wordArrays = [];
+// STRING BASED ON CURRENT LINE
+let stringWords = "";
+// CURSOR TRACKERS
 let lineIdx = 0;
 let wordIdx = 0;
 let strIdx = 0;
 let charIdx = 0;
+// DEFAULT CONTROL SETTINGS
 let punctuationOn = false;
 let capitalOn = false;
 let timerOn = false;
+
 let keyStrokeCounter = 0;
 // TEST: COUNT ALL COMPLETED WORDS (BOTH CORRECT AND INCORRECT)
 let wordCounter = 0;
@@ -119,8 +129,6 @@ const getRandom = (arr) => {
     return arr[randIdx];
 };
 
-// ================== PUNCTUATION ==================
-
 // TOGGLE BUTTON STYLE (ON / OFF)
 const toggleButtonStyle = (element) => {
     if (element.classList.contains("toggle-on")) {
@@ -165,8 +173,6 @@ const capitaliseWord = (str) => {
     // console.log(lettersArr.join(""));
     return lettersArr.join("");
 };
-
-// =================================================
 
 // GET CURRENT LENGTH OF WORDS PLUS SPACES IN BETWEEN WHEN BUILDING WORDSARRAY
 // THIS IS TO DETERMINE LINE LENGTH FOR CUSTOM SETTINGS
@@ -249,6 +255,7 @@ const resetAccuracyCounters = () => {
 const resetAccuracyDisplays = () => {
     greenCounterSpan.textContent = "0";
     redCounterSpan.textContent = "0";
+    orangeCounterSpan.textContent = "0";
     accuracySpan.textContent = "0";
 };
 
@@ -384,9 +391,9 @@ startButton.addEventListener("click", (event) => {
     const firstCharacter = document.getElementById("span-0");
     firstCharacter.classList.add("background", "black-border");
 
-    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
-    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 KEY EVENTS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
-    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 KEY EVENTS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
     const handleKeyEvent = (event) => {
         const typedKey = event.key;
@@ -425,21 +432,26 @@ startButton.addEventListener("click", (event) => {
             stringWords.length - 1
         );
 
-        // DETECT CAPSLOCK
+        // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 DETECT CAPSLOCK 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
         if (event.getModifierState("CapsLock")) {
             console.log("CAPSLOCK IS ON!");
         }
 
-        // SHIFT
+        // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 SHIFT 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
         if (typedKey === "Shift") {
             console.log("SHIFT");
         }
 
-        // BACKSPACE
+        // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BACKSPACE 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
         // PREVENT CURSOR FROM GOING BACK IF ITS ON FIRST CHAR OF WORD (&& charIdx > 0)
         if (typedKey === "Backspace" && charIdx > 0) {
             // console.log("BACKSPACE");
+
+            // INCREMENT ORANGE COUNTER
+            orangeCounter += 1;
 
             prevChar();
 
@@ -539,7 +551,8 @@ startButton.addEventListener("click", (event) => {
         }
         */
 
-        // ==================== CORRECT KEY TYPED ======================
+        // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CORRECT KEY 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
         if (typedKey === wordArrays[lineIdx][wordIdx][charIdx]) {
             // NOT LAST CHARACTER IN WORD
             if (charIdx < wordArrays[lineIdx][wordIdx].length - 1) {
@@ -674,6 +687,7 @@ startButton.addEventListener("click", (event) => {
                 console.log("<<< green:", greenCounter, "red:", redCounter);
                 greenCounterSpan.textContent = greenCounter;
                 redCounterSpan.textContent = redCounter;
+                orangeCounterSpan.textContent = orangeCounter;
                 accuracy = (100 / (greenCounter + redCounter)) * greenCounter;
                 accuracySpan.textContent = `${Math.floor(accuracy)}%`;
                 // ADD GREEN CLASS TO ACCURACY WHILE ITS 100%
@@ -686,7 +700,7 @@ startButton.addEventListener("click", (event) => {
             }
         }
 
-        // =========== WRONG KEY OR SHIFT FOR CAPITAL LETTERS ============
+        // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 WRONG KEY OR SHIFT FOR CAPITAL LETTERS 🀰🀰🀰🀰🀰🀰🀰🀰🀰
         else if (
             typedKey !== wordArrays[lineIdx][wordIdx][charIdx] &&
             typedKey !== " " &&
@@ -1064,6 +1078,7 @@ TODOS
         GREEN WORDS COUNTER
         ☑️ GREEN KEYS COUNTER
         ☑️ RED KEYS COUNTER
+        ORANGE KEYS COUNTER (BACKSPACE)
         COMPLETE WORDS COUNTER
     FEATURES:
         RESET TIMER IF START BUTTON IS CLICKED?

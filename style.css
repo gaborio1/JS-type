@@ -270,6 +270,12 @@ body {
     border-radius: 4px;
 }
 
+.redOrangeDiv {
+    width: 75px;
+    display: flex;
+    justify-content: space-between;
+}
+
 /* .enlarged {
     font-size: 35px;
 } */
