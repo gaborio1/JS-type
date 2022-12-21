@@ -243,6 +243,12 @@ body {
 
 } */
 
+.hidden-with-z-index {
+    z-index: -1;
+    opacity: 0.25;
+    /* background: goldenrod; */
+}
+
 .control-apply-active {
     background: lightgreen;
 }

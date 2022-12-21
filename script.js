@@ -12,6 +12,7 @@ import {
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 ELEMENT VARIABLES 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
+const controlsContainer = document.getElementById("controls-container");
 // DIFFICULTY
 const difficultyApply = document.getElementById("diffuculty-apply");
 // LENGTH
@@ -279,6 +280,9 @@ startButton.addEventListener("click", (event) => {
     keyStrokeCounter = 0;
     keystrokesSpan.textContent = 0;
 
+    // UN BLUR CONTROLS
+    controlsContainer.classList.remove("hidden-with-z-index");
+
     // ADD LISTENER FOR TIMER AND RESET WORDCOUNTER
     textInput.addEventListener("keydown", startCountdown);
     console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
@@ -411,6 +415,9 @@ startButton.addEventListener("click", (event) => {
             console.log("KEYSTROKE COUNTER:", keyStrokeCounter);
             keystrokesSpan.textContent = keyStrokeCounter;
         }
+
+        // DISABLE CONTROLS BY HIDING IT BEHIND MAIN CONTAINER
+        controlsContainer.classList.add("hidden-with-z-index");
 
         console.log(
             "🟩---EVENT START: ",
@@ -1011,7 +1018,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
-    // seconds = 10;
+    seconds = 10;
     const tick = () => {
         const counter = document.getElementById("counter-test");
         seconds -= 1;
@@ -1043,6 +1050,7 @@ const countdown = () => {
             textInput.removeEventListener("keydown", startCountdown);
             const totalKeystrokes = keyStrokeCounter;
             keystrokesSpan.textContent = totalKeystrokes;
+            controlsContainer.classList.remove("hidden-with-z-index");
         }
     };
     tick();
@@ -1078,9 +1086,10 @@ TODOS
         GREEN WORDS COUNTER
         ☑️ GREEN KEYS COUNTER
         ☑️ RED KEYS COUNTER
-        ORANGE KEYS COUNTER (BACKSPACE)
+        ☑️ ORANGE KEYS COUNTER (BACKSPACE)
         COMPLETE WORDS COUNTER
     FEATURES:
+        HIDE OR BLUR/DIM CONTROLS WHEN TIMER IS ACTIVE?
         RESET TIMER IF START BUTTON IS CLICKED?
         ☑️ HIGHLIGHT APPLY BUTTONS WHEN CHANGES ARE MADE
             TIMER IS NOT DONE YET
