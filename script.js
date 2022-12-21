@@ -13,6 +13,8 @@ import {
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
 const controlsContainer = document.getElementById("controls-container");
+const statsContainer = document.getElementById("stats-container");
+const colourCodeContainer = document.getElementById("colour-code-container");
 // DIFFICULTY
 const difficultyApply = document.getElementById("diffuculty-apply");
 // LENGTH
@@ -282,6 +284,8 @@ startButton.addEventListener("click", (event) => {
 
     // UN BLUR CONTROLS
     controlsContainer.classList.remove("hidden-with-z-index");
+    statsContainer.classList.remove("hidden-with-z-index");
+    colourCodeContainer.classList.remove("hidden-with-z-index");
 
     // ADD LISTENER FOR TIMER AND RESET WORDCOUNTER
     textInput.addEventListener("keydown", startCountdown);
@@ -402,6 +406,7 @@ startButton.addEventListener("click", (event) => {
     const handleKeyEvent = (event) => {
         const typedKey = event.key;
         console.log("EVENT: KEYUP", event.key);
+
         //NOT USED
         // console.log("event.code:", event.code)
         // counterOn = true;
@@ -416,8 +421,20 @@ startButton.addEventListener("click", (event) => {
             keystrokesSpan.textContent = keyStrokeCounter;
         }
 
-        // DISABLE CONTROLS BY HIDING IT BEHIND MAIN CONTAINER
+        // DISABLE CONTROLS BY HIDING IT BEHIND MAIN CONTAINER WHILE TIMER IS ON
         controlsContainer.classList.add("hidden-with-z-index");
+        statsContainer.classList.add("hidden-with-z-index");
+        colourCodeContainer.classList.add("hidden-with-z-index");
+
+        // ENABLE CONTROLS WHEN TIME IS UP
+        if (!timerOn) {
+            console.log("<<<<< TIMER OFF >>>>>");
+            controlsContainer.classList.remove("hidden-with-z-index");
+            statsContainer.classList.remove("hidden-with-z-index");
+            colourCodeContainer.classList.remove("hidden-with-z-index");
+        }
+
+
 
         console.log(
             "🟩---EVENT START: ",
@@ -492,71 +509,6 @@ startButton.addEventListener("click", (event) => {
                 "red-border"
             );
         }
-
-        /*
-            // JUMP IDX TO THE NEXT WORD IN STRING
-            if (charIdx < wordArrays[lineIdx][wordIdx].length) {
-                // IF SPACE IS PRESSED ANYWHERE ON LAST WORD
-                console.log("INCOMPLETE WORD, NEXT LINE()");
-
-                let nextWordIdx;
-
-                // console.log(
-                //     "charIdx:",
-                //     charIdx,
-                //     "word length:",
-                //     wordArrays[lineIdx][wordIdx].length
-                // );
-
-                console.log("STRING IDX TO JUMP TO NEXT WORD IN STRING!");
-                // FIND NEXT SPACE IN STRING AND SET INDEX TO NEXT WORD AFTER SPACE
-                for (let i = strIdx; i < stringWords.length; i += 1) {
-                    if (stringWords[i] === " ") {
-                        console.log("space found at index: ", i);
-                        nextWordIdx = i;
-
-                        let currentCharacter = document.getElementById(
-                            `span-${strIdx}`
-                        );
-                        currentCharacter.classList.add("red-border");
-                        break;
-                    }
-                }
-                // SKIP TO NEXT WORD IN STRING
-                strIdx = nextWordIdx;
-                // CLEAR INPUT IF GOT WORD WRONG
-                clearTextInput();
-            }
-
-            // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
-            // ON ALL CHARACTERS BUT LAST
-            if (strIdx < stringWords.length) {
-                let currentCharacter = document.getElementById(`span-${strIdx}`);
-                currentCharacter.classList.remove("background", "black-border");
-                const nextCharacter = document.getElementById(
-                    `span-${strIdx + 1}`
-                );
-                nextCharacter.classList.add("background", "black-border");
-                nextWord();
-                strIdx += 1;
-            }
-
-            // === === === === === === === === START === === === === === === === === ===
-
-            // !!! FIND A WAY TO PREVENT STRIDX GOING OVER STRING.LENGTH !!!
-
-            // DETECT LAST CHARACTER IN LINE OR LAST UNCOMPLETED WORD
-            // JUMP TO NEXT LINE
-
-            if (
-                wordIdx === wordArrays[lineIdx][wordArrays[lineIdx].length - 1]
-            ) {
-                console.log("--------END OF LINE, SKIP TO NEXT ARRAY--------");
-            }
-
-            // === === === === === === === === START === === === === === === === === ===
-        }
-        */
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CORRECT KEY 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -1018,7 +970,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
-    seconds = 10;
+    // seconds = 10;
     const tick = () => {
         const counter = document.getElementById("counter-test");
         seconds -= 1;
@@ -1030,6 +982,8 @@ const countdown = () => {
             timerOn = true;
         }
 
+        let finalSpeed = 0;
+
         // CALCULATE CURRENT AVE SPEED EVERY SECOND
         if (Number.isInteger(seconds / 1)) {
             let currentSpeed = (60 / (60 - seconds)) * wordCounter;
@@ -1038,19 +992,30 @@ const countdown = () => {
             // ROUND DOWN SPEED TO NEAREST INTEGER
             // speedSpan.innerText = `${Math.floor(currentSpeed)}WPM`;
             speedSpan.innerText = Math.floor(currentSpeed);
+            finalSpeed = currentSpeed;
         }
 
         if (seconds === 0) {
+            console.log("times up");
+            // document.removeEventListener("keydown", handleKeyEvent);
             timerOn = false;
-            // console.log("times up");
             textInput.value = "                 Try Again ➡";
-            speedSpan.innerText = currentSpeed;
+
+            speedSpan.innerText = finalSpeed;
+
             startButton.classList.add("control-apply-active");
             clearTextFields();
             textInput.removeEventListener("keydown", startCountdown);
             const totalKeystrokes = keyStrokeCounter;
             keystrokesSpan.textContent = totalKeystrokes;
-            controlsContainer.classList.remove("hidden-with-z-index");
+            // controlsContainer.classList.remove("hidden-with-z-index");
+            // !!! TRY THIS WITHOUT IF BLOCK AS ABOVE !!!
+            if (controlsContainer.classList.contains("hidden-with-z-index")) {
+                console.log("<<<<< HIDDEN CLASS FOUND >>>>>");
+                controlsContainer.classList.remove("hidden-with-z-index");
+                statsContainer.classList.remove("hidden-with-z-index");
+                colourCodeContainer.classList.remove("hidden-with-z-index");
+            }
         }
     };
     tick();
@@ -1089,7 +1054,8 @@ TODOS
         ☑️ ORANGE KEYS COUNTER (BACKSPACE)
         COMPLETE WORDS COUNTER
     FEATURES:
-        HIDE OR BLUR/DIM CONTROLS WHEN TIMER IS ACTIVE?
+        ANIMATE CONTROLS/STATS/COLURCODE STATS (FADE IN/OUT)
+        ☑️ HIDE OR BLUR/DIM CONTROLS WHEN TIMER IS ACTIVE?
         RESET TIMER IF START BUTTON IS CLICKED?
         ☑️ HIGHLIGHT APPLY BUTTONS WHEN CHANGES ARE MADE
             TIMER IS NOT DONE YET
@@ -1112,6 +1078,7 @@ TODOS
             ☑️RESET ALL INDEX TRACKERS (FOR START BUTTON - AND APPLY BUTTONS ON CONTROL PANEL ? MAYBE NOT NECESSARY)
             
     PROBLEMS:
+        REMOVE KEY EVENT LISTENER WHEN TIMER STOPS
         ALLOW CORRECTION OF ANY CHAR IF SPACE HAS NOT BEEN CLICKED, BUT MULTIPLE RED CAHRACTERS OCCUR INTO NEXT WORD
         IF ANY KEY WAS TYPED ON SPACE, NEXT WORD WILL NOT WORK CORRECTLY (RED ON CORRECT)
             REASON: WORD COUNTER IS NOT INCREMENTED
