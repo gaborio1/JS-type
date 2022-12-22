@@ -422,7 +422,9 @@ startButton.addEventListener("click", (event) => {
         }
 
         // DISABLE CONTROLS BY HIDING IT BEHIND MAIN CONTAINER WHILE TIMER IS ON
-        controlsContainer.classList.add("hidden-with-z-index");
+        // controlsContainer.classList.add("hidden-with-z-index");
+        controlsContainer.classList.add("fadeOut");
+
         statsContainer.classList.add("hidden-with-z-index");
         colourCodeContainer.classList.add("hidden-with-z-index");
 
@@ -430,11 +432,11 @@ startButton.addEventListener("click", (event) => {
         if (!timerOn) {
             console.log("<<<<< TIMER OFF >>>>>");
             controlsContainer.classList.remove("hidden-with-z-index");
+            controlsContainer.classList.remove("fadeOut", "fadeIn");
+
             statsContainer.classList.remove("hidden-with-z-index");
             colourCodeContainer.classList.remove("hidden-with-z-index");
         }
-
-
 
         console.log(
             "🟩---EVENT START: ",
@@ -970,7 +972,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
-    // seconds = 10;
+    // seconds = 5;
     const tick = () => {
         const counter = document.getElementById("counter-test");
         seconds -= 1;
@@ -1016,6 +1018,9 @@ const countdown = () => {
                 statsContainer.classList.remove("hidden-with-z-index");
                 colourCodeContainer.classList.remove("hidden-with-z-index");
             }
+
+            controlsContainer.classList.remove("fadeOut");
+            controlsContainer.classList.add("fadeIn");
         }
     };
     tick();

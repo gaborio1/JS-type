@@ -243,13 +243,6 @@ body {
 
 } */
 
-.hidden-with-z-index {
-    z-index: -1;
-    /* opacity: 0.25; */
-    opacity: 0.5;
-    /* background: goldenrod; */
-}
-
 .control-apply-active {
     background: lightgreen;
 }
@@ -281,6 +274,45 @@ body {
     width: 75px;
     display: flex;
     justify-content: space-between;
+}
+
+/* .hidden-with-z-index {
+    z-index: -1;
+    opacity: 0.5;
+} */
+
+/* .controls-container {
+    opacity: 1;
+} */
+
+.fadeIn {
+    animation: fadeIn 3s linear;
+    /* FADE IN AND STAY SO */
+    animation-fill-mode: forwards;
+}
+
+.fadeOut {
+    animation: fadeOut 3s linear;
+    /* FADE OUT AND STAY SO */
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0.25;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.25;
+    }
 }
 
 /* .enlarged {
@@ -401,8 +433,8 @@ input[type="range"]:focus::-ms-fill-upper {
     left: -9999px;
 }
 
-[type="radio"]:checked+label,
-[type="radio"]:not(:checked)+label {
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label {
     position: relative;
     padding-left: 28px;
     cursor: pointer;
@@ -411,8 +443,8 @@ input[type="range"]:focus::-ms-fill-upper {
     color: #666;
 }
 
-[type="radio"]:checked+label:before,
-[type="radio"]:not(:checked)+label:before {
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
     content: "";
     position: absolute;
     left: 0;
@@ -424,8 +456,8 @@ input[type="range"]:focus::-ms-fill-upper {
     background: #fff;
 }
 
-[type="radio"]:checked+label:after,
-[type="radio"]:not(:checked)+label:after {
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
     content: "";
     width: 12px;
     height: 12px;
@@ -438,13 +470,13 @@ input[type="range"]:focus::-ms-fill-upper {
     transition: all 0.2s ease;
 }
 
-[type="radio"]:not(:checked)+label:after {
+[type="radio"]:not(:checked) + label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0);
 }
 
-[type="radio"]:checked+label:after {
+[type="radio"]:checked + label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
