@@ -422,20 +422,26 @@ startButton.addEventListener("click", (event) => {
         }
 
         // DISABLE CONTROLS BY HIDING IT BEHIND MAIN CONTAINER WHILE TIMER IS ON
-        // controlsContainer.classList.add("hidden-with-z-index");
-        controlsContainer.classList.add("fadeOut");
 
-        statsContainer.classList.add("hidden-with-z-index");
-        colourCodeContainer.classList.add("hidden-with-z-index");
+        controlsContainer.classList.add("fadeOut");
+        statsContainer.classList.add("fadeOut");
+        colourCodeContainer.classList.add("fadeOut");
+
+        // controlsContainer.classList.add("hidden-with-z-index");
+        // statsContainer.classList.add("hidden-with-z-index");
+        // colourCodeContainer.classList.add("hidden-with-z-index");
 
         // ENABLE CONTROLS WHEN TIME IS UP
         if (!timerOn) {
             console.log("<<<<< TIMER OFF >>>>>");
-            controlsContainer.classList.remove("hidden-with-z-index");
-            controlsContainer.classList.remove("fadeOut", "fadeIn");
 
-            statsContainer.classList.remove("hidden-with-z-index");
-            colourCodeContainer.classList.remove("hidden-with-z-index");
+            controlsContainer.classList.remove("fadeOut");
+            statsContainer.classList.remove("fadeOut");
+            colourCodeContainer.classList.remove("fadeOut");
+
+            // controlsContainer.classList.remove("hidden-with-z-index");
+            // statsContainer.classList.remove("hidden-with-z-index");
+            // colourCodeContainer.classList.remove("hidden-with-z-index");
         }
 
         console.log(
@@ -972,7 +978,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
-    // seconds = 5;
+    seconds = 5;
     const tick = () => {
         const counter = document.getElementById("counter-test");
         seconds -= 1;
@@ -1001,7 +1007,9 @@ const countdown = () => {
             console.log("times up");
             // document.removeEventListener("keydown", handleKeyEvent);
             timerOn = false;
+            // DISABLE INPUT AND SET VALUE
             textInput.value = "                 Try Again ➡";
+            textInput.readOnly = true;
 
             speedSpan.innerText = finalSpeed;
 
@@ -1010,17 +1018,22 @@ const countdown = () => {
             textInput.removeEventListener("keydown", startCountdown);
             const totalKeystrokes = keyStrokeCounter;
             keystrokesSpan.textContent = totalKeystrokes;
+
             // controlsContainer.classList.remove("hidden-with-z-index");
             // !!! TRY THIS WITHOUT IF BLOCK AS ABOVE !!!
-            if (controlsContainer.classList.contains("hidden-with-z-index")) {
-                console.log("<<<<< HIDDEN CLASS FOUND >>>>>");
-                controlsContainer.classList.remove("hidden-with-z-index");
-                statsContainer.classList.remove("hidden-with-z-index");
-                colourCodeContainer.classList.remove("hidden-with-z-index");
-            }
+            // if (controlsContainer.classList.contains("hidden-with-z-index")) {
+            //     console.log("<<<<< HIDDEN CLASS FOUND >>>>>");
+            //     controlsContainer.classList.remove("hidden-with-z-index");
+            //     statsContainer.classList.remove("hidden-with-z-index");
+            //     colourCodeContainer.classList.remove("hidden-with-z-index");
+            // }
 
             controlsContainer.classList.remove("fadeOut");
             controlsContainer.classList.add("fadeIn");
+            statsContainer.classList.remove("fadeOut");
+            statsContainer.classList.add("fadeIn");
+            colourCodeContainer.classList.remove("fadeOut");
+            colourCodeContainer.classList.add("fadeIn");
         }
     };
     tick();
