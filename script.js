@@ -184,10 +184,7 @@ const getStrLength = (arr) => {
     arr.forEach((word) => {
         length += word.length;
     });
-    // DISABLED AS TRAILING SPACE IS NOW PART OF WORD
-    // if (arr.length > 1) {
-    //     length += arr.length - 1;
-    // }
+
     return length;
 };
 
@@ -204,7 +201,6 @@ const buidWordArrays = (numOfLines) => {
             let currWord = getRandom(targetArray);
             // CONCAT RANDOM PUNCT MARK
             if (punctuationOn) {
-                // currWord += randomPunctMark();
                 currWord += getRandom(punctMarks);
             }
             // CAPITAL ON, MAKE FIRST CHAR UPPERCASE
@@ -246,7 +242,6 @@ const clearDataAndDisplay = () => {
     clearTextInput();
     clearIdxTrackers();
     clearArrAndString();
-    // document.removeEventListener("keyup", handleKeyEvent);
 };
 
 const resetAccuracyCounters = () => {
@@ -275,6 +270,7 @@ startButton.classList.add("control-apply-active");
 startButton.addEventListener("click", (event) => {
     console.log("TARGET ARRAY LENGTH:", targetArray.length);
 
+
     // RESET ACCURACY COUNTERS / DISPLAYS , KEYSTROKE COUNTER
     speedSpan.textContent = 0;
     resetAccuracyCounters();
@@ -291,8 +287,6 @@ startButton.addEventListener("click", (event) => {
     textInput.addEventListener("keydown", startCountdown);
     console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
 
-    // textInput.removeEventListener("keydown", startCountdown);
-    // console.log("EVENT LISTENER REMOVED FROM TEXT INPUT FOR TIMER");
     wordCounter = 0;
 
     // TRACK NUMBER OF START BUTTON CLICKS
@@ -300,15 +294,19 @@ startButton.addEventListener("click", (event) => {
     // console.log("START BUTTON COUNTER", startButtonCounter);
 
     // CLEAR ALL STRING DATA FROM TEXT FIELDS AND EMPTY ARRAYS
-    // clearArrAndString();
     clearTextFields();
-    // clearIdxTrackers();
 
     // REMOVE HIGHLIGHT START BUTTON
     startButton.classList.remove("control-apply-active");
     // CHANGE PLACEHOLDER TO "START TYPING"
     textInput.placeholder = "Start typing or customise text";
     clearIdxTrackers();
+
+    // DETECT CAPSLOCK
+    if (event.getModifierState("CapsLock")) {
+        console.log("CAPSLOCK IS ON!");
+        textInput.placeholder = "CAPSLOCK IS ON!";
+    }
 
     // SET CURSOR TO INPUT BOX  AT FIRST CHAR IF TEXT-ALIGN IS DISABLED IN CSS
     // SETS CURSOR AT FIRST CHAR IF TEXT-ALIGN IS DISABLED IN CSS
@@ -370,30 +368,6 @@ startButton.addEventListener("click", (event) => {
     stringWordsNext = wordArrays[lineIdx + 1].join("");
     textSpanContainerNext.innerText = stringWordsNext;
 
-    // ------------------------------------------------------------------------
-    // THIS IS NOW REPLACED WITH createSpans(lineIdx, textSpanContainerActive); ABOVE
-    // NO NEED FOR STRINGWORDS AS ARRAY WORDS NOW HAVE TRAILING SPACES
-
-    // LOOP OVER STRINGWORDS TO CREATE SPANS(EVERY CHAR INCLUDING SPACES IN BETWEEN)
-    // !!! ACCESS INDEX OF ITERATION IN FOR OF LOOP WITH DESTRUCTURING SYNTAX + entries() METHOD
-
-    // for (const [idx, char] of stringWords.split("").entries()) {
-    //     console.log("hello from LOOP");
-    //     // console.log(idx, char);
-    //     // CREATE ELEMENT
-    //     const span = document.createElement("span");
-    //     // SET TEXT CONTENT / CLASS / ID
-    //     span.innerText = char;
-    //     span.className = "span";
-    //     span.id = `span-${idx}`;
-    //     // APPEND TO PARENT DIV
-    //     textSpanContainerActive.appendChild(span);
-    // }
-    // ------------------------------------------------------------------------
-
-    // NODELIST OF ALL CHAR SPANS
-    // const charSpans = document.querySelectorAll(".span");
-    // console.log(charSpans);
 
     // ADD CURSOR TO FIRST CHARACTER WHEN PAGE LOADS
     const firstCharacter = document.getElementById("span-0");
@@ -411,9 +385,6 @@ startButton.addEventListener("click", (event) => {
         // console.log("event.code:", event.code)
         // counterOn = true;
 
-        // ADD LISTENER FOR TIMER
-        // textInput.addEventListener("keydown", startCountdown);
-
         // ONLY KEEP TRACK OF KEYSTROKES WHILE CLOCK IS RUNNING
         if (timerOn) {
             keyStrokeCounter += 1;
@@ -422,7 +393,6 @@ startButton.addEventListener("click", (event) => {
         }
 
         // DISABLE CONTROLS BY HIDING IT BEHIND MAIN CONTAINER WHILE TIMER IS ON
-
         controlsContainer.classList.add("fadeOut");
         statsContainer.classList.add("fadeOut");
         colourCodeContainer.classList.add("fadeOut");
@@ -470,6 +440,11 @@ startButton.addEventListener("click", (event) => {
             console.log("CAPSLOCK IS ON!");
         }
 
+        if (typedKey === "CapsLock") {
+            console.log("YOU JUST TURNED CAPSLOCK ON!");
+            textInput.placeholder = "CAPSLOCK IS ON!";
+        }
+
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 SHIFT 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
         if (typedKey === "Shift") {
@@ -496,11 +471,9 @@ startButton.addEventListener("click", (event) => {
                 currentCharacter.classList.add("orange-border");
             }
 
-            //+++++
             if (strIdx === stringWords.length - 1) {
                 currentCharacter.classList.add("orange-border");
             }
-            //+++++
 
             currentCharacter.classList.add(
                 "orange",
@@ -566,9 +539,6 @@ startButton.addEventListener("click", (event) => {
                 }
             }
 
-            // if (strIdx === stringWords.length - 1) {
-            //     console.log("<<<<< LAST WORD, LAST CHARACTER !!! >>>>>")
-            // }
 
             // REMOVE CURSOR FROM SPACE
             if (typedKey === " ") {
@@ -594,11 +564,6 @@ startButton.addEventListener("click", (event) => {
                     textSpanContainerNext.innerText = stringWordsNext;
                 }
 
-                // if (strIdx === stringWords.length - 1) {
-                //     console.log("<<<<< LAST WORD, LAST CHARACTER !!! >>>>>")
-                // }
-
-                // console.log("SPACE");
 
                 // ONLY ACCESS CURRENTCHAR IF IT IS NOT END OF LINE (IF STATEMENT DOESNT WORK FOR CLASSLIST REMOVE, STILL GET TYPE ERROR )
                 // !!! ERROR: Uncaught TypeError: Cannot read properties of null (reading 'classList')at HTMLDocument.handleKeyEvent (script.js:680:33)
@@ -613,11 +578,6 @@ startButton.addEventListener("click", (event) => {
                     nextWord();
                     clearTextInput();
                 }
-
-                // let currentCharacter = document.getElementById(`span-${strIdx - 1}`);
-                // currentCharacter.classList.remove("background", "black-border");
-                // nextWord();
-                // clearTextInput();
 
                 wordCounter += 1;
                 console.log("<<< COUNT GREEN KEYS NOW >>>");
@@ -668,6 +628,7 @@ startButton.addEventListener("click", (event) => {
         }
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 WRONG KEY OR SHIFT FOR CAPITAL LETTERS 🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
         else if (
             typedKey !== wordArrays[lineIdx][wordIdx][charIdx] &&
             typedKey !== " " &&
@@ -703,8 +664,6 @@ startButton.addEventListener("click", (event) => {
             nextChar();
         }
 
-        //               +++++ START +++++
-
         // =========== SPACE ON WORD (WRONG CHAR AND SPACE) ===========
         else if (
             typedKey !== wordArrays[lineIdx][wordIdx][charIdx] &&
@@ -718,13 +677,6 @@ startButton.addEventListener("click", (event) => {
                 console.log("INCOMPLETE WORD, NEXT LINE()");
 
                 let nextWordIdx;
-
-                // console.log(
-                //     "charIdx:",
-                //     charIdx,
-                //     "word length:",
-                //     wordArrays[lineIdx][wordIdx].length
-                // );
 
                 console.log("STRING IDX TO JUMP TO NEXT WORD IN STRING!");
                 // FIND NEXT SPACE IN STRING AND SET INDEX TO NEXT WORD AFTER SPACE
@@ -782,7 +734,6 @@ startButton.addEventListener("click", (event) => {
                 // strIdx += 1;
             }
         }
-        //                  +++++ END +++++
 
         console.log(
             "---------------------EVENT END---",
@@ -802,7 +753,6 @@ startButton.addEventListener("click", (event) => {
             stringWords.length - 1
         );
 
-        // console.log("WORD COUNTER TEST:", wordCounter);
     };
 
     // ADD HANDLEKEYEVENT FOR KEYUP EVENT ONLY ONCE, REMOVE IT IF START IS CLICKED AGAIN, SEE IF BLOCK BELOW
@@ -813,9 +763,6 @@ startButton.addEventListener("click", (event) => {
         // REMOVE LISTENER
         document.removeEventListener("keydown", handleKeyEvent);
         // console.log("EVENT LISTENER REMOVED FROM DOCUMENT FOR KEYUP");
-
-        // textInput.removeEventListener("keydown", startCountdown);
-        // console.log("EVENT LISTENER REMOVED FROM TEXT INPUT FOR TIMER");
 
         // RESET
         clearTextFields();
@@ -831,9 +778,6 @@ startButton.addEventListener("click", (event) => {
         textInput.placeholder = "Start typing or customise text";
     }
 
-    // if (keyStrokeCounter >= 1) {
-    //     textInput.removeEventListener("keydown", startCountdown);
-    // }
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -855,9 +799,7 @@ difficultyApply.addEventListener("click", function () {
     difficultyApply.classList.remove("control-apply-active");
     // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
-    // REMOVE LISTENER FOR KEYUP
-    // !!!
-    // document.removeEventListener("keydown", handleKeyEvent);
+
     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
     clearArrAndString();
@@ -883,7 +825,6 @@ difficultyApply.addEventListener("click", function () {
             break;
         }
     }
-    // console.log("TARGET ARRAY:", targetArray);
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 LINE LENGTH 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -902,9 +843,7 @@ slider.onchange = function (event) {
 lengthApply.addEventListener("click", function () {
     // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
-    // REMOVE LISTENER FOR KEYUP
-    // !!!
-    // document.removeEventListener("keydown", handleKeyEvent);
+
     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
     clearArrAndString();
@@ -917,9 +856,6 @@ lengthApply.addEventListener("click", function () {
 
 // 1. ONLY TOGGLE STYLE
 const handlePunctuationToggle = () => {
-    // REMOVE LISTENER FOR KEYUP
-    // !!!
-    // document.removeEventListener("keydown", handleKeyEvent);
     toggleButtonStyle(punctuationToggle);
     // toggleButtonState(punctuationToggle);
     punctuationApply.classList.add("control-apply-active");
@@ -931,9 +867,6 @@ punctuationToggle.addEventListener("click", handlePunctuationToggle);
 punctuationApply.addEventListener("click", function () {
     // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
-    // REMOVE LISTENER FROM PUNCTUATION-TOGGLE
-
-    // punctuationToggle.removeEventListener("click", handlePunctuationToggle);
 
     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
@@ -947,9 +880,6 @@ punctuationApply.addEventListener("click", function () {
 
 // 1. ONLY TOGGLE STYLE
 const handleCapitalToggle = () => {
-    // REMOVE LISTENER FOR KEYUP
-    // !!!
-    // document.removeEventListener("keydown", handleKeyEvent);
     toggleButtonStyle(capitalToggle);
     // toggleButtonState(punctuationToggle);
     capitalApply.classList.add("control-apply-active");
@@ -961,9 +891,6 @@ capitalToggle.addEventListener("click", handleCapitalToggle);
 capitalApply.addEventListener("click", function () {
     // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
-    // REMOVE LISTENER FROM CAPITAL-TOGGLE
-
-    // capitalToggle.removeEventListener("click", handleCapitalToggle);
 
     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
@@ -978,7 +905,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
-    seconds = 5;
+    // seconds = 5;
     const tick = () => {
         const counter = document.getElementById("counter-test");
         seconds -= 1;
@@ -1072,7 +999,7 @@ TODOS
         ☑️ ORANGE KEYS COUNTER (BACKSPACE)
         COMPLETE WORDS COUNTER
     FEATURES:
-        ANIMATE CONTROLS/STATS/COLURCODE STATS (FADE IN/OUT)
+        ☑️ ANIMATE CONTROLS/STATS/COLURCODE STATS (FADE IN/OUT)
         ☑️ HIDE OR BLUR/DIM CONTROLS WHEN TIMER IS ACTIVE?
         RESET TIMER IF START BUTTON IS CLICKED?
         ☑️ HIGHLIGHT APPLY BUTTONS WHEN CHANGES ARE MADE
@@ -1087,6 +1014,8 @@ TODOS
             TARGET ARRAY JAVASCRIPT SYNTAX
         ☑️ DETECT CAPSLOCK
         CAPS LOCK WARNING MESSAGE
+            ☑️ WHEN PAGE LOADS
+            AFTER PAGE IS LOADED
         BUILD RANDOM WORDS FROM PROBLEM CHARACTERS / WORDS
     CODE:
         FUNCTIONS:
