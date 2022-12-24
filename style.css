@@ -24,9 +24,10 @@ body {
     justify-content: center;
     margin: 50px auto;
     /* padding: 25px; */
-    border: 3px solid darkgoldenrod;
+    border: 1px solid darkgoldenrod;
     border-radius: 4px;
     background-color: rgba(245, 245, 245, 0.206);
+    font-weight: 100;
 }
 
 .wrapper {
@@ -38,15 +39,14 @@ body {
     /* border: 3px solid darkgoldenrod; */
 }
 
-.counter-test {
-    width: 125px;
-    height: 50px;
-    font-size: 30px;
-    padding: 5px;
-    border-radius: 4px;
-    background: #efefef;
-    border: 2px solid darkgoldenrod;
+h1 {
+    /* font-weight: 100; */
+    font-weight: 300;
 }
+
+/* .h2 {
+    font-weight: 300 !important;
+} */
 
 .active-container,
 .next-container,
@@ -68,9 +68,9 @@ body {
 .control-wrap {
     width: 150px;
     height: 120px;
-    /* padding: 5px; */
+    padding: 5px;
     /* padding: 8px; */
-    border: 2px solid darkgoldenrod;
+    border: 1px solid darkgoldenrod;
     border-radius: 4px;
 }
 
@@ -84,7 +84,7 @@ body {
     width: 150px;
     height: 75px;
     padding: 8px;
-    border: 2px solid darkgoldenrod;
+    border: 1px solid darkgoldenrod;
     border-radius: 4px;
 }
 
@@ -98,6 +98,7 @@ body {
 .active-container {
     /* width: 100%; */
     padding: 0px 20px 0px 20px;
+    font-weight: 400;
 }
 
 .next-container {
@@ -113,6 +114,16 @@ body {
     height: 150px;
 }
 
+.counter-div {
+    width: 125px;
+    height: 50px;
+    font-size: 30px;
+    padding: 5px;
+    border-radius: 4px;
+    background: #efefef;
+    border: 1px solid darkgoldenrod;
+}
+
 .input-container {
     width: 100%;
     height: 100px;
@@ -120,10 +131,16 @@ body {
     justify-content: space-around;
 }
 
+.input {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+}
+
 .stats-container {
     height: 150px;
     display: flex;
     justify-content: space-between;
+    /* font-weight: 100; */
 }
 
 /* SAME AS CONTROL WRAP */
@@ -137,7 +154,7 @@ body {
     justify-content: space-around;
 
     padding: 8px;
-    border: 2px solid darkgoldenrod;
+    border: 1px solid darkgoldenrod;
     border-radius: 4px;
 }
 
@@ -155,7 +172,7 @@ body {
     padding-top: 4px;
     /* padding-bottom: 3px; */
     background: #efefef;
-    border: 2px solid darkgoldenrod;
+    border: 1px solid darkgoldenrod;
     border-radius: 4px;
 }
 
@@ -191,7 +208,7 @@ body {
     /* color: grey; */
     color: rgb(74, 73, 73);
     /* border: none; */
-    border: 2px solid darkgoldenrod;
+    border: 1px solid darkgoldenrod;
     border-radius: 4px;
     background-color: #efefef;
 }
@@ -200,10 +217,15 @@ body {
     width: 125px;
     height: 50px;
     /* border: none; */
-    border: 2px solid darkgoldenrod;
+    border: 1px solid darkgoldenrod;
     border-radius: 4px;
     font-size: 24px;
+    font-family: "Roboto", sans-serif;
 }
+
+/* .colour-code-container {
+    font-weight: 100;
+} */
 
 .colour-counter-span {
     font-size: 30px;
@@ -333,16 +355,17 @@ input[type="range"] {
     -webkit-appearance: none;
     margin: 10px 0;
     /* width: 100%; */
-    width: 125px;
+    /* width: 125px; */
 }
 
 input[type="range"]:focus {
     outline: none;
 }
 
+/* TRACK */
 input[type="range"]::-webkit-slider-runnable-track {
     width: 100%;
-    height: 1px;
+    height: 0.5px;
     cursor: pointer;
     animate: 0.2s;
     box-shadow: 1px 1px 1px #000000;
@@ -439,8 +462,8 @@ input[type="range"]:focus::-ms-fill-upper {
     left: -9999px;
 }
 
-[type="radio"]:checked+label,
-[type="radio"]:not(:checked)+label {
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label {
     position: relative;
     padding-left: 28px;
     cursor: pointer;
@@ -449,8 +472,8 @@ input[type="range"]:focus::-ms-fill-upper {
     color: #666;
 }
 
-[type="radio"]:checked+label:before,
-[type="radio"]:not(:checked)+label:before {
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
     content: "";
     position: absolute;
     left: 0;
@@ -462,8 +485,8 @@ input[type="range"]:focus::-ms-fill-upper {
     background: #fff;
 }
 
-[type="radio"]:checked+label:after,
-[type="radio"]:not(:checked)+label:after {
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
     content: "";
     width: 12px;
     height: 12px;
@@ -476,13 +499,13 @@ input[type="range"]:focus::-ms-fill-upper {
     transition: all 0.2s ease;
 }
 
-[type="radio"]:not(:checked)+label:after {
+[type="radio"]:not(:checked) + label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0);
 }
 
-[type="radio"]:checked+label:after {
+[type="radio"]:checked + label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);

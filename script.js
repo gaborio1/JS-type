@@ -270,7 +270,6 @@ startButton.classList.add("control-apply-active");
 startButton.addEventListener("click", (event) => {
     console.log("TARGET ARRAY LENGTH:", targetArray.length);
 
-
     // RESET ACCURACY COUNTERS / DISPLAYS , KEYSTROKE COUNTER
     speedSpan.textContent = 0;
     resetAccuracyCounters();
@@ -368,7 +367,6 @@ startButton.addEventListener("click", (event) => {
     stringWordsNext = wordArrays[lineIdx + 1].join("");
     textSpanContainerNext.innerText = stringWordsNext;
 
-
     // ADD CURSOR TO FIRST CHARACTER WHEN PAGE LOADS
     const firstCharacter = document.getElementById("span-0");
     firstCharacter.classList.add("background", "black-border");
@@ -380,6 +378,8 @@ startButton.addEventListener("click", (event) => {
     const handleKeyEvent = (event) => {
         const typedKey = event.key;
         console.log("EVENT: KEYUP", event.key);
+
+        console.log("<<<<< WORD COUNTER:", wordCounter, ">>>>>");
 
         //NOT USED
         // console.log("event.code:", event.code)
@@ -414,25 +414,25 @@ startButton.addEventListener("click", (event) => {
             // colourCodeContainer.classList.remove("hidden-with-z-index");
         }
 
-        console.log(
-            "🟩---EVENT START: ",
-            event.key,
-            " ---",
-            "line idx: ",
-            lineIdx,
-            "word idx: ",
-            wordIdx,
-            "/",
-            wordArrays[lineIdx].length - 1,
-            "char idx: ",
-            charIdx,
-            "/",
-            wordArrays[lineIdx][wordIdx].length - 1,
-            "string idx: ",
-            strIdx,
-            "/",
-            stringWords.length - 1
-        );
+        // console.log(
+        //     "🟩---EVENT START: ",
+        //     event.key,
+        //     " ---",
+        //     "line idx: ",
+        //     lineIdx,
+        //     "word idx: ",
+        //     wordIdx,
+        //     "/",
+        //     wordArrays[lineIdx].length - 1,
+        //     "char idx: ",
+        //     charIdx,
+        //     "/",
+        //     wordArrays[lineIdx][wordIdx].length - 1,
+        //     "string idx: ",
+        //     strIdx,
+        //     "/",
+        //     stringWords.length - 1
+        // );
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 DETECT CAPSLOCK 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -539,7 +539,6 @@ startButton.addEventListener("click", (event) => {
                 }
             }
 
-
             // REMOVE CURSOR FROM SPACE
             if (typedKey === " ") {
                 // END OF LINE SPACE
@@ -563,7 +562,6 @@ startButton.addEventListener("click", (event) => {
                     stringWordsNext = wordArrays[lineIdx + 1].join(" ");
                     textSpanContainerNext.innerText = stringWordsNext;
                 }
-
 
                 // ONLY ACCESS CURRENTCHAR IF IT IS NOT END OF LINE (IF STATEMENT DOESNT WORK FOR CLASSLIST REMOVE, STILL GET TYPE ERROR )
                 // !!! ERROR: Uncaught TypeError: Cannot read properties of null (reading 'classList')at HTMLDocument.handleKeyEvent (script.js:680:33)
@@ -628,7 +626,6 @@ startButton.addEventListener("click", (event) => {
         }
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 WRONG KEY OR SHIFT FOR CAPITAL LETTERS 🀰🀰🀰🀰🀰🀰🀰🀰🀰
-
         else if (
             typedKey !== wordArrays[lineIdx][wordIdx][charIdx] &&
             typedKey !== " " &&
@@ -703,7 +700,10 @@ startButton.addEventListener("click", (event) => {
                 console.log("<<<<< SPACE ON LAST WORD, NEW LINE! >>>>>");
                 // START NEW LINE
                 nextLine();
-                wordCounter += 1;
+
+                // DON'T INCREMENT WORD COUNTER IF SPACE IS TYPED ON LAST WORD
+                // wordCounter += 1;
+
                 console.log("WORD COUNTER TEST:", wordCounter);
                 // DELETE SPANS FROM ACTIVE DIV / APPEND SPANS CREATED FROM NEXT LINE
                 textSpanContainerActive.innerHTML = "";
@@ -735,24 +735,25 @@ startButton.addEventListener("click", (event) => {
             }
         }
 
-        console.log(
-            "---------------------EVENT END---",
-            "line idx: ",
-            lineIdx,
-            "word idx: ",
-            wordIdx,
-            "/",
-            wordArrays[lineIdx].length - 1,
-            "char idx: ",
-            charIdx,
-            "/",
-            wordArrays[lineIdx][wordIdx].length - 1,
-            "string idx: ",
-            strIdx,
-            "/",
-            stringWords.length - 1
-        );
+        // console.log(
+        //     "---------------------EVENT END---",
+        //     "line idx: ",
+        //     lineIdx,
+        //     "word idx: ",
+        //     wordIdx,
+        //     "/",
+        //     wordArrays[lineIdx].length - 1,
+        //     "char idx: ",
+        //     charIdx,
+        //     "/",
+        //     wordArrays[lineIdx][wordIdx].length - 1,
+        //     "string idx: ",
+        //     strIdx,
+        //     "/",
+        //     stringWords.length - 1
+        // );
 
+        console.log("<<<<< WORD COUNTER:", wordCounter, ">>>>>");
     };
 
     // ADD HANDLEKEYEVENT FOR KEYUP EVENT ONLY ONCE, REMOVE IT IF START IS CLICKED AGAIN, SEE IF BLOCK BELOW
@@ -777,7 +778,6 @@ startButton.addEventListener("click", (event) => {
         textSpanContainerNext.innerText = stringWordsNext;
         textInput.placeholder = "Start typing or customise text";
     }
-
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -907,7 +907,7 @@ const countdown = () => {
     let seconds = 59;
     // seconds = 5;
     const tick = () => {
-        const counter = document.getElementById("counter-test");
+        const counter = document.getElementById("counter-div");
         seconds -= 1;
         counter.innerHTML = "0:" + (seconds < 10 ? "0" : "") + String(seconds);
         // counter.innerHTML = seconds;
@@ -1025,6 +1025,8 @@ TODOS
             ☑️RESET ALL INDEX TRACKERS (FOR START BUTTON - AND APPLY BUTTONS ON CONTROL PANEL ? MAYBE NOT NECESSARY)
             
     PROBLEMS:
+        MAKE FONT FAMILY THE SAME FOR INPUT AND BUTTONS TOO (ROBOTO)
+        ☑️ WORD COUNTER IS INCREMENTED AT NEW LINE WHEN SPACE IS TYPED ON LAST WORD IN LINE
         REMOVE KEY EVENT LISTENER WHEN TIMER STOPS
         ALLOW CORRECTION OF ANY CHAR IF SPACE HAS NOT BEEN CLICKED, BUT MULTIPLE RED CAHRACTERS OCCUR INTO NEXT WORD
         IF ANY KEY WAS TYPED ON SPACE, NEXT WORD WILL NOT WORK CORRECTLY (RED ON CORRECT)
