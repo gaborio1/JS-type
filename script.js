@@ -795,6 +795,7 @@ for (let i = 0, length = difficultyRadios.length; i < length; i++) {
     difficultyRadios[i].addEventListener("click", function () {
         console.log("difficulty selected");
         difficultyApply.classList.add("control-apply-active");
+        startButton.classList.remove("control-apply-active");
     });
 }
 
@@ -841,6 +842,7 @@ slider.onchange = function (event) {
     lengthDisplaySpan.textContent = slider.value;
     console.log("slider changed");
     lengthApply.classList.add("control-apply-active");
+    startButton.classList.remove("control-apply-active");
 };
 
 // GET SLIDER FINAL VALUE AND ASSIGN TO SEQUENCE LENGTH
@@ -863,6 +865,7 @@ const handlePunctuationToggle = () => {
     toggleButtonStyle(punctuationToggle);
     // toggleButtonState(punctuationToggle);
     punctuationApply.classList.add("control-apply-active");
+    startButton.classList.remove("control-apply-active");
 };
 
 punctuationToggle.addEventListener("click", handlePunctuationToggle);
@@ -887,6 +890,7 @@ const handleCapitalToggle = () => {
     toggleButtonStyle(capitalToggle);
     // toggleButtonState(punctuationToggle);
     capitalApply.classList.add("control-apply-active");
+    startButton.classList.remove("control-apply-active");
 };
 
 capitalToggle.addEventListener("click", handleCapitalToggle);
@@ -994,11 +998,13 @@ const startCountdown = () => {
 // console.log(timerRadios);
 console.log(timerApply);
 
-for (let i = 0; i < timerRadios.length; i++) {
+// for (let i = 0; i < timerRadios.length; i++) {
+for (let i = 0, length = timerRadios.length; i < length; i++) {
     console.log(timerRadios[i]);
     timerRadios[i].addEventListener("click", function () {
-        console.log("timer selected");
+        console.log("timer selected", timerRadios[i].value);
         timerApply.classList.add("control-apply-active");
+        startButton.classList.remove("control-apply-active");
     });
 }
 
@@ -1012,8 +1018,8 @@ timerApply.addEventListener("click", function () {
     clearDataAndDisplay();
     clearArrAndString();
 
-    for (let i = 0; i < difficultyRadios.length; i++) {
-        if (difficultyRadios[i].checked) {
+    for (let i = 0; i < timerRadios.length; i++) {
+        if (timerRadios[i].checked) {
             console.log("RADIOS VALUE:", timerRadios[i].value);
             if (timerRadios[i].value === "no-timer") {
                 console.log("no timer");
@@ -1023,11 +1029,10 @@ timerApply.addEventListener("click", function () {
                 console.log("1 min timer");
                 timerSelected = true;
             }
-
-            console.log("TIMER SELECTED:", timerSelected);
             break;
         }
     }
+    console.log("TIMER SELECTED:", timerSelected);
 });
 
 /*
@@ -1044,10 +1049,11 @@ TODOS
         ☑️ ORANGE KEYS COUNTER (BACKSPACE)
         COMPLETE WORDS COUNTER
     FEATURES:
+        ☑️ REMOVE ACTIVE CLASS (OR DISABLE?) START BUTTON WHEN CHANGES ARE MADE ON CONTROL PANEL, ONLY HIGHLIGHT APPLY
         ☑️ ANIMATE CONTROLS/STATS/COLURCODE STATS (FADE IN/OUT)
         ☑️ HIDE OR BLUR/DIM CONTROLS WHEN TIMER IS ACTIVE?
         RESET TIMER IF START BUTTON IS CLICKED?
-        TIMER ON/OFF
+        ☑️ TIMER ON/OFF
         ☑️ HIGHLIGHT APPLY BUTTONS WHEN CHANGES ARE MADE
             TIMER
         ☑️ START / NEW BUTTON
