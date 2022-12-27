@@ -77,6 +77,7 @@ let charIdx = 0;
 // DEFAULT CONTROL SETTINGS
 let punctuationOn = false;
 let capitalOn = false;
+let timerSelected = true;
 let timerOn = false;
 
 let keyStrokeCounter = 0;
@@ -282,10 +283,13 @@ startButton.addEventListener("click", (event) => {
     statsContainer.classList.remove("hidden-with-z-index");
     colourCodeContainer.classList.remove("hidden-with-z-index");
 
-    // ADD LISTENER FOR TIMER AND RESET WORDCOUNTER
-    textInput.addEventListener("keydown", startCountdown);
-    console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
+    // ADD LISTENER FOR TIMER IF 1 MIN TIMER IS SELECTED
+    if (timerSelected) {
+        textInput.addEventListener("keydown", startCountdown);
+        console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
+    }
 
+    // RESET WORDCOUNTER
     wordCounter = 0;
 
     // TRACK NUMBER OF START BUTTON CLICKS
@@ -902,6 +906,14 @@ capitalApply.addEventListener("click", function () {
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TIMER 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
+// MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
+// for (let i = 0, length = timerRadios.length; i < length; i++) {
+//     timerRadios[i].addEventListener("click", function () {
+//         console.log("timer selected");
+//         timerApply.classList.add("control-apply-active");
+//     });
+// }
+
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
@@ -978,12 +990,45 @@ const startCountdown = () => {
 // textInput.addEventListener("keydown", startCountdown);
 
 // MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
-for (let i = 0, length = timerRadios.length; i < length; i++) {
+
+// console.log(timerRadios);
+console.log(timerApply);
+
+for (let i = 0; i < timerRadios.length; i++) {
+    console.log(timerRadios[i]);
     timerRadios[i].addEventListener("click", function () {
         console.log("timer selected");
         timerApply.classList.add("control-apply-active");
     });
 }
+
+timerApply.addEventListener("click", function () {
+    // REMOVE ACTIVE STYLE
+    timerApply.classList.remove("control-apply-active");
+    // HIGHLIGHT START BUTTON
+    startButton.classList.add("control-apply-active");
+
+    // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
+    clearDataAndDisplay();
+    clearArrAndString();
+
+    for (let i = 0; i < difficultyRadios.length; i++) {
+        if (difficultyRadios[i].checked) {
+            console.log("RADIOS VALUE:", timerRadios[i].value);
+            if (timerRadios[i].value === "no-timer") {
+                console.log("no timer");
+                timerSelected = false;
+            }
+            if (timerRadios[i].value === "1min") {
+                console.log("1 min timer");
+                timerSelected = true;
+            }
+
+            console.log("TIMER SELECTED:", timerSelected);
+            break;
+        }
+    }
+});
 
 /*
 MASTER/multiple
@@ -1002,8 +1047,9 @@ TODOS
         ☑️ ANIMATE CONTROLS/STATS/COLURCODE STATS (FADE IN/OUT)
         ☑️ HIDE OR BLUR/DIM CONTROLS WHEN TIMER IS ACTIVE?
         RESET TIMER IF START BUTTON IS CLICKED?
+        TIMER ON/OFF
         ☑️ HIGHLIGHT APPLY BUTTONS WHEN CHANGES ARE MADE
-            TIMER IS NOT DONE YET
+            TIMER
         ☑️ START / NEW BUTTON
         ☑️ HIGHLIGHT START BUTTON AFTER CONTROL CHANGES HAVE BEEN APPLIED
         ☑️ ALLOW USER TO SET CUSTOM LINE LENGTH
