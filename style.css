@@ -207,6 +207,7 @@ h1 {
     text-align: left;
     /* color: grey; */
     color: rgb(74, 73, 73);
+    font-weight: 300;
     /* border: none; */
     border: 1px solid darkgoldenrod;
     border-radius: 4px;
@@ -221,6 +222,7 @@ h1 {
     border-radius: 4px;
     font-size: 24px;
     font-family: "Roboto", sans-serif;
+    font-weight: 300;
 }
 
 /* .colour-code-container {
@@ -241,6 +243,10 @@ h1 {
 
 .keystrokes-span {
     font-size: 60px;
+}
+
+.colour-code-wrap h2 {
+    font-weight: 400;
 }
 
 /* .button:hover {

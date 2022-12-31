@@ -979,6 +979,7 @@ const countdown = () => {
             colourCodeContainer.classList.add("fadeIn");
         }
     };
+
     tick();
 };
 
@@ -998,8 +999,8 @@ const startCountdown = () => {
 // console.log(timerRadios);
 console.log(timerApply);
 
-// for (let i = 0; i < timerRadios.length; i++) {
-for (let i = 0, length = timerRadios.length; i < length; i++) {
+for (let i = 0; i < timerRadios.length; i++) {
+    // for (let i = 0, length = timerRadios.length; i < length; i++) {
     console.log(timerRadios[i]);
     timerRadios[i].addEventListener("click", function () {
         console.log("timer selected", timerRadios[i].value);
@@ -1049,13 +1050,13 @@ TODOS
         ☑️ ORANGE KEYS COUNTER (BACKSPACE)
         COMPLETE WORDS COUNTER
     FEATURES:
+        MAKE ONE COMMON APPLY BUTTON FOR ALL CONTROLS?
         ☑️ REMOVE ACTIVE CLASS (OR DISABLE?) START BUTTON WHEN CHANGES ARE MADE ON CONTROL PANEL, ONLY HIGHLIGHT APPLY
         ☑️ ANIMATE CONTROLS/STATS/COLURCODE STATS (FADE IN/OUT)
         ☑️ HIDE OR BLUR/DIM CONTROLS WHEN TIMER IS ACTIVE?
         RESET TIMER IF START BUTTON IS CLICKED?
         ☑️ TIMER ON/OFF
         ☑️ HIGHLIGHT APPLY BUTTONS WHEN CHANGES ARE MADE
-            TIMER
         ☑️ START / NEW BUTTON
         ☑️ HIGHLIGHT START BUTTON AFTER CONTROL CHANGES HAVE BEEN APPLIED
         ☑️ ALLOW USER TO SET CUSTOM LINE LENGTH
@@ -1096,8 +1097,8 @@ TODOS
             ☑️ CAPITAL
         THEN,
         ☑️ HIGHLIGHT START BUTTON
-        ADD ORANGE BORDER TO SPACE WHEN BACKSPACE IS USED
-        STOP MOVING CURSOR WHEN LETTER CHARACTER IS PRESSED INSTEAD OF SPACE AFTER WORD IS TYPED
+        ☑️ ADD ORANGE BORDER TO SPACE WHEN BACKSPACE IS USED
+        STOP MOVING CURSOR WHEN LETTER CHARACTER IS TYPED INSTEAD OF SPACE AFTER WORD IS TYPED
         ☑️ ADD CURSOR TO ACTIVE LINE
         ☑️ DON'T APPEND TEXT AS SPANS TO NEXT LINE DIV, JUST DISPLAY IT AS PARAGRAPH ?
         ☑️ INCREMENT LINEIDX WHEN LAST WORD IS ALL GREEN AND SPACE IS PRESSED
