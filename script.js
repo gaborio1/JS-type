@@ -396,10 +396,16 @@ startButton.addEventListener("click", (event) => {
             keystrokesSpan.textContent = keyStrokeCounter;
         }
 
-        // DISABLE CONTROLS BY HIDING IT BEHIND MAIN CONTAINER WHILE TIMER IS ON
-        controlsContainer.classList.add("fadeOut");
-        statsContainer.classList.add("fadeOut");
-        colourCodeContainer.classList.add("fadeOut");
+        // DISABLE CONTROLS BY HIDING IT BEHIND MAIN CONTAINER WHILE TIMER IS ON WITH FIRST KEYPRESS
+        // !!! THIS ONLY RUNS IF TIMER IS ON !!!
+        if (keyStrokeCounter === 1) {
+            controlsContainer.classList.add("fadeOut");
+            statsContainer.classList.add("fadeOut");
+            colourCodeContainer.classList.add("fadeOut");
+        }
+        // controlsContainer.classList.add("fadeOut");
+        // statsContainer.classList.add("fadeOut");
+        // colourCodeContainer.classList.add("fadeOut");
 
         // controlsContainer.classList.add("hidden-with-z-index");
         // statsContainer.classList.add("hidden-with-z-index");
@@ -921,7 +927,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
-    // seconds = 5;
+    seconds = 10;
     const tick = () => {
         const counter = document.getElementById("counter-div");
         seconds -= 1;
@@ -946,6 +952,16 @@ const countdown = () => {
             finalSpeed = currentSpeed;
         }
 
+        // START FADING IN CONTROLS AT 2 SECOND MARK
+        if (seconds === 2) {
+            controlsContainer.classList.remove("fadeOut");
+            controlsContainer.classList.add("fadeIn");
+            statsContainer.classList.remove("fadeOut");
+            statsContainer.classList.add("fadeIn");
+            colourCodeContainer.classList.remove("fadeOut");
+            colourCodeContainer.classList.add("fadeIn");
+        }
+
         if (seconds === 0) {
             console.log("times up");
             // document.removeEventListener("keydown", handleKeyEvent);
@@ -957,7 +973,8 @@ const countdown = () => {
             speedSpan.innerText = finalSpeed;
 
             startButton.classList.add("control-apply-active");
-            clearTextFields();
+            setTimeout(clearTextFields, 1000);
+            // clearTextFields();
             textInput.removeEventListener("keydown", startCountdown);
             const totalKeystrokes = keyStrokeCounter;
             keystrokesSpan.textContent = totalKeystrokes;
@@ -971,12 +988,12 @@ const countdown = () => {
             //     colourCodeContainer.classList.remove("hidden-with-z-index");
             // }
 
-            controlsContainer.classList.remove("fadeOut");
-            controlsContainer.classList.add("fadeIn");
-            statsContainer.classList.remove("fadeOut");
-            statsContainer.classList.add("fadeIn");
-            colourCodeContainer.classList.remove("fadeOut");
-            colourCodeContainer.classList.add("fadeIn");
+            // controlsContainer.classList.remove("fadeOut");
+            // controlsContainer.classList.add("fadeIn");
+            // statsContainer.classList.remove("fadeOut");
+            // statsContainer.classList.add("fadeIn");
+            // colourCodeContainer.classList.remove("fadeOut");
+            // colourCodeContainer.classList.add("fadeIn");
         }
     };
 
@@ -1050,6 +1067,7 @@ TODOS
         ☑️ ORANGE KEYS COUNTER (BACKSPACE)
         COMPLETE WORDS COUNTER
     FEATURES:
+        FADE OUT TEXT WHEN TIME IS UP
         MAKE ONE COMMON APPLY BUTTON FOR ALL CONTROLS?
         ☑️ REMOVE ACTIVE CLASS (OR DISABLE?) START BUTTON WHEN CHANGES ARE MADE ON CONTROL PANEL, ONLY HIGHLIGHT APPLY
         ☑️ ANIMATE CONTROLS/STATS/COLURCODE STATS (FADE IN/OUT)
