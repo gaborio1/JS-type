@@ -18,7 +18,7 @@ body {
 
 .container {
     width: 1000px;
-    height: 800px;
+    height: 750px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -346,6 +346,24 @@ h1 {
 
     100% {
         opacity: 0.25;
+    }
+}
+
+.totalFadeOut {
+    /* DISABLE WITH Z INDEX */
+    /* z-index: -1; */
+    animation: totalFadeOut 2s linear;
+    /* FADE OUT AND STAY SO */
+    animation-fill-mode: forwards;
+}
+
+@keyframes totalFadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
     }
 }
 

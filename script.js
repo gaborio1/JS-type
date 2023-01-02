@@ -31,6 +31,8 @@ const capitalApply = document.getElementById("capital-apply");
 const textSpanContainerActive = document.getElementById("text-span-active");
 // NEXT SPAN
 const textSpanContainerNext = document.getElementById("text-span-next");
+// !!! textSpanContainerNext IS NOW textSpanContainerNextParagraph !!!
+const textSpanContainerNextParagraph = document.getElementById("text-span-next-p");
 // TEXT INPUT
 const textInput = document.getElementById("input");
 // START BUTTON
@@ -234,7 +236,7 @@ const clearArrAndString = () => {
 
 const clearTextFields = () => {
     textSpanContainerActive.innerHTML = "";
-    textSpanContainerNext.innerHTML = "";
+    textSpanContainerNextParagraph.innerHTML = "";
 };
 
 // CLEAR TEXT FIELDS ACTIVE / NEXT, INPUT, AND INITIALISE WORDARRAYS
@@ -267,9 +269,16 @@ let startButtonCounter = 0;
 // HIGHLIGHT START BUTTON
 startButton.classList.add("control-apply-active");
 
+
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
     console.log("TARGET ARRAY LENGTH:", targetArray.length);
+
+    // ALLOW USER INPUT TO BE TYPED
+    textInput.readOnly = false;
+
+    // REMOVE FADE OUT CLASS FROM NEXT LINE
+    textSpanContainerNextParagraph.classList.remove("totalFadeOut");
 
     // RESET ACCURACY COUNTERS / DISPLAYS , KEYSTROKE COUNTER
     speedSpan.textContent = 0;
@@ -369,7 +378,7 @@ startButton.addEventListener("click", (event) => {
     // FILL THIS CONTAINER WITH TEXT, NOT SPANS
     let stringWordsNext = "";
     stringWordsNext = wordArrays[lineIdx + 1].join("");
-    textSpanContainerNext.innerText = stringWordsNext;
+    textSpanContainerNextParagraph.innerText = stringWordsNext;
 
     // ADD CURSOR TO FIRST CHARACTER WHEN PAGE LOADS
     const firstCharacter = document.getElementById("span-0");
@@ -566,11 +575,11 @@ startButton.addEventListener("click", (event) => {
                     // UPDATE STRWORDS
                     stringWords = wordArrays[lineIdx].join("");
                     // DELETE CONTENT / APPEND NEXT LINE TO TEXTSPAN NEXT DIV
-                    textSpanContainerNext.innerHTML = "";
+                    textSpanContainerNextParagraph.innerHTML = "";
                     // createSpans(lineIdx + 1, textSpanContainerNext);
                     // APPEND TEXT AS STRING INSTEAD OF SPANS !!!
                     stringWordsNext = wordArrays[lineIdx + 1].join(" ");
-                    textSpanContainerNext.innerText = stringWordsNext;
+                    textSpanContainerNextParagraph.innerText = stringWordsNext;
                 }
 
                 // ONLY ACCESS CURRENTCHAR IF IT IS NOT END OF LINE (IF STATEMENT DOESNT WORK FOR CLASSLIST REMOVE, STILL GET TYPE ERROR )
@@ -724,11 +733,11 @@ startButton.addEventListener("click", (event) => {
                 // UPDATE STRWORDS
                 stringWords = wordArrays[lineIdx].join("");
                 // DELETE CONTENT / APPEND NEXT LINE TO TEXTSPAN NEXT DIV
-                textSpanContainerNext.innerHTML = "";
+                textSpanContainerNextParagraph.innerHTML = "";
                 // createSpans(lineIdx + 1, textSpanContainerNext);
                 // APPEND TEXT AS STRING INSTEAD OF SPANS !!!
                 stringWordsNext = wordArrays[lineIdx + 1].join(" ");
-                textSpanContainerNext.innerText = stringWordsNext;
+                textSpanContainerNextParagraph.innerText = stringWordsNext;
             }
 
             // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
@@ -785,7 +794,7 @@ startButton.addEventListener("click", (event) => {
         createSpans(lineIdx, textSpanContainerActive);
         stringWords = wordArrays[lineIdx].join("");
         stringWordsNext = wordArrays[lineIdx + 1].join("");
-        textSpanContainerNext.innerText = stringWordsNext;
+        textSpanContainerNextParagraph.innerText = stringWordsNext;
         textInput.placeholder = "Start typing or customise text";
     }
 });
@@ -927,7 +936,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
-    seconds = 10;
+    // seconds = 10;
     const tick = () => {
         const counter = document.getElementById("counter-div");
         seconds -= 1;
@@ -968,12 +977,24 @@ const countdown = () => {
             timerOn = false;
             // DISABLE INPUT AND SET VALUE
             textInput.value = "                 Try Again ➡";
+            // DISABLE TXT INPUT
             textInput.readOnly = true;
 
             speedSpan.innerText = finalSpeed;
 
             startButton.classList.add("control-apply-active");
-            setTimeout(clearTextFields, 1000);
+            // CLEAR TEXT AFTER 1 SECOND
+            // ALSO TRY FADING TEXT OUT. SELECT ALL SPANS AND APPEND NEXT LINE TO PARAGRAPH
+            // SYNC CLEARTEXFIELDS WITH ANIMATION DURATION (FADE OUT AND THEN CLEAR)
+            setTimeout(clearTextFields, 2000);
+            // textSpanContainerActive.classList.add("fadeOut");
+            textSpanContainerNextParagraph.classList.add("totalFadeOut");
+            const activeTextSpans = document.getElementsByClassName("active-txt-span");
+            for (let i = 0; i < activeTextSpans.length; i += 1) {
+                activeTextSpans[i].classList.add("totalFadeOut");
+            }
+
+            // activeTextSpans.classList.add("fadeOut");
             // clearTextFields();
             textInput.removeEventListener("keydown", startCountdown);
             const totalKeystrokes = keyStrokeCounter;
