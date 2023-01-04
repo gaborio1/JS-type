@@ -91,6 +91,8 @@ let redCounter = 0;
 let orangeCounter = 0;
 let accuracy = 0;
 
+let wrongCounterArr = [];
+
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 FUNCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -272,7 +274,7 @@ startButton.classList.add("control-apply-active");
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
-    console.log("TARGET ARRAY LENGTH:", targetArray.length);
+    // console.log("TARGET ARRAY LENGTH:", targetArray.length);
 
     // ALLOW USER INPUT TO BE TYPED
     textInput.readOnly = false;
@@ -295,7 +297,7 @@ startButton.addEventListener("click", (event) => {
     // ADD LISTENER FOR TIMER IF 1 MIN TIMER IS SELECTED
     if (timerSelected) {
         textInput.addEventListener("keydown", startCountdown);
-        console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
+        // console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
     }
 
     // RESET WORDCOUNTER
@@ -392,7 +394,9 @@ startButton.addEventListener("click", (event) => {
         const typedKey = event.key;
         console.log("EVENT: KEYUP", event.key);
 
-        console.log("<<<<< WORD COUNTER:", wordCounter, ">>>>>");
+
+
+        // console.log("<<<<< WORD COUNTER:", wordCounter, ">>>>>");
 
         //NOT USED
         // console.log("event.code:", event.code)
@@ -401,7 +405,7 @@ startButton.addEventListener("click", (event) => {
         // ONLY KEEP TRACK OF KEYSTROKES WHILE CLOCK IS RUNNING
         if (timerOn) {
             keyStrokeCounter += 1;
-            console.log("KEYSTROKE COUNTER:", keyStrokeCounter);
+            // console.log("KEYSTROKE COUNTER:", keyStrokeCounter);
             keystrokesSpan.textContent = keyStrokeCounter;
         }
 
@@ -482,7 +486,7 @@ startButton.addEventListener("click", (event) => {
             prevChar();
 
             const currentCharacter = document.getElementById(`span-${strIdx}`);
-            console.log("CURRENT CHAR ORANGE", currentCharacter);
+            // console.log("CURRENT CHAR ORANGE", currentCharacter);
 
             // ADD ORANGE BORDER TO BACKSPACE'D SPACE
             // !!! HAVE TO CHECK TEXTCONTENT !!!
@@ -513,9 +517,20 @@ startButton.addEventListener("click", (event) => {
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CORRECT KEY 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
         if (typedKey === wordArrays[lineIdx][wordIdx][charIdx]) {
+
+            console.log(
+                "CORRECT KEY!",
+                "typed:",
+                typedKey,
+                "actual:",
+                wordArrays[lineIdx][wordIdx][charIdx]
+            );
+
+            wrongCounterArr.push("correct");
+
             // NOT LAST CHARACTER IN WORD
             if (charIdx < wordArrays[lineIdx][wordIdx].length - 1) {
-                console.log("<<<<<  NOT LAST CHARACER >>>>>");
+                // console.log("<<<<<  NOT LAST CHARACER >>>>>");
                 let nextCharacter = document.getElementById(
                     `span-${strIdx + 1}`
                 );
@@ -539,7 +554,7 @@ startButton.addEventListener("click", (event) => {
             // LAST CHARACTER IN WORD (SPACE)
             else if (charIdx === wordArrays[lineIdx][wordIdx].length - 1) {
                 if (wordIdx < wordArrays[lineIdx].length - 1) {
-                    console.log("<<<<< LAST CHARACER !!! >>>>>");
+                    // console.log("<<<<< LAST CHARACER !!! >>>>>");
                     let nextCharacter = document.getElementById(
                         `span-${strIdx + 1}`
                     );
@@ -597,17 +612,17 @@ startButton.addEventListener("click", (event) => {
                 }
 
                 wordCounter += 1;
-                console.log("<<< COUNT GREEN KEYS NOW >>>");
-                console.log(
-                    "LAST WORD COMPLETED:",
-                    wordArrays[lineIdx][wordIdx - 1],
-                    "length:",
-                    wordArrays[lineIdx][wordIdx - 1].length,
-                    "strIdx:",
-                    strIdx,
-                    "stringWords length:",
-                    stringWords.length
-                );
+                // console.log("<<< COUNT GREEN KEYS NOW >>>");
+                // console.log(
+                //     "LAST WORD COMPLETED:",
+                //     wordArrays[lineIdx][wordIdx - 1],
+                //     "length:",
+                //     wordArrays[lineIdx][wordIdx - 1].length,
+                //     "strIdx:",
+                //     strIdx,
+                //     "stringWords length:",
+                //     stringWords.length
+                // );
 
                 let lastWordLength = wordArrays[lineIdx][wordIdx - 1].length;
                 let charSpans = document.querySelectorAll(".active-txt-span");
@@ -628,7 +643,7 @@ startButton.addEventListener("click", (event) => {
                         orangeCounter += 1;
                     }
                 }
-                console.log("<<< green:", greenCounter, "red:", redCounter);
+                // console.log("<<< green:", greenCounter, "red:", redCounter);
                 greenCounterSpan.textContent = greenCounter;
                 redCounterSpan.textContent = redCounter;
                 orangeCounterSpan.textContent = orangeCounter;
@@ -659,6 +674,8 @@ startButton.addEventListener("click", (event) => {
                 wordArrays[lineIdx][wordIdx][charIdx]
             );
 
+            wrongCounterArr.push("wrong");
+
             let currentCharacter = document.getElementById(`span-${strIdx}`);
             let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
 
@@ -685,12 +702,14 @@ startButton.addEventListener("click", (event) => {
             typedKey !== wordArrays[lineIdx][wordIdx][charIdx] &&
             typedKey === " "
         ) {
-            console.log("<<<<< SPACE ON WORD, SKIP TO NEXT WORD >>>>>");
+            // console.log("<<<<< SPACE ON WORD, SKIP TO NEXT WORD >>>>>");
 
             // JUMP IDX TO THE NEXT WORD IN STRING
             if (charIdx < wordArrays[lineIdx][wordIdx].length) {
                 // IF SPACE IS PRESSED ANYWHERE ON LAST WORD
                 console.log("INCOMPLETE WORD, NEXT LINE()");
+
+                wrongCounterArr.push("wrong");
 
                 let nextWordIdx;
 
@@ -698,7 +717,7 @@ startButton.addEventListener("click", (event) => {
                 // FIND NEXT SPACE IN STRING AND SET INDEX TO NEXT WORD AFTER SPACE
                 for (let i = strIdx; i < stringWords.length; i += 1) {
                     if (stringWords[i] === " ") {
-                        console.log("space found at index: ", i);
+                        // console.log("space found at index: ", i);
                         nextWordIdx = i + 1;
 
                         let currentCharacter = document.getElementById(
@@ -717,6 +736,9 @@ startButton.addEventListener("click", (event) => {
             // ======= SPACE ON LAST WORD (WRONG CHAR AND SPACE) ==========
             if (wordIdx === wordArrays[lineIdx].length - 1) {
                 console.log("<<<<< SPACE ON LAST WORD, NEW LINE! >>>>>");
+
+                wrongCounterArr.push("wrong");
+
                 // START NEW LINE
                 nextLine();
 
@@ -772,7 +794,9 @@ startButton.addEventListener("click", (event) => {
         //     stringWords.length - 1
         // );
 
-        console.log("<<<<< WORD COUNTER:", wordCounter, ">>>>>");
+        // console.log("<<<<< WORD COUNTER:", wordCounter, ">>>>>");
+
+        console.log(wrongCounterArr);
     };
 
     // ADD HANDLEKEYEVENT FOR KEYUP EVENT ONLY ONCE, REMOVE IT IF START IS CLICKED AGAIN, SEE IF BLOCK BELOW
@@ -925,13 +949,6 @@ capitalApply.addEventListener("click", function () {
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TIMER 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-// MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
-// for (let i = 0, length = timerRadios.length; i < length; i++) {
-//     timerRadios[i].addEventListener("click", function () {
-//         console.log("timer selected");
-//         timerApply.classList.add("control-apply-active");
-//     });
-// }
 
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
@@ -1000,15 +1017,6 @@ const countdown = () => {
             const totalKeystrokes = keyStrokeCounter;
             keystrokesSpan.textContent = totalKeystrokes;
 
-            // controlsContainer.classList.remove("hidden-with-z-index");
-            // !!! TRY THIS WITHOUT IF BLOCK AS ABOVE !!!
-            // if (controlsContainer.classList.contains("hidden-with-z-index")) {
-            //     console.log("<<<<< HIDDEN CLASS FOUND >>>>>");
-            //     controlsContainer.classList.remove("hidden-with-z-index");
-            //     statsContainer.classList.remove("hidden-with-z-index");
-            //     colourCodeContainer.classList.remove("hidden-with-z-index");
-            // }
-
             // controlsContainer.classList.remove("fadeOut");
             // controlsContainer.classList.add("fadeIn");
             // statsContainer.classList.remove("fadeOut");
@@ -1027,21 +1035,18 @@ const startCountdown = () => {
     // console.log("REMOVE LISTENER NOW!");
     countdown();
     textInput.removeEventListener("keydown", startCountdown);
-    console.log("EVENT LISTENER REMOVED FROM TEXT INPUT FOR TIMER");
+    // console.log("EVENT LISTENER REMOVED FROM TEXT INPUT FOR TIMER");
 };
 
 // textInput.addEventListener("keydown", startCountdown);
 
 // MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
 
-// console.log(timerRadios);
-console.log(timerApply);
-
 for (let i = 0; i < timerRadios.length; i++) {
     // for (let i = 0, length = timerRadios.length; i < length; i++) {
-    console.log(timerRadios[i]);
+    // console.log(timerRadios[i]);
     timerRadios[i].addEventListener("click", function () {
-        console.log("timer selected", timerRadios[i].value);
+        // console.log("timer selected", timerRadios[i].value);
         timerApply.classList.add("control-apply-active");
         startButton.classList.remove("control-apply-active");
     });
