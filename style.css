@@ -855,3 +855,15 @@ input[type="range"]:focus::-ms-fill-upper {
     margin: 50px auto;
     border: 3px solid darkgoldenrod;
 } */
+
+.instructions-container {
+    width: 1000px;
+    height: 120px;
+    margin: 50px auto;
+    border: 1px solid darkgoldenrod;
+    border-radius: 4px;
+    padding: 8px;
+    /* font-family: "Roboto", sans-serif; */
+    font-weight: 300;
+    line-height: 1.3rem;
+}
