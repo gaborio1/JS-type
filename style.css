@@ -221,6 +221,8 @@ h1 {
     padding: 0px 20px 0px 20px;
     font-size: 30px;
     text-align: left;
+    /* CENTER WILL ALSO PUT CURSOR IN THE MIDDLE */
+    /* text-align: center; */
     /* color: grey; */
     color: rgb(74, 73, 73);
     font-weight: 300;

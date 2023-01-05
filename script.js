@@ -91,7 +91,9 @@ let redCounter = 0;
 let orangeCounter = 0;
 let accuracy = 0;
 
-let wrongCounterArr = [];
+// TRACK CONSECUTIVE WRONG KEYS
+let wrongCounter = 0;
+const maxMistakes = 5;
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 FUNCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -394,6 +396,25 @@ startButton.addEventListener("click", (event) => {
         const typedKey = event.key;
         console.log("EVENT: KEYUP", event.key);
 
+        console.log("<<<< START", wrongCounter);
+
+        if (wrongCounter >= maxMistakes) {
+            textInput.readOnly = true;
+            document.removeEventListener("keydown", handleKeyEvent);
+            textInput.value = "     ❌   Don't play silly games!  ❌";
+
+            setTimeout(function () {
+                textInput.value = "         ⬅️   Correct mistakes!   ⬅️";
+            }, 1500);
+
+            setTimeout(function () {
+                textInput.value = "     ☠️   YOU ARE TERMINATED!  ☠️";
+            }, 3000);
+
+            setTimeout(function () {
+                location.reload();
+            }, 4500);
+        }
 
 
         // console.log("<<<<< WORD COUNTER:", wordCounter, ">>>>>");
@@ -526,7 +547,7 @@ startButton.addEventListener("click", (event) => {
                 wordArrays[lineIdx][wordIdx][charIdx]
             );
 
-            wrongCounterArr.push("correct");
+            wrongCounter = 0;
 
             // NOT LAST CHARACTER IN WORD
             if (charIdx < wordArrays[lineIdx][wordIdx].length - 1) {
@@ -674,7 +695,7 @@ startButton.addEventListener("click", (event) => {
                 wordArrays[lineIdx][wordIdx][charIdx]
             );
 
-            wrongCounterArr.push("wrong");
+            wrongCounter += 1;
 
             let currentCharacter = document.getElementById(`span-${strIdx}`);
             let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
@@ -695,6 +716,8 @@ startButton.addEventListener("click", (event) => {
             }
 
             nextChar();
+
+            // wrongCounter += 1;
         }
 
         // =========== SPACE ON WORD (WRONG CHAR AND SPACE) ===========
@@ -708,8 +731,6 @@ startButton.addEventListener("click", (event) => {
             if (charIdx < wordArrays[lineIdx][wordIdx].length) {
                 // IF SPACE IS PRESSED ANYWHERE ON LAST WORD
                 console.log("INCOMPLETE WORD, NEXT LINE()");
-
-                wrongCounterArr.push("wrong");
 
                 let nextWordIdx;
 
@@ -737,7 +758,7 @@ startButton.addEventListener("click", (event) => {
             if (wordIdx === wordArrays[lineIdx].length - 1) {
                 console.log("<<<<< SPACE ON LAST WORD, NEW LINE! >>>>>");
 
-                wrongCounterArr.push("wrong");
+                wrongCounter += 1;
 
                 // START NEW LINE
                 nextLine();
@@ -768,6 +789,9 @@ startButton.addEventListener("click", (event) => {
                 let currentCharacter = document.getElementById(
                     `span-${strIdx - 1}`
                 );
+
+                wrongCounter += 1;
+
                 currentCharacter.classList.remove("background", "black-border");
                 const nextCharacter = document.getElementById(`span-${strIdx}`);
                 nextCharacter.classList.add("background", "black-border");
@@ -796,7 +820,25 @@ startButton.addEventListener("click", (event) => {
 
         // console.log("<<<<< WORD COUNTER:", wordCounter, ">>>>>");
 
-        console.log(wrongCounterArr);
+        console.log("<<<< END", wrongCounter);
+
+        if (wrongCounter >= maxMistakes) {
+            textInput.readOnly = true;
+            document.removeEventListener("keydown", handleKeyEvent);
+            textInput.value = "     ❌   Don't play silly games!  ❌";
+
+            setTimeout(function () {
+                textInput.value = "         ⬅️   Correct mistakes!   ⬅️";
+            }, 1500);
+
+            setTimeout(function () {
+                textInput.value = "     ☠️   YOU ARE TERMINATED!  ☠️";
+            }, 3000);
+
+            setTimeout(function () {
+                location.reload();
+            }, 4500);
+        }
     };
 
     // ADD HANDLEKEYEVENT FOR KEYUP EVENT ONLY ONCE, REMOVE IT IF START IS CLICKED AGAIN, SEE IF BLOCK BELOW
@@ -1124,6 +1166,8 @@ TODOS
             ☑️RESET ALL INDEX TRACKERS (FOR START BUTTON - AND APPLY BUTTONS ON CONTROL PANEL ? MAYBE NOT NECESSARY)
             
     PROBLEMS:
+        ☑️ CONSECUTIVE WRONG CHARACTERS HANDLING (DISABLE INPUT AND RELOAD)
+        ☑️ CENTER TEXT INPUT CONTENT (LEADING SPACES ARE HARD CODED IN INPUT.VALUE ALSO SEE CSS .form input - line 218)
         ☑️ SPACE DIVS CONSISTENTLY IN WRAPPER (50PX. 25PX)
         SIZE DIVS CONSISTENTLY IN WRAPPER (50PX. 25PX)
         ADD COMMON CLASS TO FADE ELEMENTS
