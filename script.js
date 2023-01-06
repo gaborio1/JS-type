@@ -264,7 +264,7 @@ const resetAccuracyDisplays = () => {
     accuracySpan.textContent = "0";
 };
 
-// REMOVE ALL COLOUR CLASSES FROM ACCURACY SPAN
+// REMOVE ALL COLOUR CLASSES FROM ACCURACY
 const removeColours = () => {
     accuracySpan.classList.remove("green", "light-green", "yellow-green", "yellow", "gold", "orange", "orange-red", "red");
 }
@@ -685,7 +685,6 @@ startButton.addEventListener("click", (event) => {
                 removeColours();
 
                 if (accuracy <= 87) {
-                    removeColours();
                     accuracySpan.classList.add("red");
                 }
 
@@ -709,7 +708,7 @@ startButton.addEventListener("click", (event) => {
                     accuracySpan.classList.add("yellow-green");
                 }
 
-                if (accuracy > 97 && accuracy <= 99) {
+                if (accuracy > 97 && accuracy < 100) {
                     accuracySpan.classList.add("light-green");
                 }
 
@@ -1177,7 +1176,7 @@ TODOS
         ☑️ ORANGE KEYS COUNTER (BACKSPACE)
         COMPLETE WORDS COUNTER
     FEATURES:
-        FADE OUT OR DISABLE START WHILE TIMER IS ON
+        FADE OUT OR DISABLE START BUTTON WHILE TIMER IS ON
             HIDE START BUTTON AND ADD RESTART/REFRESH WHILE TIMER IS ON?
         ☑️ FADE OUT TEXT WHEN TIME IS UP
         MAKE ONE COMMON APPLY BUTTON FOR ALL CONTROLS?
@@ -1208,10 +1207,11 @@ TODOS
             ☑️RESET ALL INDEX TRACKERS (FOR START BUTTON - AND APPLY BUTTONS ON CONTROL PANEL ? MAYBE NOT NECESSARY)
             
     PROBLEMS:
+        CONTROL APPLY BUTTONS DELETE CLICK START MESSAGE FROM TXT INPUT
         ☑️ CONSECUTIVE WRONG CHARACTERS HANDLING (DISABLE INPUT AND RELOAD)
         ☑️ CENTER TEXT INPUT CONTENT (LEADING SPACES ARE HARD CODED IN INPUT.VALUE ALSO SEE CSS .form input - line 218)
         ☑️ SPACE DIVS CONSISTENTLY IN WRAPPER (50PX. 25PX)
-        SIZE DIVS CONSISTENTLY IN WRAPPER (50PX. 25PX)
+        ☑️ SIZE DIVS CONSISTENTLY IN WRAPPER (50PX. 25PX)
         ADD COMMON CLASS TO FADE ELEMENTS
         USE CSS VARIABLE FOR COLOURS
         ARRANGE CONTROL WRAP CONTENTS (LAYOUT, SPACING)
