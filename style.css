@@ -96,9 +96,15 @@ h1 {
 .colour-code-wrap {
     width: 150px;
     height: 75px;
-    padding: 8px;
+    padding: 5px;
     border: 1px solid darkgoldenrod;
     border-radius: 4px;
+    line-height: 1.6rem;
+}
+
+.colour-code-wrap h2 {
+    font-weight: 400;
+    margin-top: 4px;
 }
 
 .control-panel-button {
@@ -261,10 +267,6 @@ h1 {
 
 .keystrokes-span {
     font-size: 60px;
-}
-
-.colour-code-wrap h2 {
-    font-weight: 400;
 }
 
 /* .button:hover {
@@ -910,8 +912,9 @@ input[type="range"]:focus::-ms-fill-upper {
     margin: 50px auto;
     border: 1px solid darkgoldenrod;
     border-radius: 4px;
-    padding: 8px;
+    padding: 8px 12px 0px 12px;
     /* font-family: "Roboto", sans-serif; */
+    text-align: left;
     font-weight: 300;
     line-height: 1.3rem;
 }

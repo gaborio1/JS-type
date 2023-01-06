@@ -1082,6 +1082,7 @@ const countdown = () => {
 
             speedSpan.innerText = finalSpeed;
 
+            startButton.disabled = false;
             startButton.classList.add("control-apply-active");
             // CLEAR TEXT AFTER 1 SECOND
             // ALSO TRY FADING TEXT OUT. SELECT ALL SPANS AND APPEND NEXT LINE TO PARAGRAPH
@@ -1119,6 +1120,7 @@ const startCountdown = () => {
     countdown();
     textInput.removeEventListener("keydown", startCountdown);
     // console.log("EVENT LISTENER REMOVED FROM TEXT INPUT FOR TIMER");
+    startButton.disabled = true;
 };
 
 // textInput.addEventListener("keydown", startCountdown);
@@ -1176,7 +1178,7 @@ TODOS
         ☑️ ORANGE KEYS COUNTER (BACKSPACE)
         COMPLETE WORDS COUNTER
     FEATURES:
-        FADE OUT OR DISABLE START BUTTON WHILE TIMER IS ON
+        ☑️ DISABLE START BUTTON WHILE TIMER IS ON
             HIDE START BUTTON AND ADD RESTART/REFRESH WHILE TIMER IS ON?
         ☑️ FADE OUT TEXT WHEN TIME IS UP
         MAKE ONE COMMON APPLY BUTTON FOR ALL CONTROLS?
