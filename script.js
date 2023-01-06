@@ -264,6 +264,11 @@ const resetAccuracyDisplays = () => {
     accuracySpan.textContent = "0";
 };
 
+// REMOVE ALL COLOUR CLASSES FROM ACCURACY SPAN
+const removeColours = () => {
+    accuracySpan.classList.remove("green", "light-green", "yellow-green", "yellow", "gold", "orange", "orange-red", "red");
+}
+
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -277,6 +282,9 @@ startButton.classList.add("control-apply-active");
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
     // console.log("TARGET ARRAY LENGTH:", targetArray.length);
+
+    // RESET ACCURACY COUNTER COLOUR
+    removeColours();
 
     // ALLOW USER INPUT TO BE TYPED
     textInput.readOnly = false;
@@ -596,6 +604,8 @@ startButton.addEventListener("click", (event) => {
 
             // REMOVE CURSOR FROM SPACE
             if (typedKey === " ") {
+
+
                 // END OF LINE SPACE
                 if (strIdx === stringWords.length - 1) {
                     // START NEW LINE
@@ -670,13 +680,44 @@ startButton.addEventListener("click", (event) => {
                 orangeCounterSpan.textContent = orangeCounter;
                 accuracy = (100 / (greenCounter + redCounter)) * greenCounter;
                 accuracySpan.textContent = `${Math.floor(accuracy)}%`;
-                // ADD GREEN CLASS TO ACCURACY WHILE ITS 100%
-                if (accuracy < 100) {
-                    accuracySpan.classList.remove("green");
+
+
+                removeColours();
+
+                if (accuracy <= 87) {
+                    removeColours();
+                    accuracySpan.classList.add("red");
                 }
+
+                if (accuracy > 87 && accuracy <= 89) {
+                    accuracySpan.classList.add("orange-red");
+                }
+
+                if (accuracy > 89 && accuracy <= 91) {
+                    accuracySpan.classList.add("orange");
+                }
+
+                if (accuracy > 91 && accuracy <= 93) {
+                    accuracySpan.classList.add("gold");
+                }
+
+                if (accuracy > 93 && accuracy <= 95) {
+                    accuracySpan.classList.add("yellow");
+                }
+
+                if (accuracy > 95 && accuracy <= 97) {
+                    accuracySpan.classList.add("yellow-green");
+                }
+
+                if (accuracy > 97 && accuracy <= 99) {
+                    accuracySpan.classList.add("light-green");
+                }
+
                 if (accuracy === 100) {
                     accuracySpan.classList.add("green");
                 }
+
+                accuracySpan.textContent = `${Math.floor(accuracy)}%`;
             }
         }
 
@@ -1018,6 +1059,7 @@ const countdown = () => {
             // speedSpan.innerText = `${Math.floor(currentSpeed)}WPM`;
             speedSpan.innerText = Math.floor(currentSpeed);
             finalSpeed = currentSpeed;
+
         }
 
         // START FADING IN CONTROLS AT 2 SECOND MARK
