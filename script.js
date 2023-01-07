@@ -322,6 +322,13 @@ startButton.classList.add("control-apply-active");
 startButton.addEventListener("click", (event) => {
     // console.log("TARGET ARRAY LENGTH:", targetArray.length);
 
+    // DISABLE CONTROL APPLY BUTTONS
+    difficultyApply.disabled = true;
+    lengthApply.disabled = true;
+    punctuationApply.disabled = true;
+    capitalApply.disabled = true;
+    timerApply.disabled = true;
+
     // RESET ACCURACY COUNTER COLOUR
     resetAccSpanColours();
 
@@ -932,6 +939,7 @@ for (let i = 0, length = difficultyRadios.length; i < length; i++) {
     difficultyRadios[i].addEventListener("click", function () {
         console.log("difficulty selected");
         difficultyApply.classList.add("control-apply-active");
+        difficultyApply.disabled = false;
         startButton.classList.remove("control-apply-active");
     });
 }
@@ -979,6 +987,7 @@ slider.onchange = function (event) {
     lengthDisplaySpan.textContent = slider.value;
     console.log("slider changed");
     lengthApply.classList.add("control-apply-active");
+    lengthApply.disabled = false;
     startButton.classList.remove("control-apply-active");
 };
 
@@ -1002,6 +1011,7 @@ const handlePunctuationToggle = () => {
     toggleButtonStyle(punctuationToggle);
     // toggleButtonState(punctuationToggle);
     punctuationApply.classList.add("control-apply-active");
+    punctuationApply.disabled = false;
     startButton.classList.remove("control-apply-active");
 };
 
@@ -1027,6 +1037,7 @@ const handleCapitalToggle = () => {
     toggleButtonStyle(capitalToggle);
     // toggleButtonState(punctuationToggle);
     capitalApply.classList.add("control-apply-active");
+    capitalApply.disabled = false;
     startButton.classList.remove("control-apply-active");
 };
 
@@ -1149,6 +1160,7 @@ for (let i = 0; i < timerRadios.length; i++) {
     timerRadios[i].addEventListener("click", function () {
         // console.log("timer selected", timerRadios[i].value);
         timerApply.classList.add("control-apply-active");
+        timerApply.disabled = false;
         startButton.classList.remove("control-apply-active");
     });
 }
@@ -1194,6 +1206,9 @@ TODOS
         ☑️ ORANGE KEYS COUNTER (BACKSPACE)
         COMPLETE WORDS COUNTER
     FEATURES:
+        ☑️ DISABLE APPLY BUTTONS BY DEFAULT, ONLY ACTIVATE THEM IF SELECTION IS MADE
+            ☑️ DISABLE APPLY BUTTONS WHAN START BUTTON IS CLICKED
+                MAKE A VARIABLE FOR A COLLECTION OF ALL APPLY BUTTONS AND DISABLE THEM WITH A LOOP INSTEAD OF ONE BY ONE
         ☑️ DISABLE START BUTTON WHILE TIMER IS ON
             HIDE START BUTTON AND ADD RESTART/REFRESH WHILE TIMER IS ON?
         ☑️ FADE OUT TEXT WHEN TIME IS UP

@@ -111,7 +111,12 @@ h1 {
     width: 45px;
     height: 25px;
     border: 1px solid black;
+    border: 1px solid darkgoldenrod;
     border-radius: 4px;
+}
+
+.control-panel-button:disabled {
+    border: 1px solid rgba(184, 135, 11, 0.547);
 }
 
 .active-container {
