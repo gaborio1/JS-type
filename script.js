@@ -941,6 +941,7 @@ for (let i = 0, length = difficultyRadios.length; i < length; i++) {
         difficultyApply.classList.add("control-apply-active");
         difficultyApply.disabled = false;
         startButton.classList.remove("control-apply-active");
+        startButton.disabled = true;
     });
 }
 
@@ -949,6 +950,7 @@ difficultyApply.addEventListener("click", function () {
     difficultyApply.classList.remove("control-apply-active");
     // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
+    startButton.disabled = false;
 
     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
@@ -989,12 +991,14 @@ slider.onchange = function (event) {
     lengthApply.classList.add("control-apply-active");
     lengthApply.disabled = false;
     startButton.classList.remove("control-apply-active");
+    startButton.disabled = true;
 };
 
 // GET SLIDER FINAL VALUE AND ASSIGN TO SEQUENCE LENGTH
 lengthApply.addEventListener("click", function () {
     // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
+    startButton.disabled = false;
 
     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
@@ -1013,6 +1017,7 @@ const handlePunctuationToggle = () => {
     punctuationApply.classList.add("control-apply-active");
     punctuationApply.disabled = false;
     startButton.classList.remove("control-apply-active");
+    startButton.disabled = true;
 };
 
 punctuationToggle.addEventListener("click", handlePunctuationToggle);
@@ -1021,6 +1026,7 @@ punctuationToggle.addEventListener("click", handlePunctuationToggle);
 punctuationApply.addEventListener("click", function () {
     // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
+    startButton.disabled = false;
 
     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
@@ -1039,6 +1045,7 @@ const handleCapitalToggle = () => {
     capitalApply.classList.add("control-apply-active");
     capitalApply.disabled = false;
     startButton.classList.remove("control-apply-active");
+    startButton.disabled = true;
 };
 
 capitalToggle.addEventListener("click", handleCapitalToggle);
@@ -1047,6 +1054,7 @@ capitalToggle.addEventListener("click", handleCapitalToggle);
 capitalApply.addEventListener("click", function () {
     // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
+    startButton.disabled = false;
 
     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
@@ -1162,6 +1170,7 @@ for (let i = 0; i < timerRadios.length; i++) {
         timerApply.classList.add("control-apply-active");
         timerApply.disabled = false;
         startButton.classList.remove("control-apply-active");
+        startButton.disabled = true;
     });
 }
 
@@ -1170,6 +1179,7 @@ timerApply.addEventListener("click", function () {
     timerApply.classList.remove("control-apply-active");
     // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
+    startButton.disabled = false;
 
     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
@@ -1206,6 +1216,7 @@ TODOS
         ☑️ ORANGE KEYS COUNTER (BACKSPACE)
         COMPLETE WORDS COUNTER
     FEATURES:
+        ☑️ DISABLE START BUTTON IF CHANGES ARE MADE TO CONTROLS, ENABLE WHEN APPLY IS CLICKED
         ☑️ DISABLE APPLY BUTTONS BY DEFAULT, ONLY ACTIVATE THEM IF SELECTION IS MADE
             ☑️ DISABLE APPLY BUTTONS WHAN START BUTTON IS CLICKED
                 MAKE A VARIABLE FOR A COLLECTION OF ALL APPLY BUTTONS AND DISABLE THEM WITH A LOOP INSTEAD OF ONE BY ONE
