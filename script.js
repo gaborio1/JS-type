@@ -251,6 +251,10 @@ const clearDataAndDisplay = () => {
     clearArrAndString();
 };
 
+const calcAccuracy = () => {
+    return (100 / (greenCounter + redCounter)) * greenCounter;
+}
+
 const resetAccuracyCounters = () => {
     greenCounter = 0;
     redCounter = 0;
@@ -265,8 +269,43 @@ const resetAccuracyDisplays = () => {
 };
 
 // REMOVE ALL COLOUR CLASSES FROM ACCURACY
-const removeColours = () => {
+const resetAccSpanColours = () => {
     accuracySpan.classList.remove("green", "light-green", "yellow-green", "yellow", "gold", "orange", "orange-red", "red");
+}
+
+// ADD COLOUR CLASS BASED ON CURRENT ACC VALUE
+const colourAccuracySpan = () => {
+    if (accuracy <= 87) {
+        accuracySpan.classList.add("red");
+    }
+
+    if (accuracy > 87 && accuracy <= 89) {
+        accuracySpan.classList.add("orange-red");
+    }
+
+    if (accuracy > 89 && accuracy <= 91) {
+        accuracySpan.classList.add("orange");
+    }
+
+    if (accuracy > 91 && accuracy <= 93) {
+        accuracySpan.classList.add("gold");
+    }
+
+    if (accuracy > 93 && accuracy <= 95) {
+        accuracySpan.classList.add("yellow");
+    }
+
+    if (accuracy > 95 && accuracy <= 97) {
+        accuracySpan.classList.add("yellow-green");
+    }
+
+    if (accuracy > 97 && accuracy < 100) {
+        accuracySpan.classList.add("light-green");
+    }
+
+    if (accuracy === 100) {
+        accuracySpan.classList.add("green");
+    }
 }
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -284,7 +323,7 @@ startButton.addEventListener("click", (event) => {
     // console.log("TARGET ARRAY LENGTH:", targetArray.length);
 
     // RESET ACCURACY COUNTER COLOUR
-    removeColours();
+    resetAccSpanColours();
 
     // ALLOW USER INPUT TO BE TYPED
     textInput.readOnly = false;
@@ -678,44 +717,12 @@ startButton.addEventListener("click", (event) => {
                 greenCounterSpan.textContent = greenCounter;
                 redCounterSpan.textContent = redCounter;
                 orangeCounterSpan.textContent = orangeCounter;
-                accuracy = (100 / (greenCounter + redCounter)) * greenCounter;
-                accuracySpan.textContent = `${Math.floor(accuracy)}%`;
+                // accuracy = (100 / (greenCounter + redCounter)) * greenCounter;
 
-
-                removeColours();
-
-                if (accuracy <= 87) {
-                    accuracySpan.classList.add("red");
-                }
-
-                if (accuracy > 87 && accuracy <= 89) {
-                    accuracySpan.classList.add("orange-red");
-                }
-
-                if (accuracy > 89 && accuracy <= 91) {
-                    accuracySpan.classList.add("orange");
-                }
-
-                if (accuracy > 91 && accuracy <= 93) {
-                    accuracySpan.classList.add("gold");
-                }
-
-                if (accuracy > 93 && accuracy <= 95) {
-                    accuracySpan.classList.add("yellow");
-                }
-
-                if (accuracy > 95 && accuracy <= 97) {
-                    accuracySpan.classList.add("yellow-green");
-                }
-
-                if (accuracy > 97 && accuracy < 100) {
-                    accuracySpan.classList.add("light-green");
-                }
-
-                if (accuracy === 100) {
-                    accuracySpan.classList.add("green");
-                }
-
+                // CALC AND DISPLAY ACCURACY
+                accuracy = calcAccuracy();
+                resetAccSpanColours();
+                colourAccuracySpan();
                 accuracySpan.textContent = `${Math.floor(accuracy)}%`;
             }
         }
@@ -766,6 +773,15 @@ startButton.addEventListener("click", (event) => {
             typedKey === " "
         ) {
             // console.log("<<<<< SPACE ON WORD, SKIP TO NEXT WORD >>>>>");
+            // console.log("current word:", wordArrays[lineIdx][wordIdx]);
+
+            // IF WORD IS SKIPPED BY SPACE INCREMENT RED COUNTER WITH ITS LENGTH 
+            redCounter += wordArrays[lineIdx][wordIdx].length;
+
+            // CALC ACCURACY AGAIN AND UPDATE COUNTER
+            accuracy = calcAccuracy();
+            colourAccuracySpan();
+            accuracySpan.textContent = `${Math.floor(accuracy)}%`;
 
             // JUMP IDX TO THE NEXT WORD IN STRING
             if (charIdx < wordArrays[lineIdx][wordIdx].length) {
