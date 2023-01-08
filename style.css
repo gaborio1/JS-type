@@ -1,3 +1,8 @@
+:root {
+    --border-gold: #b8860b;
+    --text-field-offwhite: #efefef;
+}
+
 /* CSS reset */
 * {
     margin: 0;
@@ -24,7 +29,8 @@ body {
     justify-content: center;
     margin: 50px auto;
     /* padding: 25px; */
-    border: 1px solid darkgoldenrod;
+    /* border: 1px solid darkgoldenrod; */
+    border: 1px solid var(--border-gold);
     border-radius: 4px;
     background-color: rgba(245, 245, 245, 0.206);
     font-weight: 100;
@@ -79,7 +85,7 @@ h1 {
     height: 125px;
     padding: 5px;
     /* padding: 8px; */
-    border: 1px solid darkgoldenrod;
+    border: 1px solid var(--border-gold);
     border-radius: 4px;
 }
 
@@ -97,7 +103,7 @@ h1 {
     width: 150px;
     height: 75px;
     padding: 5px;
-    border: 1px solid darkgoldenrod;
+    border: 1px solid var(--border-gold);
     border-radius: 4px;
     line-height: 1.6rem;
 }
@@ -111,7 +117,7 @@ h1 {
     width: 45px;
     height: 25px;
     border: 1px solid black;
-    border: 1px solid darkgoldenrod;
+    border: 1px solid var(--border-gold);
     border-radius: 4px;
 }
 
@@ -145,8 +151,8 @@ h1 {
     font-size: 30px;
     padding: 5px;
     border-radius: 4px;
-    background: #efefef;
-    border: 1px solid darkgoldenrod;
+    background: var(--text-field-offwhite);
+    border: 1px solid var(--border-gold);
 }
 
 .input-container {
@@ -182,7 +188,7 @@ h1 {
     justify-content: space-around;
 
     padding: 8px;
-    border: 1px solid darkgoldenrod;
+    border: 1px solid var(--border-gold);
     border-radius: 4px;
 }
 
@@ -199,8 +205,8 @@ h1 {
     /* margin: 10px auto; */
     padding-top: 4px;
     /* padding-bottom: 3px; */
-    background: #efefef;
-    border: 1px solid darkgoldenrod;
+    background: var(--text-field-offwhite);
+    border: 1px solid var(--border-gold);
     border-radius: 4px;
 }
 
@@ -239,16 +245,16 @@ h1 {
     color: rgb(74, 73, 73);
     font-weight: 300;
     /* border: none; */
-    border: 1px solid darkgoldenrod;
+    border: 1px solid var(--border-gold);
     border-radius: 4px;
-    background-color: #efefef;
+    background-color: var(--text-field-offwhite);
 }
 
 .start-button {
     width: 125px;
     height: 50px;
     /* border: none; */
-    border: 1px solid darkgoldenrod;
+    border: 1px solid var(--border-gold);
     border-radius: 4px;
     font-size: 24px;
     font-family: "Roboto", sans-serif;
@@ -560,8 +566,8 @@ input[type="range"]:focus::-ms-fill-upper {
     left: -9999px;
 }
 
-[type="radio"]:checked+label,
-[type="radio"]:not(:checked)+label {
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label {
     position: relative;
     padding-left: 28px;
     cursor: pointer;
@@ -570,8 +576,8 @@ input[type="range"]:focus::-ms-fill-upper {
     color: #666;
 }
 
-[type="radio"]:checked+label:before,
-[type="radio"]:not(:checked)+label:before {
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
     content: "";
     position: absolute;
     left: 0;
@@ -583,8 +589,8 @@ input[type="range"]:focus::-ms-fill-upper {
     background: #fff;
 }
 
-[type="radio"]:checked+label:after,
-[type="radio"]:not(:checked)+label:after {
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
     content: "";
     width: 12px;
     height: 12px;
@@ -597,13 +603,13 @@ input[type="range"]:focus::-ms-fill-upper {
     transition: all 0.2s ease;
 }
 
-[type="radio"]:not(:checked)+label:after {
+[type="radio"]:not(:checked) + label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0);
 }
 
-[type="radio"]:checked+label:after {
+[type="radio"]:checked + label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
@@ -916,7 +922,7 @@ input[type="range"]:focus::-ms-fill-upper {
     width: 1000px;
     height: 120px;
     margin: 50px auto;
-    border: 1px solid darkgoldenrod;
+    border: 1px solid var(--border-gold);
     border-radius: 4px;
     padding: 8px 12px 0px 12px;
     /* font-family: "Roboto", sans-serif; */

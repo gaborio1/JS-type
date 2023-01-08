@@ -32,7 +32,8 @@ const textSpanContainerActive = document.getElementById("text-span-active");
 // NEXT SPAN
 const textSpanContainerNext = document.getElementById("text-span-next");
 // !!! textSpanContainerNext IS NOW textSpanContainerNextParagraph !!!
-const textSpanContainerNextParagraph = document.getElementById("text-span-next-p");
+const textSpanContainerNextParagraph =
+    document.getElementById("text-span-next-p");
 // TEXT INPUT
 const textInput = document.getElementById("input");
 // START BUTTON
@@ -253,7 +254,7 @@ const clearDataAndDisplay = () => {
 
 const calcAccuracy = () => {
     return (100 / (greenCounter + redCounter)) * greenCounter;
-}
+};
 
 const resetAccuracyCounters = () => {
     greenCounter = 0;
@@ -270,8 +271,17 @@ const resetAccuracyDisplays = () => {
 
 // REMOVE ALL COLOUR CLASSES FROM ACCURACY
 const resetAccSpanColours = () => {
-    accuracySpan.classList.remove("green", "light-green", "yellow-green", "yellow", "gold", "orange", "orange-red", "red");
-}
+    accuracySpan.classList.remove(
+        "green",
+        "light-green",
+        "yellow-green",
+        "yellow",
+        "gold",
+        "orange",
+        "orange-red",
+        "red"
+    );
+};
 
 // ADD COLOUR CLASS BASED ON CURRENT ACC VALUE
 const colourAccuracySpan = () => {
@@ -306,7 +316,7 @@ const colourAccuracySpan = () => {
     if (accuracy === 100) {
         accuracySpan.classList.add("green");
     }
-}
+};
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -316,7 +326,6 @@ let startButtonCounter = 0;
 
 // HIGHLIGHT START BUTTON
 startButton.classList.add("control-apply-active");
-
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
@@ -470,7 +479,6 @@ startButton.addEventListener("click", (event) => {
             }, 4500);
         }
 
-
         // console.log("<<<<< WORD COUNTER:", wordCounter, ">>>>>");
 
         //NOT USED
@@ -592,7 +600,6 @@ startButton.addEventListener("click", (event) => {
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CORRECT KEY 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
         if (typedKey === wordArrays[lineIdx][wordIdx][charIdx]) {
-
             console.log(
                 "CORRECT KEY!",
                 "typed:",
@@ -650,8 +657,6 @@ startButton.addEventListener("click", (event) => {
 
             // REMOVE CURSOR FROM SPACE
             if (typedKey === " ") {
-
-
                 // END OF LINE SPACE
                 if (strIdx === stringWords.length - 1) {
                     // START NEW LINE
@@ -782,7 +787,7 @@ startButton.addEventListener("click", (event) => {
             // console.log("<<<<< SPACE ON WORD, SKIP TO NEXT WORD >>>>>");
             // console.log("current word:", wordArrays[lineIdx][wordIdx]);
 
-            // IF WORD IS SKIPPED BY SPACE INCREMENT RED COUNTER WITH ITS LENGTH 
+            // IF WORD IS SKIPPED BY SPACE INCREMENT RED COUNTER WITH ITS LENGTH
             redCounter += wordArrays[lineIdx][wordIdx].length;
 
             // CALC ACCURACY AGAIN AND UPDATE COUNTER
@@ -1066,7 +1071,6 @@ capitalApply.addEventListener("click", function () {
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TIMER 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
@@ -1093,7 +1097,6 @@ const countdown = () => {
             // speedSpan.innerText = `${Math.floor(currentSpeed)}WPM`;
             speedSpan.innerText = Math.floor(currentSpeed);
             finalSpeed = currentSpeed;
-
         }
 
         // START FADING IN CONTROLS AT 2 SECOND MARK
@@ -1125,7 +1128,8 @@ const countdown = () => {
             setTimeout(clearTextFields, 2000);
             // textSpanContainerActive.classList.add("fadeOut");
             textSpanContainerNextParagraph.classList.add("totalFadeOut");
-            const activeTextSpans = document.getElementsByClassName("active-txt-span");
+            const activeTextSpans =
+                document.getElementsByClassName("active-txt-span");
             for (let i = 0; i < activeTextSpans.length; i += 1) {
                 activeTextSpans[i].classList.add("totalFadeOut");
             }
@@ -1244,6 +1248,7 @@ TODOS
             AFTER PAGE IS LOADED
         BUILD RANDOM WORDS FROM PROBLEM CHARACTERS / WORDS
     CODE:
+        MAKE SEPARATE JS FILE FOR HELPER FUNCTIONS
         FUNCTIONS:
             ☑️ STYLING CHARACTERS ASSIGN STYLES TO CSS (ADD AND REMOVE CLASS WITH JS)
             ☑️ SET CURSOR POSITION (FORWARD, BACK)
