@@ -1,5 +1,6 @@
 :root {
-    --border-gold: #b8860b;
+    --border-gold: darkgoldenrod;
+    --border-gold-disabled: rgba(184, 135, 11, 0.547);
     --text-field-offwhite: #efefef;
 }
 
@@ -17,9 +18,10 @@ body {
     background-color: antiquewhite;
 }
 
-/* h1 {
-    margin-top: 10px;
-} */
+/* 
+🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰  MAIN APP  🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
 .container {
     width: 1000px;
@@ -51,9 +53,18 @@ h1 {
     font-weight: 300;
 }
 
-/* .h2 {
-    font-weight: 300 !important;
-} */
+button:hover {
+    cursor: pointer;
+}
+
+button:disabled:hover {
+    cursor: not-allowed;
+}
+
+/* 
+🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰  SECTIONS  🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
 .active-container,
 .next-container,
@@ -76,9 +87,13 @@ h1 {
     margin-top: 25px;
 }
 
-/* .controls-container {
-    height: 125px;
-} */
+/* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CONTROLS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
+
+.controls-container {
+    display: flex;
+    justify-content: space-between;
+    /* height: 125px; */
+}
 
 .control-wrap {
     width: 150px;
@@ -93,26 +108,6 @@ h1 {
     font-family: "Roboto", sans-serif;
 }
 
-.colour-code-container {
-    height: 75px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.colour-code-wrap {
-    width: 150px;
-    height: 75px;
-    padding: 5px;
-    border: 1px solid var(--border-gold);
-    border-radius: 4px;
-    line-height: 1.6rem;
-}
-
-.colour-code-wrap h2 {
-    font-weight: 400;
-    margin-top: 4px;
-}
-
 .control-panel-button {
     width: 45px;
     height: 25px;
@@ -123,8 +118,10 @@ h1 {
 
 .control-panel-button,
 .start-button:disabled {
-    border: 1px solid rgba(184, 135, 11, 0.547);
+    border: 1px solid var(--border-gold-disabled);
 }
+
+/* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TEXT CONTINERS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
 .active-container {
     /* width: 100%; */
@@ -137,63 +134,6 @@ h1 {
     /* padding: 0px 20px 0px 20px; */
     /* color: grey; */
     color: rgb(74, 73, 73);
-}
-
-.controls-container {
-    display: flex;
-    justify-content: space-between;
-    /* height: 125px; */
-}
-
-.counter-div {
-    width: 125px;
-    height: 50px;
-    font-size: 30px;
-    padding: 5px;
-    border-radius: 4px;
-    background: var(--text-field-offwhite);
-    border: 1px solid var(--border-gold);
-}
-
-.input-container {
-    width: 100%;
-    /* width: 850px; */
-    height: 50px;
-    padding: 0px 25px 0px 25px;
-    /* display: flex; */
-    /* justify-content: space-around; */
-    /* justify-content: space-between; */
-}
-
-.input {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-}
-
-.stats-container {
-    /* height: 125px; */
-    display: flex;
-    justify-content: space-between;
-    /* font-weight: 100; */
-}
-
-/* SAME AS CONTROL WRAP */
-.stat-wrap {
-    width: 175px;
-    height: 125px;
-    display: flex;
-
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-around;
-
-    padding: 8px;
-    border: 1px solid var(--border-gold);
-    border-radius: 4px;
-}
-
-.speed-span {
-    font-size: 60px;
 }
 
 /* BOTH LINES */
@@ -217,9 +157,9 @@ h1 {
     padding: 0px 1px 0px 0px;
 }
 
+/* LAST SPACE IN ACTIVE LINE(BORDER NEEDS WIDTH AND HEIGHT) */
 .active-txt-span:last-child {
     display: inline-block;
-    /* display: block; */
     position: relative;
     top: 4px;
     width: 16px;
@@ -231,6 +171,34 @@ h1 {
 .text-span-next {
     font-size: 30px;
     letter-spacing: 0.5px;
+}
+
+/* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 INPUT ROW 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
+
+/* TIMER */
+.counter-div {
+    width: 125px;
+    height: 50px;
+    font-size: 30px;
+    padding: 5px;
+    border-radius: 4px;
+    background: var(--text-field-offwhite);
+    border: 1px solid var(--border-gold);
+}
+
+.input-container {
+    width: 100%;
+    /* width: 850px; */
+    height: 50px;
+    padding: 0px 25px 0px 25px;
+    /* display: flex; */
+    /* justify-content: space-around; */
+    /* justify-content: space-between; */
+}
+
+.input {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
 }
 
 .form input {
@@ -261,9 +229,56 @@ h1 {
     font-weight: 300;
 }
 
-/* .colour-code-container {
-    font-weight: 100;
-} */
+/* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 STATISTICS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
+
+.stats-container {
+    /* height: 125px; */
+    display: flex;
+    justify-content: space-between;
+    /* font-weight: 100; */
+}
+
+/* SAME AS CONTROL WRAP */
+.stat-wrap {
+    width: 175px;
+    height: 125px;
+    display: flex;
+
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+
+    padding: 8px;
+    border: 1px solid var(--border-gold);
+    border-radius: 4px;
+}
+
+.speed-span {
+    font-size: 60px;
+}
+
+/* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 COLOUR CODE 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
+
+.colour-code-container {
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    /* border: 3px solid lightcoral; */
+}
+
+.colour-code-wrap {
+    width: 150px;
+    height: 75px;
+    padding: 5px;
+    border: 1px solid var(--border-gold);
+    border-radius: 4px;
+    line-height: 1.6rem;
+}
+
+.colour-code-wrap h2 {
+    font-weight: 400;
+    margin-top: 4px;
+}
 
 .colour-counter-span {
     font-size: 30px;
@@ -281,38 +296,26 @@ h1 {
     font-size: 60px;
 }
 
-/* .button:hover {
-    
-} */
+/* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 INSTRUCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
-/* COLOURS */
-/* .green {
-    color: green;
+
+.instructions-container {
+    width: 1000px;
+    height: 120px;
+    margin: 50px auto;
+    border: 1px solid var(--border-gold);
+    border-radius: 4px;
+    padding: 8px 12px 0px 12px;
+    /* font-family: "Roboto", sans-serif; */
+    text-align: left;
+    font-weight: 300;
+    line-height: 1.3rem;
 }
 
-.light-green {
-    color: lightgreen;
-}
-
-.yellow-green {
-    color: yellowgreen;
-}
-
-.yellow {
-    color: yellow;
-}
-
-.gold {
-    color: gold;
-}
-
-.orange {
-    color: orange;
-}
-
-.orange-red {
-    color: orangered;
-} */
+/* 
+🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰  COLOURS  🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
 .green {
     color: green;
@@ -393,6 +396,11 @@ h1 {
     opacity: 1;
 } */
 
+/* 
+🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰  ANIMATIONS  🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
+
 .fadeIn {
     /* DISABLE WITH Z INDEX */
     z-index: 1;
@@ -451,7 +459,12 @@ h1 {
     font-size: 35px;
 } */
 
-/* CUSTOM RANGE STYLES */
+/* 
+🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CUSTOM STYLES 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
+
+/* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰  RANGE  🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 /* SOURCE: https://www.cssportal.com/style-input-range/ */
 input[type="range"] {
     /* DISABLED AS IT WILL ADD A WHITE BACKGROUND */
@@ -558,16 +571,17 @@ input[type="range"]:focus::-ms-fill-upper {
     background: #50555c;
 }
 
-/* RADIO BUTTONS */
+/* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 RADIOS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 /* SOURCE: https://codepen.io/manabox/pen/raQmpL */
+
 [type="radio"]:checked,
 [type="radio"]:not(:checked) {
     position: absolute;
     left: -9999px;
 }
 
-[type="radio"]:checked + label,
-[type="radio"]:not(:checked) + label {
+[type="radio"]:checked+label,
+[type="radio"]:not(:checked)+label {
     position: relative;
     padding-left: 28px;
     cursor: pointer;
@@ -576,8 +590,8 @@ input[type="range"]:focus::-ms-fill-upper {
     color: #666;
 }
 
-[type="radio"]:checked + label:before,
-[type="radio"]:not(:checked) + label:before {
+[type="radio"]:checked+label:before,
+[type="radio"]:not(:checked)+label:before {
     content: "";
     position: absolute;
     left: 0;
@@ -589,8 +603,8 @@ input[type="range"]:focus::-ms-fill-upper {
     background: #fff;
 }
 
-[type="radio"]:checked + label:after,
-[type="radio"]:not(:checked) + label:after {
+[type="radio"]:checked+label:after,
+[type="radio"]:not(:checked)+label:after {
     content: "";
     width: 12px;
     height: 12px;
@@ -603,13 +617,13 @@ input[type="range"]:focus::-ms-fill-upper {
     transition: all 0.2s ease;
 }
 
-[type="radio"]:not(:checked) + label:after {
+[type="radio"]:not(:checked)+label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0);
 }
 
-[type="radio"]:checked + label:after {
+[type="radio"]:checked+label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
@@ -617,7 +631,7 @@ input[type="range"]:focus::-ms-fill-upper {
 
 /* ANOTHER SIMPLE ONE FROM W3SCHOOLS: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_radio */
 
-/* BLINKING CURRENT CHARACTER */
+/* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰  BLINK  🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 .blink {
     -webkit-animation: blink-text 800ms linear infinite;
     -moz-animation: blink-text 800ms linear infinite;
@@ -917,16 +931,3 @@ input[type="range"]:focus::-ms-fill-upper {
     margin: 50px auto;
     border: 3px solid darkgoldenrod;
 } */
-
-.instructions-container {
-    width: 1000px;
-    height: 120px;
-    margin: 50px auto;
-    border: 1px solid var(--border-gold);
-    border-radius: 4px;
-    padding: 8px 12px 0px 12px;
-    /* font-family: "Roboto", sans-serif; */
-    text-align: left;
-    font-weight: 300;
-    line-height: 1.3rem;
-}
