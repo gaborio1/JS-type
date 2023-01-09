@@ -108,6 +108,10 @@ button:disabled:hover {
     font-family: "Roboto", sans-serif;
 }
 
+/* .control-wrap button:active:hover {
+    background: lightgreen;
+} */
+
 .control-panel-button {
     width: 45px;
     height: 25px;
@@ -119,6 +123,11 @@ button:disabled:hover {
 .control-panel-button,
 .start-button:disabled {
     border: 1px solid var(--border-gold-disabled);
+}
+
+.punctuation-toggle:hover,
+.capital-toggle:hover {
+    background: lightgreen;
 }
 
 /* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TEXT CONTINERS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
@@ -229,6 +238,10 @@ button:disabled:hover {
     font-weight: 300;
 }
 
+/* .start-button:active:hover {
+    background: lightgreen;
+} */
+
 /* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 STATISTICS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
 .stats-container {
@@ -297,7 +310,6 @@ button:disabled:hover {
 }
 
 /* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 INSTRUCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
-
 
 .instructions-container {
     width: 1000px;
@@ -491,6 +503,7 @@ input[type="range"]::-webkit-slider-runnable-track {
     border: 0px solid #ff6987;
 }
 
+/* SLIDER */
 input[type="range"]::-webkit-slider-thumb {
     box-shadow: 0px 0px 0px #000000;
     border: 0px solid #000000;
@@ -501,6 +514,11 @@ input[type="range"]::-webkit-slider-thumb {
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -4.5px;
+}
+
+/* SLIDER HOVER */
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: lightgreen;
 }
 
 input[type="range"]:focus::-webkit-slider-runnable-track {
@@ -580,50 +598,84 @@ input[type="range"]:focus::-ms-fill-upper {
     left: -9999px;
 }
 
-[type="radio"]:checked+label,
-[type="radio"]:not(:checked)+label {
+/* RADIO TEXT */
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label {
     position: relative;
+    width: 75px;
+    height: 17px;
     padding-left: 28px;
     cursor: pointer;
-    line-height: 20px;
+    /* line-height: 20px; */
     display: inline-block;
     color: #666;
 }
 
-[type="radio"]:checked+label:before,
-[type="radio"]:not(:checked)+label:before {
+/* [type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label:hover {
+    color: red;
+} */
+
+/* RADIO HOVER BACKGROUND HIGHLIGHT */
+/* TRY TO ADJUST WIDTH */
+/* [type="radio"]:checked + label, */
+[type="radio"]:not(:checked) + label:hover {
+    background: lightgreen;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* OUTER CIRCLE */
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
     content: "";
     position: absolute;
     left: 0;
     top: 0;
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
     border: 1px solid #ddd;
     border-radius: 100%;
     background: #fff;
 }
 
-[type="radio"]:checked+label:after,
-[type="radio"]:not(:checked)+label:after {
+/* [type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before:hover {
+    background: red;
+} */
+
+/* INNER CIRCLE */
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
     content: "";
-    width: 12px;
-    height: 12px;
-    background: #f87da9;
+    width: 10px;
+    height: 10px;
+    /* background: #f87da9; */
+    /* SAME AS SLIDER THUMB */
+    background: #529de1;
+    /* CENTER ITS POSITION */
     position: absolute;
-    top: 4px;
-    left: 4px;
+    top: 3.5px;
+    left: 3.5px;
     border-radius: 100%;
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
 
-[type="radio"]:not(:checked)+label:after {
+/* [type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after:hover {
+    background: red;
+} */
+
+[type="radio"]:not(:checked) + label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0);
 }
 
-[type="radio"]:checked+label:after {
+[type="radio"]:checked + label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
