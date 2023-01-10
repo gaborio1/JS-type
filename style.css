@@ -2,6 +2,9 @@
     --border-gold: darkgoldenrod;
     --border-gold-disabled: rgba(184, 135, 11, 0.547);
     --text-field-offwhite: #efefef;
+    --font-24: 24px;
+    --font-32: 32px;
+    --font-64: 64px;
 }
 
 /* CSS reset */
@@ -16,6 +19,22 @@ body {
     font-family: "Roboto", sans-serif;
     text-align: center;
     background-color: antiquewhite;
+}
+
+h1 {
+    /* font-weight: 100; */
+    font-weight: 300;
+}
+
+/* COLOUR CODE EXAMPLES */
+h3 {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+/* WRAP TITLES */
+h4 {
+    font-weight: 400;
 }
 
 /* 
@@ -48,10 +67,6 @@ body {
     /* border: 3px solid darkgoldenrod; */
 }
 
-h1 {
-    /* font-weight: 100; */
-    font-weight: 300;
-}
 
 button:hover {
     cursor: pointer;
@@ -103,6 +118,10 @@ button:disabled:hover {
     /* padding: 8px; */
     border: 1px solid var(--border-gold);
     border-radius: 4px;
+}
+
+.control-wrap h4 {
+    margin-bottom: 8px;
 }
 
 .control-wrap button {
@@ -165,7 +184,7 @@ button:disabled:hover {
 
 /* ACTIVE LINE SPANS */
 .active-txt-span {
-    font-size: 30px;
+    font-size: var(--font-32);
     /* LETTER SPACING */
     padding: 0px 1px 0px 0px;
 }
@@ -182,7 +201,7 @@ button:disabled:hover {
 
 /* NEXT LINE STRING */
 .text-span-next {
-    font-size: 30px;
+    font-size: var(--font-32);
     letter-spacing: 0.5px;
 }
 
@@ -192,7 +211,7 @@ button:disabled:hover {
 .counter-div {
     width: 125px;
     height: 50px;
-    font-size: 30px;
+    font-size: var(--font-32);
     padding: 5px;
     border-radius: 4px;
     background: var(--text-field-offwhite);
@@ -218,7 +237,7 @@ button:disabled:hover {
     width: 500px;
     height: 50px;
     padding: 0px 20px 0px 20px;
-    font-size: 30px;
+    font-size: var(--font-32);
     text-align: left;
     /* CENTER WILL ALSO PUT CURSOR IN THE MIDDLE */
     /* text-align: center; */
@@ -237,7 +256,7 @@ button:disabled:hover {
     /* border: none; */
     border: 1px solid var(--border-gold);
     border-radius: 4px;
-    font-size: 24px;
+    font-size: var(--font-32);
     font-family: "Roboto", sans-serif;
     font-weight: 300;
 }
@@ -271,7 +290,7 @@ button:disabled:hover {
 }
 
 .speed-span {
-    font-size: 60px;
+    font-size: var(--font-64);
 }
 
 /* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 COLOUR CODE 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
@@ -292,26 +311,21 @@ button:disabled:hover {
     line-height: 1.6rem;
 }
 
-.colour-code-wrap h2 {
-    font-weight: 400;
-    margin-top: 4px;
+.colour-code-wrap h3 {
+    margin-bottom: 8px;
 }
 
 .colour-counter-span {
-    font-size: 30px;
+    font-size: var(--font-32);
 }
 
-.keystrokes-span {
-    font-size: 60px;
-}
-
+.keystrokes-span,
 .accuracy-span {
-    font-size: 60px;
+    font-size: var(--font-64);
 }
 
-.keystrokes-span {
-    font-size: 60px;
-}
+
+
 
 /* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 INSTRUCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
@@ -638,6 +652,7 @@ input[type="range"]:focus::-ms-fill-upper {
     /* TEXT */
     /* color: #529de1; */
     font-weight: 500;
+    color: #50555c;
 }
 
 
