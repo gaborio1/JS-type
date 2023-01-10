@@ -12,6 +12,7 @@ import {
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 ELEMENT VARIABLES 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
+const container = document.getElementById("container");
 const controlsContainer = document.getElementById("controls-container");
 const statsContainer = document.getElementById("stats-container");
 const colourCodeContainer = document.getElementById("colour-code-container");
@@ -1205,6 +1206,18 @@ timerApply.addEventListener("click", function () {
     }
     console.log("TIMER SELECTED:", timerSelected);
 });
+
+// FLIP
+//SOURCE: https://codepen.io/desandro/pen/LmWoWe
+
+const testButtons = document.getElementsByClassName("test-button");
+const card = document.querySelector(".card");
+
+for (let i = 0; i < testButtons.length; i += 1) {
+    testButtons[i].addEventListener("click", function () {
+        card.classList.toggle("is-flipped");
+    });
+}
 
 /*
 MASTER/multiple

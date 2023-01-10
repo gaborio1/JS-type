@@ -55,6 +55,12 @@ h4 {
     border-radius: 4px;
     background-color: rgba(245, 245, 245, 0.206);
     font-weight: 100;
+
+    /* position: relative; */
+
+    /* position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s; */
 }
 
 .wrapper {
@@ -66,7 +72,6 @@ h4 {
     /* padding-top: 20px; */
     /* border: 3px solid darkgoldenrod; */
 }
-
 
 button:hover {
     cursor: pointer;
@@ -324,14 +329,12 @@ button:disabled:hover {
     font-size: var(--font-64);
 }
 
-
-
-
 /* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 INSTRUCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
 .instructions-container {
     width: 1000px;
     height: 120px;
+    height: 800px;
     margin: 50px auto;
     border: 1px solid var(--border-gold);
     border-radius: 4px;
@@ -340,6 +343,12 @@ button:disabled:hover {
     text-align: left;
     font-weight: 300;
     line-height: 1.3rem;
+
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+
+    /* backface-visibility: hidden; */
 }
 
 /* 
@@ -541,7 +550,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
     /* height: 15px; */
     /* width: 20px; */
     /* margin-left: 1px; */
-
 }
 
 input[type="range"]:focus::-webkit-slider-runnable-track {
@@ -622,8 +630,8 @@ input[type="range"]:focus::-ms-fill-upper {
 }
 
 /* RADIO TEXT */
-[type="radio"]:checked+label,
-[type="radio"]:not(:checked)+label {
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label {
     position: relative;
     width: 75px;
     height: 16px;
@@ -642,7 +650,7 @@ input[type="range"]:focus::-ms-fill-upper {
 /* RADIO HOVER BACKGROUND HIGHLIGHT */
 /* TRY TO ADJUST WIDTH */
 /* [type="radio"]:checked + label, */
-[type="radio"]:not(:checked)+label:hover {
+[type="radio"]:not(:checked) + label:hover {
     /* BACKGROUND ONLY */
     /* background: lightgreen;
     border-top-left-radius: 10px;
@@ -655,10 +663,9 @@ input[type="range"]:focus::-ms-fill-upper {
     color: #50555c;
 }
 
-
 /* OUTER CIRCLE */
-[type="radio"]:checked+label:before,
-[type="radio"]:not(:checked)+label:before {
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
     content: "";
     position: absolute;
     left: 0;
@@ -676,8 +683,8 @@ input[type="range"]:focus::-ms-fill-upper {
 } */
 
 /* INNER CIRCLE */
-[type="radio"]:checked+label:after,
-[type="radio"]:not(:checked)+label:after {
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
     content: "";
     width: 10px;
     height: 10px;
@@ -698,13 +705,13 @@ input[type="range"]:focus::-ms-fill-upper {
     background: red;
 } */
 
-[type="radio"]:not(:checked)+label:after {
+[type="radio"]:not(:checked) + label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0);
 }
 
-[type="radio"]:checked+label:after {
+[type="radio"]:checked + label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
@@ -1012,3 +1019,43 @@ input[type="range"]:focus::-ms-fill-upper {
     margin: 50px auto;
     border: 3px solid darkgoldenrod;
 } */
+
+.test-button {
+    width: 50px;
+    height: 20px;
+}
+
+.scene {
+    width: 1000px;
+    height: 800px;
+    margin: 0px auto;
+    perspective: 600px;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+
+.card__face {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+}
+
+/* .card__face--front {
+    background: red;
+} */
+
+.card__face--back {
+    /* background: blue; */
+    transform: rotateY(180deg);
+}
+
+.card.is-flipped {
+    transform: rotateY(180deg);
+}
