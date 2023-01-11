@@ -28,6 +28,16 @@ const punctuationApply = document.getElementById("punctuation-apply");
 // CAPITAL
 const capitalToggle = document.getElementById("capital-toggle");
 const capitalApply = document.getElementById("capital-apply");
+// SOUND
+const soundToggle = document.getElementById("sound-toggle");
+const soundApply = document.getElementById("sound-apply");
+
+
+
+// FLIP BUTTON (APP/INFO)
+const flipButtons = document.getElementsByClassName("flip-button");
+const card = document.getElementById("card");
+
 // ACTIVE SPAN
 const textSpanContainerActive = document.getElementById("text-span-active");
 // NEXT SPAN
@@ -1210,12 +1220,9 @@ timerApply.addEventListener("click", function () {
 // FLIP
 //SOURCE: https://codepen.io/desandro/pen/LmWoWe
 
-const testButtons = document.getElementsByClassName("test-button");
-const card = document.querySelector(".card");
-
-for (let i = 0; i < testButtons.length; i += 1) {
-    testButtons[i].addEventListener("click", function () {
-        card.classList.toggle("is-flipped");
+for (let i = 0; i < flipButtons.length; i += 1) {
+    flipButtons[i].addEventListener("click", function () {
+        card.classList.toggle("flipped");
     });
 }
 
@@ -1233,6 +1240,8 @@ TODOS
         ☑️ ORANGE KEYS COUNTER (BACKSPACE)
         COMPLETE WORDS COUNTER
     FEATURES:
+        OPTIONAL SOUND
+        HIDE AND SHOW INFO
         ☑️ DISABLE START BUTTON IF CHANGES ARE MADE TO CONTROLS, ENABLE WHEN APPLY IS CLICKED
         ☑️ DISABLE APPLY BUTTONS BY DEFAULT, ONLY ACTIVATE THEM IF SELECTION IS MADE
             ☑️ DISABLE APPLY BUTTONS WHAN START BUTTON IS CLICKED

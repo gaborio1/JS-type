@@ -630,8 +630,8 @@ input[type="range"]:focus::-ms-fill-upper {
 }
 
 /* RADIO TEXT */
-[type="radio"]:checked + label,
-[type="radio"]:not(:checked) + label {
+[type="radio"]:checked+label,
+[type="radio"]:not(:checked)+label {
     position: relative;
     width: 75px;
     height: 16px;
@@ -650,7 +650,7 @@ input[type="range"]:focus::-ms-fill-upper {
 /* RADIO HOVER BACKGROUND HIGHLIGHT */
 /* TRY TO ADJUST WIDTH */
 /* [type="radio"]:checked + label, */
-[type="radio"]:not(:checked) + label:hover {
+[type="radio"]:not(:checked)+label:hover {
     /* BACKGROUND ONLY */
     /* background: lightgreen;
     border-top-left-radius: 10px;
@@ -664,8 +664,8 @@ input[type="range"]:focus::-ms-fill-upper {
 }
 
 /* OUTER CIRCLE */
-[type="radio"]:checked + label:before,
-[type="radio"]:not(:checked) + label:before {
+[type="radio"]:checked+label:before,
+[type="radio"]:not(:checked)+label:before {
     content: "";
     position: absolute;
     left: 0;
@@ -683,8 +683,8 @@ input[type="range"]:focus::-ms-fill-upper {
 } */
 
 /* INNER CIRCLE */
-[type="radio"]:checked + label:after,
-[type="radio"]:not(:checked) + label:after {
+[type="radio"]:checked+label:after,
+[type="radio"]:not(:checked)+label:after {
     content: "";
     width: 10px;
     height: 10px;
@@ -705,13 +705,13 @@ input[type="range"]:focus::-ms-fill-upper {
     background: red;
 } */
 
-[type="radio"]:not(:checked) + label:after {
+[type="radio"]:not(:checked)+label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0);
 }
 
-[type="radio"]:checked + label:after {
+[type="radio"]:checked+label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
@@ -1020,16 +1020,13 @@ input[type="range"]:focus::-ms-fill-upper {
     border: 3px solid darkgoldenrod;
 } */
 
-.test-button {
-    width: 50px;
-    height: 20px;
-}
 
 .scene {
     width: 1000px;
     height: 800px;
     margin: 0px auto;
-    perspective: 600px;
+    /* perspective: 2000px; */
+    perspective: 800px;
 }
 
 .card {
@@ -1054,8 +1051,11 @@ input[type="range"]:focus::-ms-fill-upper {
 .card__face--back {
     /* background: blue; */
     transform: rotateY(180deg);
+    /* transform: rotateX(180deg); */
 }
 
-.card.is-flipped {
+.card.flipped {
     transform: rotateY(180deg);
+    /* transform: rotateX(180deg); */
+
 }
