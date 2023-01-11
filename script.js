@@ -31,9 +31,6 @@ const capitalApply = document.getElementById("capital-apply");
 // SOUND
 const soundToggle = document.getElementById("sound-toggle");
 const soundApply = document.getElementById("sound-apply");
-
-
-
 // FLIP BUTTON (APP/INFO)
 const flipButtons = document.getElementsByClassName("flip-button");
 const card = document.getElementById("card");
@@ -93,6 +90,7 @@ let punctuationOn = false;
 let capitalOn = false;
 let timerSelected = true;
 let timerOn = false;
+let soundOn = true;
 
 let keyStrokeCounter = 0;
 // TEST: COUNT ALL COMPLETED WORDS (BOTH CORRECT AND INCORRECT)
@@ -176,6 +174,10 @@ const toggleButtonState = (element) => {
             capitalOn = true;
             console.log("CAPITAL:", capitalOn);
         }
+        if (element === soundToggle) {
+            soundOn = true;
+            console.log("CAPITAL:", capitalOn);
+        }
     } else {
         if (element === punctuationToggle) {
             punctuationOn = false;
@@ -184,6 +186,10 @@ const toggleButtonState = (element) => {
         if (element === capitalToggle) {
             capitalOn = false;
             console.log("CAPITAL", capitalOn);
+        }
+        if (element === soundToggle) {
+            soundOn = false;
+            console.log("CAPITAL:", capitalOn);
         }
     }
 };
@@ -471,6 +477,19 @@ startButton.addEventListener("click", (event) => {
         console.log("EVENT: KEYUP", event.key);
 
         console.log("<<<< START", wrongCounter);
+
+        const playKeySound = () => {
+            const sound = new Howl({
+                src: ['sounds/mixkit-single-key-press-in-a-laptop-2541.wav']
+            });
+            sound.play();
+        }
+
+
+        if (soundOn) {
+            playKeySound();
+        }
+
 
         if (wrongCounter >= maxMistakes) {
             textInput.readOnly = true;
@@ -765,6 +784,18 @@ startButton.addEventListener("click", (event) => {
                 wordArrays[lineIdx][wordIdx][charIdx]
             );
 
+            const playWrongKeySound = () => {
+                const sound = new Howl({
+                    src: ['sounds/mixkit-game-show-wrong-answer-buzz-950.wav'],
+                    volume: 0.25
+                });
+                sound.play();
+            }
+
+            if (soundOn) {
+                playWrongKeySound();
+            }
+
             wrongCounter += 1;
 
             let currentCharacter = document.getElementById(`span-${strIdx}`);
@@ -911,12 +942,24 @@ startButton.addEventListener("click", (event) => {
             }, 1500);
 
             setTimeout(function () {
-                textInput.value = "     ☠️   YOU ARE TERMINATED!  ☠️";
+                // textInput.value = "     ☠️   YOU ARE TERMINATED!  ☠️";
+                textInput.value = "      ☠️   You are terminated!  ☠️";
+                const playBombSound = () => {
+                    const sound = new Howl({
+                        src: ['sounds/mixkit-distant-war-explosions-1696.wav'],
+                        volume: 0.9
+                    });
+                    sound.play();
+                }
+
+                if (soundOn) {
+                    playBombSound();
+                }
             }, 3000);
 
             setTimeout(function () {
                 location.reload();
-            }, 4500);
+            }, 5000);
         }
     };
 
@@ -1163,6 +1206,33 @@ const countdown = () => {
     tick();
 };
 
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 SOUND 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+// 1. ONLY TOGGLE STYLE
+const handleSoundToggle = () => {
+    toggleButtonStyle(soundToggle);
+    // toggleButtonState(punctuationToggle);
+    soundApply.classList.add("control-apply-active");
+    soundApply.disabled = false;
+    startButton.classList.remove("control-apply-active");
+    startButton.disabled = true;
+};
+
+soundToggle.addEventListener("click", handleSoundToggle);
+
+// 2. APPLY CHANGES WHEN CLICKED
+soundApply.addEventListener("click", function () {
+    // HIGHLIGHT START BUTTON
+    startButton.classList.add("control-apply-active");
+    startButton.disabled = false;
+
+    // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
+    clearDataAndDisplay();
+    clearArrAndString();
+    // TOGGLE STATE BOOLEAN
+    toggleButtonState(soundToggle);
+    soundApply.classList.remove("control-apply-active");
+});
+
 // ONE OFF FUNCTION RUNS ON FIRST KEYPRESS
 const startCountdown = () => {
     // alert('Thanks for clicking!');
@@ -1241,6 +1311,10 @@ TODOS
         COMPLETE WORDS COUNTER
     FEATURES:
         OPTIONAL SOUND
+            KEYPRESS
+               ☑️  VALID KEYS
+                WRONG KEY WARNING
+            CONTROLS
         HIDE AND SHOW INFO
         ☑️ DISABLE START BUTTON IF CHANGES ARE MADE TO CONTROLS, ENABLE WHEN APPLY IS CLICKED
         ☑️ DISABLE APPLY BUTTONS BY DEFAULT, ONLY ACTIVATE THEM IF SELECTION IS MADE
