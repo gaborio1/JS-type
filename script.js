@@ -335,6 +335,14 @@ const colourAccuracySpan = () => {
     }
 };
 
+const playSound = (soundFile, volume) => {
+    const sound = new Howl({
+        src: [`sounds/${soundFile}`],
+        volume: volume
+    });
+    sound.play();
+}
+
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -478,16 +486,9 @@ startButton.addEventListener("click", (event) => {
 
         console.log("<<<< START", wrongCounter);
 
-        const playKeySound = () => {
-            const sound = new Howl({
-                src: ['sounds/mixkit-single-key-press-in-a-laptop-2541.wav']
-            });
-            sound.play();
-        }
-
 
         if (soundOn) {
-            playKeySound();
+            playSound('mixkit-single-key-press-in-a-laptop-2541.wav', 1);
         }
 
 
@@ -513,7 +514,6 @@ startButton.addEventListener("click", (event) => {
 
         //NOT USED
         // console.log("event.code:", event.code)
-        // counterOn = true;
 
         // ONLY KEEP TRACK OF KEYSTROKES WHILE CLOCK IS RUNNING
         if (timerOn) {
@@ -529,25 +529,13 @@ startButton.addEventListener("click", (event) => {
             statsContainer.classList.add("fadeOut");
             colourCodeContainer.classList.add("fadeOut");
         }
-        // controlsContainer.classList.add("fadeOut");
-        // statsContainer.classList.add("fadeOut");
-        // colourCodeContainer.classList.add("fadeOut");
-
-        // controlsContainer.classList.add("hidden-with-z-index");
-        // statsContainer.classList.add("hidden-with-z-index");
-        // colourCodeContainer.classList.add("hidden-with-z-index");
 
         // ENABLE CONTROLS WHEN TIME IS UP
         if (!timerOn) {
-            console.log("<<<<< TIMER OFF >>>>>");
-
+            // console.log("<<<<< TIMER OFF >>>>>");
             controlsContainer.classList.remove("fadeOut");
             statsContainer.classList.remove("fadeOut");
             colourCodeContainer.classList.remove("fadeOut");
-
-            // controlsContainer.classList.remove("hidden-with-z-index");
-            // statsContainer.classList.remove("hidden-with-z-index");
-            // colourCodeContainer.classList.remove("hidden-with-z-index");
         }
 
         // console.log(
@@ -601,8 +589,7 @@ startButton.addEventListener("click", (event) => {
             const currentCharacter = document.getElementById(`span-${strIdx}`);
             // console.log("CURRENT CHAR ORANGE", currentCharacter);
 
-            // ADD ORANGE BORDER TO BACKSPACE'D SPACE
-            // !!! HAVE TO CHECK TEXTCONTENT !!!
+            // ADD ORANGE BORDER TO BACKSPACE'D SPACE  !!! HAVE TO CHECK TEXTCONTENT !!!
             if (currentCharacter.innerText === " ") {
                 currentCharacter.classList.add("orange-border");
             }
@@ -724,6 +711,7 @@ startButton.addEventListener("click", (event) => {
                 }
 
                 wordCounter += 1;
+
                 // console.log("<<< COUNT GREEN KEYS NOW >>>");
                 // console.log(
                 //     "LAST WORD COMPLETED:",
@@ -759,9 +747,8 @@ startButton.addEventListener("click", (event) => {
                 greenCounterSpan.textContent = greenCounter;
                 redCounterSpan.textContent = redCounter;
                 orangeCounterSpan.textContent = orangeCounter;
-                // accuracy = (100 / (greenCounter + redCounter)) * greenCounter;
 
-                // CALC AND DISPLAY ACCURACY
+                // CALC AND DISPLAY ACCURACY  accuracy = (100 / (greenCounter + redCounter)) * greenCounter;
                 accuracy = calcAccuracy();
                 resetAccSpanColours();
                 colourAccuracySpan();
@@ -784,16 +771,8 @@ startButton.addEventListener("click", (event) => {
                 wordArrays[lineIdx][wordIdx][charIdx]
             );
 
-            const playWrongKeySound = () => {
-                const sound = new Howl({
-                    src: ['sounds/mixkit-game-show-wrong-answer-buzz-950.wav'],
-                    volume: 0.25
-                });
-                sound.play();
-            }
-
             if (soundOn) {
-                playWrongKeySound();
+                playSound('mixkit-message-pop-alert-2354.mp3', 0.25);
             }
 
             wrongCounter += 1;
@@ -808,7 +787,6 @@ startButton.addEventListener("click", (event) => {
                 nextCharacter.classList.add("background", "black-border");
             }
 
-            // const prevChar = document.getElementById(`span-${strIdx}`);
             currentCharacter.classList.remove("background", "black-border");
 
             if (stringWords[strIdx] === " ") {
@@ -817,8 +795,6 @@ startButton.addEventListener("click", (event) => {
             }
 
             nextChar();
-
-            // wrongCounter += 1;
         }
 
         // =========== SPACE ON WORD (WRONG CHAR AND SPACE) ===========
@@ -944,16 +920,9 @@ startButton.addEventListener("click", (event) => {
             setTimeout(function () {
                 // textInput.value = "     ☠️   YOU ARE TERMINATED!  ☠️";
                 textInput.value = "      ☠️   You are terminated!  ☠️";
-                const playBombSound = () => {
-                    const sound = new Howl({
-                        src: ['sounds/mixkit-distant-war-explosions-1696.wav'],
-                        volume: 0.9
-                    });
-                    sound.play();
-                }
 
                 if (soundOn) {
-                    playBombSound();
+                    playSound('mixkit-distant-war-explosions-1696.wav', 0.9);
                 }
             }, 3000);
 
@@ -1193,13 +1162,6 @@ const countdown = () => {
             textInput.removeEventListener("keydown", startCountdown);
             const totalKeystrokes = keyStrokeCounter;
             keystrokesSpan.textContent = totalKeystrokes;
-
-            // controlsContainer.classList.remove("fadeOut");
-            // controlsContainer.classList.add("fadeIn");
-            // statsContainer.classList.remove("fadeOut");
-            // statsContainer.classList.add("fadeIn");
-            // colourCodeContainer.classList.remove("fadeOut");
-            // colourCodeContainer.classList.add("fadeIn");
         }
     };
 
@@ -1310,12 +1272,13 @@ TODOS
         ☑️ ORANGE KEYS COUNTER (BACKSPACE)
         COMPLETE WORDS COUNTER
     FEATURES:
+        WRITE AND FORMAT INFO CARD
         OPTIONAL SOUND
             KEYPRESS
-               ☑️  VALID KEYS
-                WRONG KEY WARNING
-            CONTROLS
-        HIDE AND SHOW INFO
+                ☑️  VALID KEYS
+                ☑️ WRONG KEY WARNING
+            CONTROLS ?
+        ☑️ HIDE AND SHOW INFO
         ☑️ DISABLE START BUTTON IF CHANGES ARE MADE TO CONTROLS, ENABLE WHEN APPLY IS CLICKED
         ☑️ DISABLE APPLY BUTTONS BY DEFAULT, ONLY ACTIVATE THEM IF SELECTION IS MADE
             ☑️ DISABLE APPLY BUTTONS WHAN START BUTTON IS CLICKED
@@ -1342,6 +1305,8 @@ TODOS
         CAPS LOCK WARNING MESSAGE
             ☑️ WHEN PAGE LOADS
             AFTER PAGE IS LOADED
+        ADD MOST COMMON SENTENCES TO DIFFICULTY
+        KEEP TRACK OF PROBLEM KEYS
         BUILD RANDOM WORDS FROM PROBLEM CHARACTERS / WORDS
     CODE:
         MAKE SEPARATE JS FILE FOR HELPER FUNCTIONS
@@ -1358,7 +1323,9 @@ TODOS
         ☑️ SPACE DIVS CONSISTENTLY IN WRAPPER (50PX. 25PX)
         ☑️ SIZE DIVS CONSISTENTLY IN WRAPPER (50PX. 25PX)
         ADD COMMON CLASS TO FADE ELEMENTS
-        USE CSS VARIABLE FOR COLOURS
+        USE CSS VARIABLES
+            ☑️ APP AND WRAP BORDER
+            ☑️ FONT SIZES 24, 32, 64
         ARRANGE CONTROL WRAP CONTENTS (LAYOUT, SPACING)
         ☑️ MAKE FONT FAMILY THE SAME FOR INPUT AND BUTTONS TOO (ROBOTO)
         ☑️ WORD COUNTER IS INCREMENTED AT NEW LINE WHEN SPACE IS TYPED ON LAST WORD IN LINE
@@ -1367,6 +1334,7 @@ TODOS
         IF ANY KEY WAS TYPED ON SPACE, NEXT WORD WILL NOT WORK CORRECTLY (RED ON CORRECT)
             REASON: WORD COUNTER IS NOT INCREMENTED
         TIMER IS NOT WORKING PROPERLY IF START BUTTON IS CLICKED BEFORE TIME RUNS OUT
+            ☑️ TEMP SOLUTION: START BUTTON IS NOW DISABLED WHILE TIMER IS ON
         ☑️ CONTROL PANEL SETTINGS DON'T WORK TOGETHER WELL (PROBLEM WITH LISTENERS)
         ☑️ INITIALISE (CLEAR) ALL TEXT DATA WHEN CLICKING START
         LISTEN FOR KEYPRESS ON INPUT FIELD ONLY !!!
@@ -1377,6 +1345,8 @@ TODOS
             ☑️ LENGTH
             ☑️ PUNCTUATION
             ☑️ CAPITAL
+            ☑️ TIMER
+            ☑️ SOUND
         THEN,
         ☑️ HIGHLIGHT START BUTTON
         ☑️ ADD ORANGE BORDER TO SPACE WHEN BACKSPACE IS USED
