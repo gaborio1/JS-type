@@ -487,9 +487,9 @@ startButton.addEventListener("click", (event) => {
         console.log("<<<< START", wrongCounter);
 
 
-        if (soundOn) {
-            playSound('mixkit-single-key-press-in-a-laptop-2541.wav', 1);
-        }
+        // if (soundOn) {
+        //     playSound('mixkit-single-key-press-in-a-laptop-2541.wav', 1);
+        // }
 
 
         if (wrongCounter >= maxMistakes) {
@@ -624,6 +624,10 @@ startButton.addEventListener("click", (event) => {
                 "actual:",
                 wordArrays[lineIdx][wordIdx][charIdx]
             );
+
+            if (soundOn) {
+                playSound('mixkit-single-key-press-in-a-laptop-2541.wav', 1);
+            }
 
             wrongCounter = 0;
 
@@ -780,14 +784,22 @@ startButton.addEventListener("click", (event) => {
             let currentCharacter = document.getElementById(`span-${strIdx}`);
             let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
 
-            currentCharacter.classList.add("red");
+            if (nextCharacter !== null) {
+                currentCharacter.classList.add("red");
+            }
+
 
             // ONLY ACCESS NEXT CHAR IF IT IS NOT THE END OF LINE SPACE
             if (strIdx < stringWords.length - 1) {
                 nextCharacter.classList.add("background", "black-border");
             }
 
-            currentCharacter.classList.remove("background", "black-border");
+            if (nextCharacter !== null) {
+                currentCharacter.classList.remove("background", "black-border");
+            }
+
+
+            // currentCharacter.classList.remove("background", "black-border");
 
             if (stringWords[strIdx] === " ") {
                 // console.log("<<<<< ADD RED BORDER TO SPACE >>>>>");
@@ -804,6 +816,10 @@ startButton.addEventListener("click", (event) => {
         ) {
             // console.log("<<<<< SPACE ON WORD, SKIP TO NEXT WORD >>>>>");
             // console.log("current word:", wordArrays[lineIdx][wordIdx]);
+
+            if (soundOn) {
+                playSound('mixkit-message-pop-alert-2354.mp3', 0.25);
+            }
 
             // IF WORD IS SKIPPED BY SPACE INCREMENT RED COUNTER WITH ITS LENGTH
             redCounter += wordArrays[lineIdx][wordIdx].length;
