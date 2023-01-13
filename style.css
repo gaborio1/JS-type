@@ -340,7 +340,7 @@ button:disabled:hover {
     margin: 50px auto;
     border: 1px solid var(--border-gold);
     border-radius: 4px;
-    padding: 8px 12px 0px 12px;
+    padding: 8px 12px 0px 20px;
     /* font-family: "Roboto", sans-serif; */
     text-align: left;
     font-weight: 300;
@@ -351,6 +351,34 @@ button:disabled:hover {
     transition: transform 1s;
 
     /* backface-visibility: hidden; */
+}
+
+.flip-button__card {
+    display: inline-block;
+    width: 45px;
+    height: 25px;
+    border: 1px solid black;
+    border: 1px solid var(--border-gold);
+    border-radius: 4px;
+    font-weight: 100;
+    background: lightgreen;
+    margin-left: 450px;
+}
+
+.instructions-container .flip-button__card:hover {
+    /* background: lightgreen; */
+    font-weight: 500;
+}
+
+
+
+.instructions-container h3 {
+    margin-bottom: 5px;
+    display: inline;
+}
+
+li {
+    margin-left: 30px;
 }
 
 /* 
