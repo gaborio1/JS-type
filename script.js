@@ -706,10 +706,18 @@ startButton.addEventListener("click", (event) => {
                     let currentCharacter = document.getElementById(
                         `span-${strIdx - 1}`
                     );
+
+                    // if (currentCharacter !== null) {
                     currentCharacter.classList.remove(
                         "background",
                         "black-border"
                     );
+                    // }
+
+                    // currentCharacter.classList.remove(
+                    //     "background",
+                    //     "black-border"
+                    // );
                     nextWord();
                     clearTextInput();
                 }
@@ -736,6 +744,11 @@ startButton.addEventListener("click", (event) => {
                 for (let i = strIdx - 2; i >= strIdx - lastWordLength; i -= 1) {
                     // PRINT LAST WORD SPANS WITHOUT TRAILING SPACE
                     // console.log(charSpans[i]);
+
+                    if (charSpans[i] === undefined) {
+                        console.log("charspans[i] UNDEFINED!!!");
+                    }
+
                     if (charSpans[i].classList.contains("green")) {
                         greenCounter += 1;
                     }
