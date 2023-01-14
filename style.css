@@ -354,14 +354,15 @@ button:disabled:hover {
 }
 
 .flip-button__card {
-    display: inline-block;
+    /* display: inline-block; */
     width: 45px;
     height: 25px;
     border: 1px solid black;
     border: 1px solid var(--border-gold);
     border-radius: 4px;
+    font-family: "Roboto", sans-serif;
     font-weight: 100;
-    background: lightgreen;
+    /* background: lightgreen; */
     margin-left: 450px;
 }
 
