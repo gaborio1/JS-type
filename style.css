@@ -340,7 +340,7 @@ button:disabled:hover {
     margin: 50px auto;
     border: 1px solid var(--border-gold);
     border-radius: 4px;
-    padding: 8px 12px 0px 20px;
+    padding: 20px 12px 0px 20px;
     /* font-family: "Roboto", sans-serif; */
     text-align: left;
     font-weight: 300;
@@ -370,15 +370,22 @@ button:disabled:hover {
     font-weight: 500;
 }
 
-
+.instructions-container p {
+    margin-left: 20px;
+}
 
 .instructions-container h3 {
     margin-bottom: 5px;
     display: inline;
 }
 
-li {
+.instructions-container li {
     margin-left: 30px;
+}
+
+.instructions-container span {
+    font-weight: 400;
+    margin-right: 3px;
 }
 
 /* 
@@ -660,8 +667,8 @@ input[type="range"]:focus::-ms-fill-upper {
 }
 
 /* RADIO TEXT */
-[type="radio"]:checked+label,
-[type="radio"]:not(:checked)+label {
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label {
     position: relative;
     width: 75px;
     height: 16px;
@@ -680,7 +687,7 @@ input[type="range"]:focus::-ms-fill-upper {
 /* RADIO HOVER BACKGROUND HIGHLIGHT */
 /* TRY TO ADJUST WIDTH */
 /* [type="radio"]:checked + label, */
-[type="radio"]:not(:checked)+label:hover {
+[type="radio"]:not(:checked) + label:hover {
     /* BACKGROUND ONLY */
     /* background: lightgreen;
     border-top-left-radius: 10px;
@@ -694,8 +701,8 @@ input[type="range"]:focus::-ms-fill-upper {
 }
 
 /* OUTER CIRCLE */
-[type="radio"]:checked+label:before,
-[type="radio"]:not(:checked)+label:before {
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
     content: "";
     position: absolute;
     left: 0;
@@ -713,8 +720,8 @@ input[type="range"]:focus::-ms-fill-upper {
 } */
 
 /* INNER CIRCLE */
-[type="radio"]:checked+label:after,
-[type="radio"]:not(:checked)+label:after {
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
     content: "";
     width: 10px;
     height: 10px;
@@ -735,13 +742,13 @@ input[type="range"]:focus::-ms-fill-upper {
     background: red;
 } */
 
-[type="radio"]:not(:checked)+label:after {
+[type="radio"]:not(:checked) + label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0);
 }
 
-[type="radio"]:checked+label:after {
+[type="radio"]:checked + label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
@@ -1050,7 +1057,6 @@ input[type="range"]:focus::-ms-fill-upper {
     border: 3px solid darkgoldenrod;
 } */
 
-
 .scene {
     width: 1000px;
     height: 800px;
@@ -1087,5 +1093,4 @@ input[type="range"]:focus::-ms-fill-upper {
 .card.flipped {
     transform: rotateY(180deg);
     /* transform: rotateX(180deg); */
-
 }
