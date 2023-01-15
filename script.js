@@ -105,6 +105,10 @@ let accuracy = 0;
 let wrongCounter = 0;
 const maxMistakes = 5;
 
+// TRCACK PROBLEM KEYS (NO DUPLICATES IN SET)
+let problemKeysSet = new Set();
+const problemKeySpans = document.getElementsByClassName("problem-key-span");
+
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 FUNCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -788,11 +792,30 @@ startButton.addEventListener("click", (event) => {
                 wordArrays[lineIdx][wordIdx][charIdx]
             );
 
+            wrongCounter += 1;
+
+            problemKeysSet.add(wordArrays[lineIdx][wordIdx][charIdx]);
+            console.log("<<<<< PROBLEM KEYS SET >>>>>", problemKeysSet);
+
+            // IF PROBLEMKEYS SET HAS LENGTH LOOP OVER problemKeysSet AND FIND CORRESPONDING problem-key-span FOR EACH ELEMENT
+            if (problemKeysSet.size) {
+                console.log(problemKeySpans);
+                problemKeysSet.forEach((key) => {
+                    console.log(key);
+                    for (let i = 0; i < problemKeySpans.length; i += 1) {
+                        if (problemKeySpans[i].innerText === key) {
+                            // !!! RED CLASS DOES NOT OVERWRITE CSS COLOUR !!!
+                            problemKeySpans[i].classList.add("red");
+                            problemKeySpans[i].style.color = "red";
+                        }
+                    }
+                })
+            }
+
             if (soundOn) {
                 playSound('mixkit-message-pop-alert-2354.mp3', 0.25);
             }
 
-            wrongCounter += 1;
 
             let currentCharacter = document.getElementById(`span-${strIdx}`);
             let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
@@ -1335,7 +1358,9 @@ TODOS
             ☑️ WHEN PAGE LOADS
             AFTER PAGE IS LOADED
         ADD MOST COMMON SENTENCES TO DIFFICULTY
-        KEEP TRACK OF PROBLEM KEYS
+        PROBLEM KEYS
+            ☑️ TRACK
+            ☑️ DISPLAY (TEMPORARY TEST DIV, HAVE TO FIND PLACE FOR IT IN APP, MAYBE HIDE AND SHOW?)
         BUILD RANDOM WORDS FROM PROBLEM CHARACTERS / WORDS
     CODE:
         MAKE SEPARATE JS FILE FOR HELPER FUNCTIONS
