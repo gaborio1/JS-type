@@ -48,7 +48,7 @@ h4 {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 50px auto;
+    margin: 25px auto;
     /* padding: 25px; */
     /* border: 1px solid darkgoldenrod; */
     border: 1px solid var(--border-gold);
@@ -337,7 +337,8 @@ button:disabled:hover {
     width: 1000px;
     height: 120px;
     height: 800px;
-    margin: 50px auto;
+    /* margin: 50px auto; */
+    margin: 25px auto;
     border: 1px solid var(--border-gold);
     border-radius: 4px;
     padding: 20px 12px 0px 20px;
@@ -389,25 +390,39 @@ button:disabled:hover {
     margin-right: 3px;
 }
 
+/* TEST PROBLEM KEYS DIV */
+
 .problem-keys-container {
     width: 1000px;
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 100px auto;
+    margin: 50px auto;
     padding: 5px;
-    letter-spacing: 18px;
-    /* padding: 8px; */
     border: 1px solid var(--border-gold);
     border-radius: 4px;
 }
 
 .problem-keys-container span {
+    /* text-align: center; */
+    width: 40px;
     font-size: var(--font-32);
+    margin: 0px 1px 0px 1px;
+
+    padding: 0px 5px 0px 5px;
     /* !!! RED CLASS DOES NOT OVERWRITE CSS COLOUR !!! */
     color: rgba(73, 74, 73, 0.427);
+    border: 1px solid rgba(73, 74, 73, 0.427);
+    border-radius: 4px;
+}
 
+.problem-keys-container span.red {
+    font-size: var(--font-32);
+    font-weight: 500;
+    background: rgba(255, 0, 0, 0.247);
+    border: 1px solid red;
+    border-radius: 4px;
 }
 
 /* 
@@ -689,8 +704,8 @@ input[type="range"]:focus::-ms-fill-upper {
 }
 
 /* RADIO TEXT */
-[type="radio"]:checked+label,
-[type="radio"]:not(:checked)+label {
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label {
     position: relative;
     width: 75px;
     height: 16px;
@@ -709,7 +724,7 @@ input[type="range"]:focus::-ms-fill-upper {
 /* RADIO HOVER BACKGROUND HIGHLIGHT */
 /* TRY TO ADJUST WIDTH */
 /* [type="radio"]:checked + label, */
-[type="radio"]:not(:checked)+label:hover {
+[type="radio"]:not(:checked) + label:hover {
     /* BACKGROUND ONLY */
     /* background: lightgreen;
     border-top-left-radius: 10px;
@@ -723,8 +738,8 @@ input[type="range"]:focus::-ms-fill-upper {
 }
 
 /* OUTER CIRCLE */
-[type="radio"]:checked+label:before,
-[type="radio"]:not(:checked)+label:before {
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
     content: "";
     position: absolute;
     left: 0;
@@ -742,8 +757,8 @@ input[type="range"]:focus::-ms-fill-upper {
 } */
 
 /* INNER CIRCLE */
-[type="radio"]:checked+label:after,
-[type="radio"]:not(:checked)+label:after {
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
     content: "";
     width: 10px;
     height: 10px;
@@ -764,13 +779,13 @@ input[type="range"]:focus::-ms-fill-upper {
     background: red;
 } */
 
-[type="radio"]:not(:checked)+label:after {
+[type="radio"]:not(:checked) + label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0);
 }
 
-[type="radio"]:checked+label:after {
+[type="radio"]:checked + label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
