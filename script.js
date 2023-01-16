@@ -55,6 +55,9 @@ const timerRadios = document.getElementsByClassName("timer-radio");
 const timerApply = document.getElementById("timer-apply");
 // SPEEDOMETER DISPLAY SPAN
 const speedSpan = document.getElementById("speed-span");
+// KEYBOARD
+const keyboard = document.getElementById("keyboard");
+const letterKeys = document.getElementsByClassName("key--letter")
 // GREEN / RED COUNTER SPANS
 const greenCounterSpan = document.getElementById("green-counter-span");
 const redCounterSpan = document.getElementById("red-counter-span");
@@ -360,6 +363,15 @@ startButton.classList.add("control-apply-active");
 startButton.addEventListener("click", (event) => {
     // console.log("TARGET ARRAY LENGTH:", targetArray.length);
 
+    // RESET PROBLEM KEYS SET
+    problemKeysSet.clear();
+
+    // REMOVE RED BACKGROUND FROM PROBLEM KEYS
+    for (let i = 0; i < letterKeys.length; i += 1) {
+        letterKeys[i].classList.remove("red-background");
+        // letterKeys[i].style.color = "red";
+    }
+
     // DISABLE CONTROL APPLY BUTTONS
     difficultyApply.disabled = true;
     lengthApply.disabled = true;
@@ -532,6 +544,7 @@ startButton.addEventListener("click", (event) => {
             controlsContainer.classList.add("fadeOut");
             statsContainer.classList.add("fadeOut");
             colourCodeContainer.classList.add("fadeOut");
+            keyboard.classList.add("fadeOut");
         }
 
         // ENABLE CONTROLS WHEN TIME IS UP
@@ -773,7 +786,7 @@ startButton.addEventListener("click", (event) => {
                 accuracy = calcAccuracy();
                 resetAccSpanColours();
                 colourAccuracySpan();
-                accuracySpan.textContent = `${Math.floor(accuracy)}%`;
+                accuracySpan.textContent = `${Math.floor(accuracy)}`;
             }
         }
 
@@ -799,18 +812,32 @@ startButton.addEventListener("click", (event) => {
 
             // IF PROBLEMKEYS SET HAS LENGTH LOOP OVER problemKeysSet AND FIND CORRESPONDING problem-key-span FOR EACH ELEMENT
             if (problemKeysSet.size) {
-                console.log(problemKeySpans);
+                // console.log(problemKeySpans);
+
                 problemKeysSet.forEach((key) => {
                     console.log(key);
                     for (let i = 0; i < problemKeySpans.length; i += 1) {
                         if (problemKeySpans[i].innerText === key) {
                             // !!! RED CLASS DOES NOT OVERWRITE CSS COLOUR !!!
-                            problemKeySpans[i].classList.add("red");
+                            // problemKeySpans[i].classList.add("red", "red-background");
                             problemKeySpans[i].style.color = "red";
                         }
                     }
                 })
+
+                problemKeysSet.forEach((key) => {
+                    console.log(key);
+                    for (let i = 0; i < letterKeys.length; i += 1) {
+                        if (letterKeys[i].innerText === key.toUpperCase()) {
+                            // !!! RED CLASS DOES NOT OVERWRITE CSS COLOUR !!!
+                            letterKeys[i].classList.add("red-background");
+                            // letterKeys[i].style.color = "red";
+                        }
+                    }
+                })
             }
+
+
 
             if (soundOn) {
                 playSound('mixkit-message-pop-alert-2354.mp3', 0.25);
@@ -1182,6 +1209,9 @@ const countdown = () => {
             statsContainer.classList.add("fadeIn");
             colourCodeContainer.classList.remove("fadeOut");
             colourCodeContainer.classList.add("fadeIn");
+            keyboard.classList.remove("fadeOut");
+            keyboard.classList.add("fadeIn");
+
         }
 
         if (seconds === 0) {
