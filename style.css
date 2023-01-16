@@ -1196,6 +1196,7 @@ input[type="range"]:focus::-ms-fill-upper {
     -webkit-user-select: none;
     border: 1px solid #444;
     border: 1px solid rgb(0, 0, 0);
+    border: 1px solid var(--border-gold);
     /* box-shadow: 0 0.2em 0 0.05em #222; */
     /* box-shadow: 0 0.1em 0 0.03em #222; */
     /* border-bottom-color: #555; */

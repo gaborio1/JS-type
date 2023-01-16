@@ -111,6 +111,7 @@ const maxMistakes = 5;
 // TRCACK PROBLEM KEYS (NO DUPLICATES IN SET)
 let problemKeysSet = new Set();
 const problemKeySpans = document.getElementsByClassName("problem-key-span");
+const probKeyWordsArr = [];
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 FUNCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -363,7 +364,29 @@ startButton.classList.add("control-apply-active");
 startButton.addEventListener("click", (event) => {
     // console.log("TARGET ARRAY LENGTH:", targetArray.length);
 
-    // RESET PROBLEM KEYS SET
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 PROBLEM KEYS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+
+    // IF THERE IS AT LEAST ONE PROBLEM KEY FILL PROBKEYWORDSARR WITH WORDS THAT CONTAIN PROBLEM KEYS
+    let tempProbWordsArr = [];
+
+    if (problemKeysSet.size) {
+        // FIND PROBLEM KEY WORDS IN CURRENT TARGET ARRAY
+        problemKeysSet.forEach((key) => {
+            targetArray.forEach((word) => {
+                if (word.indexOf(key) > -1) {
+                    tempProbWordsArr.push(word);
+                }
+            })
+        })
+        // UPDATE TARGET ARRAY WITH FILTERED WORDS ARRAY
+        targetArray = [...tempProbWordsArr];
+    }
+
+    console.log("<<<<< TEMPORARY PROBLEM WORDS ARRAY >>>>>", tempProbWordsArr);
+    console.log("PROBLEM KEYS:", problemKeysSet);
+
+    // RESET PROBLEM KEYS SET AFTER PROBLEM KEYS (IF ANY) HAVE BEEN USED FOR NEW SET OF WORDS
     problemKeysSet.clear();
 
     // REMOVE RED BACKGROUND FROM PROBLEM KEYS
