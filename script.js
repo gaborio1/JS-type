@@ -14,8 +14,13 @@ import {
 
 const container = document.getElementById("container");
 const controlsContainer = document.getElementById("controls-container");
-const statsContainer = document.getElementById("stats-container");
+
+const statsContainerLeft = document.getElementById("stats-container__left");
+const statsContainerRight = document.getElementById("stats-container__rigth");
 const colourCodeContainer = document.getElementById("colour-code-container");
+
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰   CONTROL PANEL   🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
 // DIFFICULTY
 const difficultyApply = document.getElementById("diffuculty-apply");
 // LENGTH
@@ -31,9 +36,17 @@ const capitalApply = document.getElementById("capital-apply");
 // SOUND
 const soundToggle = document.getElementById("sound-toggle");
 const soundApply = document.getElementById("sound-apply");
+// ALL RADIOS
+// const radios = document.getElementsByClassName("radio");
+const difficultyRadios = document.getElementsByClassName("difficulty-radio");
+const timerRadios = document.getElementsByClassName("timer-radio");
+// TIMER
+const timerApply = document.getElementById("timer-apply");
 // FLIP BUTTON (APP/INFO)
 const flipButtons = document.getElementsByClassName("flip-button");
 const card = document.getElementById("card");
+
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰   TEXT FIELDS   🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
 // ACTIVE SPAN
 const textSpanContainerActive = document.getElementById("text-span-active");
@@ -46,24 +59,20 @@ const textSpanContainerNextParagraph =
 const textInput = document.getElementById("input");
 // START BUTTON
 const startButton = document.getElementById("start-button");
-// ALL RADIOS
-// const radios = document.getElementsByClassName("radio");
-const difficultyRadios = document.getElementsByClassName("difficulty-radio");
-const timerRadios = document.getElementsByClassName("timer-radio");
 
-// TIMER
-const timerApply = document.getElementById("timer-apply");
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰   STATS / KEYBOARD   🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
 // SPEEDOMETER DISPLAY SPAN
 const speedSpan = document.getElementById("speed-span");
-// KEYBOARD
-const keyboard = document.getElementById("keyboard");
-const letterKeys = document.getElementsByClassName("key--letter")
 // GREEN / RED COUNTER SPANS
 const greenCounterSpan = document.getElementById("green-counter-span");
 const redCounterSpan = document.getElementById("red-counter-span");
 const orangeCounterSpan = document.getElementById("orange-counter-span");
 const keystrokesSpan = document.getElementById("keystrokes-span");
 const accuracySpan = document.getElementById("accuracy-span");
+// KEYBOARD
+const keyboard = document.getElementById("keyboard");
+const letterKeys = document.getElementsByClassName("key--letter");
 
 // TEXTCONTAINER
 // DISABLED
@@ -346,10 +355,21 @@ const colourAccuracySpan = () => {
 const playSound = (soundFile, volume) => {
     const sound = new Howl({
         src: [`sounds/${soundFile}`],
-        volume: volume
+        volume: volume,
     });
     sound.play();
-}
+};
+
+//  !!! FIND WHERE AND WHEN TO DETECT CAPSLOCK !!!
+textInput.addEventListener("keyup", function (event) {
+    if (event.getModifierState("CapsLock")) {
+        // text.style.display = "block";
+        // document.getElementById("capslock-key").classList.add("red-backround");
+        document.getElementById("capslock-key").style.background = "red";
+    } else {
+        // text.style.display = "none";
+    }
+});
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -364,8 +384,17 @@ startButton.classList.add("control-apply-active");
 startButton.addEventListener("click", (event) => {
     // console.log("TARGET ARRAY LENGTH:", targetArray.length);
 
-    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 PROBLEM KEYS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+    // TRACK NUMBER OF START BUTTON CLICKS
+    startButtonCounter += 1;
+    // console.log("START BUTTON COUNTER", startButtonCounter);
 
+    // DETECT CAPSLOCK
+    if (event.getModifierState("CapsLock")) {
+        console.log("CAPSLOCK IS ON!");
+        textInput.placeholder = "CAPSLOCK IS ON!";
+    }
+
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 PROBLEM KEYS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
     // IF THERE IS AT LEAST ONE PROBLEM KEY FILL PROBKEYWORDSARR WITH WORDS THAT CONTAIN PROBLEM KEYS
     let tempProbWordsArr = [];
@@ -377,8 +406,8 @@ startButton.addEventListener("click", (event) => {
                 if (word.indexOf(key) > -1) {
                     tempProbWordsArr.push(word);
                 }
-            })
-        })
+            });
+        });
         // UPDATE TARGET ARRAY WITH FILTERED WORDS ARRAY
         targetArray = [...tempProbWordsArr];
     }
@@ -395,6 +424,8 @@ startButton.addEventListener("click", (event) => {
         // letterKeys[i].style.color = "red";
     }
 
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CONTROL PANEL 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
     // DISABLE CONTROL APPLY BUTTONS
     difficultyApply.disabled = true;
     lengthApply.disabled = true;
@@ -402,14 +433,18 @@ startButton.addEventListener("click", (event) => {
     capitalApply.disabled = true;
     timerApply.disabled = true;
 
+    // UN BLUR CONTROLS
+    controlsContainer.classList.remove("hidden-with-z-index");
+    statsContainerLeft.classList.remove("hidden-with-z-index");
+    statsContainerRight.classList.remove("hidden-with-z-index");
+    colourCodeContainer.classList.remove("hidden-with-z-index");
+
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 STATISTICS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
     // RESET ACCURACY COUNTER COLOUR
     resetAccSpanColours();
-
-    // ALLOW USER INPUT TO BE TYPED
-    textInput.readOnly = false;
-
-    // REMOVE FADE OUT CLASS FROM NEXT LINE
-    textSpanContainerNextParagraph.classList.remove("totalFadeOut");
+    // RESET WORDCOUNTER
+    wordCounter = 0;
 
     // RESET ACCURACY COUNTERS / DISPLAYS , KEYSTROKE COUNTER
     speedSpan.textContent = 0;
@@ -418,10 +453,15 @@ startButton.addEventListener("click", (event) => {
     keyStrokeCounter = 0;
     keystrokesSpan.textContent = 0;
 
-    // UN BLUR CONTROLS
-    controlsContainer.classList.remove("hidden-with-z-index");
-    statsContainer.classList.remove("hidden-with-z-index");
-    colourCodeContainer.classList.remove("hidden-with-z-index");
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 INPUT ROW 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+    // ALLOW USER INPUT TO BE TYPED
+    textInput.readOnly = false;
+
+    // SET CURSOR TO INPUT BOX  AT FIRST CHAR IF TEXT-ALIGN IS DISABLED IN CSS
+    // SETS CURSOR AT FIRST CHAR IF TEXT-ALIGN IS DISABLED IN CSS
+    // txtInput.setSelectionRange(0, 0);
+    textInput.focus();
 
     // ADD LISTENER FOR TIMER IF 1 MIN TIMER IS SELECTED
     if (timerSelected) {
@@ -429,32 +469,19 @@ startButton.addEventListener("click", (event) => {
         // console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
     }
 
-    // RESET WORDCOUNTER
-    wordCounter = 0;
-
-    // TRACK NUMBER OF START BUTTON CLICKS
-    startButtonCounter += 1;
-    // console.log("START BUTTON COUNTER", startButtonCounter);
-
-    // CLEAR ALL STRING DATA FROM TEXT FIELDS AND EMPTY ARRAYS
-    clearTextFields();
-
     // REMOVE HIGHLIGHT START BUTTON
     startButton.classList.remove("control-apply-active");
     // CHANGE PLACEHOLDER TO "START TYPING"
     textInput.placeholder = "Start typing or customise text";
     clearIdxTrackers();
 
-    // DETECT CAPSLOCK
-    if (event.getModifierState("CapsLock")) {
-        console.log("CAPSLOCK IS ON!");
-        textInput.placeholder = "CAPSLOCK IS ON!";
-    }
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TEXT FIELDS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-    // SET CURSOR TO INPUT BOX  AT FIRST CHAR IF TEXT-ALIGN IS DISABLED IN CSS
-    // SETS CURSOR AT FIRST CHAR IF TEXT-ALIGN IS DISABLED IN CSS
-    // txtInput.setSelectionRange(0, 0);
-    textInput.focus();
+    // REMOVE FADE OUT CLASS FROM NEXT LINE
+    textSpanContainerNextParagraph.classList.remove("totalFadeOut");
+
+    // CLEAR ALL STRING DATA FROM TEXT FIELDS AND EMPTY ARRAYS
+    clearTextFields();
 
     // TEST FOR ARRAY OF 5 ARRAYS
     buidWordArrays(wordsArrLength);
@@ -525,11 +552,9 @@ startButton.addEventListener("click", (event) => {
 
         console.log("<<<< START", wrongCounter);
 
-
         // if (soundOn) {
         //     playSound('mixkit-single-key-press-in-a-laptop-2541.wav', 1);
         // }
-
 
         if (wrongCounter >= maxMistakes) {
             textInput.readOnly = true;
@@ -565,7 +590,8 @@ startButton.addEventListener("click", (event) => {
         // !!! THIS ONLY RUNS IF TIMER IS ON !!!
         if (keyStrokeCounter === 1) {
             controlsContainer.classList.add("fadeOut");
-            statsContainer.classList.add("fadeOut");
+            statsContainerLeft.classList.add("fadeOut");
+            statsContainerRight.classList.add("fadeOut");
             colourCodeContainer.classList.add("fadeOut");
             keyboard.classList.add("fadeOut");
         }
@@ -574,7 +600,8 @@ startButton.addEventListener("click", (event) => {
         if (!timerOn) {
             // console.log("<<<<< TIMER OFF >>>>>");
             controlsContainer.classList.remove("fadeOut");
-            statsContainer.classList.remove("fadeOut");
+            statsContainerLeft.classList.remove("fadeOut");
+            statsContainerRight.classList.remove("fadeOut");
             colourCodeContainer.classList.remove("fadeOut");
         }
 
@@ -666,7 +693,7 @@ startButton.addEventListener("click", (event) => {
             );
 
             if (soundOn) {
-                playSound('mixkit-single-key-press-in-a-laptop-2541.wav', 1);
+                playSound("mixkit-single-key-press-in-a-laptop-2541.wav", 1);
             }
 
             wrongCounter = 0;
@@ -846,7 +873,7 @@ startButton.addEventListener("click", (event) => {
                             problemKeySpans[i].style.color = "red";
                         }
                     }
-                })
+                });
 
                 problemKeysSet.forEach((key) => {
                     console.log(key);
@@ -857,15 +884,12 @@ startButton.addEventListener("click", (event) => {
                             // letterKeys[i].style.color = "red";
                         }
                     }
-                })
+                });
             }
-
-
 
             if (soundOn) {
-                playSound('mixkit-message-pop-alert-2354.mp3', 0.25);
+                playSound("mixkit-message-pop-alert-2354.mp3", 0.25);
             }
-
 
             let currentCharacter = document.getElementById(`span-${strIdx}`);
             let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
@@ -873,7 +897,6 @@ startButton.addEventListener("click", (event) => {
             if (nextCharacter !== null) {
                 currentCharacter.classList.add("red");
             }
-
 
             // ONLY ACCESS NEXT CHAR IF IT IS NOT THE END OF LINE SPACE
             if (strIdx < stringWords.length - 1) {
@@ -883,7 +906,6 @@ startButton.addEventListener("click", (event) => {
             if (nextCharacter !== null) {
                 currentCharacter.classList.remove("background", "black-border");
             }
-
 
             // currentCharacter.classList.remove("background", "black-border");
 
@@ -904,7 +926,7 @@ startButton.addEventListener("click", (event) => {
             // console.log("current word:", wordArrays[lineIdx][wordIdx]);
 
             if (soundOn) {
-                playSound('mixkit-message-pop-alert-2354.mp3', 0.25);
+                playSound("mixkit-message-pop-alert-2354.mp3", 0.25);
             }
 
             // IF WORD IS SKIPPED BY SPACE INCREMENT RED COUNTER WITH ITS LENGTH
@@ -1024,7 +1046,7 @@ startButton.addEventListener("click", (event) => {
                 textInput.value = "      ☠️   You are terminated!  ☠️";
 
                 if (soundOn) {
-                    playSound('mixkit-distant-war-explosions-1696.wav', 0.9);
+                    playSound("mixkit-distant-war-explosions-1696.wav", 0.9);
                 }
             }, 3000);
 
@@ -1228,13 +1250,14 @@ const countdown = () => {
         if (seconds === 2) {
             controlsContainer.classList.remove("fadeOut");
             controlsContainer.classList.add("fadeIn");
-            statsContainer.classList.remove("fadeOut");
-            statsContainer.classList.add("fadeIn");
+            statsContainerLeft.classList.remove("fadeOut");
+            statsContainerRight.classList.remove("fadeOut");
+            statsContainerLeft.classList.add("fadeIn");
+            statsContainerRight.classList.add("fadeIn");
             colourCodeContainer.classList.remove("fadeOut");
             colourCodeContainer.classList.add("fadeIn");
             keyboard.classList.remove("fadeOut");
             keyboard.classList.add("fadeIn");
-
         }
 
         if (seconds === 0) {
