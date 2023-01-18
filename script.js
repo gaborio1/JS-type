@@ -365,9 +365,7 @@ const playSound = (soundFile, volume) => {
 // window.onload = () => {
 // }
 
-
 document.addEventListener("click", function (event) {
-
     if (event.key === "CapsLock") {
         console.log("CAPSLOCK");
     }
@@ -383,12 +381,10 @@ document.addEventListener("click", function (event) {
     } else {
         document.getElementById("capslock-key").style.background = "none";
         document.getElementById("capslock-key").classList.remove("blink");
-
     }
 });
 
 document.addEventListener("keydown", function (event) {
-
     if (event.key === "CapsLock") {
         console.log("CAPSLOCK");
         textInput.placeholder = "CAPSLOCK IS ON!";
@@ -403,11 +399,8 @@ document.addEventListener("keydown", function (event) {
     } else {
         document.getElementById("capslock-key").style.background = "none";
         document.getElementById("capslock-key").classList.remove("blink");
-
     }
 });
-
-
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -900,7 +893,13 @@ startButton.addEventListener("click", (event) => {
 
             wrongCounter += 1;
 
-            problemKeysSet.add(wordArrays[lineIdx][wordIdx][charIdx]);
+            // UPDATE PROBLEM KEY SET
+            if (
+                wordArrays[lineIdx][wordIdx][charIdx] !== " " && // SPACE
+                wordArrays[lineIdx][wordIdx][charIdx] !== undefined // CHARACTER IN NEXT WORD (WORD IDX HAS NOT BEEN INCREMENTED)
+            ) {
+                problemKeysSet.add(wordArrays[lineIdx][wordIdx][charIdx]);
+            }
             console.log("<<<<< PROBLEM KEYS SET >>>>>", problemKeysSet);
 
             // IF PROBLEMKEYS SET HAS LENGTH LOOP OVER problemKeysSet AND FIND CORRESPONDING problem-key-span FOR EACH ELEMENT
@@ -920,11 +919,14 @@ startButton.addEventListener("click", (event) => {
 
                 problemKeysSet.forEach((key) => {
                     console.log(key);
-                    for (let i = 0; i < letterKeys.length; i += 1) {
-                        if (letterKeys[i].innerText === key.toUpperCase()) {
-                            // !!! RED CLASS DOES NOT OVERWRITE CSS COLOUR !!!
-                            letterKeys[i].classList.add("red-background");
-                            // letterKeys[i].style.color = "red";
+                    // !!! WITHOUT THIS CONDITION CURSOR WILL NOT MOVE FORWARD INTO NEXT WORD, IT WILL STAY ON SPACE !!!
+                    if (key !== undefined) {
+                        for (let i = 0; i < letterKeys.length; i += 1) {
+                            if (letterKeys[i].innerText === key.toUpperCase()) {
+                                // !!! RED CLASS DOES NOT OVERWRITE CSS COLOUR !!!
+                                letterKeys[i].classList.add("red-background");
+                                // letterKeys[i].style.color = "red";
+                            }
                         }
                     }
                 });
