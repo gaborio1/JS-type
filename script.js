@@ -361,15 +361,53 @@ const playSound = (soundFile, volume) => {
 };
 
 //  !!! FIND WHERE AND WHEN TO DETECT CAPSLOCK !!!
-textInput.addEventListener("keyup", function (event) {
+
+// window.onload = () => {
+// }
+
+
+document.addEventListener("click", function (event) {
+
+    if (event.key === "CapsLock") {
+        console.log("CAPSLOCK");
+    }
+
     if (event.getModifierState("CapsLock")) {
         // text.style.display = "block";
         // document.getElementById("capslock-key").classList.add("red-backround");
         document.getElementById("capslock-key").style.background = "red";
+        document.getElementById("capslock-key").classList.add("blink");
+        textInput.placeholder = "CAPSLOCK IS ON!";
+        // keyboard.classList.add("blink");
+        // startButton.classList.add = "blink";
     } else {
-        // text.style.display = "none";
+        document.getElementById("capslock-key").style.background = "none";
+        document.getElementById("capslock-key").classList.remove("blink");
+
     }
 });
+
+document.addEventListener("keydown", function (event) {
+
+    if (event.key === "CapsLock") {
+        console.log("CAPSLOCK");
+        textInput.placeholder = "CAPSLOCK IS ON!";
+    }
+
+    if (event.getModifierState("CapsLock")) {
+        // text.style.display = "block";
+        // document.getElementById("capslock-key").classList.add("red-backround");
+        document.getElementById("capslock-key").style.background = "red";
+        document.getElementById("capslock-key").classList.add("blink");
+        textInput.placeholder = "CAPSLOCK IS ON!";
+    } else {
+        document.getElementById("capslock-key").style.background = "none";
+        document.getElementById("capslock-key").classList.remove("blink");
+
+    }
+});
+
+
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -389,10 +427,10 @@ startButton.addEventListener("click", (event) => {
     // console.log("START BUTTON COUNTER", startButtonCounter);
 
     // DETECT CAPSLOCK
-    if (event.getModifierState("CapsLock")) {
-        console.log("CAPSLOCK IS ON!");
-        textInput.placeholder = "CAPSLOCK IS ON!";
-    }
+    // if (event.getModifierState("CapsLock")) {
+    //     console.log("CAPSLOCK IS ON!");
+    //     textInput.placeholder = "CAPSLOCK IS ON!";
+    // }
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 PROBLEM KEYS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -552,6 +590,10 @@ startButton.addEventListener("click", (event) => {
 
         console.log("<<<< START", wrongCounter);
 
+        if (typedKey === "CapsLock") {
+            console.log("CAPSLOCK!!!");
+        }
+
         // if (soundOn) {
         //     playSound('mixkit-single-key-press-in-a-laptop-2541.wav', 1);
         // }
@@ -627,14 +669,14 @@ startButton.addEventListener("click", (event) => {
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 DETECT CAPSLOCK 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-        if (event.getModifierState("CapsLock")) {
-            console.log("CAPSLOCK IS ON!");
-        }
+        // if (event.getModifierState("CapsLock")) {
+        //     console.log("CAPSLOCK IS ON!");
+        // }
 
-        if (typedKey === "CapsLock") {
-            console.log("YOU JUST TURNED CAPSLOCK ON!");
-            textInput.placeholder = "CAPSLOCK IS ON!";
-        }
+        // if (typedKey === "CapsLock") {
+        //     console.log("YOU JUST TURNED CAPSLOCK ON!");
+        //     textInput.placeholder = "CAPSLOCK IS ON!";
+        // }
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 SHIFT 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -845,7 +887,8 @@ startButton.addEventListener("click", (event) => {
             typedKey !== wordArrays[lineIdx][wordIdx][charIdx] &&
             typedKey !== " " &&
             typedKey !== "Shift" &&
-            typedKey !== "Backspace"
+            typedKey !== "Backspace" &&
+            typedKey !== "CapsLock"
         ) {
             console.log(
                 "WRONG KEY!",
