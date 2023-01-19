@@ -1178,6 +1178,7 @@ input[type="range"]:focus::-ms-fill-upper {
     font-size: 24px;
     top: 450px;
     left: 250px;
+    padding: 10px;
     border: 1px solid var(--border-gold);
 }
 
