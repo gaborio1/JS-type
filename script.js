@@ -74,6 +74,9 @@ const accuracySpan = document.getElementById("accuracy-span");
 const keyboard = document.getElementById("keyboard");
 const letterKeys = document.getElementsByClassName("key--letter");
 
+// MESSAGE DIV
+const messageDiv = document.getElementById("message-div");
+
 // TEXTCONTAINER
 // DISABLED
 // const textContainer = document.querySelector(".text-container");
@@ -375,30 +378,32 @@ document.addEventListener("click", function (event) {
         // document.getElementById("capslock-key").classList.add("red-backround");
         document.getElementById("capslock-key").style.background = "red";
         document.getElementById("capslock-key").classList.add("blink");
-        textInput.placeholder = "CAPSLOCK IS ON!";
-        // keyboard.classList.add("blink");
-        // startButton.classList.add = "blink";
+        messageDiv.textContent = "CAPSLOCK IS ON";
+        // textInput.readOnly = true;
     } else {
         document.getElementById("capslock-key").style.background = "none";
         document.getElementById("capslock-key").classList.remove("blink");
+        messageDiv.textContent = "";
     }
 });
 
 document.addEventListener("keydown", function (event) {
     if (event.key === "CapsLock") {
         console.log("CAPSLOCK");
-        textInput.placeholder = "CAPSLOCK IS ON!";
+        messageDiv.textContent = "CAPSLOCK IS ON";
+        // textInput.readOnly = true;
     }
 
     if (event.getModifierState("CapsLock")) {
-        // text.style.display = "block";
         // document.getElementById("capslock-key").classList.add("red-backround");
         document.getElementById("capslock-key").style.background = "red";
         document.getElementById("capslock-key").classList.add("blink");
-        textInput.placeholder = "CAPSLOCK IS ON!";
+        messageDiv.textContent = "CAPSLOCK IS ON";
+        // textInput.readOnly = true;
     } else {
         document.getElementById("capslock-key").style.background = "none";
         document.getElementById("capslock-key").classList.remove("blink");
+        messageDiv.textContent = "";
     }
 });
 
@@ -420,10 +425,12 @@ startButton.addEventListener("click", (event) => {
     // console.log("START BUTTON COUNTER", startButtonCounter);
 
     // DETECT CAPSLOCK
-    // if (event.getModifierState("CapsLock")) {
-    //     console.log("CAPSLOCK IS ON!");
-    //     textInput.placeholder = "CAPSLOCK IS ON!";
-    // }
+    if (event.getModifierState("CapsLock")) {
+        console.log("CAPSLOCK IS ON!");
+        messageDiv.textContent = "CAPSLOCK IS ON";
+    } else {
+        messageDiv.textContent = "";
+    }
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 PROBLEM KEYS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -585,6 +592,14 @@ startButton.addEventListener("click", (event) => {
 
         if (typedKey === "CapsLock") {
             console.log("CAPSLOCK!!!");
+        }
+
+        // DETECT CAPSLOCK
+        if (event.getModifierState("CapsLock")) {
+            console.log("CAPSLOCK IS ON!");
+            messageDiv.textContent = "CAPLSOCK IS ON";
+        } else {
+            messageDiv.textContent = "";
         }
 
         // if (soundOn) {
@@ -1476,12 +1491,18 @@ TODOS
             TARGET ARRAY JAVASCRIPT SYNTAX
         ☑️ DETECT CAPSLOCK
         CAPS LOCK WARNING MESSAGE
-            ☑️ WHEN PAGE LOADS
-            AFTER PAGE IS LOADED
+            DISPLAY MESSAGE AS TEXT ELEMENT, NOT PLACEHOLDER OR CONTENT
+            ☑️ WHEN PAGE LOADS (WARNING TRIGGERED BY FIRST CLICK OR KEYPRESS)
+            ☑️ DURING SESSION
+            DISABLE TEXT INPUT WHEN CAPLSOCK IS ON?
         ADD MOST COMMON SENTENCES TO DIFFICULTY
         PROBLEM KEYS
             ☑️ TRACK
             ☑️ DISPLAY (TEMPORARY TEST DIV, HAVE TO FIND PLACE FOR IT IN APP, MAYBE HIDE AND SHOW?)
+            ☑️ WHEN START BTN IS CLICKED NEW TEXT GENERATES WORDS WITH PROBLEM KEYS
+                (!!! THIS MIGHT LOOK ODD WHEN THERE ARE ONLY A FEW MATCHING WORDS !!!)
+                CONCAT TEMPORARY PROBLEM WORDS ARRAY TO TARGET ARRAY TO GET A MIX OF BOTH?
+
         BUILD RANDOM WORDS FROM PROBLEM CHARACTERS / WORDS
     CODE:
         MAKE SEPARATE JS FILE FOR HELPER FUNCTIONS
