@@ -280,12 +280,14 @@ button:disabled:hover {
 .stats-and-keys-container {
     display: flex;
     align-items: center;
-    margin-top: 50px;
+    /* margin-top: 50px; */
+    margin-top: 25px;
     /* border: 2px solid black; */
 }
 
 .stats-container {
-    height: 225px;
+    /* height: 225px; */
+    height: 250px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -299,6 +301,7 @@ button:disabled:hover {
     /* width: 100px; */
     width: 150px;
     height: 100px;
+    height: 112px;
     display: flex;
 
     align-items: center;
@@ -723,8 +726,8 @@ input[type="range"]:focus::-ms-fill-upper {
 }
 
 /* RADIO TEXT */
-[type="radio"]:checked + label,
-[type="radio"]:not(:checked) + label {
+[type="radio"]:checked+label,
+[type="radio"]:not(:checked)+label {
     position: relative;
     width: 75px;
     height: 16px;
@@ -743,7 +746,7 @@ input[type="range"]:focus::-ms-fill-upper {
 /* RADIO HOVER BACKGROUND HIGHLIGHT */
 /* TRY TO ADJUST WIDTH */
 /* [type="radio"]:checked + label, */
-[type="radio"]:not(:checked) + label:hover {
+[type="radio"]:not(:checked)+label:hover {
     /* BACKGROUND ONLY */
     /* background: lightgreen;
     border-top-left-radius: 10px;
@@ -757,8 +760,8 @@ input[type="range"]:focus::-ms-fill-upper {
 }
 
 /* OUTER CIRCLE */
-[type="radio"]:checked + label:before,
-[type="radio"]:not(:checked) + label:before {
+[type="radio"]:checked+label:before,
+[type="radio"]:not(:checked)+label:before {
     content: "";
     position: absolute;
     left: 0;
@@ -776,8 +779,8 @@ input[type="range"]:focus::-ms-fill-upper {
 } */
 
 /* INNER CIRCLE */
-[type="radio"]:checked + label:after,
-[type="radio"]:not(:checked) + label:after {
+[type="radio"]:checked+label:after,
+[type="radio"]:not(:checked)+label:after {
     content: "";
     width: 10px;
     height: 10px;
@@ -798,13 +801,13 @@ input[type="range"]:focus::-ms-fill-upper {
     background: red;
 } */
 
-[type="radio"]:not(:checked) + label:after {
+[type="radio"]:not(:checked)+label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0);
 }
 
-[type="radio"]:checked + label:after {
+[type="radio"]:checked+label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
@@ -1156,8 +1159,9 @@ input[type="range"]:focus::-ms-fill-upper {
 .keyboard {
     position: relative;
     /* width: fit-content; */
-    top: 35px;
-    zoom: 77%;
+    top: 45px;
+    zoom: 77.5%;
+    /* zoom: 77%; */
     /* zoom: 105%; */
     text-align: center;
     /* font-size: 16px; */
@@ -1192,7 +1196,7 @@ input[type="range"]:focus::-ms-fill-upper {
     height: 3.3em;
 }
 
-.keyboard__row > * {
+.keyboard__row>* {
     position: relative;
     /* background: #333; */
     text-align: center;
@@ -1214,12 +1218,12 @@ input[type="range"]:focus::-ms-fill-upper {
     /* border-bottom-color: #555; */
 }
 
-.keyboard__row--h1 > div {
+.keyboard__row--h1>div {
     width: 3.5em;
 }
 
-.keyboard__row > div[data-pressed],
-.keyboard__row > div:active {
+.keyboard__row>div[data-pressed],
+.keyboard__row>div:active {
     background: #2a2a2a;
     background: #2a2a2a32;
     color: #aaa;
@@ -1248,7 +1252,7 @@ input[type="range"]:focus::-ms-fill-upper {
     width: 18em;
 }
 
-.key--double > * {
+.key--double>* {
     padding-top: 0.1em;
 }
 
@@ -1256,21 +1260,21 @@ input[type="range"]:focus::-ms-fill-upper {
     line-height: 2.8em;
 }
 
-.key--bottom-left > * {
+.key--bottom-left>* {
     position: absolute;
     text-align: left;
     bottom: 0.4em;
     left: 0.4em;
 }
 
-.key--bottom-right > * {
+.key--bottom-right>* {
     position: absolute;
     text-align: right;
     bottom: 0.4em;
     right: 0.4em;
 }
 
-.key--fn > * {
+.key--fn>* {
     font-size: 0.6em;
     line-height: 1em;
     padding-top: 1.2em;
@@ -1279,12 +1283,12 @@ input[type="range"]:focus::-ms-fill-upper {
     float: right;
 }
 
-.key--word > * {
+.key--word>* {
     font-size: 0.8em;
 }
 
-.key--arrow--tall > *,
-.key--arrow > * {
+.key--arrow--tall>*,
+.key--arrow>* {
     font-size: 0.5em;
     line-height: 3em;
 }
@@ -1295,10 +1299,10 @@ input[type="range"]:focus::-ms-fill-upper {
     line-height: 0.5em;
 }
 
-.key--arrow--tall > * {
+.key--arrow--tall>* {
     padding-top: 0.2em;
 }
 
-.keyboard > .keyboard__row {
+.keyboard>.keyboard__row {
     text-align: center;
 }
