@@ -407,6 +407,31 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
+//  DETECT CAPSLOCK CHANGE
+// SOURCE: https://www.educative.io/answers/how-to-detect-the-caps-lock-status-in-javascript
+// The browser treats caps lock on as keydown and caps lock off as keyup, so we need to bind both keydown and keyup to detect a change in caps lock. This is shown below:
+var doc = document.getElementById("input");
+
+doc.addEventListener("keyup", testCapsLock);
+doc.addEventListener("keydown", testCapsLock);
+
+function testCapsLock(event) {
+    if (event.code === "CapsLock") {
+        let isCapsLockOn = event.getModifierState("CapsLock");
+        if (isCapsLockOn) {
+            console.log("Caps Lock turned on");
+            document.getElementById("capslock-key").style.background = "red";
+            document.getElementById("capslock-key").classList.add("blink");
+        } else {
+            console.log("Caps Lock turned off");
+            document.getElementById("capslock-key").style.background = "none";
+            document.getElementById("capslock-key").classList.remove("blink");
+            messageDiv.textContent = "";
+        }
+    }
+}
+
+
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -588,7 +613,7 @@ startButton.addEventListener("click", (event) => {
         const typedKey = event.key;
         console.log("EVENT: KEYUP", event.key);
 
-        console.log("<<<< START", wrongCounter);
+        // console.log("<<<< START", wrongCounter);
 
         if (typedKey === "CapsLock") {
             console.log("CAPSLOCK!!!");
@@ -597,7 +622,7 @@ startButton.addEventListener("click", (event) => {
         // DETECT CAPSLOCK
         if (event.getModifierState("CapsLock")) {
             console.log("CAPSLOCK IS ON!");
-            messageDiv.textContent = "CAPLSOCK IS ON";
+            messageDiv.textContent = "CAPSLOCK IS ON";
         } else {
             messageDiv.textContent = "";
         }
@@ -1494,7 +1519,7 @@ TODOS
             DISPLAY MESSAGE AS TEXT ELEMENT, NOT PLACEHOLDER OR CONTENT
             ☑️ WHEN PAGE LOADS (WARNING TRIGGERED BY FIRST CLICK OR KEYPRESS)
             ☑️ DURING SESSION
-            DISABLE TEXT INPUT WHEN CAPLSOCK IS ON?
+            DISABLE TEXT INPUT WHEN CAPSLOCK IS ON?
         ADD MOST COMMON SENTENCES TO DIFFICULTY
         PROBLEM KEYS
             ☑️ TRACK

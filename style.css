@@ -1151,7 +1151,6 @@ input[type="range"]:focus::-ms-fill-upper {
 
 .card.flipped {
     transform: rotateY(180deg);
-    /* transform: rotateX(180deg); */
 }
 
 /* KEYBOARD */
