@@ -62,6 +62,8 @@ const textSpanContainerNextParagraph =
 const textInput = document.getElementById("input");
 // START BUTTON
 const startButton = document.getElementById("start-button");
+// REFRESH ICON
+const refreshIcon = document.getElementById("refresh-icon");
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰   STATS / KEYBOARD   🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -382,6 +384,8 @@ const capsLockWarningsOn = () => {
 
 const capsLockWarningsOff = () => {
     capsLockKey.style.background = "none";
+    // BLACK KEYS
+    // capsLockKey.style.background = "#333";
     capsLockKey.classList.remove("blink");
     messageDiv.textContent = "";
 };
@@ -422,7 +426,7 @@ startButton.addEventListener("click", (event) => {
 
     // TRACK NUMBER OF START BUTTON CLICKS
     startButtonCounter += 1;
-    // console.log("START BUTTON COUNTER", startButtonCounter);
+    console.log("<<<<< START BUTTON COUNTER", startButtonCounter, ">>>>>");
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 DETECT CAPSLOCK 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -451,8 +455,8 @@ startButton.addEventListener("click", (event) => {
         targetArray = [...tempProbWordsArr];
     }
 
-    console.log("<<<<< TEMPORARY PROBLEM WORDS ARRAY >>>>>", tempProbWordsArr);
-    console.log("PROBLEM KEYS:", problemKeysSet);
+    // console.log("<<<<< TEMPORARY PROBLEM WORDS ARRAY >>>>>", tempProbWordsArr);
+    // console.log("PROBLEM KEYS:", problemKeysSet);
 
     // RESET PROBLEM KEYS SET AFTER PROBLEM KEYS (IF ANY) HAVE BEEN USED FOR NEW SET OF WORDS
     problemKeysSet.clear();
@@ -1101,6 +1105,11 @@ startButton.addEventListener("click", (event) => {
     // ADD HANDLEKEYEVENT FOR KEYUP EVENT ONLY ONCE, REMOVE IT IF START IS CLICKED AGAIN, SEE IF BLOCK BELOW
     document.addEventListener("keydown", handleKeyEvent);
 
+    // CHANGE START BUTTON'S INNER HTML TO: "NEW"
+    if (startButtonCounter > 0) {
+        startButton.innerText = "🔄 New";
+    }
+
     // IF START BUTTON CLICKED AGAIN, RESET EVERYTHING AND GENERATE NEW DATA
     if (startButtonCounter > 1) {
         // REMOVE LISTENER
@@ -1145,6 +1154,7 @@ difficultyApply.addEventListener("click", function () {
     // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
     startButton.disabled = false;
+    startButton.innerText = "Start";
 
     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
@@ -1193,6 +1203,7 @@ lengthApply.addEventListener("click", function () {
     // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
     startButton.disabled = false;
+    startButton.innerText = "Start";
 
     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
@@ -1221,6 +1232,7 @@ punctuationApply.addEventListener("click", function () {
     // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
     startButton.disabled = false;
+    startButton.innerText = "Start";
 
     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
@@ -1249,6 +1261,7 @@ capitalApply.addEventListener("click", function () {
     // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
     startButton.disabled = false;
+    startButton.innerText = "Start";
 
     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
@@ -1309,6 +1322,7 @@ const countdown = () => {
 
             startButton.disabled = false;
             startButton.classList.add("control-apply-active");
+            startButton.innerText = "Start";
             // CLEAR TEXT AFTER 1 SECOND
             // ALSO TRY FADING TEXT OUT. SELECT ALL SPANS AND APPEND NEXT LINE TO PARAGRAPH
             // SYNC CLEARTEXFIELDS WITH ANIMATION DURATION (FADE OUT AND THEN CLEAR)
@@ -1350,6 +1364,7 @@ soundApply.addEventListener("click", function () {
     // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
     startButton.disabled = false;
+    startButton.innerText = "Start";
 
     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
@@ -1391,6 +1406,8 @@ timerApply.addEventListener("click", function () {
     // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
     startButton.disabled = false;
+    startButton.innerText = "Start";
+
 
     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
