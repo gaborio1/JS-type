@@ -43,7 +43,8 @@ const timerRadios = document.getElementsByClassName("timer-radio");
 // TIMER
 const timerApply = document.getElementById("timer-apply");
 // ELEMENTS THAT FADE WHILE TIMER IS ON
-const fadeWithTimerElements = document.getElementsByClassName("fadeout-with-timer");
+const fadeWithTimerElements =
+    document.getElementsByClassName("fadeout-with-timer");
 // FLIP BUTTON (APP/INFO)
 const flipButtons = document.getElementsByClassName("flip-button");
 const card = document.getElementById("card");
@@ -129,6 +130,8 @@ const maxMistakes = 5;
 let problemKeysSet = new Set();
 const problemKeySpans = document.getElementsByClassName("problem-key-span");
 const probKeyWordsArr = [];
+
+// CAPSLOCK STATUS
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 FUNCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -371,17 +374,17 @@ const playSound = (soundFile, volume) => {
 //  DETECT CAPSLOCK CHANGE
 // SOURCE: https://www.educative.io/answers/how-to-detect-the-caps-lock-status-in-javascript
 // The browser treats caps lock on as keydown and caps lock off as keyup, so we need to bind both keydown and keyup to detect a change in caps lock. This is shown below:
-const capsLockOnWarningsOn = () => {
+const capsLockWarningsOn = () => {
     capsLockKey.style.background = "red";
     capsLockKey.classList.add("blink");
     messageDiv.textContent = "CAPSLOCK IS ON";
-}
+};
 
 const capsLockWarningsOff = () => {
     capsLockKey.style.background = "none";
     capsLockKey.classList.remove("blink");
     messageDiv.textContent = "";
-}
+};
 
 const doc = document.getElementById("container");
 
@@ -394,16 +397,15 @@ const testCapsLock = (event) => {
         let isCapsLockOn = event.getModifierState("CapsLock");
         if (isCapsLockOn) {
             // console.log("Caps Lock turned on");
-            capsLockOnWarningsOn();
+            capsLockWarningsOn();
         } else {
             // console.log("Caps Lock turned off");
             capsLockWarningsOff();
         }
     }
-}
+};
 doc.addEventListener("keyup", testCapsLock);
 doc.addEventListener("keydown", testCapsLock);
-
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -426,7 +428,7 @@ startButton.addEventListener("click", (event) => {
 
     if (event.getModifierState("CapsLock")) {
         console.log("CAPSLOCK IS ON! - START BUTTON");
-        capsLockOnWarningsOn();
+        capsLockWarningsOn();
     } else {
         capsLockWarningsOff();
     }
@@ -502,8 +504,10 @@ startButton.addEventListener("click", (event) => {
 
     // ADD LISTENER FOR TIMER IF 1 MIN TIMER IS SELECTED
     if (timerSelected) {
+        // if (!capsLockKey.classList.contains("blink")) {
         textInput.addEventListener("keydown", startCountdown);
         // console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
+        // }
     }
 
     // REMOVE HIGHLIGHT START BUTTON
@@ -589,7 +593,6 @@ startButton.addEventListener("click", (event) => {
 
         // console.log("<<<< START", wrongCounter);
 
-
         // if (soundOn) {
         //     playSound('mixkit-single-key-press-in-a-laptop-2541.wav', 1);
         // }
@@ -630,7 +633,6 @@ startButton.addEventListener("click", (event) => {
         // DISABLE CONTROLS BY HIDING IT BEHIND MAIN CONTAINER WHILE TIMER IS ON WITH FIRST KEYPRESS
         // !!! THIS ONLY RUNS IF TIMER IS ON !!!
         if (keyStrokeCounter === 1) {
-
             for (let i = 0; i < fadeWithTimerElements.length; i += 1) {
                 fadeWithTimerElements[i].classList.add("fadeOut");
             }
@@ -665,8 +667,6 @@ startButton.addEventListener("click", (event) => {
         // );
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 DETECT CAPSLOCK 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
-
-
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 SHIFT 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -1290,12 +1290,10 @@ const countdown = () => {
 
         // START FADING IN CONTROLS AT 2 SECOND MARK
         if (seconds === 2) {
-
             for (let i = 0; i < fadeWithTimerElements.length; i += 1) {
                 fadeWithTimerElements[i].classList.add("fadeIn");
                 fadeWithTimerElements[i].classList.remove("fadeOut");
             }
-
         }
 
         if (seconds === 0) {
@@ -1491,7 +1489,7 @@ TODOS
             ☑️RESET ALL INDEX TRACKERS (FOR START BUTTON - AND APPLY BUTTONS ON CONTROL PANEL ? MAYBE NOT NECESSARY)
             
     PROBLEMS:
-        CAPSLOCK MUST NOT ACTIVATE TIMER
+        CAPSLOCK MUST NOT ACTIVATE TIMER ?
         CONTROL APPLY BUTTONS DELETES "CLICK START" MESSAGE FROM TXT INPUT
         ☑️ CONSECUTIVE WRONG CHARACTERS HANDLING (DISABLE INPUT AND RELOAD)
         ☑️ CENTER TEXT INPUT CONTENT (LEADING SPACES ARE HARD CODED IN INPUT.VALUE ALSO SEE CSS .form input - line 218)
