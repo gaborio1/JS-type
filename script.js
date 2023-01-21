@@ -42,6 +42,8 @@ const difficultyRadios = document.getElementsByClassName("difficulty-radio");
 const timerRadios = document.getElementsByClassName("timer-radio");
 // TIMER
 const timerApply = document.getElementById("timer-apply");
+// ELEMENTS THAT FADE WHILE TIMER IS ON
+const fadeWithTimerElements = document.getElementsByClassName("fadeout-with-timer");
 // FLIP BUTTON (APP/INFO)
 const flipButtons = document.getElementsByClassName("flip-button");
 const card = document.getElementById("card");
@@ -76,6 +78,9 @@ const letterKeys = document.getElementsByClassName("key--letter");
 
 // MESSAGE DIV
 const messageDiv = document.getElementById("message-div");
+
+// CAPSLOCK
+const capsLockKey = document.getElementById("capslock-key");
 
 // TEXTCONTAINER
 // DISABLED
@@ -363,73 +368,41 @@ const playSound = (soundFile, volume) => {
     sound.play();
 };
 
-//  !!! FIND WHERE AND WHEN TO DETECT CAPSLOCK !!!
-
-// window.onload = () => {
-// }
-
-document.addEventListener("click", function (event) {
-    if (event.key === "CapsLock") {
-        console.log("CAPSLOCK");
-    }
-
-    if (event.getModifierState("CapsLock")) {
-        // text.style.display = "block";
-        // document.getElementById("capslock-key").classList.add("red-backround");
-        document.getElementById("capslock-key").style.background = "red";
-        document.getElementById("capslock-key").classList.add("blink");
-        messageDiv.textContent = "CAPSLOCK IS ON";
-        // textInput.readOnly = true;
-    } else {
-        document.getElementById("capslock-key").style.background = "none";
-        document.getElementById("capslock-key").classList.remove("blink");
-        messageDiv.textContent = "";
-    }
-});
-
-document.addEventListener("keydown", function (event) {
-    if (event.key === "CapsLock") {
-        console.log("CAPSLOCK");
-        messageDiv.textContent = "CAPSLOCK IS ON";
-        // textInput.readOnly = true;
-    }
-
-    if (event.getModifierState("CapsLock")) {
-        // document.getElementById("capslock-key").classList.add("red-backround");
-        document.getElementById("capslock-key").style.background = "red";
-        document.getElementById("capslock-key").classList.add("blink");
-        messageDiv.textContent = "CAPSLOCK IS ON";
-        // textInput.readOnly = true;
-    } else {
-        document.getElementById("capslock-key").style.background = "none";
-        document.getElementById("capslock-key").classList.remove("blink");
-        messageDiv.textContent = "";
-    }
-});
-
 //  DETECT CAPSLOCK CHANGE
 // SOURCE: https://www.educative.io/answers/how-to-detect-the-caps-lock-status-in-javascript
 // The browser treats caps lock on as keydown and caps lock off as keyup, so we need to bind both keydown and keyup to detect a change in caps lock. This is shown below:
-var doc = document.getElementById("input");
+const capsLockOnWarningsOn = () => {
+    capsLockKey.style.background = "red";
+    capsLockKey.classList.add("blink");
+    messageDiv.textContent = "CAPSLOCK IS ON";
+}
 
-doc.addEventListener("keyup", testCapsLock);
-doc.addEventListener("keydown", testCapsLock);
+const capsLockWarningsOff = () => {
+    capsLockKey.style.background = "none";
+    capsLockKey.classList.remove("blink");
+    messageDiv.textContent = "";
+}
 
-function testCapsLock(event) {
+const doc = document.getElementById("container");
+
+// var testCapsLock = function(event)...
+// doc.addEventListener("keyup", testCapsLock);
+// doc.addEventListener("keydown", testCapsLock);
+
+const testCapsLock = (event) => {
     if (event.code === "CapsLock") {
         let isCapsLockOn = event.getModifierState("CapsLock");
         if (isCapsLockOn) {
-            console.log("Caps Lock turned on");
-            document.getElementById("capslock-key").style.background = "red";
-            document.getElementById("capslock-key").classList.add("blink");
+            // console.log("Caps Lock turned on");
+            capsLockOnWarningsOn();
         } else {
-            console.log("Caps Lock turned off");
-            document.getElementById("capslock-key").style.background = "none";
-            document.getElementById("capslock-key").classList.remove("blink");
-            messageDiv.textContent = "";
+            // console.log("Caps Lock turned off");
+            capsLockWarningsOff();
         }
     }
 }
+doc.addEventListener("keyup", testCapsLock);
+doc.addEventListener("keydown", testCapsLock);
 
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -449,12 +422,13 @@ startButton.addEventListener("click", (event) => {
     startButtonCounter += 1;
     // console.log("START BUTTON COUNTER", startButtonCounter);
 
-    // DETECT CAPSLOCK
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 DETECT CAPSLOCK 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
     if (event.getModifierState("CapsLock")) {
-        console.log("CAPSLOCK IS ON!");
-        messageDiv.textContent = "CAPSLOCK IS ON";
+        console.log("CAPSLOCK IS ON! - START BUTTON");
+        capsLockOnWarningsOn();
     } else {
-        messageDiv.textContent = "";
+        capsLockWarningsOff();
     }
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 PROBLEM KEYS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -497,10 +471,10 @@ startButton.addEventListener("click", (event) => {
     timerApply.disabled = true;
 
     // UN BLUR CONTROLS
-    controlsContainer.classList.remove("hidden-with-z-index");
-    statsContainerLeft.classList.remove("hidden-with-z-index");
-    statsContainerRight.classList.remove("hidden-with-z-index");
-    colourCodeContainer.classList.remove("hidden-with-z-index");
+    // controlsContainer.classList.remove("hidden-with-z-index");
+    // statsContainerLeft.classList.remove("hidden-with-z-index");
+    // statsContainerRight.classList.remove("hidden-with-z-index");
+    // colourCodeContainer.classList.remove("hidden-with-z-index");
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 STATISTICS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -615,17 +589,6 @@ startButton.addEventListener("click", (event) => {
 
         // console.log("<<<< START", wrongCounter);
 
-        if (typedKey === "CapsLock") {
-            console.log("CAPSLOCK!!!");
-        }
-
-        // DETECT CAPSLOCK
-        if (event.getModifierState("CapsLock")) {
-            console.log("CAPSLOCK IS ON!");
-            messageDiv.textContent = "CAPSLOCK IS ON";
-        } else {
-            messageDiv.textContent = "";
-        }
 
         // if (soundOn) {
         //     playSound('mixkit-single-key-press-in-a-laptop-2541.wav', 1);
@@ -656,7 +619,10 @@ startButton.addEventListener("click", (event) => {
 
         // ONLY KEEP TRACK OF KEYSTROKES WHILE CLOCK IS RUNNING
         if (timerOn) {
-            keyStrokeCounter += 1;
+            if (typedKey !== "CapsLock") {
+                keyStrokeCounter += 1;
+            }
+            // keyStrokeCounter += 1;
             // console.log("KEYSTROKE COUNTER:", keyStrokeCounter);
             keystrokesSpan.textContent = keyStrokeCounter;
         }
@@ -664,20 +630,18 @@ startButton.addEventListener("click", (event) => {
         // DISABLE CONTROLS BY HIDING IT BEHIND MAIN CONTAINER WHILE TIMER IS ON WITH FIRST KEYPRESS
         // !!! THIS ONLY RUNS IF TIMER IS ON !!!
         if (keyStrokeCounter === 1) {
-            controlsContainer.classList.add("fadeOut");
-            statsContainerLeft.classList.add("fadeOut");
-            statsContainerRight.classList.add("fadeOut");
-            colourCodeContainer.classList.add("fadeOut");
-            keyboard.classList.add("fadeOut");
+
+            for (let i = 0; i < fadeWithTimerElements.length; i += 1) {
+                fadeWithTimerElements[i].classList.add("fadeOut");
+            }
         }
 
         // ENABLE CONTROLS WHEN TIME IS UP
         if (!timerOn) {
             // console.log("<<<<< TIMER OFF >>>>>");
-            controlsContainer.classList.remove("fadeOut");
-            statsContainerLeft.classList.remove("fadeOut");
-            statsContainerRight.classList.remove("fadeOut");
-            colourCodeContainer.classList.remove("fadeOut");
+            for (let i = 0; i < fadeWithTimerElements.length; i += 1) {
+                fadeWithTimerElements[i].classList.remove("fadeOut");
+            }
         }
 
         // console.log(
@@ -702,14 +666,7 @@ startButton.addEventListener("click", (event) => {
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 DETECT CAPSLOCK 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-        // if (event.getModifierState("CapsLock")) {
-        //     console.log("CAPSLOCK IS ON!");
-        // }
 
-        // if (typedKey === "CapsLock") {
-        //     console.log("YOU JUST TURNED CAPSLOCK ON!");
-        //     textInput.placeholder = "CAPSLOCK IS ON!";
-        // }
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 SHIFT 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -1333,16 +1290,12 @@ const countdown = () => {
 
         // START FADING IN CONTROLS AT 2 SECOND MARK
         if (seconds === 2) {
-            controlsContainer.classList.remove("fadeOut");
-            controlsContainer.classList.add("fadeIn");
-            statsContainerLeft.classList.remove("fadeOut");
-            statsContainerRight.classList.remove("fadeOut");
-            statsContainerLeft.classList.add("fadeIn");
-            statsContainerRight.classList.add("fadeIn");
-            colourCodeContainer.classList.remove("fadeOut");
-            colourCodeContainer.classList.add("fadeIn");
-            keyboard.classList.remove("fadeOut");
-            keyboard.classList.add("fadeIn");
+
+            for (let i = 0; i < fadeWithTimerElements.length; i += 1) {
+                fadeWithTimerElements[i].classList.add("fadeIn");
+                fadeWithTimerElements[i].classList.remove("fadeOut");
+            }
+
         }
 
         if (seconds === 0) {
@@ -1538,12 +1491,13 @@ TODOS
             ☑️RESET ALL INDEX TRACKERS (FOR START BUTTON - AND APPLY BUTTONS ON CONTROL PANEL ? MAYBE NOT NECESSARY)
             
     PROBLEMS:
-        CONTROL APPLY BUTTONS DELETE CLICK START MESSAGE FROM TXT INPUT
+        CAPSLOCK MUST NOT ACTIVATE TIMER
+        CONTROL APPLY BUTTONS DELETES "CLICK START" MESSAGE FROM TXT INPUT
         ☑️ CONSECUTIVE WRONG CHARACTERS HANDLING (DISABLE INPUT AND RELOAD)
         ☑️ CENTER TEXT INPUT CONTENT (LEADING SPACES ARE HARD CODED IN INPUT.VALUE ALSO SEE CSS .form input - line 218)
         ☑️ SPACE DIVS CONSISTENTLY IN WRAPPER (50PX. 25PX)
         ☑️ SIZE DIVS CONSISTENTLY IN WRAPPER (50PX. 25PX)
-        ADD COMMON CLASS TO FADE ELEMENTS
+        ☑️ ADD COMMON CLASS TO FADE ELEMENTS WHILE TIMER IS ON (.fadeout-with-timer)
         USE CSS VARIABLES
             ☑️ APP AND WRAP BORDER
             ☑️ FONT SIZES 24, 32, 64

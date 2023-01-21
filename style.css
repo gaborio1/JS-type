@@ -2,6 +2,7 @@
     --border-gold: darkgoldenrod;
     --border-gold-disabled: rgba(184, 135, 11, 0.547);
     --text-field-offwhite: #efefef;
+    --text-field-offwhite: #efefefbe;
     --font-24: 24px;
     --font-32: 32px;
     --font-64: 48px;
@@ -1179,6 +1180,7 @@ input[type="range"]:focus::-ms-fill-upper {
     left: 250px;
     padding: 10px;
     border: 1px solid var(--border-gold);
+    border: 1px solid rgba(184, 135, 11, 0.655);
 }
 
 .keyboard__row {
@@ -1198,9 +1200,7 @@ input[type="range"]:focus::-ms-fill-upper {
 
 .keyboard__row>* {
     position: relative;
-    /* background: #333; */
     text-align: center;
-    /* color: #eee; */
     float: left;
     border-radius: 0.3em;
     margin: 0.2em;
@@ -1211,8 +1211,14 @@ input[type="range"]:focus::-ms-fill-upper {
     cursor: pointer;
     -webkit-user-select: none;
     border: 1px solid #444;
-    border: 1px solid rgb(0, 0, 0);
-    border: 1px solid var(--border-gold);
+    /* border: 1px solid rgb(0, 0, 0); */
+    /* border: 1px solid var(--border-gold); */
+
+    /* BLACK KEYS STYLE */
+
+    /* background: #333; */
+    /* color: #eee; */
+    /* border: 1px solid #444; */
     /* box-shadow: 0 0.2em 0 0.05em #222; */
     /* box-shadow: 0 0.1em 0 0.03em #222; */
     /* border-bottom-color: #555; */
