@@ -48,6 +48,10 @@ const fadeWithTimerElements =
 // FLIP BUTTON (APP/INFO)
 const flipButtons = document.getElementsByClassName("flip-button");
 const card = document.getElementById("card");
+// CONTROL PANEL INPUTS/TOGGLE BUTTONS THAT ARE DISABLED DURING TIMER
+const disabledDuringTimer = document.getElementsByClassName(
+    "disabled-during-timer"
+);
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰   TEXT FIELDS   🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -1276,7 +1280,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
-    // seconds = 5;
+    // seconds = 30;
     const tick = () => {
         const counter = document.getElementById("counter-div");
         seconds -= 1;
@@ -1340,6 +1344,11 @@ const countdown = () => {
             textInput.removeEventListener("keydown", startCountdown);
             const totalKeystrokes = keyStrokeCounter;
             keystrokesSpan.textContent = totalKeystrokes;
+
+            // ENABLE CONTROL INPUTS/TOGGLES
+            for (let i = 0; i < disabledDuringTimer.length; i += 1) {
+                disabledDuringTimer[i].disabled = false;
+            }
         }
     };
 
@@ -1382,6 +1391,11 @@ const startCountdown = () => {
     textInput.removeEventListener("keydown", startCountdown);
     // console.log("EVENT LISTENER REMOVED FROM TEXT INPUT FOR TIMER");
     startButton.disabled = true;
+
+    // DISABLE CONTROL INPUTS/TOGGLES
+    for (let i = 0; i < disabledDuringTimer.length; i += 1) {
+        disabledDuringTimer[i].disabled = true;
+    }
 };
 
 // textInput.addEventListener("keydown", startCountdown);
@@ -1407,7 +1421,6 @@ timerApply.addEventListener("click", function () {
     startButton.classList.add("control-apply-active");
     startButton.disabled = false;
     startButton.innerText = "Start";
-
 
     // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
@@ -1510,6 +1523,7 @@ TODOS
         !!! DISABLE CONTROLS (WITHOUT Z-INDEX) WHILE TIMER IS ON, IT WILL CALUSE A BUG IF CHANGES ARE MADE
         AS START BUTTON HAS TO BE CLICKED AGAIN WHICH ADDS LISTENER AGAIN !!!
 
+        DISABLE DIFFICULTY APPLY BY DEFAULT
         CAPSLOCK MUST NOT ACTIVATE TIMER ?
         CONTROL APPLY BUTTONS DELETES "CLICK START" MESSAGE FROM TXT INPUT
         ☑️ CONSECUTIVE WRONG CHARACTERS HANDLING (DISABLE INPUT AND RELOAD)
