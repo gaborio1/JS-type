@@ -1276,7 +1276,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
-    // seconds = 10;
+    // seconds = 5;
     const tick = () => {
         const counter = document.getElementById("counter-div");
         seconds -= 1;
@@ -1506,6 +1506,10 @@ TODOS
             ☑️RESET ALL INDEX TRACKERS (FOR START BUTTON - AND APPLY BUTTONS ON CONTROL PANEL ? MAYBE NOT NECESSARY)
             
     PROBLEMS:
+
+        !!! DISABLE CONTROLS (WITHOUT Z-INDEX) WHILE TIMER IS ON, IT WILL CALUSE A BUG IF CHANGES ARE MADE
+        AS START BUTTON HAS TO BE CLICKED AGAIN WHICH ADDS LISTENER AGAIN !!!
+
         CAPSLOCK MUST NOT ACTIVATE TIMER ?
         CONTROL APPLY BUTTONS DELETES "CLICK START" MESSAGE FROM TXT INPUT
         ☑️ CONSECUTIVE WRONG CHARACTERS HANDLING (DISABLE INPUT AND RELOAD)
