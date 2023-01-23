@@ -32,7 +32,7 @@
                     <div id="controls-container" class="controls-container fadeout-with-timer">
                         <!-- <h2>Controls container</h2> -->
 
-                        <div class="control-wrap">
+                        <div class="control-wrap difficulty-control-wrap">
                             <h4>Difficulty</h4>
                             <!-- MAKE THIS RADIO INSTEAD ??? -->
                             <!-- <form action="">
@@ -46,20 +46,24 @@
                             </select>
                             </form> -->
                             <!-- <form action=""> -->
-                            <input type="radio" id="100" class="radio difficulty-radio disabled-during-timer"
-                                name="difficulty" value="100" checked="checked" />
-                            <label for="100">100</label>
-                            <br />
 
-                            <input type="radio" id="200" class="radio difficulty-radio disabled-during-timer"
-                                name="difficulty" value="200" />
-                            <label for="200">200</label>
-                            <br />
+                            <div class="difficulty-radios-container">
+                                <input type="radio" id="100" class="radio difficulty-radio disabled-during-timer"
+                                    name="difficulty" value="100" checked="checked" />
+                                <label for="100">100</label>
+                                <br />
 
-                            <input type="radio" id="JavaScript" class="radio difficulty-radio disabled-during-timer"
-                                name="difficulty" value="JavaScript" />
-                            <label for="JavaScript">JS</label>
-                            <br />
+                                <input type="radio" id="200" class="radio difficulty-radio disabled-during-timer"
+                                    name="difficulty" value="200" />
+                                <label for="200">200</label>
+                                <br />
+
+                                <input type="radio" id="JavaScript" class="radio difficulty-radio disabled-during-timer"
+                                    name="difficulty" value="JavaScript" />
+                                <label for="JavaScript">JS</label>
+                                <br />
+
+                            </div>
 
                             <button id="diffuculty-apply" class="control-panel-button" disabled="true">
                                 Apply
@@ -68,7 +72,7 @@
                             <!-- </form> -->
                         </div>
 
-                        <div class="control-wrap">
+                        <div class="control-wrap line-length-control-wrap">
                             <!-- <form> -->
                             <!-- <label for="length">Line length (20 - 50):</label> -->
                             <h4>Line length</h4>
@@ -81,54 +85,63 @@
                             <!-- <input type=" submit" value="Apply"> -->
                             <!-- </form> -->
                         </div>
-                        
-                        <div class="control-wrap">
+
+                        <div class="control-wrap punctuation-capital-control-wrap">
 
                             <h4>Punctuation</h4>
-                            <button id="punctuation-toggle"
-                                class="control-panel-button punctuation-toggle disabled-during-timer">
-                                Off
-                            </button>
-                            <button id="punctuation-apply" class="control-panel-button" disabled="true">
-                                Apply
-                            </button>
+                            <div class="punctuation-buttons-container">
+                                <button id="punctuation-toggle"
+                                    class="control-panel-button punctuation-toggle disabled-during-timer">
+                                    Off
+                                </button>
+                                <button id="punctuation-apply" class="control-panel-button" disabled="true">
+                                    Apply
+                                </button>
+                            </div>
 
                             <h4>Capital letters</h4>
-                            <button id="capital-toggle"
-                                class="control-panel-button capital-toggle disabled-during-timer">
-                                Off
-                            </button>
-                            <button id="capital-apply" class="control-panel-button" disabled="true">
-                                Apply
-                            </button>
+                            <div class="capital-buttons-container">
+                                <button id="capital-toggle"
+                                    class="control-panel-button capital-toggle disabled-during-timer">
+                                    Off
+                                </button>
+                                <button id="capital-apply" class="control-panel-button" disabled="true">
+                                    Apply
+                                </button>
+                            </div>
+
 
                         </div>
 
-                        <div class="control-wrap">
+                        <div class="control-wrap timer-control-wrap">
                             <h4>Timer</h4>
-                            <input type="radio" id="no-timer" class="radio timer-radio disabled-during-timer"
-                                name="timer" value="no-timer" />
-                            <label for="no-timer">Off</label><br />
-                            <input type="radio" id="1min" class="radio timer-radio disabled-during-timer" name="timer"
-                                value="1min" checked="checked" />
-                            <label for="1min">1 min</label>
-                            <br />
-                            <br />
+                            <div class="timer-radios-container">
+                                <input type="radio" id="no-timer" class="radio timer-radio disabled-during-timer"
+                                    name="timer" value="no-timer" />
+                                <label for="no-timer">Off</label><br />
+                                <input type="radio" id="1min" class="radio timer-radio disabled-during-timer"
+                                    name="timer" value="1min" checked="checked" />
+                                <label for="1min">1 min</label>
+                                <br />
+                            </div>
+
                             <button id="timer-apply" class="control-panel-button" disabled="true">
                                 Apply
                             </button>
                         </div>
 
-                        <div class="control-wrap">
+                        <div class="control-wrap sound-info-control-wrap">
 
                             <h4>Sound</h4>
-                            <button id="sound-toggle"
-                                class="control-panel-button sound-toggle toggle-on disabled-during-timer">
-                                On
-                            </button>
-                            <button id="sound-apply" class="control-panel-button" disabled="true">
-                                Apply
-                            </button>
+                            <div class="sound-buttons-container">
+                                <button id="sound-toggle"
+                                    class="control-panel-button sound-toggle toggle-on disabled-during-timer">
+                                    On
+                                </button>
+                                <button id="sound-apply" class="control-panel-button" disabled="true">
+                                    Apply
+                                </button>
+                            </div>
 
                             <h4>Info</h4>
                             <button class="control-panel-button info-button flip-button">Show</button>
@@ -432,15 +445,15 @@
 
                     <div id="colour-code-container" class="colour-code-container fadeout-with-timer">
                         <div class="colour-code-wrap">
-                            <h4>Correct:</h4>
+                            <h4>Correct</h4>
                             <h3 class="green">Abc</h3>
                         </div>
                         <div class="colour-code-wrap">
-                            <h4>Wrong:</h4>
+                            <h4>Wrong</h4>
                             <h3 class="red">Abc</h3>
                         </div>
                         <div class="colour-code-wrap">
-                            <h4>Backspace:</h4>
+                            <h4>Backspace</h4>
                             <h3 class="orange">Abc</h3>
                         </div>
                         <!-- <div class="colour-code-wrap">
@@ -448,11 +461,11 @@
                                 <span class="red-border">__</span>
                         </div> -->
                         <div class="colour-code-wrap">
-                            <h4>Not typed:</h4>
+                            <h4>Not typed</h4>
                             <h3>Abc</h3>
                         </div>
                         <div class="colour-code-wrap">
-                            <h4>Skipped:</h4>
+                            <h4>Skipped</h4>
                             <h3>
                                 <span class="green">A</span>
                                 <span class="red-border background">b</span>
