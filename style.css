@@ -128,6 +128,7 @@ button:disabled:hover {
 .control-wrap {
     width: 150px;
     height: 125px;
+    height: 150px;
     padding: 5px;
     /* padding: 8px; */
     border: 1px solid var(--border-gold);
@@ -360,6 +361,7 @@ button:disabled:hover {
     height: 50px;
     font-size: 24px;
     top: 450px;
+    top: 475px;
     left: 250px;
     padding: 10px;
     border: 1px solid var(--border-gold);
@@ -852,6 +854,13 @@ input[type="range"]::-webkit-slider-thumb:hover {
     /* margin-left: 1px; */
 }
 
+/* !!! NOT WORKING !!! */
+/* SLIDER: DISABLED: HOVER */
+input[type="range"]::-webkit-slider-thumb:disabled:hover {
+    /* background: lightgreen; */
+    background: #529de1;
+}
+
 input[type="range"]:focus::-webkit-slider-runnable-track {
     background: #50555c;
 }
@@ -947,6 +956,8 @@ input[type="range"]:focus::-ms-fill-upper {
     color: red;
 } */
 
+/* ENABLED: HOVER */
+
 /* RADIO HOVER BACKGROUND HIGHLIGHT */
 /* TRY TO ADJUST WIDTH */
 /* [type="radio"]:checked + label, */
@@ -960,6 +971,22 @@ input[type="range"]:focus::-ms-fill-upper {
     /* TEXT */
     /* color: #529de1; */
     font-weight: 500;
+    color: #50555c;
+}
+
+/* DISABLED: HOVER */
+[type="radio"]:not(:checked):disabled + label:hover {
+    cursor: default;
+    font-weight: 300;
+
+    color: #50555c;
+}
+
+/* :CHECKED: DISABLED: HOVER */
+[type="radio"]:checked:disabled + label:hover {
+    cursor: default;
+    font-weight: 300;
+
     color: #50555c;
 }
 
@@ -1325,6 +1352,7 @@ input[type="range"]:focus::-ms-fill-upper {
 .scene {
     width: 1000px;
     height: 825px;
+    height: 850px;
     margin: 0px auto;
     /* perspective: 2000px; */
     perspective: 800px;
