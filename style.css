@@ -729,6 +729,10 @@ button:disabled:hover {
     background: rgba(255, 0, 0, 0.463);
 }
 
+.dark-gold-background {
+    background-color: darkgoldenrod;
+}
+
 /* .ligtht-sky-blue-background {
 
 } */

@@ -599,6 +599,17 @@ startButton.addEventListener("click", (event) => {
         const typedKey = event.key;
         console.log("EVENT: KEYUP", event.key);
 
+
+        // TRACK TYPED KEY ON KEYBOARD (100MS FLASH)
+        for (let i = 0; i < letterKeys.length; i += 1) {
+            if (typedKey.toUpperCase() === letterKeys[i].innerText) {
+                letterKeys[i].classList.add("dark-gold-background");
+                setTimeout(function () {
+                    letterKeys[i].classList.remove("dark-gold-background");
+                }, 100)
+            }
+        }
+
         // console.log("<<<< START", wrongCounter);
 
         // if (soundOn) {
