@@ -30,7 +30,6 @@
                     <!-- <h1>JS touch-typing practice</h1> -->
 
                     <div id="controls-container" class="controls-container fadeout-with-timer">
-                        <!-- <h2>Controls container</h2> -->
 
                         <div class="control-wrap difficulty-control-wrap">
                             <h4>Difficulty</h4>
@@ -46,7 +45,6 @@
                             </select>
                             </form> -->
                             <!-- <form action=""> -->
-
                             <div class="difficulty-radios-container">
                                 <input type="radio" id="100" class="radio difficulty-radio disabled-during-timer"
                                     name="difficulty" value="100" checked="checked" />
@@ -62,7 +60,6 @@
                                     name="difficulty" value="JavaScript" />
                                 <label for="JavaScript">JS</label>
                                 <br />
-
                             </div>
 
                             <button id="diffuculty-apply" class="control-panel-button" disabled="true">
@@ -72,22 +69,7 @@
                             <!-- </form> -->
                         </div>
 
-                        <div class="control-wrap line-length-control-wrap">
-                            <!-- <form> -->
-                            <!-- <label for="length">Line length (20 - 50):</label> -->
-                            <h4>Line length</h4>
-                            (20 - 50)<input type="range" id="length" class="disabled-during-timer" name="length"
-                                min="20" max="50" value="40" />
-                            <span id="length-display-span">30</span>
-                            <button id="length-apply" class="control-panel-button" disabled="true">
-                                Apply
-                            </button>
-                            <!-- <input type=" submit" value="Apply"> -->
-                            <!-- </form> -->
-                        </div>
-
                         <div class="control-wrap punctuation-capital-control-wrap">
-
                             <h4>Punctuation</h4>
                             <div class="punctuation-buttons-container">
                                 <button id="punctuation-toggle"
@@ -109,29 +91,33 @@
                                     Apply
                                 </button>
                             </div>
-
-
                         </div>
 
-                        <div class="control-wrap timer-control-wrap">
-                            <h4>Timer</h4>
-                            <div class="timer-radios-container">
-                                <input type="radio" id="no-timer" class="radio timer-radio disabled-during-timer"
-                                    name="timer" value="no-timer" />
-                                <label for="no-timer">Off</label><br />
-                                <input type="radio" id="1min" class="radio timer-radio disabled-during-timer"
-                                    name="timer" value="1min" checked="checked" />
-                                <label for="1min">1 min</label>
-                                <br />
-                            </div>
-
-                            <button id="timer-apply" class="control-panel-button" disabled="true">
+                        <div class="control-wrap line-length-control-wrap">
+                            <!-- <form> -->
+                            <!-- <label for="length">Line length (20 - 50):</label> -->
+                            <h4>Line length</h4>
+                            (20 - 50)<input type="range" id="length" class="disabled-during-timer" name="length"
+                                min="20" max="50" value="40" />
+                            <span id="length-display-span">30</span>
+                            <button id="length-apply" class="control-panel-button" disabled="true">
                                 Apply
                             </button>
+                            <!-- <input type=" submit" value="Apply"> -->
+                            <!-- </form> -->
                         </div>
 
-                        <div class="control-wrap sound-info-control-wrap">
-
+                        <div class="control-wrap timer-sound-control-wrap">
+                            <h4>Timer</h4>
+                            <div class="timer-buttons-container">
+                                <button id="timer-toggle"
+                                    class="control-panel-button timer-toggle disabled-during-timer toggle-on">
+                                    On
+                                </button>
+                                <button id="timer-apply" class="control-panel-button" disabled="true">
+                                    Apply
+                                </button>
+                            </div>
                             <h4>Sound</h4>
                             <div class="sound-buttons-container">
                                 <button id="sound-toggle"
@@ -142,29 +128,27 @@
                                     Apply
                                 </button>
                             </div>
+                        </div>
 
+                        <div class="control-wrap info-control-wrap">
                             <h4>Info</h4>
                             <button class="control-panel-button info-button flip-button">Show</button>
                             </button>
-
                         </div>
 
                     </div>
 
                     <div class="active-container">
-                        <!-- <h2>Active:</h2> -->
                         <div id="text-span-active" class="text-span-container"></div>
                     </div>
 
                     <div class="next-container">
-                        <!-- <h2>Next:</h2> -->
                         <div id="text-span-next" class="text-span-container text-span-next">
                             <p id="text-span-next-p"></p>
                         </div>
                     </div>
 
                     <div class="input-container">
-                        <!-- <h2>Input:</h2> -->
                         <div id="counter-div" class="counter-div"></div>
                         <form action="" class="form">
                             <label for="input"></label>
@@ -172,22 +156,19 @@
                                 placeholder="                      Click Start ➡" />
                         </form>
                         <button id="start-button" class="button start-button">
-
                             <!-- NOT IN USE -->
                             <!-- <span id="refresh-icon" class="material-symbols-sharp hidden">
                                 autorenew
                             </span> -->
-
                             Start
                         </button>
                     </div>
 
+                    <!-- THIS IS POSITIONED USING RELATIVE-TOP/LEFT -->
                     <div id="message-div" class="message-div"></div>
-
 
                     <div class="stats-and-keys-container fadeout-with-timer">
                         <div id="stats-container__left" class="stats-container">
-                            <!-- <h2>Stats container</h2> -->
                             <div class="stat-wrap">
                                 <h4>Average Speed</h4>
                                 <span id="speed-span" class="speed-span">0</span>
@@ -197,7 +178,6 @@
                                 <span id="green-counter-span" class="green colour-counter-span">0</span>
                                 <div class="redOrangeDiv">
                                     <span id="red-counter-span" class="red colour-counter-span">0</span>
-
                                     <span id="orange-counter-span" class="orange colour-counter-span">0</span>
                                 </div>
                             </div>
@@ -440,9 +420,6 @@
                         </div>
                     </div>
 
-
-
-
                     <div id="colour-code-container" class="colour-code-container fadeout-with-timer">
                         <div class="colour-code-wrap">
                             <h4>Correct</h4>
@@ -456,10 +433,6 @@
                             <h4>Backspace</h4>
                             <h3 class="orange">Abc</h3>
                         </div>
-                        <!-- <div class="colour-code-wrap">
-                            <h3>Space:</h2>
-                                <span class="red-border">__</span>
-                        </div> -->
                         <div class="colour-code-wrap">
                             <h4>Not typed</h4>
                             <h3>Abc</h3>
@@ -479,7 +452,6 @@
                 </div>
                 <!-- card__face--front -->
             </div>
-
 
 
             <!-- CARD-BACK -->

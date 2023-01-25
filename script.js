@@ -39,8 +39,9 @@ const soundApply = document.getElementById("sound-apply");
 // ALL RADIOS
 // const radios = document.getElementsByClassName("radio");
 const difficultyRadios = document.getElementsByClassName("difficulty-radio");
-const timerRadios = document.getElementsByClassName("timer-radio");
+// const timerRadios = document.getElementsByClassName("timer-radio");
 // TIMER
+const timerToggle = document.getElementById("timer-toggle");
 const timerApply = document.getElementById("timer-apply");
 // ELEMENTS THAT FADE WHILE TIMER IS ON
 const fadeWithTimerElements =
@@ -115,8 +116,7 @@ let charIdx = 0;
 // DEFAULT CONTROL SETTINGS
 let punctuationOn = false;
 let capitalOn = false;
-let timerSelected = true;
-let timerOn = false;
+let timerOn = true;
 let soundOn = true;
 
 let keyStrokeCounter = 0;
@@ -202,28 +202,36 @@ const toggleButtonState = (element) => {
     if (element.classList.contains("toggle-on")) {
         if (element === punctuationToggle) {
             punctuationOn = true;
-            console.log("PUNCTUATION:", punctuationOn);
+            // console.log("PUNCTUATION:", punctuationOn);
         }
         if (element === capitalToggle) {
             capitalOn = true;
-            console.log("CAPITAL:", capitalOn);
+            // console.log("CAPITAL:", capitalOn);
         }
         if (element === soundToggle) {
             soundOn = true;
-            console.log("CAPITAL:", capitalOn);
+            // console.log("CAPITAL:", capitalOn);
+        }
+        if (element === timerToggle) {
+            timerOn = true;
+            console.log("TIMER:", timerOn);
         }
     } else {
         if (element === punctuationToggle) {
             punctuationOn = false;
-            console.log("PUNCTUATION", punctuationOn);
+            // console.log("PUNCTUATION", punctuationOn);
         }
         if (element === capitalToggle) {
             capitalOn = false;
-            console.log("CAPITAL", capitalOn);
+            // console.log("CAPITAL", capitalOn);
         }
         if (element === soundToggle) {
             soundOn = false;
-            console.log("CAPITAL:", capitalOn);
+            // console.log("CAPITAL:", capitalOn);
+        }
+        if (element === timerToggle) {
+            timerOn = false;
+            console.log("TIMER:", timerOn);
         }
     }
 };
@@ -396,10 +404,6 @@ const capsLockWarningsOff = () => {
 
 const doc = document.getElementById("container");
 
-// var testCapsLock = function(event)...
-// doc.addEventListener("keyup", testCapsLock);
-// doc.addEventListener("keydown", testCapsLock);
-
 const testCapsLock = (event) => {
     if (event.code === "CapsLock") {
         let isCapsLockOn = event.getModifierState("CapsLock");
@@ -511,7 +515,7 @@ startButton.addEventListener("click", (event) => {
     textInput.focus();
 
     // ADD LISTENER FOR TIMER IF 1 MIN TIMER IS SELECTED
-    if (timerSelected) {
+    if (timerOn) {
         // if (!capsLockKey.classList.contains("blink")) {
         textInput.addEventListener("keydown", startCountdown);
         // console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
@@ -551,9 +555,6 @@ startButton.addEventListener("click", (event) => {
 
     // console.log("STRINGWORDS:", stringWords);
 
-    // DISABLED
-    // textContainer.textContent = stringWords;
-
     // MAKE EACH CHARACTER OF THE STRING A span AND APPEND AS A CHILD ELEMENT TO ITS CONTAINER
 
     // CREATE SPANS FROM wordArrays' ARRAY OF WORDS, JOIN ELEMENS TO ONE STRING WITH SPACES AND THEN SPLIT
@@ -581,8 +582,6 @@ startButton.addEventListener("click", (event) => {
     createSpans(lineIdx, textSpanContainerActive);
 
     // INITIALISE TEXTSPANCONTAINER NEXT
-    // createSpans(lineIdx + 1, textSpanContainerNext);
-    // FILL THIS CONTAINER WITH TEXT, NOT SPANS
     let stringWordsNext = "";
     stringWordsNext = wordArrays[lineIdx + 1].join("");
     textSpanContainerNextParagraph.innerText = stringWordsNext;
@@ -699,9 +698,7 @@ startButton.addEventListener("click", (event) => {
         if (typedKey === "Backspace" && charIdx > 0) {
             // console.log("BACKSPACE");
 
-            // INCREMENT ORANGE COUNTER
             orangeCounter += 1;
-
             prevChar();
 
             const currentCharacter = document.getElementById(`span-${strIdx}`);
@@ -735,13 +732,13 @@ startButton.addEventListener("click", (event) => {
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CORRECT KEY 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
         if (typedKey === wordArrays[lineIdx][wordIdx][charIdx]) {
-            console.log(
-                "CORRECT KEY!",
-                "typed:",
-                typedKey,
-                "actual:",
-                wordArrays[lineIdx][wordIdx][charIdx]
-            );
+            // console.log(
+            //     "CORRECT KEY!",
+            //     "typed:",
+            //     typedKey,
+            //     "actual:",
+            //     wordArrays[lineIdx][wordIdx][charIdx]
+            // );
 
             if (soundOn) {
                 playSound("mixkit-single-key-press-in-a-laptop-2541.wav", 1);
@@ -832,10 +829,6 @@ startButton.addEventListener("click", (event) => {
                     );
                     // }
 
-                    // currentCharacter.classList.remove(
-                    //     "background",
-                    //     "black-border"
-                    // );
                     nextWord();
                     clearTextInput();
                 }
@@ -856,7 +849,6 @@ startButton.addEventListener("click", (event) => {
 
                 let lastWordLength = wordArrays[lineIdx][wordIdx - 1].length;
                 let charSpans = document.querySelectorAll(".active-txt-span");
-                // console.log(charSpans);
 
                 // START LOOP BACKWARDS AND COUNT SPANS WITH GREEN CLASS
                 for (let i = strIdx - 2; i >= strIdx - lastWordLength; i -= 1) {
@@ -899,13 +891,13 @@ startButton.addEventListener("click", (event) => {
             typedKey !== "Backspace" &&
             typedKey !== "CapsLock"
         ) {
-            console.log(
-                "WRONG KEY!",
-                "typed:",
-                typedKey,
-                "actual:",
-                wordArrays[lineIdx][wordIdx][charIdx]
-            );
+            // console.log(
+            //     "WRONG KEY!",
+            //     "typed:",
+            //     typedKey,
+            //     "actual:",
+            //     wordArrays[lineIdx][wordIdx][charIdx]
+            // );
 
             wrongCounter += 1;
 
@@ -916,11 +908,10 @@ startButton.addEventListener("click", (event) => {
             ) {
                 problemKeysSet.add(wordArrays[lineIdx][wordIdx][charIdx]);
             }
-            console.log("<<<<< PROBLEM KEYS SET >>>>>", problemKeysSet);
+            // console.log("<<<<< PROBLEM KEYS SET >>>>>", problemKeysSet);
 
             // IF PROBLEMKEYS SET HAS LENGTH LOOP OVER problemKeysSet AND FIND CORRESPONDING problem-key-span FOR EACH ELEMENT
             if (problemKeysSet.size) {
-                // console.log(problemKeySpans);
 
                 problemKeysSet.forEach((key) => {
                     console.log(key);
@@ -992,7 +983,6 @@ startButton.addEventListener("click", (event) => {
 
             // IF WORD IS SKIPPED BY SPACE INCREMENT RED COUNTER WITH ITS LENGTH
             redCounter += wordArrays[lineIdx][wordIdx].length;
-
             // CALC ACCURACY AGAIN AND UPDATE COUNTER
             accuracy = calcAccuracy();
             colourAccuracySpan();
@@ -1000,7 +990,7 @@ startButton.addEventListener("click", (event) => {
 
             // JUMP IDX TO THE NEXT WORD IN STRING
             if (charIdx < wordArrays[lineIdx][wordIdx].length) {
-                // IF SPACE IS PRESSED ANYWHERE ON LAST WORD
+                // IF SPACE IS CLICKED ANYWHERE ON LAST WORD
                 console.log("INCOMPLETE WORD, NEXT LINE()");
 
                 let nextWordIdx;
@@ -1021,7 +1011,6 @@ startButton.addEventListener("click", (event) => {
                 }
                 // SKIP TO NEXT WORD IN STRING
                 strIdx = nextWordIdx;
-                // CLEAR INPUT IF GOT WORD WRONG
                 clearTextInput();
             }
 
@@ -1030,14 +1019,7 @@ startButton.addEventListener("click", (event) => {
                 console.log("<<<<< SPACE ON LAST WORD, NEW LINE! >>>>>");
 
                 wrongCounter += 1;
-
-                // START NEW LINE
                 nextLine();
-
-                // DON'T INCREMENT WORD COUNTER IF SPACE IS TYPED ON LAST WORD
-                // wordCounter += 1;
-
-                console.log("WORD COUNTER TEST:", wordCounter);
                 // DELETE SPANS FROM ACTIVE DIV / APPEND SPANS CREATED FROM NEXT LINE
                 textSpanContainerActive.innerHTML = "";
                 createSpans(lineIdx, textSpanContainerActive);
@@ -1164,9 +1146,7 @@ for (let i = 0, length = difficultyRadios.length; i < length; i++) {
 }
 
 difficultyApply.addEventListener("click", function () {
-    // REMOVE ACTIVE STYLE
     difficultyApply.classList.remove("control-apply-active");
-    // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
     startButton.disabled = false;
     startButton.innerText = "Start";
@@ -1177,7 +1157,6 @@ difficultyApply.addEventListener("click", function () {
 
     for (let i = 0, length = difficultyRadios.length; i < length; i++) {
         if (difficultyRadios[i].checked) {
-            // do whatever you want with the checked radio
             console.log("RADIOS VALUE:", difficultyRadios[i].value);
             if (difficultyRadios[i].value === "100") {
                 console.log("100");
@@ -1191,8 +1170,6 @@ difficultyApply.addEventListener("click", function () {
                 console.log("JaveScript");
                 targetArray = [...jsReserved, ...jsObjPropMeth];
             }
-
-            // only one radio can be logically checked, don't check the rest
             break;
         }
     }
@@ -1259,10 +1236,8 @@ punctuationApply.addEventListener("click", function () {
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CAPITAL 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-// 1. ONLY TOGGLE STYLE
 const handleCapitalToggle = () => {
     toggleButtonStyle(capitalToggle);
-    // toggleButtonState(punctuationToggle);
     capitalApply.classList.add("control-apply-active");
     capitalApply.disabled = false;
     startButton.classList.remove("control-apply-active");
@@ -1271,17 +1246,12 @@ const handleCapitalToggle = () => {
 
 capitalToggle.addEventListener("click", handleCapitalToggle);
 
-// 2. APPLY CHANGES WHEN CLICKED
 capitalApply.addEventListener("click", function () {
-    // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
     startButton.disabled = false;
     startButton.innerText = "Start";
-
-    // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
     clearArrAndString();
-    // TOGGLE STATE BOOLEAN
     toggleButtonState(capitalToggle);
     capitalApply.classList.remove("control-apply-active");
 });
@@ -1338,7 +1308,7 @@ const countdown = () => {
             startButton.disabled = false;
             startButton.classList.add("control-apply-active");
             startButton.innerText = "Start";
-            // CLEAR TEXT AFTER 1 SECOND
+            // CLEAR TEXT AFTER 2 SECONDS
             // ALSO TRY FADING TEXT OUT. SELECT ALL SPANS AND APPEND NEXT LINE TO PARAGRAPH
             // SYNC CLEARTEXFIELDS WITH ANIMATION DURATION (FADE OUT AND THEN CLEAR)
             setTimeout(clearTextFields, 2000);
@@ -1349,9 +1319,7 @@ const countdown = () => {
             for (let i = 0; i < activeTextSpans.length; i += 1) {
                 activeTextSpans[i].classList.add("totalFadeOut");
             }
-
             // activeTextSpans.classList.add("fadeOut");
-            // clearTextFields();
             textInput.removeEventListener("keydown", startCountdown);
             const totalKeystrokes = keyStrokeCounter;
             keystrokesSpan.textContent = totalKeystrokes;
@@ -1366,11 +1334,31 @@ const countdown = () => {
     tick();
 };
 
+
+const handleTimerToggle = () => {
+    toggleButtonStyle(timerToggle);
+    timerApply.classList.add("control-apply-active");
+    timerApply.disabled = false;
+    startButton.classList.remove("control-apply-active");
+    startButton.disabled = true;
+};
+
+timerToggle.addEventListener("click", handleTimerToggle);
+
+timerApply.addEventListener("click", function () {
+    startButton.classList.add("control-apply-active");
+    startButton.disabled = false;
+    startButton.innerText = "Start";
+    clearDataAndDisplay();
+    clearArrAndString();
+    toggleButtonState(timerToggle);
+    timerApply.classList.remove("control-apply-active");
+});
+
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 SOUND 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
-// 1. ONLY TOGGLE STYLE
+
 const handleSoundToggle = () => {
     toggleButtonStyle(soundToggle);
-    // toggleButtonState(punctuationToggle);
     soundApply.classList.add("control-apply-active");
     soundApply.disabled = false;
     startButton.classList.remove("control-apply-active");
@@ -1379,17 +1367,12 @@ const handleSoundToggle = () => {
 
 soundToggle.addEventListener("click", handleSoundToggle);
 
-// 2. APPLY CHANGES WHEN CLICKED
 soundApply.addEventListener("click", function () {
-    // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
     startButton.disabled = false;
     startButton.innerText = "Start";
-
-    // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
     clearArrAndString();
-    // TOGGLE STATE BOOLEAN
     toggleButtonState(soundToggle);
     soundApply.classList.remove("control-apply-active");
 });
@@ -1408,51 +1391,6 @@ const startCountdown = () => {
         disabledDuringTimer[i].disabled = true;
     }
 };
-
-// textInput.addEventListener("keydown", startCountdown);
-
-// MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
-
-for (let i = 0; i < timerRadios.length; i++) {
-    // for (let i = 0, length = timerRadios.length; i < length; i++) {
-    // console.log(timerRadios[i]);
-    timerRadios[i].addEventListener("click", function () {
-        // console.log("timer selected", timerRadios[i].value);
-        timerApply.classList.add("control-apply-active");
-        timerApply.disabled = false;
-        startButton.classList.remove("control-apply-active");
-        startButton.disabled = true;
-    });
-}
-
-timerApply.addEventListener("click", function () {
-    // REMOVE ACTIVE STYLE
-    timerApply.classList.remove("control-apply-active");
-    // HIGHLIGHT START BUTTON
-    startButton.classList.add("control-apply-active");
-    startButton.disabled = false;
-    startButton.innerText = "Start";
-
-    // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
-    clearDataAndDisplay();
-    clearArrAndString();
-
-    for (let i = 0; i < timerRadios.length; i++) {
-        if (timerRadios[i].checked) {
-            console.log("RADIOS VALUE:", timerRadios[i].value);
-            if (timerRadios[i].value === "no-timer") {
-                console.log("no timer");
-                timerSelected = false;
-            }
-            if (timerRadios[i].value === "1min") {
-                console.log("1 min timer");
-                timerSelected = true;
-            }
-            break;
-        }
-    }
-    console.log("TIMER SELECTED:", timerSelected);
-});
 
 // FLIP
 //SOURCE: https://codepen.io/desandro/pen/LmWoWe

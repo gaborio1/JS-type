@@ -139,9 +139,15 @@ button:disabled:hover {
     border-radius: 4px;
 }
 
+
 /* ++++++++++++++++++++ */
 
-.difficulty-radios-container {
+.difficulty-radios-container,
+.punctuation-buttons-container,
+.capital-buttons-container,
+.sound-buttons-container,
+.timer-buttons-container {
+    /* FLEX: COLUMN WILL INCREASE DIFF RADIOS HEIGHT (WITH MARGIN OR SOME SPACE) */
     /* display: flex; */
     /* flex-direction: column; */
     /* align-items: center; */
@@ -150,25 +156,6 @@ button:disabled:hover {
     /* border: 1px solid black; */
 }
 
-.punctuation-buttons-container {
-    height: fit-content;
-    /* border: 1px solid black; */
-}
-
-.capital-buttons-container {
-    height: fit-content;
-    /* border: 1px solid black; */
-}
-
-.sound-buttons-container {
-    height: fit-content;
-    /* border: 1px solid black; */
-}
-
-.timer-radios-container {
-    height: fit-content;
-    /* border: 1px solid black; */
-}
 
 /* ++++++++++++++++++++ */
 
@@ -203,7 +190,8 @@ button:disabled:hover {
 .punctuation-toggle:hover,
 .capital-toggle:hover,
 .sound-toggle:hover,
-.info-button:hover {
+.info-button:hover,
+.timer-toggle:hover {
     /* background: lightgreen; */
     font-weight: 500;
 }
@@ -212,6 +200,7 @@ button:disabled:hover {
 .punctuation-toggle:disabled:hover,
 .capital-toggle:disabled:hover,
 .sound-toggle:disabled:hover,
+.timer-toggle:disabled:hover,
 .info-button:disabled:hover {
     /* background: lightgreen; */
     font-weight: 300;
@@ -224,6 +213,16 @@ button:disabled:hover {
     background: lightgreen;
     font-weight: 500;
 } */
+
+
+/* !!! TEMPORARY SETTINGS FOR INFO WRAP !!! */
+.control-wrap.info-control-wrap {
+    justify-content: start;
+}
+
+.control-wrap.info-control-wrap button {
+    margin-top: 13px;
+}
 
 /* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TEXT CONTAINERS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
