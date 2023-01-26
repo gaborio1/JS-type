@@ -922,8 +922,6 @@ startButton.addEventListener("click", (event) => {
                 currentCharacter.classList.remove("background", "black-border");
             }
 
-            // currentCharacter.classList.remove("background", "black-border");
-
             if (stringWords[strIdx] === " ") {
                 // console.log("<<<<< ADD RED BORDER TO SPACE >>>>>");
                 currentCharacter.classList.add("red-border");
@@ -932,7 +930,7 @@ startButton.addEventListener("click", (event) => {
             nextChar();
         }
 
-        // =========== SPACE ON WORD (WRONG CHAR AND SPACE) ===========
+        // 🀰🀰🀰🀰🀰🀰🀰🀰🀰 SPACE ON WORD (WRONG CHAR AND SPACE) 🀰🀰🀰🀰🀰🀰🀰🀰🀰
         else if (
             typedKey !== wordArrays[lineIdx][wordIdx][charIdx] &&
             typedKey === " "
@@ -944,22 +942,21 @@ startButton.addEventListener("click", (event) => {
                 playSound("mixkit-message-pop-alert-2354.mp3", 0.25);
             }
 
-            // IF WORD IS SKIPPED BY SPACE INCREMENT RED COUNTER WITH ITS LENGTH
-            redCounter += wordArrays[lineIdx][wordIdx].length;
-            // CALC ACCURACY AGAIN AND UPDATE COUNTER
-            accuracy = calcAccuracy();
-            colourAccuracySpan();
+            redCounter += wordArrays[lineIdx][wordIdx].length; // INCREMENT RED COUNTER WITH WORD'S LENGTH
+
+            accuracy = calcAccuracy(); // CALC ACCURACY AGAIN
+            colourAccuracySpan(); // AND UPDATE COUNTER
             accuracySpan.textContent = `${Math.floor(accuracy)}%`;
 
             // JUMP IDX TO THE NEXT WORD IN STRING
             if (charIdx < wordArrays[lineIdx][wordIdx].length) {
-                // IF SPACE IS CLICKED ANYWHERE ON LAST WORD
-                console.log("INCOMPLETE WORD, NEXT LINE()");
+                // console.log("INCOMPLETE WORD, NEXT LINE()"); // IF SPACE IS CLICKED ON LAST WORD
 
+                // console.log("STRING IDX TO JUMP TO NEXT WORD IN STRING!");
+
+                // FIND NEXT SPACE IN STRING AND SET INDEX TO NEXT WORD AFTER SPACE
                 let nextWordIdx;
 
-                console.log("STRING IDX TO JUMP TO NEXT WORD IN STRING!");
-                // FIND NEXT SPACE IN STRING AND SET INDEX TO NEXT WORD AFTER SPACE
                 for (let i = strIdx; i < stringWords.length; i += 1) {
                     if (stringWords[i] === " ") {
                         // console.log("space found at index: ", i);
@@ -979,27 +976,25 @@ startButton.addEventListener("click", (event) => {
 
             // ======= SPACE ON LAST WORD (WRONG CHAR AND SPACE) ==========
             if (wordIdx === wordArrays[lineIdx].length - 1) {
-                console.log("<<<<< SPACE ON LAST WORD, NEW LINE! >>>>>");
+                // console.log("<<<<< SPACE ON LAST WORD, NEW LINE! >>>>>");
 
                 wrongCounter += 1;
                 nextLine();
-                // DELETE SPANS FROM ACTIVE DIV / APPEND SPANS CREATED FROM NEXT LINE
-                textSpanContainerActive.innerHTML = "";
-                createSpans(lineIdx, textSpanContainerActive);
+
+                textSpanContainerActive.innerHTML = ""; // DELETE SPANS FROM ACTIVE DIV
+                createSpans(lineIdx, textSpanContainerActive); // APPEND SPANS CREATED FROM NEXT LINE
                 // ADD CURSOR TO FIRST CHAR IN LINE
                 const firstCharacter = document.getElementById("span-0");
                 firstCharacter.classList.add("background", "black-border");
-                // UPDATE STRWORDS
-                stringWords = wordArrays[lineIdx].join("");
-                // DELETE CONTENT / APPEND NEXT LINE TO TEXTSPAN NEXT DIV
-                textSpanContainerNextParagraph.innerHTML = "";
-                // createSpans(lineIdx + 1, textSpanContainerNext);
-                // APPEND TEXT AS STRING INSTEAD OF SPANS !!!
+
+                stringWords = wordArrays[lineIdx].join(""); // UPDATE STRWORDS
+                textSpanContainerNextParagraph.innerHTML = ""; // DELETE CONTENT
+                // APPEND TEXT AS STRING (INSTEAD OF SPANS )
                 stringWordsNext = wordArrays[lineIdx + 1].join(" ");
                 textSpanContainerNextParagraph.innerText = stringWordsNext;
             }
 
-            // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND ON CURRENT
+            // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND FROM CURRENT
             // ON ALL CHARACTERS BUT LAST
             if (strIdx < stringWords.length) {
                 let currentCharacter = document.getElementById(
@@ -1012,7 +1007,6 @@ startButton.addEventListener("click", (event) => {
                 const nextCharacter = document.getElementById(`span-${strIdx}`);
                 nextCharacter.classList.add("background", "black-border");
                 nextWord();
-                // strIdx += 1;
             }
         }
 
@@ -1035,9 +1029,9 @@ startButton.addEventListener("click", (event) => {
         // );
 
         // console.log("<<<<< WORD COUNTER:", wordCounter, ">>>>>");
+        // console.log("<<<< END", wrongCounter);
 
-        console.log("<<<< END", wrongCounter);
-
+        // MORE THAN 5 MISTAKES: GOODBYE MESSAGE SEQUENCE
         if (wrongCounter >= maxMistakes) {
             textInput.readOnly = true;
             document.removeEventListener("keydown", handleKeyEvent);
@@ -1114,7 +1108,6 @@ difficultyApply.addEventListener("click", function () {
     startButton.disabled = false;
     startButton.innerText = "Start";
 
-    // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
     clearArrAndString();
 
@@ -1139,12 +1132,12 @@ difficultyApply.addEventListener("click", function () {
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 LINE LENGTH 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
-// DEFAULT LINE LENGTH, ALSO HARD CODED IN HTML
+
+// DEFAULT LINE LENGTH (30), ALSO HARD CODED IN HTML
 
 // DISPLAY CURRENT VALUE OF SLIDER
 slider.onchange = function (event) {
     // console.log("SLIDER VALUE HAS BEEN CHANGED:", slider.value);
-    // DISPLAY CURRENT VALUE
     lengthDisplaySpan.textContent = slider.value;
     console.log("slider changed");
     lengthApply.classList.add("control-apply-active");
@@ -1155,12 +1148,10 @@ slider.onchange = function (event) {
 
 // GET SLIDER FINAL VALUE AND ASSIGN TO SEQUENCE LENGTH
 lengthApply.addEventListener("click", function () {
-    // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
     startButton.disabled = false;
     startButton.innerText = "Start";
 
-    // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
     clearArrAndString();
     sequenceLength = slider.value;
@@ -1173,7 +1164,6 @@ lengthApply.addEventListener("click", function () {
 // 1. ONLY TOGGLE STYLE
 const handlePunctuationToggle = () => {
     toggleButtonStyle(punctuationToggle);
-    // toggleButtonState(punctuationToggle);
     punctuationApply.classList.add("control-apply-active");
     punctuationApply.disabled = false;
     startButton.classList.remove("control-apply-active");
@@ -1184,15 +1174,12 @@ punctuationToggle.addEventListener("click", handlePunctuationToggle);
 
 // 2. APPLY CHANGES WHEN CLICKED
 punctuationApply.addEventListener("click", function () {
-    // HIGHLIGHT START BUTTON
     startButton.classList.add("control-apply-active");
     startButton.disabled = false;
     startButton.innerText = "Start";
 
-    // CLEAR TRACKERS, DISPLAY AND TARGET ARRAY/STRING
     clearDataAndDisplay();
     clearArrAndString();
-    // TOGGLE STATE BOOLEAN
     toggleButtonState(punctuationToggle);
     punctuationApply.classList.remove("control-apply-active");
 });
@@ -1232,7 +1219,6 @@ const countdown = () => {
         // counter.innerHTML = seconds;
         if (seconds > 0) {
             setTimeout(tick, 1000);
-            // MIGHT HAVE TO SET THIS TO TRUE WITH FIRST KEYPRESS
             timerOn = true;
         }
 
@@ -1241,15 +1227,12 @@ const countdown = () => {
         // CALCULATE CURRENT AVE SPEED EVERY SECOND
         if (Number.isInteger(seconds / 1)) {
             let currentSpeed = (60 / (60 - seconds)) * wordCounter;
-            // DISABLED
             // speedSpan.innerText = currentSpeed.toFixed(1);
-            // ROUND DOWN SPEED TO NEAREST INTEGER
-            // speedSpan.innerText = `${Math.floor(currentSpeed)}WPM`;
-            speedSpan.innerText = Math.floor(currentSpeed);
+            speedSpan.innerText = Math.floor(currentSpeed); // ROUND DOWN SPEED TO NEAREST INTEGER
             finalSpeed = currentSpeed;
         }
 
-        // START FADING IN CONTROLS AT 2 SECOND MARK
+        // FADE IN CONTROLS AT 2 SECOND MARK
         if (seconds === 2) {
             for (let i = 0; i < fadeWithTimerElements.length; i += 1) {
                 fadeWithTimerElements[i].classList.add("fadeIn");
@@ -1258,22 +1241,16 @@ const countdown = () => {
         }
 
         if (seconds === 0) {
-            console.log("times up");
+            // console.log("times up");
             // document.removeEventListener("keydown", handleKeyEvent);
             timerOn = false;
-            // DISABLE INPUT AND SET VALUE
-            textInput.value = "                 Try Again ➡";
-            // DISABLE TXT INPUT
-            textInput.readOnly = true;
-
+            textInput.value = "                 Try Again ➡"; // SET INPUT VALUE
+            textInput.readOnly = true; // DISABLE TXT INPUT
             speedSpan.innerText = finalSpeed;
-
             startButton.disabled = false;
             startButton.classList.add("control-apply-active");
             startButton.innerText = "Start";
-            // CLEAR TEXT AFTER 2 SECONDS
-            // ALSO TRY FADING TEXT OUT. SELECT ALL SPANS AND APPEND NEXT LINE TO PARAGRAPH
-            // SYNC CLEARTEXFIELDS WITH ANIMATION DURATION (FADE OUT AND THEN CLEAR)
+            // CLEAR TEXT AFTER 2 SECONDS, SYNC CLEARTEXFIELDS WITH ANIMATION DURATION (FADE OUT AND THEN CLEAR)
             setTimeout(clearTextFields, 2000);
             // textSpanContainerActive.classList.add("fadeOut");
             textSpanContainerNextParagraph.classList.add("totalFadeOut");
@@ -1282,11 +1259,9 @@ const countdown = () => {
             for (let i = 0; i < activeTextSpans.length; i += 1) {
                 activeTextSpans[i].classList.add("totalFadeOut");
             }
-            // activeTextSpans.classList.add("fadeOut");
             textInput.removeEventListener("keydown", startCountdown);
             const totalKeystrokes = keyStrokeCounter;
             keystrokesSpan.textContent = totalKeystrokes;
-
             // ENABLE CONTROL INPUTS/TOGGLES
             for (let i = 0; i < disabledDuringTimer.length; i += 1) {
                 disabledDuringTimer[i].disabled = false;
@@ -1354,7 +1329,7 @@ const startCountdown = () => {
     }
 };
 
-// FLIP
+// FLIP APP/INFO
 //SOURCE: https://codepen.io/desandro/pen/LmWoWe
 
 for (let i = 0; i < flipButtons.length; i += 1) {
