@@ -122,7 +122,8 @@ button:disabled:hover {
     display: flex;
     justify-content: space-between;
     margin: 25px 0px 0px 0px;
-    /* height: 125px; */
+    height: 150px;
+    /* border: 2px solid red; */
 }
 
 .control-wrap {
@@ -191,6 +192,7 @@ button:disabled:hover {
 .capital-toggle:hover,
 .sound-toggle:hover,
 .info-button:hover,
+.trainer-button:hover,
 .timer-toggle:hover {
     /* background: lightgreen; */
     font-weight: 500;
@@ -216,13 +218,13 @@ button:disabled:hover {
 
 
 /* !!! TEMPORARY SETTINGS FOR INFO WRAP !!! */
-.control-wrap.info-control-wrap {
+/* .control-wrap.info-control-wrap {
     justify-content: start;
 }
 
 .control-wrap.info-control-wrap button {
     margin-top: 13px;
-}
+} */
 
 /* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TEXT CONTAINERS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
@@ -615,7 +617,7 @@ button:disabled:hover {
     /* backface-visibility: hidden; */
 }
 
-.flip-button__card {
+.flip-button__card--main {
     /* display: inline-block; */
     width: 45px;
     height: 25px;
@@ -1391,16 +1393,15 @@ input[type="range"]:focus::-ms-fill-upper {
 
 /* // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 APP / INFO FLIP 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
-.scene {
+.scene--main {
     width: 1000px;
-    height: 825px;
     height: 850px;
     margin: 0px auto;
     /* perspective: 2000px; */
     perspective: 800px;
 }
 
-.card {
+.card--main {
     width: 100%;
     height: 100%;
     position: relative;
@@ -1408,7 +1409,7 @@ input[type="range"]:focus::-ms-fill-upper {
     transform-style: preserve-3d;
 }
 
-.card__face {
+.card__face--main {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -1419,12 +1420,50 @@ input[type="range"]:focus::-ms-fill-upper {
     background: red;
 } */
 
-.card__face--back {
+.card__face--back--main {
     /* background: blue; */
     transform: rotateY(180deg);
     /* transform: rotateX(180deg); */
 }
 
-.card.flipped {
+.card--main.flipped {
+    transform: rotateY(180deg);
+}
+
+/* // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CONTROLS / TRAINER FLIP 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
+
+.scene--controls {
+    width: 900px;
+    height: 150px;
+    margin: 0px auto;
+    perspective: 800px;
+}
+
+.card--controls {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+
+.card__face--controls {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: 25px 0px 0px 0px;
+    backface-visibility: hidden;
+}
+
+.card__face--front--controls {
+    /* background: rgba(255, 0, 0, 0.538); */
+}
+
+.card__face--back--controls {
+    background: rgba(0, 0, 255, 0.504);
+    transform: rotateY(180deg);
+}
+
+.card--controls.flipped {
     transform: rotateY(180deg);
 }

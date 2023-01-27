@@ -12,7 +12,7 @@ import {
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 ELEMENT VARIABLES 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-const card = document.getElementById("card"); // CARD CONTAINED WITHIN SCENE
+const card = document.getElementById("card--main"); // CARD CONTAINED WITHIN SCENE
 
 const container = document.getElementById("container");
 const controlsContainer = document.getElementById("controls-container");
@@ -48,7 +48,7 @@ const timerApply = document.getElementById("timer-apply");
 const fadeWithTimerElements =
     document.getElementsByClassName("fadeout-with-timer");
 // FLIP BUTTON (APP/INFO)
-const flipButtons = document.getElementsByClassName("flip-button");
+const flipButtons = document.getElementsByClassName("flip-button--main");
 // CONTROL PANEL INPUTS/TOGGLE BUTTONS THAT ARE DISABLED DURING TIMER
 const disabledDuringTimer = document.getElementsByClassName(
     "disabled-during-timer"
@@ -211,7 +211,6 @@ const toggleButtonState = (element) => {
         }
         if (element === timerToggle) {
             timerOn = true;
-            console.log("TIMER:", timerOn);
         }
     } else {
         if (element === punctuationToggle) {
@@ -225,7 +224,6 @@ const toggleButtonState = (element) => {
         }
         if (element === timerToggle) {
             timerOn = false;
-            console.log("TIMER:", timerOn);
         }
     }
 };
@@ -775,8 +773,7 @@ const reloadSequence = () => {
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-// HIGHLIGHT START BUTTON
-startButton.classList.add("control-apply-active");
+startButton.classList.add("control-apply-active"); // HIGHLIGHT START BUTTON
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
@@ -815,7 +812,6 @@ startButton.addEventListener("click", (event) => {
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 INPUT ROW 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
     textInput.readOnly = false; // ALLOW USER INPUT TO BE TYPED
-
     // SET CURSOR TO INPUT BOX  AT FIRST CHAR IF TEXT-ALIGN IS DISABLED IN CSS
     // SETS CURSOR AT FIRST CHAR IF TEXT-ALIGN IS DISABLED IN CSS
     // txtInput.setSelectionRange(0, 0);
@@ -836,14 +832,11 @@ startButton.addEventListener("click", (event) => {
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TEXT FIELDS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
     textSpanContainerNextParagraph.classList.remove("totalFadeOut"); // SHOW NEXT LINE
-
     clearTextFields(); // CLEAR ALL STRING DATA FROM TEXT FIELDS AND EMPTY ARRAYS
-
     buildWordArrays(wordsArrLength);
 
     // CREATE TEXT STRING FROM RANDOM WORDS UP TO sequenceLength IN LENGTH
     // CREATE STRING OF WORDS WITH SPACES
-
     stringWords = wordArrays[lineIdx].join("");
     // console.log("STRINGWORDS:", stringWords);
 
@@ -864,6 +857,7 @@ startButton.addEventListener("click", (event) => {
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
     const handleKeyEvent = (event) => {
+
         // const typedKey = event.key;
         typedKey = event.key;
         // console.log("EVENT: KEYUP", event.key);
@@ -914,8 +908,6 @@ startButton.addEventListener("click", (event) => {
 
         // logKeyEventStart();
 
-        // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 DETECT CAPSLOCK 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
-
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 SHIFT 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
         if (typedKey === "Shift") {
@@ -929,6 +921,7 @@ startButton.addEventListener("click", (event) => {
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CORRECT KEY 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
         if (typedKey === wordArrays[lineIdx][wordIdx][charIdx]) {
+
             // console.log(
             //     "CORRECT KEY!",
             //     "typed:",
@@ -956,7 +949,6 @@ startButton.addEventListener("click", (event) => {
             // REMOVE CURSOR FROM SPACE
             if (typedKey === " ") {
                 // END OF LINE SPACE
-
 
                 if (strIdx === stringWords.length - 1) {
                     correctEndOfLineSpace();
@@ -995,6 +987,7 @@ startButton.addEventListener("click", (event) => {
                 colourAccuracySpan();
                 accuracySpan.textContent = `${Math.floor(accuracy)}`;
             }
+
         }
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 WRONG KEY OR SHIFT FOR CAPITAL LETTERS 🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1005,6 +998,7 @@ startButton.addEventListener("click", (event) => {
             typedKey !== "Backspace" &&
             typedKey !== "CapsLock"
         ) {
+
             // console.log(
             //     "WRONG KEY!",
             //     "typed:",
@@ -1069,6 +1063,7 @@ startButton.addEventListener("click", (event) => {
             }
 
             nextChar();
+
         }
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰 SPACE ON WORD (WRONG CHAR AND SPACE) 🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1117,6 +1112,7 @@ startButton.addEventListener("click", (event) => {
             reloadSequence();
             document.removeEventListener("keydown", handleKeyEvent);
         }
+
     };
 
     // ADD HANDLEKEYEVENT FOR KEYUP EVENT ONLY ONCE, REMOVE IT IF START IS CLICKED AGAIN, SEE IF BLOCK BELOW
@@ -1152,6 +1148,17 @@ startButton.addEventListener("click", (event) => {
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CONTROL PANEL 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
+const enableStartButton = () => {
+    startButton.classList.add("control-apply-active");
+    startButton.disabled = false;
+    startButton.innerText = "Start";
+}
+
+const disableStartButton = () => {
+    startButton.classList.remove("control-apply-active");
+    startButton.disabled = true;
+}
+
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 DIFFICULTY 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
 // MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
@@ -1167,10 +1174,7 @@ for (let i = 0, length = difficultyRadios.length; i < length; i++) {
 
 difficultyApply.addEventListener("click", function () {
     difficultyApply.classList.remove("control-apply-active");
-    startButton.classList.add("control-apply-active");
-    startButton.disabled = false;
-    startButton.innerText = "Start";
-
+    enableStartButton();
     clearDataAndDisplay();
     clearArrAndString();
 
@@ -1205,16 +1209,12 @@ slider.onchange = function (event) {
     console.log("slider changed");
     lengthApply.classList.add("control-apply-active");
     lengthApply.disabled = false;
-    startButton.classList.remove("control-apply-active");
-    startButton.disabled = true;
+    disableStartButton();
 };
 
 // GET SLIDER FINAL VALUE AND ASSIGN TO SEQUENCE LENGTH
 lengthApply.addEventListener("click", function () {
-    startButton.classList.add("control-apply-active");
-    startButton.disabled = false;
-    startButton.innerText = "Start";
-
+    enableStartButton();
     clearDataAndDisplay();
     clearArrAndString();
     sequenceLength = slider.value;
@@ -1229,18 +1229,14 @@ const handlePunctuationToggle = () => {
     toggleButtonStyle(punctuationToggle);
     punctuationApply.classList.add("control-apply-active");
     punctuationApply.disabled = false;
-    startButton.classList.remove("control-apply-active");
-    startButton.disabled = true;
+    disableStartButton();
 };
 
 punctuationToggle.addEventListener("click", handlePunctuationToggle);
 
 // 2. APPLY CHANGES WHEN CLICKED
 punctuationApply.addEventListener("click", function () {
-    startButton.classList.add("control-apply-active");
-    startButton.disabled = false;
-    startButton.innerText = "Start";
-
+    enableStartButton();
     clearDataAndDisplay();
     clearArrAndString();
     toggleButtonState(punctuationToggle);
@@ -1253,16 +1249,13 @@ const handleCapitalToggle = () => {
     toggleButtonStyle(capitalToggle);
     capitalApply.classList.add("control-apply-active");
     capitalApply.disabled = false;
-    startButton.classList.remove("control-apply-active");
-    startButton.disabled = true;
+    disableStartButton();
 };
 
 capitalToggle.addEventListener("click", handleCapitalToggle);
 
 capitalApply.addEventListener("click", function () {
-    startButton.classList.add("control-apply-active");
-    startButton.disabled = false;
-    startButton.innerText = "Start";
+    enableStartButton();
     clearDataAndDisplay();
     clearArrAndString();
     toggleButtonState(capitalToggle);
@@ -1339,16 +1332,13 @@ const handleTimerToggle = () => {
     toggleButtonStyle(timerToggle);
     timerApply.classList.add("control-apply-active");
     timerApply.disabled = false;
-    startButton.classList.remove("control-apply-active");
-    startButton.disabled = true;
+    disableStartButton();
 };
 
 timerToggle.addEventListener("click", handleTimerToggle);
 
 timerApply.addEventListener("click", function () {
-    startButton.classList.add("control-apply-active");
-    startButton.disabled = false;
-    startButton.innerText = "Start";
+    enableStartButton();
     clearDataAndDisplay();
     clearArrAndString();
     toggleButtonState(timerToggle);
@@ -1361,16 +1351,13 @@ const handleSoundToggle = () => {
     toggleButtonStyle(soundToggle);
     soundApply.classList.add("control-apply-active");
     soundApply.disabled = false;
-    startButton.classList.remove("control-apply-active");
-    startButton.disabled = true;
+    disableStartButton();
 };
 
 soundToggle.addEventListener("click", handleSoundToggle);
 
 soundApply.addEventListener("click", function () {
-    startButton.classList.add("control-apply-active");
-    startButton.disabled = false;
-    startButton.innerText = "Start";
+    enableStartButton();
     clearDataAndDisplay();
     clearArrAndString();
     toggleButtonState(soundToggle);
@@ -1400,6 +1387,16 @@ for (let i = 0; i < flipButtons.length; i += 1) {
         card.classList.toggle("flipped");
     });
 }
+
+const controlFlipButtons = document.getElementsByClassName("flip-button--controls");
+const controlsCard = document.getElementById("card--controls");
+for (let i = 0; i < controlFlipButtons.length; i += 1) {
+    controlFlipButtons[i].addEventListener("click", function () {
+        controlsCard.classList.toggle("flipped");
+        // console.log("CONTROL FLIP BUTTON CLICKED");
+    });
+}
+
 
 /*
 MASTER/multiple

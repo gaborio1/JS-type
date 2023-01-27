@@ -20,123 +20,147 @@
 </head>
 
 <body>
-    <div id="scene" class="scene">
-        <div id="card" class="card">
+    <!-- APP / INFO -->
+    <div id="scene--main" class="scene--main">
+        <div id="card--main" class="card--main">
             <!-- CARD-FACE -->
-            <div id="container" class="container card__face card__face--front">
+            <div id="container" class="container card__face--main card__face--front--main">
                 <div class="wrapper">
                     <!-- <button class="test-button">flip</button> -->
                     <!-- <button id="flip">Flip Card</button> -->
                     <!-- <h1>JS touch-typing practice</h1> -->
 
-                    <div id="controls-container" class="controls-container fadeout-with-timer">
 
-                        <div class="control-wrap difficulty-control-wrap">
-                            <h4>Difficulty</h4>
-                            <!-- MAKE THIS RADIO INSTEAD ??? -->
-                            <!-- <form action="">
-                            <label class="" for="difficulty">Difficulty:</label>
-                            <select name="difficulty" id="difficulty" class="">
-                                <option class="note-name"></option>
-                                <option value="100" class="difficulty">100</option>
-                                <option value="200" class="difficulty">200</option>
-                                <option value="500" class="difficulty">500</option>
-                                <option value="1000" class="difficulty">1000</option>
-                            </select>
-                            </form> -->
-                            <!-- <form action=""> -->
-                            <div class="difficulty-radios-container">
-                                <input type="radio" id="100" class="radio difficulty-radio disabled-during-timer"
-                                    name="difficulty" value="100" checked="checked" />
-                                <label for="100">100</label>
-                                <br />
+                    <!-- CONTROL PANEL / PRACTICE PANEL -->
+                    <div id="scene--controls" class="scene--controls">
+                        <div id="card--controls" class="card--controls">
 
-                                <input type="radio" id="200" class="radio difficulty-radio disabled-during-timer"
-                                    name="difficulty" value="200" />
-                                <label for="200">200</label>
-                                <br />
+                            <!-- CONTROLS CONTAINER -->
+                            <div id="controls-container"
+                                class="controls-container fadeout-with-timer card__face--controls card__face--front--controls">
 
-                                <input type="radio" id="JavaScript" class="radio difficulty-radio disabled-during-timer"
-                                    name="difficulty" value="JavaScript" />
-                                <label for="JavaScript">JS</label>
-                                <br />
+                                <div class="control-wrap difficulty-control-wrap">
+                                    <h4>Difficulty</h4>
+                                    <!-- MAKE THIS RADIO INSTEAD ??? -->
+                                    <!-- <form action="">
+                                    <label class="" for="difficulty">Difficulty:</label>
+                                    <select name="difficulty" id="difficulty" class="">
+                                        <option class="note-name"></option>
+                                        <option value="100" class="difficulty">100</option>
+                                        <option value="200" class="difficulty">200</option>
+                                        <option value="500" class="difficulty">500</option>
+                                        <option value="1000" class="difficulty">1000</option>
+                                    </select>
+                                    </form> -->
+                                    <!-- <form action=""> -->
+                                    <div class="difficulty-radios-container">
+                                        <input type="radio" id="100"
+                                            class="radio difficulty-radio disabled-during-timer" name="difficulty"
+                                            value="100" checked="checked" />
+                                        <label for="100">100</label>
+                                        <br />
+
+                                        <input type="radio" id="200"
+                                            class="radio difficulty-radio disabled-during-timer" name="difficulty"
+                                            value="200" />
+                                        <label for="200">200</label>
+                                        <br />
+
+                                        <input type="radio" id="JavaScript"
+                                            class="radio difficulty-radio disabled-during-timer" name="difficulty"
+                                            value="JavaScript" />
+                                        <label for="JavaScript">JS</label>
+                                        <br />
+                                    </div>
+
+                                    <button id="diffuculty-apply" class="control-panel-button" disabled="true">
+                                        Apply
+                                    </button>
+                                    <!-- <input type=" submit" value="Apply"> -->
+                                    <!-- </form> -->
+                                </div>
+
+                                <div class="control-wrap punctuation-capital-control-wrap">
+                                    <h4>Punctuation</h4>
+                                    <div class="punctuation-buttons-container">
+                                        <button id="punctuation-toggle"
+                                            class="control-panel-button punctuation-toggle disabled-during-timer">
+                                            Off
+                                        </button>
+                                        <button id="punctuation-apply" class="control-panel-button" disabled="true">
+                                            Apply
+                                        </button>
+                                    </div>
+
+                                    <h4>Capital letters</h4>
+                                    <div class="capital-buttons-container">
+                                        <button id="capital-toggle"
+                                            class="control-panel-button capital-toggle disabled-during-timer">
+                                            Off
+                                        </button>
+                                        <button id="capital-apply" class="control-panel-button" disabled="true">
+                                            Apply
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="control-wrap line-length-control-wrap">
+                                    <!-- <form> -->
+                                    <!-- <label for="length">Line length (20 - 50):</label> -->
+                                    <h4>Line length</h4>
+                                    (20 - 50)<input type="range" id="length" class="disabled-during-timer" name="length"
+                                        min="20" max="50" value="40" />
+                                    <span id="length-display-span">30</span>
+                                    <button id="length-apply" class="control-panel-button" disabled="true">
+                                        Apply
+                                    </button>
+                                    <!-- <input type=" submit" value="Apply"> -->
+                                    <!-- </form> -->
+                                </div>
+
+                                <div class="control-wrap timer-sound-control-wrap">
+                                    <h4>Timer</h4>
+                                    <div class="timer-buttons-container">
+                                        <button id="timer-toggle"
+                                            class="control-panel-button timer-toggle disabled-during-timer toggle-on">
+                                            On
+                                        </button>
+                                        <button id="timer-apply" class="control-panel-button" disabled="true">
+                                            Apply
+                                        </button>
+                                    </div>
+                                    <h4>Sound</h4>
+                                    <div class="sound-buttons-container">
+                                        <button id="sound-toggle"
+                                            class="control-panel-button sound-toggle toggle-on disabled-during-timer">
+                                            On
+                                        </button>
+                                        <button id="sound-apply" class="control-panel-button" disabled="true">
+                                            Apply
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="control-wrap info-control-wrap">
+                                    <h4>Info</h4>
+                                    <button class="control-panel-button info-button flip-button--main">Show</button>
+                                    </button>
+                                    <h4>Trainer</h4>
+                                    <button
+                                        class="control-panel-button trainer-button flip-button--controls">Show</button>
+                                    </button>
+                                </div>
+
                             </div>
 
-                            <button id="diffuculty-apply" class="control-panel-button" disabled="true">
-                                Apply
-                            </button>
-                            <!-- <input type=" submit" value="Apply"> -->
-                            <!-- </form> -->
-                        </div>
-
-                        <div class="control-wrap punctuation-capital-control-wrap">
-                            <h4>Punctuation</h4>
-                            <div class="punctuation-buttons-container">
-                                <button id="punctuation-toggle"
-                                    class="control-panel-button punctuation-toggle disabled-during-timer">
-                                    Off
-                                </button>
-                                <button id="punctuation-apply" class="control-panel-button" disabled="true">
-                                    Apply
-                                </button>
-                            </div>
-
-                            <h4>Capital letters</h4>
-                            <div class="capital-buttons-container">
-                                <button id="capital-toggle"
-                                    class="control-panel-button capital-toggle disabled-during-timer">
-                                    Off
-                                </button>
-                                <button id="capital-apply" class="control-panel-button" disabled="true">
-                                    Apply
-                                </button>
+                            <!-- PRACTICE CONTAINER -->
+                            <div class="trainer-container card__face--controls card__face--back--controls">
+                                <H1>trainer control panel</H1>
+                                <button class="flip-button--controls flip-button__card--controls">Hide</button>
                             </div>
                         </div>
-
-                        <div class="control-wrap line-length-control-wrap">
-                            <!-- <form> -->
-                            <!-- <label for="length">Line length (20 - 50):</label> -->
-                            <h4>Line length</h4>
-                            (20 - 50)<input type="range" id="length" class="disabled-during-timer" name="length"
-                                min="20" max="50" value="40" />
-                            <span id="length-display-span">30</span>
-                            <button id="length-apply" class="control-panel-button" disabled="true">
-                                Apply
-                            </button>
-                            <!-- <input type=" submit" value="Apply"> -->
-                            <!-- </form> -->
-                        </div>
-
-                        <div class="control-wrap timer-sound-control-wrap">
-                            <h4>Timer</h4>
-                            <div class="timer-buttons-container">
-                                <button id="timer-toggle"
-                                    class="control-panel-button timer-toggle disabled-during-timer toggle-on">
-                                    On
-                                </button>
-                                <button id="timer-apply" class="control-panel-button" disabled="true">
-                                    Apply
-                                </button>
-                            </div>
-                            <h4>Sound</h4>
-                            <div class="sound-buttons-container">
-                                <button id="sound-toggle"
-                                    class="control-panel-button sound-toggle toggle-on disabled-during-timer">
-                                    On
-                                </button>
-                                <button id="sound-apply" class="control-panel-button" disabled="true">
-                                    Apply
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="control-wrap info-control-wrap">
-                            <h4>Info</h4>
-                            <button class="control-panel-button info-button flip-button">Show</button>
-                            </button>
-                        </div>
-
                     </div>
+
 
                     <div class="active-container">
                         <div id="text-span-active" class="text-span-container"></div>
@@ -163,6 +187,7 @@
                             Start
                         </button>
                     </div>
+
 
                     <!-- THIS IS POSITIONED USING RELATIVE-TOP/LEFT -->
                     <div id="message-div" class="message-div"></div>
@@ -455,7 +480,7 @@
 
 
             <!-- CARD-BACK -->
-            <div class="instructions-container card__face card__face--back">
+            <div class="instructions-container card__face--main card__face--back--main">
                 <!-- <button class="flip-button flip-button__card">Hide</button> -->
                 <!-- <button id="flip2">Flip Card</button> -->
                 <h3>How to use this app</h3>
@@ -571,7 +596,7 @@
                         Space typed anywhere on word.
                     </li>
                 </ul>
-                <button class="flip-button flip-button__card">Hide</button>
+                <button class="flip-button--main flip-button__card--main">Hide</button>
                 <!-- card__face--back -->
             </div>
             <!-- CARD -->
