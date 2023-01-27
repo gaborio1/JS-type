@@ -98,6 +98,7 @@ const capsLockKey = document.getElementById("capslock-key");
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 LOGIC VARIABLES 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
+let startButtonCounter = 0;
 // DEFAULT COMMON 100 WORDS
 let targetArray = [...common100];
 // DEFAULT LINE LENGTH
@@ -108,6 +109,8 @@ const wordsArrLength = 20;
 let wordArrays = [];
 // STRING BASED ON CURRENT LINE
 let stringWords = "";
+// STRINGWORDS NEXT
+let stringWordsNext = "";
 // CURSOR TRACKERS
 let lineIdx = 0;
 let wordIdx = 0;
@@ -248,7 +251,7 @@ const getStrLength = (arr) => {
 // BUILD STRING BY ADDING RANDOM WORDS ONE BY ONE UNTIL LENGTH IS REACHED
 
 // POPULATE wordArrays WITH ARRAYS OF WORDS (wordsArr), ONE FOR EACH TEXT LINE
-const buidWordArrays = (numOfLines) => {
+const buildWordArrays = (numOfLines) => {
     // console.log("TARGET ARRAY FROM BUILDARRAYS:", targetArray);
     for (let i = 0; i < numOfLines; i += 1) {
         let arr = [];
@@ -407,37 +410,11 @@ const testCapsLock = (event) => {
 doc.addEventListener("keyup", testCapsLock);
 doc.addEventListener("keydown", testCapsLock);
 
-// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
-// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
-// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-let startButtonCounter = 0;
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON FUNCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-// HIGHLIGHT START BUTTON
-startButton.classList.add("control-apply-active");
-
-// ADD LISTENER
-startButton.addEventListener("click", (event) => {
-    // console.log("TARGET ARRAY LENGTH:", targetArray.length);
-
-    // TRACK NUMBER OF START BUTTON CLICKS
-    startButtonCounter += 1;
-    console.log("<<<<< START BUTTON COUNTER", startButtonCounter, ">>>>>");
-
-    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 DETECT CAPSLOCK 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
-
-    if (event.getModifierState("CapsLock")) {
-        console.log("CAPSLOCK IS ON! - START BUTTON");
-        capsLockWarningsOn();
-    } else {
-        capsLockWarningsOff();
-    }
-
-    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 PROBLEM KEYS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
-
-    // IF THERE IS ANY PROBLEM KEY,  FILL tempProbWordsArr WITH WORDS THAT CONTAIN PROBLEM KEYS
-
-    // FIND PROBLEM KEY WORDS IN CURRENT TARGET ARRAY
+// FIND PROBLEM KEY WORDS IN CURRENT TARGET ARRAY / UPDATE TARGET ARRAY WITH PROBLEM WORDS ONLY
+const findAndApplyProblemKeyWords = () => {
     if (problemKeysSet.size) {
         problemKeysSet.forEach((key) => {
             targetArray.forEach((word) => {
@@ -448,32 +425,379 @@ startButton.addEventListener("click", (event) => {
         });
         targetArray = [...tempProbWordsArr]; // UPDATE TARGET ARRAY WITH FILTERED WORDS ARRAY
     }
+}
 
-    // console.log("<<<<< TEMPORARY PROBLEM WORDS ARRAY >>>>>", tempProbWordsArr);
-    // console.log("PROBLEM KEYS:", problemKeysSet);
+const handleCapslockChange = () => {
+    if (event.getModifierState("CapsLock")) {
+        console.log("CAPSLOCK IS ON! - START BUTTON");
+        capsLockWarningsOn();
+    } else {
+        capsLockWarningsOff();
+    }
+}
 
-    problemKeysSet.clear(); // RESET PROBLEM KEYS SET AFTER PROBLEM KEYS HAVE BEEN USED FOR NEW SET OF WORDS
-
-    // REMOVE RED BACKGROUND FROM PROBLEM KEYS
+// REMOVE RED BACKGROUND FROM PROBLEM KEYS
+const removeProblemKeyHighlight = () => {
     for (let i = 0; i < letterKeys.length; i += 1) {
         letterKeys[i].classList.remove("red-background");
         // letterKeys[i].style.color = "red";
     }
+}
 
-    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CONTROL PANEL 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
-
-    // DISABLE CONTROL APPLY BUTTONS
+// DISABLE CONTROL APPLY BUTTONS
+const disableApplyButtons = () => {
     difficultyApply.disabled = true;
     lengthApply.disabled = true;
     punctuationApply.disabled = true;
     capitalApply.disabled = true;
     timerApply.disabled = true;
+}
 
-    // UN BLUR CONTROLS
-    // controlsContainer.classList.remove("hidden-with-z-index");
-    // statsContainerLeft.classList.remove("hidden-with-z-index");
-    // statsContainerRight.classList.remove("hidden-with-z-index");
-    // colourCodeContainer.classList.remove("hidden-with-z-index");
+// MAKE EACH CHARACTER OF THE STRING A span AND APPEND AS A CHILD ELEMENT TO ITS CONTAINER
+
+// CREATE SPANS FROM wordArrays' ARRAY OF WORDS, JOIN ELEMENS TO ONE STRING WITH SPACES AND THEN SPLIT
+// wordArrays[lineIdx] WILL BE INCREMENTED IN EVETLISTENER
+const createSpans = (lineIdx, location) => {
+    for (const [idx, char] of wordArrays[lineIdx] // ACCESSING IDX JIN FOR OF LOOP
+        .join("")
+        .split("")
+        .entries()) {
+        // console.log(idx, char);
+        const span = document.createElement("span"); // CREATE ELEMENT
+        // SET TEXT CONTENT / CLASS / ID
+        span.innerText = char;
+        span.className = "active-txt-span";
+        span.id = `span-${idx}`;
+        location.appendChild(span); // APPEND TO PARENT DIV
+    }
+};
+
+// KEY EVENT START LOGS
+const logKeyEventStart = () => {
+    console.log(
+        "🟩---EVENT START: ",
+        event.key,
+        " ---",
+        "line idx: ",
+        lineIdx,
+        "word idx: ",
+        wordIdx,
+        "/",
+        wordArrays[lineIdx].length - 1,
+        "char idx: ",
+        charIdx,
+        "/",
+        wordArrays[lineIdx][wordIdx].length - 1,
+        "string idx: ",
+        strIdx,
+        "/",
+        stringWords.length - 1
+    );
+}
+
+// KEY EVENT END LOGS
+const logKeyEventEnd = () => {
+    console.log(
+        "---------------------EVENT END---",
+        "line idx: ",
+        lineIdx,
+        "word idx: ",
+        wordIdx,
+        "/",
+        wordArrays[lineIdx].length - 1,
+        "char idx: ",
+        charIdx,
+        "/",
+        wordArrays[lineIdx][wordIdx].length - 1,
+        "string idx: ",
+        strIdx,
+        "/",
+        stringWords.length - 1
+    );
+}
+
+// BACKSPACE
+let typedKey = "";
+const handleBackspace = () => {
+    if (typedKey === "Backspace" && charIdx > 0) {
+        // console.log("BACKSPACE");
+
+        orangeCounter += 1;
+        prevChar();
+
+        const currentCharacter = document.getElementById(`span-${strIdx}`);
+        // console.log("CURRENT CHAR ORANGE", currentCharacter);
+
+        // ADD ORANGE BORDER TO BACKSPACE'D SPACE  !!! HAVE TO CHECK TEXTCONTENT !!!
+        if (currentCharacter.innerText === " ") {
+            currentCharacter.classList.add("orange-border");
+        }
+
+        if (strIdx === stringWords.length - 1) {
+            currentCharacter.classList.add("orange-border");
+        }
+
+        currentCharacter.classList.add(
+            "orange",
+            "background",
+            "black-border"
+        );
+
+        currentCharacter.classList.remove("red", "green");
+
+        const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
+        nextCharacter.classList.remove(
+            "background",
+            "black-border",
+            "red-border"
+        );
+    }
+}
+
+//🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CORRECT KEY 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+//  WORD[0] - WORD[LENGTH-1], ALL CHARACTERS IN WORD EXCLUDING TRAILING SPACE
+
+const correctKeyNotLastSpace = () => {
+    // console.log("<<<<<  NOT LAST CHARACER >>>>>");
+    let nextCharacter = document.getElementById(
+        `span-${strIdx + 1}`
+    );
+    nextCharacter.classList.add("background", "black-border");
+    let currentCharacter = document.getElementById(
+        `span-${strIdx}`
+    );
+    currentCharacter.classList.add("green", "enlarged");
+    currentCharacter.classList.remove(
+        "red",
+        "orange",
+        "background",
+        "black-border",
+        // !!! THIS WONT WORK !!! (BECAUSE ITS THE LAST CHAR IN WORD)
+        "red-border"
+    );
+
+    nextChar();
+}
+
+// WORD[LENGTH-1], TRAILING SPACE ALL WORDS EXCEPT LAST WORD
+
+const correctSpaceNotLastWord = () => {
+    if (wordIdx < wordArrays[lineIdx].length - 1) {
+        // console.log("<<<<< LAST CHARACER !!! >>>>>");
+        let nextCharacter = document.getElementById(
+            `span-${strIdx + 1}`
+        );
+
+        // REMOVE RED BORDER FROM SPACE IF CORRECTED
+        let currentCharacter = document.getElementById(
+            `span-${strIdx}`
+        );
+        currentCharacter.classList.remove(
+            "red-border",
+            "orange-border"
+        );
+        // MOVE CURSOR FORWARD
+        nextCharacter.classList.add("background", "black-border");
+        strIdx += 1;
+    }
+}
+
+// END OF LINE SPACE
+const correctEndOfLineSpace = () => {
+    nextLine();
+    wordCounter += 1;
+    // console.log("WORD COUNTER TEST:", wordCounter);
+    textSpanContainerActive.innerHTML = ""; // DELETE SPANS FROM ACTIVE DIV
+    createSpans(lineIdx, textSpanContainerActive); // APPEND SPANS CREATED FROM NEXT LINE
+    // ADD CURSOR TO FIRST CHAR IN LINE
+    const firstCharacter = document.getElementById("span-0");
+    firstCharacter.classList.add("background", "black-border");
+
+    stringWords = wordArrays[lineIdx].join(""); // UPDATE STRWORDS
+    // DELETE CONTENT / APPEND NEXT LINE TO TEXTSPAN NEXT DIV
+    textSpanContainerNextParagraph.innerHTML = "";
+    stringWordsNext = wordArrays[lineIdx + 1].join(" "); // APPEND TEXT AS STRING NOT SPANS !!!
+    textSpanContainerNextParagraph.innerText = stringWordsNext;
+}
+
+// ALL OTHER SPACES
+const correctSpaceNotEndOfLine = () => {
+
+    let currentCharacter = document.getElementById(
+        `span-${strIdx - 1}`
+    );
+
+    // if (currentCharacter !== null) {
+    currentCharacter.classList.remove(
+        "background",
+        "black-border"
+    );
+    // }
+
+    nextWord();
+    clearTextInput();
+
+}
+
+// COUNT COLOUR SPANS IN LAST WORD WHEN TRAILING SPACE IS TYPED CORRECTLY
+
+const countSpanColours = () => {
+    let lastWordLength = wordArrays[lineIdx][wordIdx - 1].length;
+    let charSpans = document.querySelectorAll(".active-txt-span");
+    // START LOOP BACKWARDS AND COUNT SPANS WITH GREEN CLASS
+    for (let i = strIdx - 2; i >= strIdx - lastWordLength; i -= 1) {
+        // PRINT LAST WORD SPANS WITHOUT TRAILING SPACE
+        // console.log(charSpans[i]);
+
+        if (charSpans[i] === undefined) {
+            console.log("charspans[i] UNDEFINED!!!");
+        }
+
+        if (charSpans[i].classList.contains("green")) {
+            greenCounter += 1;
+        }
+        if (charSpans[i].classList.contains("red")) {
+            redCounter += 1;
+        }
+        // NOT IN USE YET
+        if (charSpans[i].classList.contains("orange")) {
+            orangeCounter += 1;
+        }
+    }
+    // console.log("<<< green:", greenCounter, "red:", redCounter, "orange", orangeCouner);
+}
+
+// DISPLAY COLOUR COUNTER VALUES
+const displayColourCounterValues = () => {
+    greenCounterSpan.textContent = greenCounter;
+    redCounterSpan.textContent = redCounter;
+    orangeCounterSpan.textContent = orangeCounter;
+}
+
+// HIGHLIGHT PROBLEM KEYS ON KEYBOARD
+const highlightProblemKeys = () => {
+    problemKeysSet.forEach((key) => {
+        // console.log(key);
+        // !!! WITHOUT THIS CONDITION CURSOR WILL NOT MOVE FORWARD INTO NEXT WORD, IT WILL STAY ON SPACE !!!
+        if (key !== undefined) {
+            for (let i = 0; i < letterKeys.length; i += 1) {
+                if (letterKeys[i].innerText === key.toUpperCase()) {
+                    // !!! RED CLASS DOES NOT OVERWRITE CSS COLOUR !!!
+                    letterKeys[i].classList.add("red-background");
+                    // letterKeys[i].style.color = "red";
+                }
+            }
+        }
+    });
+}
+
+// SPACE ON WORD - FIND NEXT SPACE IN STRING AND SET INDEX TO NEXT WORD AFTER SPACE
+const findNextWordIndex = () => {
+    let nextWordIdx;
+    for (let i = strIdx; i < stringWords.length; i += 1) {
+        if (stringWords[i] === " ") {
+            // console.log("space found at index: ", i);
+            nextWordIdx = i + 1;
+
+            let currentCharacter = document.getElementById(
+                `span-${strIdx}`
+            );
+            currentCharacter.classList.add("red-border");
+            break;
+        }
+    }
+    return nextWordIdx;
+}
+
+// SPACE ON LAST WORD
+const spaceOnLastWord = () => {
+    // console.log("<<<<< SPACE ON LAST WORD, NEW LINE! >>>>>");
+
+    wrongCounter += 1;
+    nextLine();
+
+    textSpanContainerActive.innerHTML = ""; // DELETE SPANS FROM ACTIVE DIV
+    createSpans(lineIdx, textSpanContainerActive); // APPEND SPANS CREATED FROM NEXT LINE
+    // ADD CURSOR TO FIRST CHAR IN LINE
+    const firstCharacter = document.getElementById("span-0");
+    firstCharacter.classList.add("background", "black-border");
+
+    stringWords = wordArrays[lineIdx].join(""); // UPDATE STRWORDS
+    textSpanContainerNextParagraph.innerHTML = ""; // DELETE CONTENT
+    // APPEND TEXT AS STRING (INSTEAD OF SPANS )
+    stringWordsNext = wordArrays[lineIdx + 1].join(" ");
+    textSpanContainerNextParagraph.innerText = stringWordsNext;
+}
+
+// SPACE ON WORD
+// APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND FROM CURRENT
+// ON ALL CHARACTERS BUT LAST
+const spaceOnWord = () => {
+    let currentCharacter = document.getElementById(
+        `span-${strIdx - 1}`
+    );
+
+    wrongCounter += 1;
+
+    currentCharacter.classList.remove("background", "black-border");
+    const nextCharacter = document.getElementById(`span-${strIdx}`);
+    nextCharacter.classList.add("background", "black-border");
+    nextWord();
+}
+
+// END MESSEAGE SEQUENCE (MESSAGES - RELOAD)
+const reloadSequence = () => {
+    textInput.readOnly = true;
+    // THIS HAS TO STAY INSIDE KEY EVENTS AS handleKeyEvent WILL BE NOT RECOGNISED
+    // document.removeEventListener("keydown", handleKeyEvent);
+    textInput.value = "     ❌   Don't play silly games!  ❌";
+
+    setTimeout(function () {
+        textInput.value = "         ⬅️   Correct mistakes!   ⬅️";
+    }, 1500);
+
+    setTimeout(function () {
+        // textInput.value = "     ☠️   YOU ARE TERMINATED!  ☠️";
+        textInput.value = "      ☠️   You are terminated!  ☠️";
+
+        if (soundOn) {
+            playSound("mixkit-distant-war-explosions-1696.wav", 0.9);
+        }
+    }, 3000);
+
+    setTimeout(function () {
+        location.reload();
+    }, 5000);
+}
+
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+// HIGHLIGHT START BUTTON
+startButton.classList.add("control-apply-active");
+
+// ADD LISTENER
+startButton.addEventListener("click", (event) => {
+
+    // TRACK NUMBER OF START BUTTON CLICKS
+    startButtonCounter += 1;
+
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 DETECT CAPSLOCK 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+    handleCapslockChange();
+
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 PROBLEM KEYS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+    // IF THERE IS ANY PROBLEM KEY,  FILL tempProbWordsArr WITH WORDS THAT CONTAIN PROBLEM KEYS
+    findAndApplyProblemKeyWords();
+    problemKeysSet.clear(); // RESET PROBLEM KEYS SET AFTER PROBLEM KEYS HAVE BEEN USED FOR NEW SET OF WORDS
+    removeProblemKeyHighlight();
+
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CONTROL PANEL 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+    disableApplyButtons();
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 STATISTICS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -515,46 +839,19 @@ startButton.addEventListener("click", (event) => {
 
     clearTextFields(); // CLEAR ALL STRING DATA FROM TEXT FIELDS AND EMPTY ARRAYS
 
-    buidWordArrays(wordsArrLength);
-    // console.log("WORDARRAYS:", wordArrays);
+    buildWordArrays(wordsArrLength);
 
     // CREATE TEXT STRING FROM RANDOM WORDS UP TO sequenceLength IN LENGTH
     // CREATE STRING OF WORDS WITH SPACES
-    // USE THIS FUNCTION BELOW?
-
-    // const buildStringWords = (arr) => {
-    //     return arr.join("");
-    // };
 
     stringWords = wordArrays[lineIdx].join("");
     // console.log("STRINGWORDS:", stringWords);
 
-    // MAKE EACH CHARACTER OF THE STRING A span AND APPEND AS A CHILD ELEMENT TO ITS CONTAINER
-
-    // CREATE SPANS FROM wordArrays' ARRAY OF WORDS, JOIN ELEMENS TO ONE STRING WITH SPACES AND THEN SPLIT
-    // wordArrays[lineIdx] WILL BE INCREMENTED IN EVETLISTENER
-    // console.log("WORDARRAYS FIRST LINE:", wordArrays[lineIdx]);
-    const createSpans = (lineIdx, location) => {
-        // console.log("hello from CREATESPANS");
-        for (const [idx, char] of wordArrays[lineIdx]
-            .join("")
-            .split("")
-            .entries()) {
-            // console.log(idx, char);
-            const span = document.createElement("span"); // CREATE ELEMENT
-            // SET TEXT CONTENT / CLASS / ID
-            span.innerText = char;
-            span.className = "active-txt-span";
-            span.id = `span-${idx}`;
-            // console.log(span);
-            location.appendChild(span); // APPEND TO PARENT DIV
-        }
-    };
-
+    // POPULATE ACTIVE TEXT CONTAINER WITH SPANS
     createSpans(lineIdx, textSpanContainerActive);
 
     // INITIALISE TEXTSPANCONTAINER NEXT
-    let stringWordsNext = "";
+    // let stringWordsNext = "";
     stringWordsNext = wordArrays[lineIdx + 1].join("");
     textSpanContainerNextParagraph.innerText = stringWordsNext;
 
@@ -567,7 +864,8 @@ startButton.addEventListener("click", (event) => {
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
     const handleKeyEvent = (event) => {
-        const typedKey = event.key;
+        // const typedKey = event.key;
+        typedKey = event.key;
         // console.log("EVENT: KEYUP", event.key);
 
         // TRACK TYPED KEY ON KEYBOARD (100MS FLASH)
@@ -580,28 +878,10 @@ startButton.addEventListener("click", (event) => {
             }
         }
 
-        // console.log("<<<< START", wrongCounter);
-
-        // if (soundOn) {
-        //     playSound('mixkit-single-key-press-in-a-laptop-2541.wav', 1);
-        // }
-
+        // MORE THAN 5 MISTAKES: GOODBYE MESSAGE SEQUENCE
         if (wrongCounter >= maxMistakes) {
-            textInput.readOnly = true;
+            reloadSequence();
             document.removeEventListener("keydown", handleKeyEvent);
-            textInput.value = "     ❌   Don't play silly games!  ❌";
-
-            setTimeout(function () {
-                textInput.value = "         ⬅️   Correct mistakes!   ⬅️";
-            }, 1500);
-
-            setTimeout(function () {
-                textInput.value = "     ☠️   YOU ARE TERMINATED!  ☠️";
-            }, 3000);
-
-            setTimeout(function () {
-                location.reload();
-            }, 4500);
         }
 
         //NOT USED
@@ -632,25 +912,7 @@ startButton.addEventListener("click", (event) => {
             }
         }
 
-        // console.log(
-        //     "🟩---EVENT START: ",
-        //     event.key,
-        //     " ---",
-        //     "line idx: ",
-        //     lineIdx,
-        //     "word idx: ",
-        //     wordIdx,
-        //     "/",
-        //     wordArrays[lineIdx].length - 1,
-        //     "char idx: ",
-        //     charIdx,
-        //     "/",
-        //     wordArrays[lineIdx][wordIdx].length - 1,
-        //     "string idx: ",
-        //     strIdx,
-        //     "/",
-        //     stringWords.length - 1
-        // );
+        // logKeyEventStart();
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 DETECT CAPSLOCK 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -662,40 +924,7 @@ startButton.addEventListener("click", (event) => {
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BACKSPACE 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-        // PREVENT CURSOR FROM GOING BACK IF ITS ON FIRST CHAR OF WORD (&& charIdx > 0)
-        if (typedKey === "Backspace" && charIdx > 0) {
-            // console.log("BACKSPACE");
-
-            orangeCounter += 1;
-            prevChar();
-
-            const currentCharacter = document.getElementById(`span-${strIdx}`);
-            // console.log("CURRENT CHAR ORANGE", currentCharacter);
-
-            // ADD ORANGE BORDER TO BACKSPACE'D SPACE  !!! HAVE TO CHECK TEXTCONTENT !!!
-            if (currentCharacter.innerText === " ") {
-                currentCharacter.classList.add("orange-border");
-            }
-
-            if (strIdx === stringWords.length - 1) {
-                currentCharacter.classList.add("orange-border");
-            }
-
-            currentCharacter.classList.add(
-                "orange",
-                "background",
-                "black-border"
-            );
-
-            currentCharacter.classList.remove("red", "green");
-
-            const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
-            nextCharacter.classList.remove(
-                "background",
-                "black-border",
-                "red-border"
-            );
-        }
+        handleBackspace();
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CORRECT KEY 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -714,87 +943,30 @@ startButton.addEventListener("click", (event) => {
 
             wrongCounter = 0;
 
-            // NOT LAST CHARACTER IN WORD
+            //  WORD[0] - WORD[LENGTH-1], ALL CHARACTERS IN WORD EXCLUDING TRAILING SPACE
             if (charIdx < wordArrays[lineIdx][wordIdx].length - 1) {
-                // console.log("<<<<<  NOT LAST CHARACER >>>>>");
-                let nextCharacter = document.getElementById(
-                    `span-${strIdx + 1}`
-                );
-                nextCharacter.classList.add("background", "black-border");
-                let currentCharacter = document.getElementById(
-                    `span-${strIdx}`
-                );
-                currentCharacter.classList.add("green", "enlarged");
-                currentCharacter.classList.remove(
-                    "red",
-                    "orange",
-                    "background",
-                    "black-border",
-                    // !!! THIS WONT WORK !!! (BECAUSE ITS THE LAST CHAR IN WORD)
-                    "red-border"
-                );
-
-                nextChar();
+                correctKeyNotLastSpace();
             }
 
-            // LAST CHARACTER IN WORD (SPACE)
+            // WORD[LENGTH-1], TRAILING SPACE ALL WORDS EXCEPT LAST WORD
             else if (charIdx === wordArrays[lineIdx][wordIdx].length - 1) {
-                if (wordIdx < wordArrays[lineIdx].length - 1) {
-                    // console.log("<<<<< LAST CHARACER !!! >>>>>");
-                    let nextCharacter = document.getElementById(
-                        `span-${strIdx + 1}`
-                    );
-
-                    // REMOVE RED BORDER FROM SPACE IF CORRECTED
-                    let currentCharacter = document.getElementById(
-                        `span-${strIdx}`
-                    );
-                    currentCharacter.classList.remove(
-                        "red-border",
-                        "orange-border"
-                    );
-                    // MOVE CURSOR FORWARD
-                    nextCharacter.classList.add("background", "black-border");
-                    strIdx += 1;
-                }
+                correctSpaceNotLastWord();
             }
 
             // REMOVE CURSOR FROM SPACE
             if (typedKey === " ") {
                 // END OF LINE SPACE
-                if (strIdx === stringWords.length - 1) {
-                    nextLine();
-                    wordCounter += 1;
-                    // console.log("WORD COUNTER TEST:", wordCounter);
-                    textSpanContainerActive.innerHTML = ""; // DELETE SPANS FROM ACTIVE DIV
-                    createSpans(lineIdx, textSpanContainerActive); // APPEND SPANS CREATED FROM NEXT LINE
-                    // ADD CURSOR TO FIRST CHAR IN LINE
-                    const firstCharacter = document.getElementById("span-0");
-                    firstCharacter.classList.add("background", "black-border");
 
-                    stringWords = wordArrays[lineIdx].join(""); // UPDATE STRWORDS
-                    // DELETE CONTENT / APPEND NEXT LINE TO TEXTSPAN NEXT DIV
-                    textSpanContainerNextParagraph.innerHTML = "";
-                    stringWordsNext = wordArrays[lineIdx + 1].join(" "); // APPEND TEXT AS STRING NOT SPANS !!!
-                    textSpanContainerNextParagraph.innerText = stringWordsNext;
+
+                if (strIdx === stringWords.length - 1) {
+                    correctEndOfLineSpace();
                 }
 
                 // ONLY ACCESS CURRENTCHAR IF IT IS NOT END OF LINE (IF STATEMENT DOESNT WORK FOR CLASSLIST REMOVE, STILL GET TYPE ERROR )
                 // !!! ERROR: Uncaught TypeError: Cannot read properties of null (reading 'classList')at HTMLDocument.handleKeyEvent (script.js:680:33)
+
                 if (strIdx < stringWords.length - 1) {
-                    let currentCharacter = document.getElementById(
-                        `span-${strIdx - 1}`
-                    );
-
-                    // if (currentCharacter !== null) {
-                    currentCharacter.classList.remove(
-                        "background",
-                        "black-border"
-                    );
-                    // }
-
-                    nextWord();
-                    clearTextInput();
+                    correctSpaceNotEndOfLine();
                 }
 
                 wordCounter += 1;
@@ -811,33 +983,11 @@ startButton.addEventListener("click", (event) => {
                 //     stringWords.length
                 // );
 
-                let lastWordLength = wordArrays[lineIdx][wordIdx - 1].length;
-                let charSpans = document.querySelectorAll(".active-txt-span");
+                // COUNT COLOUR SPANS IN LAST WORD WHEN TRAILING SPACE IS TYPED CORRECTLY
+                countSpanColours();
 
-                // START LOOP BACKWARDS AND COUNT SPANS WITH GREEN CLASS
-                for (let i = strIdx - 2; i >= strIdx - lastWordLength; i -= 1) {
-                    // PRINT LAST WORD SPANS WITHOUT TRAILING SPACE
-                    // console.log(charSpans[i]);
-
-                    if (charSpans[i] === undefined) {
-                        console.log("charspans[i] UNDEFINED!!!");
-                    }
-
-                    if (charSpans[i].classList.contains("green")) {
-                        greenCounter += 1;
-                    }
-                    if (charSpans[i].classList.contains("red")) {
-                        redCounter += 1;
-                    }
-                    // NOT IN USE YET
-                    if (charSpans[i].classList.contains("orange")) {
-                        orangeCounter += 1;
-                    }
-                }
-                // console.log("<<< green:", greenCounter, "red:", redCounter);
-                greenCounterSpan.textContent = greenCounter;
-                redCounterSpan.textContent = redCounter;
-                orangeCounterSpan.textContent = orangeCounter;
+                // DISPLAY COLOUR COUNTER VALUES
+                displayColourCounterValues();
 
                 // CALC AND DISPLAY ACCURACY  accuracy = (100 / (greenCounter + redCounter)) * greenCounter;
                 accuracy = calcAccuracy();
@@ -876,30 +1026,21 @@ startButton.addEventListener("click", (event) => {
 
             // IF PROBLEMKEYS SET HAS LENGTH LOOP OVER problemKeysSet AND FIND CORRESPONDING problem-key-span FOR EACH ELEMENT
             if (problemKeysSet.size) {
-                problemKeysSet.forEach((key) => {
-                    console.log(key);
-                    for (let i = 0; i < problemKeySpans.length; i += 1) {
-                        if (problemKeySpans[i].innerText === key) {
-                            // !!! RED CLASS DOES NOT OVERWRITE CSS COLOUR !!!
-                            // problemKeySpans[i].classList.add("red", "red-background");
-                            problemKeySpans[i].style.color = "red";
-                        }
-                    }
-                });
 
-                problemKeysSet.forEach((key) => {
-                    console.log(key);
-                    // !!! WITHOUT THIS CONDITION CURSOR WILL NOT MOVE FORWARD INTO NEXT WORD, IT WILL STAY ON SPACE !!!
-                    if (key !== undefined) {
-                        for (let i = 0; i < letterKeys.length; i += 1) {
-                            if (letterKeys[i].innerText === key.toUpperCase()) {
-                                // !!! RED CLASS DOES NOT OVERWRITE CSS COLOUR !!!
-                                letterKeys[i].classList.add("red-background");
-                                // letterKeys[i].style.color = "red";
-                            }
-                        }
-                    }
-                });
+                // TEST DIV CURRENTLY DISABLED:
+                // problemKeysSet.forEach((key) => {
+                //     // console.log(key);
+                //     for (let i = 0; i < problemKeySpans.length; i += 1) {
+                //         if (problemKeySpans[i].innerText === key) {
+                //             // !!! RED CLASS DOES NOT OVERWRITE CSS COLOUR !!!
+                //             // problemKeySpans[i].classList.add("red", "red-background");
+                //             problemKeySpans[i].style.color = "red";
+                //         }
+                //     }
+                // });
+
+                // HIGHLIGHT PROBLEM KEYS ON KEYBOARD
+                highlightProblemKeys();
             }
 
             if (soundOn) {
@@ -950,109 +1091,31 @@ startButton.addEventListener("click", (event) => {
 
             // JUMP IDX TO THE NEXT WORD IN STRING
             if (charIdx < wordArrays[lineIdx][wordIdx].length) {
-                // console.log("INCOMPLETE WORD, NEXT LINE()"); // IF SPACE IS CLICKED ON LAST WORD
-
                 // console.log("STRING IDX TO JUMP TO NEXT WORD IN STRING!");
 
-                // FIND NEXT SPACE IN STRING AND SET INDEX TO NEXT WORD AFTER SPACE
-                let nextWordIdx;
-
-                for (let i = strIdx; i < stringWords.length; i += 1) {
-                    if (stringWords[i] === " ") {
-                        // console.log("space found at index: ", i);
-                        nextWordIdx = i + 1;
-
-                        let currentCharacter = document.getElementById(
-                            `span-${strIdx}`
-                        );
-                        currentCharacter.classList.add("red-border");
-                        break;
-                    }
-                }
-                // SKIP TO NEXT WORD IN STRING
-                strIdx = nextWordIdx;
+                // SKIP TO NEXT WORD IN STRING (FIND NEXT SPACE IN STRING AND SET INDEX TO NEXT WORD AFTER SPACE)
+                strIdx = findNextWordIndex(); // UPDATE STRIDX WITH RETURN VALUE OF findNextWordIndex
                 clearTextInput();
             }
 
             // ======= SPACE ON LAST WORD (WRONG CHAR AND SPACE) ==========
             if (wordIdx === wordArrays[lineIdx].length - 1) {
-                // console.log("<<<<< SPACE ON LAST WORD, NEW LINE! >>>>>");
-
-                wrongCounter += 1;
-                nextLine();
-
-                textSpanContainerActive.innerHTML = ""; // DELETE SPANS FROM ACTIVE DIV
-                createSpans(lineIdx, textSpanContainerActive); // APPEND SPANS CREATED FROM NEXT LINE
-                // ADD CURSOR TO FIRST CHAR IN LINE
-                const firstCharacter = document.getElementById("span-0");
-                firstCharacter.classList.add("background", "black-border");
-
-                stringWords = wordArrays[lineIdx].join(""); // UPDATE STRWORDS
-                textSpanContainerNextParagraph.innerHTML = ""; // DELETE CONTENT
-                // APPEND TEXT AS STRING (INSTEAD OF SPANS )
-                stringWordsNext = wordArrays[lineIdx + 1].join(" ");
-                textSpanContainerNextParagraph.innerText = stringWordsNext;
+                spaceOnLastWord();
             }
 
             // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND FROM CURRENT
             // ON ALL CHARACTERS BUT LAST
             if (strIdx < stringWords.length) {
-                let currentCharacter = document.getElementById(
-                    `span-${strIdx - 1}`
-                );
-
-                wrongCounter += 1;
-
-                currentCharacter.classList.remove("background", "black-border");
-                const nextCharacter = document.getElementById(`span-${strIdx}`);
-                nextCharacter.classList.add("background", "black-border");
-                nextWord();
+                spaceOnWord();
             }
         }
 
-        // console.log(
-        //     "---------------------EVENT END---",
-        //     "line idx: ",
-        //     lineIdx,
-        //     "word idx: ",
-        //     wordIdx,
-        //     "/",
-        //     wordArrays[lineIdx].length - 1,
-        //     "char idx: ",
-        //     charIdx,
-        //     "/",
-        //     wordArrays[lineIdx][wordIdx].length - 1,
-        //     "string idx: ",
-        //     strIdx,
-        //     "/",
-        //     stringWords.length - 1
-        // );
-
-        // console.log("<<<<< WORD COUNTER:", wordCounter, ">>>>>");
-        // console.log("<<<< END", wrongCounter);
+        // logKeyEventEnd();
 
         // MORE THAN 5 MISTAKES: GOODBYE MESSAGE SEQUENCE
         if (wrongCounter >= maxMistakes) {
-            textInput.readOnly = true;
+            reloadSequence();
             document.removeEventListener("keydown", handleKeyEvent);
-            textInput.value = "     ❌   Don't play silly games!  ❌";
-
-            setTimeout(function () {
-                textInput.value = "         ⬅️   Correct mistakes!   ⬅️";
-            }, 1500);
-
-            setTimeout(function () {
-                // textInput.value = "     ☠️   YOU ARE TERMINATED!  ☠️";
-                textInput.value = "      ☠️   You are terminated!  ☠️";
-
-                if (soundOn) {
-                    playSound("mixkit-distant-war-explosions-1696.wav", 0.9);
-                }
-            }, 3000);
-
-            setTimeout(function () {
-                location.reload();
-            }, 5000);
         }
     };
 
@@ -1076,7 +1139,7 @@ startButton.addEventListener("click", (event) => {
         clearIdxTrackers();
         clearArrAndString();
         // INITIALISE
-        buidWordArrays(wordsArrLength);
+        buildWordArrays(wordsArrLength);
         createSpans(lineIdx, textSpanContainerActive);
         stringWords = wordArrays[lineIdx].join("");
         stringWordsNext = wordArrays[lineIdx + 1].join("");
