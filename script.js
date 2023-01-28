@@ -58,6 +58,17 @@ const disabledDuringTimer = document.getElementsByClassName(
 
 // ALL LEVEL BUTTONS
 const levelButtons = document.getElementsByClassName("level-button");
+// INDIVIDUAL LEVEL BUTTONS
+const level_1 = document.getElementById("level-1");
+const level_2 = document.getElementById("level-2");
+const level_3 = document.getElementById("level-3");
+const level_4 = document.getElementById("level-4");
+const level_5 = document.getElementById("level-5");
+const level_6 = document.getElementById("level-6");
+const level_7 = document.getElementById("level-7");
+const level_8 = document.getElementById("level-8");
+const level_9 = document.getElementById("level-9");
+// LEVEL BUTTON STATE BOOLEANS
 let level_1_On = false;
 let level_2_On = false;
 let level_3_On = false;
@@ -67,8 +78,14 @@ let level_6_On = false;
 let level_7_On = false;
 let level_8_On = false;
 let level_9_On = false;
-let level_10_On = false;
-let level_11_On = false;
+// let level_10_On = false;
+// let level_11_On = false;
+
+const levelsApply = document.getElementById("levels-apply");
+
+const beginnerShowButton = document.getElementById("beginner-control-show-button");
+const beginnerHideButton = document.getElementById("beginner-control-hide-button");
+
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰   TEXT FIELDS   🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -243,22 +260,6 @@ const toggleButtonState = (element) => {
         }
     }
 };
-
-// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BEGINNER CONTROLS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
-
-const levelsApply = document.getElementById("levels-apply");
-
-for (let i = 0; i < levelButtons.length; i += 1) {
-    console.log(levelButtons[i]);
-    levelButtons[i].addEventListener("click", function () {
-        console.log(this);
-        console.log(this.innerText);
-        console.log(this.id);
-        levelsApply.classList.add("control-apply-active");
-        startButton.disabled = true;
-        startButton.classList.remove("control-apply-active");
-    });
-}
 
 // UPPERCASE FIRST LETTER IN WORD
 const capitaliseWord = (str) => {
@@ -1395,6 +1396,152 @@ for (let i = 0; i < controlFlipButtons.length; i += 1) {
         // console.log("CONTROL FLIP BUTTON CLICKED");
     });
 }
+
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BEGINNER CONTROLS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+
+// const levelsApply = document.getElementById("levels-apply");
+
+// ADD EVT LISTENER TO ALL LEVEL BUTTONS
+for (let i = 0; i < levelButtons.length; i += 1) {
+
+    levelButtons[i].addEventListener("click", function () {
+        console.log("CLICKED", levelButtons[i]);
+
+        // console.log(this);
+        // console.log(this.innerText);
+        // console.log(this.id);
+
+        levelsApply.classList.add("control-apply-active");
+        levelsApply.disabled = false;
+        disableStartButton();
+
+        toggleLevelButtonStyle(this);
+    });
+}
+
+// TOGGLE LEVEL BUTTON STYLE
+const toggleLevelButtonStyle = (element) => {
+    if (element.classList.contains("toggle-on")) {
+        element.classList.remove("toggle-on");
+        element.classList.add("toggle-off");
+        element.classList.remove("control-apply-active");
+        // !!! DO THIS WITH CLASS
+        element.style.fontWeight = "300";
+    } else {
+        element.classList.remove("toggle-off");
+        element.classList.add("toggle-on");
+        element.classList.add("control-apply-active");
+        // !!! DO THIS WITH CLASS
+        element.style.fontWeight = "800";
+    }
+};
+
+// TOGGLE BOOLEAN BUTTON STATE BASED ON CLASS
+// !!! LOOP OVER ALL LEVEL BUTTONS AND PLUG EACH BUTTON INTO THIS FUNCTION WHEN APPLY IS CLICKED BELOW (1504)!!!
+const toggleLevelButtonState = (element) => {
+    // console.log(element);
+    if (element.classList.contains("toggle-on")) {
+        if (element === level_1) {
+            level_1_On = true;
+        }
+        if (element === level_2) {
+            level_2_On = true;
+        }
+        if (element === level_3) {
+            level_3_On = true;
+        }
+        if (element === level_4) {
+            level_4_On = true;
+        }
+        if (element === level_5) {
+            level_5_On = true;
+        }
+        if (element === level_6) {
+            level_6_On = true;
+        }
+        if (element === level_7) {
+            level_7_On = true;
+        }
+        if (element === level_8) {
+            level_8_On = true;
+        }
+        if (element === level_9) {
+            level_9_On = true;
+        }
+    } else {
+        if (element === level_1) {
+            level_1_On = false;
+        }
+        if (element === level_2) {
+            level_2_On = false;
+        }
+        if (element === level_3) {
+            level_3_On = false;
+        }
+        if (element === level_4) {
+            level_4_On = false;
+        }
+        if (element === level_5) {
+            level_5_On = false;
+        }
+        if (element === level_6) {
+            level_6_On = false;
+        }
+        if (element === level_7) {
+            level_7_On = false;
+        }
+        if (element === level_8) {
+            level_8_On = false;
+        }
+        if (element === level_9) {
+            level_9_On = false;
+        }
+    }
+};
+
+// 2. APPLY CHANGES WHEN CLICKED
+levelsApply.addEventListener("click", function () {
+    console.log("LEVEL APPLY CLICKED");
+    enableStartButton();
+    clearDataAndDisplay();
+    clearArrAndString();
+    levelsApply.classList.remove("control-apply-active");
+});
+
+beginnerShowButton.addEventListener("click", function () {
+    startButton.disabled = true;
+    startButton.classList.remove("control-apply-active");
+});
+
+beginnerHideButton.addEventListener("click", function () {
+    startButton.disabled = false;
+    startButton.classList.add("control-apply-active");
+});
+
+
+
+
+
+// 1. ONLY TOGGLE STYLE
+// const handlePunctuationToggle = () => {
+//     toggleButtonStyle(punctuationToggle);
+//     punctuationApply.classList.add("control-apply-active");
+//     punctuationApply.disabled = false;
+//     disableStartButton();
+// };
+
+// punctuationToggle.addEventListener("click", handlePunctuationToggle);
+
+// 2. APPLY CHANGES WHEN CLICKED
+// punctuationApply.addEventListener("click", function () {
+//     enableStartButton();
+//     clearDataAndDisplay();
+//     clearArrAndString();
+//     toggleButtonState(punctuationToggle);
+//     punctuationApply.classList.remove("control-apply-active");
+// });
+
 
 /*
 MASTER/multiple
