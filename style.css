@@ -190,7 +190,7 @@ button:disabled:hover {
 .capital-toggle:hover,
 .sound-toggle:hover,
 .info-button:hover,
-.trainer-button:hover,
+.beginner-button:hover,
 .timer-toggle:hover {
     /* background: lightgreen; */
     font-weight: 500;
@@ -201,7 +201,8 @@ button:disabled:hover {
 .capital-toggle:disabled:hover,
 .sound-toggle:disabled:hover,
 .timer-toggle:disabled:hover,
-.info-button:disabled:hover {
+.info-button:disabled:hover,
+.beginner-button:disabled:hover {
     /* background: lightgreen; */
     font-weight: 300;
 }

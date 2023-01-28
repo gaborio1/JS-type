@@ -54,6 +54,22 @@ const disabledDuringTimer = document.getElementsByClassName(
     "disabled-during-timer"
 );
 
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰   BEGINNER CONTROL PANEL   🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+// ALL LEVEL BUTTONS
+const levelButtons = document.getElementsByClassName("level-button");
+let level_1_On = false;
+let level_2_On = false;
+let level_3_On = false;
+let level_4_On = false;
+let level_5_On = false;
+let level_6_On = false;
+let level_7_On = false;
+let level_8_On = false;
+let level_9_On = false;
+let level_10_On = false;
+let level_11_On = false;
+
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰   TEXT FIELDS   🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
 // ACTIVE SPAN
@@ -227,6 +243,22 @@ const toggleButtonState = (element) => {
         }
     }
 };
+
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BEGINNER CONTROLS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+const levelsApply = document.getElementById("levels-apply");
+
+for (let i = 0; i < levelButtons.length; i += 1) {
+    console.log(levelButtons[i]);
+    levelButtons[i].addEventListener("click", function () {
+        console.log(this);
+        console.log(this.innerText);
+        console.log(this.id);
+        levelsApply.classList.add("control-apply-active");
+        startButton.disabled = true;
+        startButton.classList.remove("control-apply-active");
+    });
+}
 
 // UPPERCASE FIRST LETTER IN WORD
 const capitaliseWord = (str) => {
@@ -408,7 +440,6 @@ const testCapsLock = (event) => {
 doc.addEventListener("keyup", testCapsLock);
 doc.addEventListener("keydown", testCapsLock);
 
-
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON FUNCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
 // FIND PROBLEM KEY WORDS IN CURRENT TARGET ARRAY / UPDATE TARGET ARRAY WITH PROBLEM WORDS ONLY
@@ -423,7 +454,7 @@ const findAndApplyProblemKeyWords = () => {
         });
         targetArray = [...tempProbWordsArr]; // UPDATE TARGET ARRAY WITH FILTERED WORDS ARRAY
     }
-}
+};
 
 const handleCapslockChange = () => {
     if (event.getModifierState("CapsLock")) {
@@ -432,7 +463,7 @@ const handleCapslockChange = () => {
     } else {
         capsLockWarningsOff();
     }
-}
+};
 
 // REMOVE RED BACKGROUND FROM PROBLEM KEYS
 const removeProblemKeyHighlight = () => {
@@ -440,7 +471,7 @@ const removeProblemKeyHighlight = () => {
         letterKeys[i].classList.remove("red-background");
         // letterKeys[i].style.color = "red";
     }
-}
+};
 
 // DISABLE CONTROL APPLY BUTTONS
 const disableApplyButtons = () => {
@@ -449,7 +480,7 @@ const disableApplyButtons = () => {
     punctuationApply.disabled = true;
     capitalApply.disabled = true;
     timerApply.disabled = true;
-}
+};
 
 // MAKE EACH CHARACTER OF THE STRING A span AND APPEND AS A CHILD ELEMENT TO ITS CONTAINER
 
@@ -491,7 +522,7 @@ const logKeyEventStart = () => {
         "/",
         stringWords.length - 1
     );
-}
+};
 
 // KEY EVENT END LOGS
 const logKeyEventEnd = () => {
@@ -512,7 +543,7 @@ const logKeyEventEnd = () => {
         "/",
         stringWords.length - 1
     );
-}
+};
 
 // BACKSPACE
 let typedKey = "";
@@ -535,11 +566,7 @@ const handleBackspace = () => {
             currentCharacter.classList.add("orange-border");
         }
 
-        currentCharacter.classList.add(
-            "orange",
-            "background",
-            "black-border"
-        );
+        currentCharacter.classList.add("orange", "background", "black-border");
 
         currentCharacter.classList.remove("red", "green");
 
@@ -550,7 +577,7 @@ const handleBackspace = () => {
             "red-border"
         );
     }
-}
+};
 
 //🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CORRECT KEY 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -558,13 +585,9 @@ const handleBackspace = () => {
 
 const correctKeyNotLastSpace = () => {
     // console.log("<<<<<  NOT LAST CHARACER >>>>>");
-    let nextCharacter = document.getElementById(
-        `span-${strIdx + 1}`
-    );
+    let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
     nextCharacter.classList.add("background", "black-border");
-    let currentCharacter = document.getElementById(
-        `span-${strIdx}`
-    );
+    let currentCharacter = document.getElementById(`span-${strIdx}`);
     currentCharacter.classList.add("green", "enlarged");
     currentCharacter.classList.remove(
         "red",
@@ -576,30 +599,23 @@ const correctKeyNotLastSpace = () => {
     );
 
     nextChar();
-}
+};
 
 // WORD[LENGTH-1], TRAILING SPACE ALL WORDS EXCEPT LAST WORD
 
 const correctSpaceNotLastWord = () => {
     if (wordIdx < wordArrays[lineIdx].length - 1) {
         // console.log("<<<<< LAST CHARACER !!! >>>>>");
-        let nextCharacter = document.getElementById(
-            `span-${strIdx + 1}`
-        );
+        let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
 
         // REMOVE RED BORDER FROM SPACE IF CORRECTED
-        let currentCharacter = document.getElementById(
-            `span-${strIdx}`
-        );
-        currentCharacter.classList.remove(
-            "red-border",
-            "orange-border"
-        );
+        let currentCharacter = document.getElementById(`span-${strIdx}`);
+        currentCharacter.classList.remove("red-border", "orange-border");
         // MOVE CURSOR FORWARD
         nextCharacter.classList.add("background", "black-border");
         strIdx += 1;
     }
-}
+};
 
 // END OF LINE SPACE
 const correctEndOfLineSpace = () => {
@@ -617,26 +633,19 @@ const correctEndOfLineSpace = () => {
     textSpanContainerNextParagraph.innerHTML = "";
     stringWordsNext = wordArrays[lineIdx + 1].join(" "); // APPEND TEXT AS STRING NOT SPANS !!!
     textSpanContainerNextParagraph.innerText = stringWordsNext;
-}
+};
 
 // ALL OTHER SPACES
 const correctSpaceNotEndOfLine = () => {
-
-    let currentCharacter = document.getElementById(
-        `span-${strIdx - 1}`
-    );
+    let currentCharacter = document.getElementById(`span-${strIdx - 1}`);
 
     // if (currentCharacter !== null) {
-    currentCharacter.classList.remove(
-        "background",
-        "black-border"
-    );
+    currentCharacter.classList.remove("background", "black-border");
     // }
 
     nextWord();
     clearTextInput();
-
-}
+};
 
 // COUNT COLOUR SPANS IN LAST WORD WHEN TRAILING SPACE IS TYPED CORRECTLY
 
@@ -664,14 +673,14 @@ const countSpanColours = () => {
         }
     }
     // console.log("<<< green:", greenCounter, "red:", redCounter, "orange", orangeCouner);
-}
+};
 
 // DISPLAY COLOUR COUNTER VALUES
 const displayColourCounterValues = () => {
     greenCounterSpan.textContent = greenCounter;
     redCounterSpan.textContent = redCounter;
     orangeCounterSpan.textContent = orangeCounter;
-}
+};
 
 // HIGHLIGHT PROBLEM KEYS ON KEYBOARD
 const highlightProblemKeys = () => {
@@ -688,7 +697,7 @@ const highlightProblemKeys = () => {
             }
         }
     });
-}
+};
 
 // SPACE ON WORD - FIND NEXT SPACE IN STRING AND SET INDEX TO NEXT WORD AFTER SPACE
 const findNextWordIndex = () => {
@@ -698,15 +707,13 @@ const findNextWordIndex = () => {
             // console.log("space found at index: ", i);
             nextWordIdx = i + 1;
 
-            let currentCharacter = document.getElementById(
-                `span-${strIdx}`
-            );
+            let currentCharacter = document.getElementById(`span-${strIdx}`);
             currentCharacter.classList.add("red-border");
             break;
         }
     }
     return nextWordIdx;
-}
+};
 
 // SPACE ON LAST WORD
 const spaceOnLastWord = () => {
@@ -726,15 +733,13 @@ const spaceOnLastWord = () => {
     // APPEND TEXT AS STRING (INSTEAD OF SPANS )
     stringWordsNext = wordArrays[lineIdx + 1].join(" ");
     textSpanContainerNextParagraph.innerText = stringWordsNext;
-}
+};
 
 // SPACE ON WORD
 // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND FROM CURRENT
 // ON ALL CHARACTERS BUT LAST
 const spaceOnWord = () => {
-    let currentCharacter = document.getElementById(
-        `span-${strIdx - 1}`
-    );
+    let currentCharacter = document.getElementById(`span-${strIdx - 1}`);
 
     wrongCounter += 1;
 
@@ -742,7 +747,7 @@ const spaceOnWord = () => {
     const nextCharacter = document.getElementById(`span-${strIdx}`);
     nextCharacter.classList.add("background", "black-border");
     nextWord();
-}
+};
 
 // END MESSEAGE SEQUENCE (MESSAGES - RELOAD)
 const reloadSequence = () => {
@@ -767,7 +772,7 @@ const reloadSequence = () => {
     setTimeout(function () {
         location.reload();
     }, 5000);
-}
+};
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -777,7 +782,6 @@ startButton.classList.add("control-apply-active"); // HIGHLIGHT START BUTTON
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
-
     // TRACK NUMBER OF START BUTTON CLICKS
     startButtonCounter += 1;
 
@@ -857,7 +861,6 @@ startButton.addEventListener("click", (event) => {
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
     const handleKeyEvent = (event) => {
-
         // const typedKey = event.key;
         typedKey = event.key;
         // console.log("EVENT: KEYUP", event.key);
@@ -921,7 +924,6 @@ startButton.addEventListener("click", (event) => {
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CORRECT KEY 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
         if (typedKey === wordArrays[lineIdx][wordIdx][charIdx]) {
-
             // console.log(
             //     "CORRECT KEY!",
             //     "typed:",
@@ -987,7 +989,6 @@ startButton.addEventListener("click", (event) => {
                 colourAccuracySpan();
                 accuracySpan.textContent = `${Math.floor(accuracy)}`;
             }
-
         }
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 WRONG KEY OR SHIFT FOR CAPITAL LETTERS 🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -998,7 +999,6 @@ startButton.addEventListener("click", (event) => {
             typedKey !== "Backspace" &&
             typedKey !== "CapsLock"
         ) {
-
             // console.log(
             //     "WRONG KEY!",
             //     "typed:",
@@ -1020,7 +1020,6 @@ startButton.addEventListener("click", (event) => {
 
             // IF PROBLEMKEYS SET HAS LENGTH LOOP OVER problemKeysSet AND FIND CORRESPONDING problem-key-span FOR EACH ELEMENT
             if (problemKeysSet.size) {
-
                 // TEST DIV CURRENTLY DISABLED:
                 // problemKeysSet.forEach((key) => {
                 //     // console.log(key);
@@ -1063,7 +1062,6 @@ startButton.addEventListener("click", (event) => {
             }
 
             nextChar();
-
         }
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰 SPACE ON WORD (WRONG CHAR AND SPACE) 🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1112,7 +1110,6 @@ startButton.addEventListener("click", (event) => {
             reloadSequence();
             document.removeEventListener("keydown", handleKeyEvent);
         }
-
     };
 
     // ADD HANDLEKEYEVENT FOR KEYUP EVENT ONLY ONCE, REMOVE IT IF START IS CLICKED AGAIN, SEE IF BLOCK BELOW
@@ -1152,12 +1149,12 @@ const enableStartButton = () => {
     startButton.classList.add("control-apply-active");
     startButton.disabled = false;
     startButton.innerText = "Start";
-}
+};
 
 const disableStartButton = () => {
     startButton.classList.remove("control-apply-active");
     startButton.disabled = true;
-}
+};
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 DIFFICULTY 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -1388,7 +1385,9 @@ for (let i = 0; i < flipButtons.length; i += 1) {
     });
 }
 
-const controlFlipButtons = document.getElementsByClassName("flip-button--controls");
+const controlFlipButtons = document.getElementsByClassName(
+    "flip-button--controls"
+);
 const controlsCard = document.getElementById("card--controls");
 for (let i = 0; i < controlFlipButtons.length; i += 1) {
     controlFlipButtons[i].addEventListener("click", function () {
@@ -1396,7 +1395,6 @@ for (let i = 0; i < controlFlipButtons.length; i += 1) {
         // console.log("CONTROL FLIP BUTTON CLICKED");
     });
 }
-
 
 /*
 MASTER/multiple
