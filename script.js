@@ -6,6 +6,15 @@ import {
     jsReserved,
     jsObjPropMeth,
     punctMarks,
+    keysLevel_1,
+    keysLevel_2,
+    keysLevel_3,
+    keysLevel_4,
+    keysLevel_5,
+    keysLevel_6,
+    keysLevel_7,
+    keysLevel_8,
+    keysLevel_9,
 } from "./words.js";
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -81,11 +90,27 @@ let level_9_On = false;
 // let level_10_On = false;
 // let level_11_On = false;
 
+// LEVEL BUTTON STATES ARRAY
+const levelStateArray = [
+    level_1_On,
+    level_2_On,
+    level_3_On,
+    level_4_On,
+    level_5_On,
+    level_6_On,
+    level_7_On,
+    level_8_On,
+    level_9_On,
+];
+
 const levelsApply = document.getElementById("levels-apply");
 
-const beginnerShowButton = document.getElementById("beginner-control-show-button");
-const beginnerHideButton = document.getElementById("beginner-control-hide-button");
-
+const beginnerShowButton = document.getElementById(
+    "beginner-control-show-button"
+);
+const beginnerHideButton = document.getElementById(
+    "beginner-control-hide-button"
+);
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰   TEXT FIELDS   🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -211,9 +236,14 @@ const clearTextInput = () => {
 };
 
 // PICK RANDOM ELEMENT FROM ARRAY (USED WITH TARGET ARRAY AND PUNCTUATION MARKS ARRAY)
-const getRandom = (arr) => {
+const getRandomFromArr = (arr) => {
     const randIdx = Math.floor(Math.random() * arr.length);
     return arr[randIdx];
+};
+
+// GENERATE RANDOM NUMBER FOR RANDOM BEGINNER WORD LENGTHS
+const getRandomIdxLessThanNum = (num) => {
+    return Math.floor(Math.random() * num);
 };
 
 // TOGGLE BUTTON STYLE (ON / OFF)
@@ -289,10 +319,10 @@ const buildWordArrays = (numOfLines) => {
         while (true) {
             if (getStrLength(arr) >= sequenceLength) break;
 
-            let currWord = getRandom(targetArray); // GET RANDOM WORD
+            let currWord = getRandomFromArr(targetArray); // GET RANDOM WORD
 
             if (punctuationOn) {
-                currWord += getRandom(punctMarks); // CONCAT RANDOM PUNCT MARK
+                currWord += getRandomFromArr(punctMarks); // CONCAT RANDOM PUNCT MARK
             }
 
             if (capitalOn) {
@@ -1399,12 +1429,21 @@ for (let i = 0; i < controlFlipButtons.length; i += 1) {
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BEGINNER CONTROLS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
+// ARRAY FOR THE CURRENTLY SELECTED KEYS
+let selectedBeginerKeys = [];
+
+// ARRAY FOR RANDOMLY GENERATED WORDS
+let randomKeyWordsArray = [];
+
+for (let i = 0; i < 10; i += 1) {
+    // USE THIS LENGTH TO CONCAT RANDOM CHAR TO WORD USING ONLY SELECTED LEVEL KEYS ("LENGTH" TIMES)
+    let length = getRandomIdxLessThanNum(6);
+}
 
 // const levelsApply = document.getElementById("levels-apply");
 
 // ADD EVT LISTENER TO ALL LEVEL BUTTONS
 for (let i = 0; i < levelButtons.length; i += 1) {
-
     levelButtons[i].addEventListener("click", function () {
         console.log("CLICKED", levelButtons[i]);
 
@@ -1500,48 +1539,45 @@ const toggleLevelButtonState = (element) => {
     }
 };
 
-// 2. APPLY CHANGES WHEN CLICKED
+// 2. APPLY CHANGES TO ALL LEVELS WHEN APPLY CLICKED
 levelsApply.addEventListener("click", function () {
     console.log("LEVEL APPLY CLICKED");
     enableStartButton();
-    clearDataAndDisplay();
-    clearArrAndString();
+
     levelsApply.classList.remove("control-apply-active");
+    for (let i = 0; i < levelButtons.length; i += 1) {
+        toggleLevelButtonState(levelButtons[i]);
+    }
+    console.log(
+        level_1_On,
+        level_2_On,
+        level_3_On,
+        level_4_On,
+        level_5_On,
+        level_6_On,
+        level_7_On,
+        level_8_On,
+        level_9_On
+    );
+
+    // UPDATE TARGET ARRAY WITH RANDOM WORDS(RANDOM LENGTH 1-6) MADE FROM SELECTED LEVELS
+
+    // LOOP THROUGH levelStateArray AND IF CURRENT VALUE IS TRUE, CONCAT CORRESPONDING LEVEL KEY ARRAY TO selectedBeginerKeys
 });
 
+// SHOW BEGINNER LEVELS
 beginnerShowButton.addEventListener("click", function () {
     startButton.disabled = true;
     startButton.classList.remove("control-apply-active");
+    clearDataAndDisplay();
+    clearArrAndString();
 });
 
+// HIDE BEGINNER LEVELS
 beginnerHideButton.addEventListener("click", function () {
     startButton.disabled = false;
     startButton.classList.add("control-apply-active");
 });
-
-
-
-
-
-// 1. ONLY TOGGLE STYLE
-// const handlePunctuationToggle = () => {
-//     toggleButtonStyle(punctuationToggle);
-//     punctuationApply.classList.add("control-apply-active");
-//     punctuationApply.disabled = false;
-//     disableStartButton();
-// };
-
-// punctuationToggle.addEventListener("click", handlePunctuationToggle);
-
-// 2. APPLY CHANGES WHEN CLICKED
-// punctuationApply.addEventListener("click", function () {
-//     enableStartButton();
-//     clearDataAndDisplay();
-//     clearArrAndString();
-//     toggleButtonState(punctuationToggle);
-//     punctuationApply.classList.remove("control-apply-active");
-// });
-
 
 /*
 MASTER/multiple

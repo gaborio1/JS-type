@@ -297,3 +297,14 @@ export const common100 = [
 export const punctMarks = [",", ".", "!", "?", ":", ";", "-", "'"];
 
 // export default common100;
+
+// BEGINNER KEY LEVELS
+export const keysLevel_1 = ["j", "f"];
+export const keysLevel_2 = ["u", "r", "k"];
+export const keysLevel_3 = ["d", "e", "i"];
+export const keysLevel_4 = ["c", "g", "n"];
+export const keysLevel_5 = ["t", "s", "l"];
+export const keysLevel_6 = ["o", "b", "a"];
+export const keysLevel_7 = ["v", "h", "m"];
+export const keysLevel_8 = ["w", "x", "q"];
+export const keysLevel_9 = ["y", "p", "z"];
