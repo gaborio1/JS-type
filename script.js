@@ -15,6 +15,7 @@ import {
     keysLevel_7,
     keysLevel_8,
     keysLevel_9,
+    keyLevelsArray,
 } from "./words.js";
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -89,19 +90,6 @@ let level_8_On = false;
 let level_9_On = false;
 // let level_10_On = false;
 // let level_11_On = false;
-
-// LEVEL BUTTON STATES ARRAY
-const levelStateArray = [
-    level_1_On,
-    level_2_On,
-    level_3_On,
-    level_4_On,
-    level_5_On,
-    level_6_On,
-    level_7_On,
-    level_8_On,
-    level_9_On,
-];
 
 const levelsApply = document.getElementById("levels-apply");
 
@@ -1456,6 +1444,9 @@ for (let i = 0; i < levelButtons.length; i += 1) {
         disableStartButton();
 
         toggleLevelButtonStyle(this);
+
+        // RESET SELECTED BEGINNER KEYS ARRAY, IT WILL BE UPDATED WITH APPLY BUTTON
+        selectedBeginerKeys = [];
     });
 }
 
@@ -1560,9 +1551,31 @@ levelsApply.addEventListener("click", function () {
         level_9_On
     );
 
+    // LEVEL BUTTON STATES ARRAY
+    let levelStateArray = [
+        level_1_On,
+        level_2_On,
+        level_3_On,
+        level_4_On,
+        level_5_On,
+        level_6_On,
+        level_7_On,
+        level_8_On,
+        level_9_On,
+    ];
+
+    console.log(levelStateArray);
+
     // UPDATE TARGET ARRAY WITH RANDOM WORDS(RANDOM LENGTH 1-6) MADE FROM SELECTED LEVELS
 
     // LOOP THROUGH levelStateArray AND IF CURRENT VALUE IS TRUE, CONCAT CORRESPONDING LEVEL KEY ARRAY TO selectedBeginerKeys
+    for (let i = 0; i < levelStateArray.length; i += 1) {
+        // console.log(levelStateArray);
+        if (levelStateArray[i]) {
+            selectedBeginerKeys = selectedBeginerKeys.concat(keyLevelsArray[i]);
+        }
+    }
+    console.log(selectedBeginerKeys);
 });
 
 // SHOW BEGINNER LEVELS

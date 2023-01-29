@@ -308,3 +308,15 @@ export const keysLevel_6 = ["o", "b", "a"];
 export const keysLevel_7 = ["v", "h", "m"];
 export const keysLevel_8 = ["w", "x", "q"];
 export const keysLevel_9 = ["y", "p", "z"];
+
+export const keyLevelsArray = [
+    keysLevel_1,
+    keysLevel_2,
+    keysLevel_3,
+    keysLevel_4,
+    keysLevel_5,
+    keysLevel_6,
+    keysLevel_7,
+    keysLevel_8,
+    keysLevel_9,
+];
