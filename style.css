@@ -1,5 +1,6 @@
 :root {
     --border-gold: darkgoldenrod;
+    --border-gold: rgba(184, 135, 11, 0.641);
     /* --border-gold: rgb(41, 30, 2); */
     --border-gold-disabled: rgba(184, 135, 11, 0.547);
     --text-field-offwhite: #efefef;
@@ -136,8 +137,13 @@ button:disabled:hover {
     height: 150px;
     padding: 10px 0px 10px 0px;
     /* padding: 8px; */
-    border: 1px solid var(--border-gold);
+    /* border: 1px solid var(--border-gold); */
     border-radius: 4px;
+}
+
+.spacer-div {
+    height: 125px;
+    border-left: 1px solid var(--border-gold);
 }
 
 /* ++++++++++++++++++++ */
@@ -250,11 +256,15 @@ button:disabled:hover {
 }
 
 .card__face--front--controls {
-    /* background: rgba(255, 0, 0, 0.538); */
+    background: rgba(255, 0, 0, 0.538);
+    border: 1px solid var(--border-gold);
+    border-radius: 4px;
 }
 
 .card__face--back--controls {
     background: rgba(0, 0, 255, 0.504);
+    border: 1px solid var(--border-gold);
+    border-radius: 4px;
     transform: rotateY(180deg);
 }
 
@@ -277,7 +287,8 @@ button:disabled:hover {
 .active-container {
     /* width: 100%; */
     /* padding: 0px 20px 0px 20px; */
-    margin: 50px 0px 0px 0px;
+    /* !!! ONLY 50 PX MARGING IS VISIBLE, FIND OTHER 25PX !!! */
+    margin: 75px 0px 0px 0px;
     font-weight: 400;
 }
 

@@ -229,6 +229,7 @@ const getRandomFromArr = (arr) => {
     return arr[randIdx];
 };
 
+
 // GENERATE RANDOM NUMBER FOR RANDOM BEGINNER WORD LENGTHS
 const getRandomIdxLessThanNum = (num) => {
     return Math.floor(Math.random() * num);
@@ -1423,54 +1424,36 @@ let selectedBeginerKeys = [];
 // ARRAY FOR RANDOMLY GENERATED WORDS
 let randomKeyWordsArray = [];
 
-// LEVEL BUTTON STATES ARRAY
-let levelStateArray = [
-    level_1_On,
-    level_2_On,
-    level_3_On,
-    level_4_On,
-    level_5_On,
-    level_6_On,
-    level_7_On,
-    level_8_On,
-    level_9_On,
-];
-
-for (let i = 0; i < 10; i += 1) {
-    // USE THIS LENGTH TO CONCAT RANDOM CHAR TO WORD USING ONLY SELECTED LEVEL KEYS ("LENGTH" TIMES)
-    let length = getRandomIdxLessThanNum(6);
-}
-
 
 // ADD EVT LISTENER TO ALL LEVEL BUTTONS
 for (let i = 0; i < levelButtons.length; i += 1) {
 
     levelButtons[i].addEventListener("click", function () {
-        console.log("CLICKED", levelButtons[i]);
+        // console.log("CLICKED", levelButtons[i]);
 
         // console.log(this);
         // console.log(this.innerText);
         // console.log(this.id);
 
         disableStartButton();
+        clearDataAndDisplay();
 
         toggleLevelButtonStyle(this);
-        console.log(levelButtons);
+        // console.log(levelButtons);
 
-        // ONLY ACTIVATE APPLY IF AT LEAST ONE LEVEL IS SELECTED
-        // selectionMade = false;
-        let selectionMade = false;
+        // 1. CHECK IF AT LEAST ONE LEVEL IS SELECTED
+        let selectionMade = false; // RESET TO FALSE BEFORE LOOP
         for (let i = 0; i < levelButtons.length; i += 1) {
             if (levelButtons[i].classList.contains("control-apply-active")) {
                 console.log("FOUND", levelButtons[i]);
                 selectionMade = true;
-
                 break;
             }
         }
 
         console.log("SELECTION MADE:", selectionMade);
 
+        // 2. ONLY ACTIVATE APPLY IF AT LEAST ONE LEVEL IS SELECTED
         if (selectionMade) {
             levelsApply.classList.add("control-apply-active");
             levelsApply.disabled = false;
@@ -1483,6 +1466,7 @@ for (let i = 0; i < levelButtons.length; i += 1) {
         selectedBeginerKeys = [];
     });
 }
+
 
 // TOGGLE LEVEL BUTTON STYLE
 const toggleLevelButtonStyle = (element) => {
@@ -1567,6 +1551,8 @@ const toggleLevelButtonState = (element) => {
 // 2. APPLY CHANGES TO ALL LEVELS WHEN APPLY CLICKED
 levelsApply.addEventListener("click", function () {
     console.log("LEVEL APPLY CLICKED");
+    randomKeyWordsArray = []; // RESET TO AVOID DUPLICATES IF APPLY IS CLICKED AGAIN
+    selectedBeginerKeys = []; // RESET TO AVOID DUPLICATES
     enableStartButton();
 
     levelsApply.classList.remove("control-apply-active");
@@ -1574,7 +1560,9 @@ levelsApply.addEventListener("click", function () {
     for (let i = 0; i < levelButtons.length; i += 1) {
         toggleLevelButtonState(levelButtons[i]);
     }
-    console.log(
+
+    // LEVEL BUTTON STATES ARRAY IS USED TO LOOP THROUGH ALL BOOLEANS
+    let levelStateArray = [
         level_1_On,
         level_2_On,
         level_3_On,
@@ -1583,14 +1571,16 @@ levelsApply.addEventListener("click", function () {
         level_6_On,
         level_7_On,
         level_8_On,
-        level_9_On
-    );
+        level_9_On,
+    ];
 
     console.log(levelStateArray);
 
     // UPDATE TARGET ARRAY WITH RANDOM WORDS(RANDOM LENGTH 1-6) MADE FROM SELECTED LEVELS
 
     // LOOP THROUGH levelStateArray AND IF CURRENT VALUE IS TRUE, CONCAT CORRESPONDING LEVEL KEY ARRAY TO selectedBeginerKeys
+
+    // 1. FIND ALL SELECTED KEYS IN GROUPS
     for (let i = 0; i < levelStateArray.length; i += 1) {
         // console.log(levelStateArray);
         if (levelStateArray[i]) {
@@ -1599,10 +1589,29 @@ levelsApply.addEventListener("click", function () {
     }
     console.log(selectedBeginerKeys);
 
+    // 2. GENERATE WORDS USING ONLY THOSE SELECTED KEYS
+    const generateWords = (numOfWords) => {
+        for (let i = 0; i < numOfWords; i += 1) {
+            let randomWord = "";
+            let length = getRandomIdxLessThanNum(6);
+            while (randomWord.length <= length) {
+                randomWord += getRandomFromArr(selectedBeginerKeys);
+            }
+            randomKeyWordsArray.push(randomWord);
+        }
+    }
+
+    generateWords(500);
+    // console.log("RANDOM KEY WORDS ARRAY:", randomKeyWordsArray);
+
+    // 3. UPDATE TARGET ARRAY WITH randomKeyWordsArray
+    targetArray = [...randomKeyWordsArray];
+
 });
 
 // SHOW BEGINNER LEVELS
 beginnerShowButton.addEventListener("click", function () {
+    timerOn = false
     startButton.disabled = true;
     startButton.classList.remove("control-apply-active");
     clearDataAndDisplay();
@@ -1611,8 +1620,13 @@ beginnerShowButton.addEventListener("click", function () {
 
 // HIDE BEGINNER LEVELS
 beginnerHideButton.addEventListener("click", function () {
+    timerOn = true;
     startButton.disabled = false;
     startButton.classList.add("control-apply-active");
+    clearDataAndDisplay();
+    clearArrAndString();
+    // !!! TEMP FIX, HAS TO RETURN TO THE LAST DIFFICULTY SELECTED !!!
+    targetArray = [...common100];
 });
 
 /*
