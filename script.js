@@ -1423,15 +1423,28 @@ let selectedBeginerKeys = [];
 // ARRAY FOR RANDOMLY GENERATED WORDS
 let randomKeyWordsArray = [];
 
+// LEVEL BUTTON STATES ARRAY
+let levelStateArray = [
+    level_1_On,
+    level_2_On,
+    level_3_On,
+    level_4_On,
+    level_5_On,
+    level_6_On,
+    level_7_On,
+    level_8_On,
+    level_9_On,
+];
+
 for (let i = 0; i < 10; i += 1) {
     // USE THIS LENGTH TO CONCAT RANDOM CHAR TO WORD USING ONLY SELECTED LEVEL KEYS ("LENGTH" TIMES)
     let length = getRandomIdxLessThanNum(6);
 }
 
-// const levelsApply = document.getElementById("levels-apply");
 
 // ADD EVT LISTENER TO ALL LEVEL BUTTONS
 for (let i = 0; i < levelButtons.length; i += 1) {
+
     levelButtons[i].addEventListener("click", function () {
         console.log("CLICKED", levelButtons[i]);
 
@@ -1439,11 +1452,32 @@ for (let i = 0; i < levelButtons.length; i += 1) {
         // console.log(this.innerText);
         // console.log(this.id);
 
-        levelsApply.classList.add("control-apply-active");
-        levelsApply.disabled = false;
         disableStartButton();
 
         toggleLevelButtonStyle(this);
+        console.log(levelButtons);
+
+        // ONLY ACTIVATE APPLY IF AT LEAST ONE LEVEL IS SELECTED
+        // selectionMade = false;
+        let selectionMade = false;
+        for (let i = 0; i < levelButtons.length; i += 1) {
+            if (levelButtons[i].classList.contains("control-apply-active")) {
+                console.log("FOUND", levelButtons[i]);
+                selectionMade = true;
+
+                break;
+            }
+        }
+
+        console.log("SELECTION MADE:", selectionMade);
+
+        if (selectionMade) {
+            levelsApply.classList.add("control-apply-active");
+            levelsApply.disabled = false;
+        } else {
+            levelsApply.classList.remove("control-apply-active");
+            levelsApply.disabled = true;
+        }
 
         // RESET SELECTED BEGINNER KEYS ARRAY, IT WILL BE UPDATED WITH APPLY BUTTON
         selectedBeginerKeys = [];
@@ -1536,6 +1570,7 @@ levelsApply.addEventListener("click", function () {
     enableStartButton();
 
     levelsApply.classList.remove("control-apply-active");
+    // THIS WILL UPDATE LEVEL STATES ARRAY
     for (let i = 0; i < levelButtons.length; i += 1) {
         toggleLevelButtonState(levelButtons[i]);
     }
@@ -1551,19 +1586,6 @@ levelsApply.addEventListener("click", function () {
         level_9_On
     );
 
-    // LEVEL BUTTON STATES ARRAY
-    let levelStateArray = [
-        level_1_On,
-        level_2_On,
-        level_3_On,
-        level_4_On,
-        level_5_On,
-        level_6_On,
-        level_7_On,
-        level_8_On,
-        level_9_On,
-    ];
-
     console.log(levelStateArray);
 
     // UPDATE TARGET ARRAY WITH RANDOM WORDS(RANDOM LENGTH 1-6) MADE FROM SELECTED LEVELS
@@ -1576,6 +1598,7 @@ levelsApply.addEventListener("click", function () {
         }
     }
     console.log(selectedBeginerKeys);
+
 });
 
 // SHOW BEGINNER LEVELS
