@@ -256,15 +256,19 @@ button:disabled:hover {
 }
 
 .card__face--front--controls {
-    background: rgba(255, 0, 0, 0.538);
+    background: rgba(255, 0, 0, 0.521);
     border: 1px solid var(--border-gold);
     border-radius: 4px;
 }
 
 .card__face--back--controls {
-    background: rgba(0, 0, 255, 0.504);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background: rgba(0, 0, 255, 0.507);
     border: 1px solid var(--border-gold);
     border-radius: 4px;
+    padding: 5px 0px 5px 0px;
     transform: rotateY(180deg);
 }
 
@@ -272,14 +276,32 @@ button:disabled:hover {
     transform: rotateY(180deg);
 }
 
+.level-button-container {
+    width: 850px;
+    margin: 0px auto;
+    /* border: 1px solid black; */
+}
+
 .control-panel-button.level-button {
     width: fit-content;
-    width: 100px;
+    width: 80px;
     margin: 5px;
 }
 
 .level-button {
     letter-spacing: 5px;
+}
+
+.beginner-control-hide-container {
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+    margin: 0px auto;
+    /* border: 1px solid black; */
+}
+
+.beginner-control-hide-container .control-panel-button {
+    margin: 0px 5px 0px 5px;
 }
 
 /* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TEXT CONTAINERS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
