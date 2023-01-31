@@ -229,7 +229,6 @@ const getRandomFromArr = (arr) => {
     return arr[randIdx];
 };
 
-
 // GENERATE RANDOM NUMBER FOR RANDOM BEGINNER WORD LENGTHS
 const getRandomIdxLessThanNum = (num) => {
     return Math.floor(Math.random() * num);
@@ -794,16 +793,21 @@ const reloadSequence = () => {
     }, 5000);
 };
 
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 PAGE LOAD 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+startButton.classList.add("control-apply-active"); // HIGHLIGHT START BUTTON
+textInput.disabled = true;
+
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
-
-startButton.classList.add("control-apply-active"); // HIGHLIGHT START BUTTON
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
     // TRACK NUMBER OF START BUTTON CLICKS
     startButtonCounter += 1;
+
+    textInput.disabled = false;
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 DETECT CAPSLOCK 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -1284,7 +1288,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
-    // seconds = 30;
+    seconds = 10;
     const tick = () => {
         const counter = document.getElementById("counter-div");
         seconds -= 1;
@@ -1318,7 +1322,8 @@ const countdown = () => {
             // document.removeEventListener("keydown", handleKeyEvent);
             timerOn = false;
             textInput.value = "                 Try Again ➡"; // SET INPUT VALUE
-            textInput.readOnly = true; // DISABLE TXT INPUT
+            // textInput.readOnly = true; // DISABLE TXT INPUT
+            textInput.disabled = true; // DISABLE TXT INPUT
             speedSpan.innerText = finalSpeed;
             startButton.disabled = false;
             startButton.classList.add("control-apply-active");
@@ -1424,10 +1429,8 @@ let selectedBeginerKeys = [];
 // ARRAY FOR RANDOMLY GENERATED WORDS
 let randomKeyWordsArray = [];
 
-
 // ADD EVT LISTENER TO ALL LEVEL BUTTONS
 for (let i = 0; i < levelButtons.length; i += 1) {
-
     levelButtons[i].addEventListener("click", function () {
         // console.log("CLICKED", levelButtons[i]);
 
@@ -1466,7 +1469,6 @@ for (let i = 0; i < levelButtons.length; i += 1) {
         selectedBeginerKeys = [];
     });
 }
-
 
 // TOGGLE LEVEL BUTTON STYLE
 const toggleLevelButtonStyle = (element) => {
@@ -1599,21 +1601,27 @@ levelsApply.addEventListener("click", function () {
             }
             randomKeyWordsArray.push(randomWord);
         }
-    }
+    };
 
     generateWords(500);
     // console.log("RANDOM KEY WORDS ARRAY:", randomKeyWordsArray);
 
     // 3. UPDATE TARGET ARRAY WITH randomKeyWordsArray
     targetArray = [...randomKeyWordsArray];
-
 });
 
 // SHOW BEGINNER LEVELS
 beginnerShowButton.addEventListener("click", function () {
-    timerOn = false
+    /*
+        CHECK IF ANY LEVEL IS SELECTED, IF SO,
+            A. ACTIVATE APPLY TO RE - SUBMIT SETTINGS ??? OR
+            B. ACTIVATE START BUTTON ???
+    */
+
+    timerOn = false;
     startButton.disabled = true;
     startButton.classList.remove("control-apply-active");
+    textInput.disabled = true;
     clearDataAndDisplay();
     clearArrAndString();
 });
@@ -1623,6 +1631,7 @@ beginnerHideButton.addEventListener("click", function () {
     timerOn = true;
     startButton.disabled = false;
     startButton.classList.add("control-apply-active");
+    textInput.disabled = true;
     clearDataAndDisplay();
     clearArrAndString();
     // !!! TEMP FIX, HAS TO RETURN TO THE LAST DIFFICULTY SELECTED !!!
@@ -1697,6 +1706,13 @@ TODOS
             ☑️RESET ALL INDEX TRACKERS (FOR START BUTTON - AND APPLY BUTTONS ON CONTROL PANEL ? MAYBE NOT NECESSARY)
             
     PROBLEMS:
+        WHEN BEGINNER PANEL COMES ON, CHECK IF ANY LEVELS PRE-SELECTED FROM PREVIOUS SESSION (LINE 1614)
+            HIGHLIGHT APPLY BUTTON TO RE-SUBMIT ???
+            OR RESET ALL SETTINGS ???
+        DISABLE TXT INPUT 
+            ☑️ ON PAGE LOAD
+            WHEN TIMER ENDS (DISABLE DOES NOT WORK AT SECONDS === 0)
+            ☑️ AFTER FLIPPING PANELS (PRACTICE/BEGINNER)
 
         DON'T HIGHLIGT RADIO LABELS AND TOGGLE BUTTONS WHILE TIMER IS ON (WHEN DISABLED)
             ☑️ TOGGLE BUTTONS (:disabled:hover {ORIGINAL FONTWEIGHT})
