@@ -804,10 +804,11 @@ textInput.disabled = true;
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
-    // TRACK NUMBER OF START BUTTON CLICKS
-    startButtonCounter += 1;
+    startButtonCounter += 1; // TRACK NUMBER OF START BUTTON CLICKS
 
     textInput.disabled = false;
+
+    levelsApply.disabled = true;
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 DETECT CAPSLOCK 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -1288,7 +1289,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
-    seconds = 10;
+    // seconds = 10;
     const tick = () => {
         const counter = document.getElementById("counter-div");
         seconds -= 1;
@@ -1617,6 +1618,18 @@ beginnerShowButton.addEventListener("click", function () {
             A. ACTIVATE APPLY TO RE - SUBMIT SETTINGS ??? OR
             B. ACTIVATE START BUTTON ???
     */
+    let preSelectedLevels = false;
+    for (let i = 0; i < levelButtons.length; i += 1) {
+        if (levelButtons[i].classList.contains("control-apply-active")) {
+            preSelectedLevels = true;
+            break;
+        }
+    }
+    if (preSelectedLevels) {
+        console.log("PRE SELECTED LEVELS");
+        levelsApply.disabled = false;
+        levelsApply.classList.add("control-apply-active");
+    }
 
     timerOn = false;
     startButton.disabled = true;
@@ -1706,8 +1719,9 @@ TODOS
             ☑️RESET ALL INDEX TRACKERS (FOR START BUTTON - AND APPLY BUTTONS ON CONTROL PANEL ? MAYBE NOT NECESSARY)
             
     PROBLEMS:
+        ☑️ DISABLE LEVELS APPLY WITH START BUTTON 
         WHEN BEGINNER PANEL COMES ON, CHECK IF ANY LEVELS PRE-SELECTED FROM PREVIOUS SESSION (LINE 1614)
-            HIGHLIGHT APPLY BUTTON TO RE-SUBMIT ???
+            ☑️ HIGHLIGHT APPLY BUTTON TO RE-SUBMIT ???
             OR RESET ALL SETTINGS ???
         DISABLE TXT INPUT 
             ☑️ ON PAGE LOAD
