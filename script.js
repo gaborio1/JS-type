@@ -186,7 +186,8 @@ let problemKeysSet = new Set();
 const problemKeySpans = document.getElementsByClassName("problem-key-span");
 const probKeyWordsArr = [];
 let tempProbWordsArr = []; // WORDS THAT CONTAIN BROBLEM KEYS FROM PREVIOUS SESSION
-
+// BEGINNER STATUS 
+let beginnerOn = false;
 // CAPSLOCK STATUS
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -804,9 +805,10 @@ textInput.disabled = true;
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
-    console.log("START BUTTON");
 
     startButtonCounter += 1; // TRACK NUMBER OF START BUTTON CLICKS
+
+    console.log("START BUTTON", startButtonCounter);
 
     textInput.disabled = false;
 
@@ -849,7 +851,7 @@ startButton.addEventListener("click", (event) => {
     textInput.focus();
 
     // ADD LISTENER TO INPUT FOR TIMER IF 1 MIN TIMER IS SELECTED
-    if (timerOn) {
+    if (timerOn && !beginnerOn) {
         textInput.addEventListener("keydown", startCountdown);
         console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
     }
@@ -1324,7 +1326,20 @@ const countdown = () => {
         if (seconds === 0) {
             // console.log("times up");
             // document.removeEventListener("keydown", handleKeyEvent);
-            timerOn = false;
+
+
+
+
+            // ???????????????????
+
+            // timerOn = false;
+
+            // ???????????????????
+
+
+
+
+
             textInput.value = "                 Try Again ➡"; // SET INPUT VALUE
             // textInput.readOnly = true; // DISABLE TXT INPUT
             textInput.disabled = true; // DISABLE TXT INPUT
@@ -1616,6 +1631,7 @@ levelsApply.addEventListener("click", function () {
 
 // SHOW BEGINNER LEVELS
 beginnerShowButton.addEventListener("click", function () {
+    beginnerOn = true;
     /*
         CHECK IF ANY LEVEL IS SELECTED, IF SO,
             A. ACTIVATE APPLY TO RE - SUBMIT SETTINGS ??? OR
@@ -1635,6 +1651,7 @@ beginnerShowButton.addEventListener("click", function () {
     }
 
     timerOn = false;
+    console.log("BEGINNER LEVEL, TIMERON:", timerOn);
     startButton.disabled = true;
     startButton.classList.remove("control-apply-active");
     textInput.disabled = true;
@@ -1644,6 +1661,7 @@ beginnerShowButton.addEventListener("click", function () {
 
 // HIDE BEGINNER LEVELS
 beginnerHideButton.addEventListener("click", function () {
+    beginnerOn = false;
     timerOn = true;
     startButton.disabled = false;
     startButton.classList.add("control-apply-active");
