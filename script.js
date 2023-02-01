@@ -248,36 +248,40 @@ const toggleButtonStyle = (element) => {
     }
 };
 
-// TOGGLE BOOLEAN BUTTON STATE BASED ON CLASS
+// TOGGLE BOOLEAN BUTTON STATE BASED ON CLASS ONLY IF BEGINNER LEVEL IS NOT SELECTED
 const toggleButtonState = (element) => {
     // console.log(element);
-    if (element.classList.contains("toggle-on")) {
-        if (element === punctuationToggle) {
-            punctuationOn = true;
-        }
-        if (element === capitalToggle) {
-            capitalOn = true;
-        }
-        if (element === soundToggle) {
-            soundOn = true;
-        }
-        if (element === timerToggle) {
-            timerOn = true;
-        }
-    } else {
-        if (element === punctuationToggle) {
-            punctuationOn = false;
-        }
-        if (element === capitalToggle) {
-            capitalOn = false;
-        }
-        if (element === soundToggle) {
-            soundOn = false;
-        }
-        if (element === timerToggle) {
-            timerOn = false;
+    if (!beginnerOn) {
+        if (element.classList.contains("toggle-on")) {
+            if (element === punctuationToggle) {
+                punctuationOn = true;
+            }
+            if (element === capitalToggle) {
+                capitalOn = true;
+            }
+            if (element === soundToggle) {
+                soundOn = true;
+            }
+            // if (element === timerToggle && !beginnerOn) {
+            if (element === timerToggle) {
+                timerOn = true;
+            }
+        } else {
+            if (element === punctuationToggle) {
+                punctuationOn = false;
+            }
+            if (element === capitalToggle) {
+                capitalOn = false;
+            }
+            if (element === soundToggle) {
+                soundOn = false;
+            }
+            if (element === timerToggle) {
+                timerOn = false;
+            }
         }
     }
+
 };
 
 // UPPERCASE FIRST LETTER IN WORD
@@ -806,6 +810,8 @@ textInput.disabled = true;
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
 
+    console.log("START TARGET ARRAY:", targetArray);
+
     startButtonCounter += 1; // TRACK NUMBER OF START BUTTON CLICKS
 
     console.log("START BUTTON", startButtonCounter);
@@ -851,10 +857,30 @@ startButton.addEventListener("click", (event) => {
     textInput.focus();
 
     // ADD LISTENER TO INPUT FOR TIMER IF 1 MIN TIMER IS SELECTED
+
+
+
+
+
+    // !!! IF TIMERON IS SET TO FALSE AT 0 SECONDS THIS WILL NOT RUN !!!
+    // !!! TIMERON IS INDEPENDENT FROM CONTROL SETTING (BUTTON STATUS) !!!
+
+    // INSTEAD OF TIMERON, CHECK IS BUTTON IS ACTIVE AND IF IT IS, SET TIMERON TO TRUE
+    // if (timerToggle.classList.contains("control-apply-active") && !beginnerOn) {
     if (timerOn && !beginnerOn) {
+        // timerOn = true;
         textInput.addEventListener("keydown", startCountdown);
         console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
     }
+
+
+
+
+
+
+
+
+
 
     // REMOVE HIGHLIGHT START BUTTON
     startButton.classList.remove("control-apply-active");
@@ -907,7 +933,8 @@ startButton.addEventListener("click", (event) => {
         // MORE THAN 5 MISTAKES: GOODBYE MESSAGE SEQUENCE
         if (wrongCounter >= maxMistakes) {
             reloadSequence();
-            document.removeEventListener("keydown", handleKeyEvent);
+            // document.removeEventListener("keydown", handleKeyEvent);
+            textInput.removeEventListener("keydown", handleKeyEvent);
         }
 
         //NOT USED
@@ -1137,12 +1164,14 @@ startButton.addEventListener("click", (event) => {
         // MORE THAN 5 MISTAKES: GOODBYE MESSAGE SEQUENCE
         if (wrongCounter >= maxMistakes) {
             reloadSequence();
-            document.removeEventListener("keydown", handleKeyEvent);
+            // document.removeEventListener("keydown", handleKeyEvent);
+            textInput.removeEventListener("keydown", handleKeyEvent);
         }
     };
 
     // ADD HANDLEKEYEVENT FOR KEYUP EVENT ONLY ONCE, REMOVE IT IF START IS CLICKED AGAIN, SEE IF BLOCK BELOW
-    document.addEventListener("keydown", handleKeyEvent);
+    // document.addEventListener("keydown", handleKeyEvent);
+    textInput.addEventListener("keydown", handleKeyEvent);
 
     // CHANGE START BUTTON'S INNER HTML TO: "NEW"
     if (startButtonCounter > 0) {
@@ -1152,7 +1181,8 @@ startButton.addEventListener("click", (event) => {
     // IF START BUTTON CLICKED AGAIN, RESET EVERYTHING AND GENERATE NEW DATA
     if (startButtonCounter > 1) {
         // REMOVE LISTENER
-        document.removeEventListener("keydown", handleKeyEvent);
+        // document.removeEventListener("keydown", handleKeyEvent);
+        textInput.removeEventListener("keydown", handleKeyEvent);
         // console.log("EVENT LISTENER REMOVED FROM DOCUMENT FOR KEYUP");
 
         // RESET
@@ -1324,7 +1354,7 @@ const countdown = () => {
         }
 
         if (seconds === 0) {
-            // console.log("times up");
+            console.log("times up");
             // document.removeEventListener("keydown", handleKeyEvent);
 
 
@@ -1363,6 +1393,11 @@ const countdown = () => {
             for (let i = 0; i < disabledDuringTimer.length; i += 1) {
                 disabledDuringTimer[i].disabled = false;
             }
+
+            // timerOn = false;
+            // console.log("TIMER ON:", timerOn);
+            // document.removeEventListener("keydown", handleKeyEvent);
+
         }
     };
 
@@ -1662,7 +1697,14 @@ beginnerShowButton.addEventListener("click", function () {
 // HIDE BEGINNER LEVELS
 beginnerHideButton.addEventListener("click", function () {
     beginnerOn = false;
-    timerOn = true;
+    // !!! THIS WILL OVERWRITE SETTINGS !!!
+    // ONLY SET TO TRUE IF BUTTON STATE IS TRUE
+    // !!! DO THE SAME WITH ALL TOGGLE BUTTONS !!!
+    // if (timerToggle.classList.contains("control-apply-active")) {
+    if (timerToggle.innerText === "On") {
+        timerOn = true;
+    }
+    // timerOn = true;
     startButton.disabled = false;
     startButton.classList.add("control-apply-active");
     textInput.disabled = true;
@@ -1747,6 +1789,23 @@ TODOS
             ☑️RESET ALL INDEX TRACKERS (FOR START BUTTON - AND APPLY BUTTONS ON CONTROL PANEL ? MAYBE NOT NECESSARY)
             
     PROBLEMS:
+        LOOK INTO PROBLEMKEYWORDS AGAIN (AFTER COMPLETING PROBLEMKEYWORDS WITH NO ERROR, TARGET ARRAY SHOULD UPDATE TO DEFAULT)
+            WHEN START BUTTON CLICKED CHECK IF PROBLEMKEYARRAY IS EMPTY, IF SO, RESET TARGET ARRAY TO DEFAULT
+
+
+        DO NOT ACTIVATE START BUTTON UNTIL ALL THE APPLY BUTTONS HAVE BEEN CLICKED
+        (WHEN ONE CLICKED, CHECK IF ANY OTHERS HAVE ACTIVE CLASS, IF YES, DO NOT ACTIVATE START BUTTON)
+
+        REMOVE FADE CLASS FROM RED PANEL WHEN BLUE PANEL IS HIDDEN (THIS IS A BUG, TRY TO FIX TIMER ISSUE)
+
+        HANDLE CONTROL PANEL SETTINGS WHEN SWITCHING PANELS (RESET ALL SETTINGS PROBABLY THE BEST)
+            DIFFICULTY
+            PUNCTUATION 
+            CAPITAL LETTERS
+            LINE LENGTH 
+            TIMER
+            SOUND
+
         LINE LENGTH SLIDER SHOULD NOT HIGHLIGHT ON HOVER WHILE TIMER IS ON
         ☑️ DISABLE LEVELS APPLY WITH START BUTTON 
         WHEN BEGINNER PANEL COMES ON, CHECK IF ANY LEVELS PRE-SELECTED FROM PREVIOUS SESSION (LINE 1614)
