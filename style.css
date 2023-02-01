@@ -309,13 +309,15 @@ button:disabled:hover {
     visibility: hidden;
     /* width: 120px; */
     /* background-color: black; */
-    /* background-color: rgba(0, 0, 0, 0.317); */
-    background-color: rgba(255, 255, 255, 0.317);
+    background-color: rgba(0, 0, 0, 0.317);
+    background-color: rgba(191, 179, 179, 0.895);
+    /* background-color: rgba(255, 255, 255, 0.317); */
     /* color: #fff; */
     color: rgb(0, 0, 0);
     text-align: center;
     letter-spacing: 1px;
     padding: 5px 0;
+    border: 1px solid var(--border-gold);
     border-radius: 4px;
 
     /* Position the tooltip text - see examples below! */
@@ -326,9 +328,26 @@ button:disabled:hover {
 /* BOTTOM TOOLTEXT */
 .tooltip .tooltiptext {
     width: 80px;
-    top: 120%;
+    /* BELOW WITH LITTLE GAP */
+    /* top: 120%;
+    left: 50%; */
+    /* TOP RIGHT */
+    top: -300%;
     left: 50%;
     margin-left: -40px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+/* TOOLTIP BOTTOM ARROW */
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    /* border-color: black transparent transparent transparent; */
+    border-color: rgb(191, 179, 179) transparent transparent transparent;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */

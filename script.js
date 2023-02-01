@@ -804,6 +804,8 @@ textInput.disabled = true;
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
+    console.log("START BUTTON");
+
     startButtonCounter += 1; // TRACK NUMBER OF START BUTTON CLICKS
 
     textInput.disabled = false;
@@ -849,7 +851,7 @@ startButton.addEventListener("click", (event) => {
     // ADD LISTENER TO INPUT FOR TIMER IF 1 MIN TIMER IS SELECTED
     if (timerOn) {
         textInput.addEventListener("keydown", startCountdown);
-        // console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
+        console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
     }
 
     // REMOVE HIGHLIGHT START BUTTON
@@ -888,7 +890,7 @@ startButton.addEventListener("click", (event) => {
     const handleKeyEvent = (event) => {
         // const typedKey = event.key;
         typedKey = event.key;
-        // console.log("EVENT: KEYUP", event.key);
+        console.log("EVENT: KEYUP", event.key);
 
         // TRACK TYPED KEY ON KEYBOARD (100MS FLASH)
         for (let i = 0; i < letterKeys.length; i += 1) {
@@ -1289,7 +1291,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 59;
-    // seconds = 10;
+    seconds = 10;
     const tick = () => {
         const counter = document.getElementById("counter-div");
         seconds -= 1;
@@ -1298,6 +1300,7 @@ const countdown = () => {
         if (seconds > 0) {
             setTimeout(tick, 1000);
             timerOn = true;
+            console.log("TIMER ON:", timerOn);
         }
 
         let finalSpeed = 0;
@@ -1393,7 +1396,7 @@ const startCountdown = () => {
     // console.log("REMOVE LISTENER NOW!");
     countdown();
     textInput.removeEventListener("keydown", startCountdown);
-    // console.log("EVENT LISTENER REMOVED FROM TEXT INPUT FOR TIMER");
+    console.log("EVENT LISTENER REMOVED FROM TEXT INPUT FOR TIMER");
     startButton.disabled = true;
 
     // DISABLE CONTROL INPUTS/TOGGLES
@@ -1665,11 +1668,13 @@ TODOS
         ☑️ ORANGE KEYS COUNTER (BACKSPACE)
         COMPLETE WORDS COUNTER
     FEATURES:
-        ADD ENTER KEY TO BEGINNER LEVEL
+        ADD ENTER KEY
+            BEGINNER 
+            PRACTICE 
         TRACK KEYS TYPED IN REAL TIME ON KEYBOARD?
             ☑️ LETTER KEYS
         DISPLAY INFO ON LEVEL SELECTOR HOVER
-            POP UP TEXT NEXT TO BUTTON ???
+            ☑️ POP UP TEXT NEXT TO BUTTON ???
             MESSAGE DIV ???
         WRITE AND FORMAT INFO CARD
         OPTIONAL SOUND
@@ -1724,6 +1729,7 @@ TODOS
             ☑️RESET ALL INDEX TRACKERS (FOR START BUTTON - AND APPLY BUTTONS ON CONTROL PANEL ? MAYBE NOT NECESSARY)
             
     PROBLEMS:
+        LINE LENGTH SLIDER SHOULD NOT HIGHLIGHT ON HOVER WHILE TIMER IS ON
         ☑️ DISABLE LEVELS APPLY WITH START BUTTON 
         WHEN BEGINNER PANEL COMES ON, CHECK IF ANY LEVELS PRE-SELECTED FROM PREVIOUS SESSION (LINE 1614)
             ☑️ HIGHLIGHT APPLY BUTTON TO RE-SUBMIT ???
