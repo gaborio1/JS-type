@@ -181,12 +181,12 @@ let accuracy = 0;
 let wrongCounter = 0;
 const maxMistakes = 5;
 
-// TRCACK PROBLEM KEYS (NO DUPLICATES IN SET)
+// TRACK PROBLEM KEYS (NO DUPLICATES IN SET)
 let problemKeysSet = new Set();
 const problemKeySpans = document.getElementsByClassName("problem-key-span");
 const probKeyWordsArr = [];
 let tempProbWordsArr = []; // WORDS THAT CONTAIN BROBLEM KEYS FROM PREVIOUS SESSION
-// BEGINNER STATUS 
+// BEGINNER STATUS
 let beginnerOn = false;
 // CAPSLOCK STATUS
 
@@ -281,7 +281,6 @@ const toggleButtonState = (element) => {
             }
         }
     }
-
 };
 
 // UPPERCASE FIRST LETTER IN WORD
@@ -468,16 +467,31 @@ doc.addEventListener("keydown", testCapsLock);
 
 // FIND PROBLEM KEY WORDS IN CURRENT TARGET ARRAY / UPDATE TARGET ARRAY WITH PROBLEM WORDS ONLY
 const findAndApplyProblemKeyWords = () => {
-    if (problemKeysSet.size) {
+    if (problemKeysSet.size > 0) {
         problemKeysSet.forEach((key) => {
-            targetArray.forEach((word) => {
+            // !!! HAVE TO RESET TARGET ARRAY BECAUSE IT WILL HAVE A FILTERED STATE FROM BEFORE
+            // targetArray.forEach((word) => {
+            common100.forEach((word) => {
                 if (word.indexOf(key) > -1) {
+                    console.log("WORD FOUND", word);
                     tempProbWordsArr.push(word);
                 }
             });
         });
         targetArray = [...tempProbWordsArr]; // UPDATE TARGET ARRAY WITH FILTERED WORDS ARRAY
+
+        // tempProbWordsArr = []; // RESET TEMP PROB WORDS ARRAY ???
+    } else {
+        // !!! TEMP FIX, THIS SHOULD BE SET TO PREVIOUSLY SET VALUE !!!
+        console.log("NO PROBLEM KEYS IN SET");
+        if (!beginnerOn) {
+            targetArray = [...common100];
+        }
+        // targetArray = [...common100];
     }
+    console.log("<<<<< PROBLEM KEYS SET >>>>>", problemKeysSet);
+    console.log("<<<<< TEMP PROB WORDS >>>>>", tempProbWordsArr);
+    console.log("TARGET ARRAY:", targetArray);
 };
 
 const handleCapslockChange = () => {
@@ -809,12 +823,15 @@ textInput.disabled = true;
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
+    console.log("START BEGINNER LEVEL STATUS:", beginnerOn);
 
-    console.log("START TARGET ARRAY:", targetArray);
+    // console.log("<<<<< PROBLEM KEYS SET >>>>>", problemKeysSet);
+    // console.log("<<<<< TEMP PROB WORDS >>>>>", tempProbWordsArr);
+    // console.log("START TARGET ARRAY:", targetArray);
 
     startButtonCounter += 1; // TRACK NUMBER OF START BUTTON CLICKS
 
-    console.log("START BUTTON", startButtonCounter);
+    // console.log("START BUTTON", startButtonCounter);
 
     textInput.disabled = false;
 
@@ -826,10 +843,17 @@ startButton.addEventListener("click", (event) => {
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 PROBLEM KEYS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-    // IF THERE IS ANY PROBLEM KEY,  FILL tempProbWordsArr WITH WORDS THAT CONTAIN PROBLEM KEYS
-    findAndApplyProblemKeyWords();
-    problemKeysSet.clear(); // RESET PROBLEM KEYS SET AFTER PROBLEM KEYS HAVE BEEN USED FOR NEW SET OF WORDS
-    removeProblemKeyHighlight();
+    // !!! THIS CONDITION IS NOT WORKING PROPERLY !!!
+    // HAVE TO CLEAR PROB KEYS SET WITH HIDE BEGINNER BUTTON
+    if (!beginnerOn) {
+        // IF THERE IS ANY PROBLEM KEY,  FILL tempProbWordsArr WITH WORDS THAT CONTAIN PROBLEM KEYS
+        findAndApplyProblemKeyWords();
+        problemKeysSet.clear(); // RESET PROBLEM KEYS SET AFTER PROBLEM KEYS HAVE BEEN USED FOR NEW SET OF WORDS
+
+        tempProbWordsArr = []; // RESET TEMPORARY ARRAY
+        // targetArray = [...common100];
+        removeProblemKeyHighlight();
+    }
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CONTROL PANEL 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -858,10 +882,6 @@ startButton.addEventListener("click", (event) => {
 
     // ADD LISTENER TO INPUT FOR TIMER IF 1 MIN TIMER IS SELECTED
 
-
-
-
-
     // !!! IF TIMERON IS SET TO FALSE AT 0 SECONDS THIS WILL NOT RUN !!!
     // !!! TIMERON IS INDEPENDENT FROM CONTROL SETTING (BUTTON STATUS) !!!
 
@@ -872,15 +892,6 @@ startButton.addEventListener("click", (event) => {
         textInput.addEventListener("keydown", startCountdown);
         console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
     }
-
-
-
-
-
-
-
-
-
 
     // REMOVE HIGHLIGHT START BUTTON
     startButton.classList.remove("control-apply-active");
@@ -918,7 +929,7 @@ startButton.addEventListener("click", (event) => {
     const handleKeyEvent = (event) => {
         // const typedKey = event.key;
         typedKey = event.key;
-        console.log("EVENT: KEYUP", event.key);
+        // console.log("EVENT: KEYUP", event.key);
 
         // TRACK TYPED KEY ON KEYBOARD (100MS FLASH)
         for (let i = 0; i < letterKeys.length; i += 1) {
@@ -1072,10 +1083,10 @@ startButton.addEventListener("click", (event) => {
             ) {
                 problemKeysSet.add(wordArrays[lineIdx][wordIdx][charIdx]);
             }
-            // console.log("<<<<< PROBLEM KEYS SET >>>>>", problemKeysSet);
+            console.log("<<<<< PROBLEM KEYS SET >>>>>", problemKeysSet);
 
             // IF PROBLEMKEYS SET HAS LENGTH LOOP OVER problemKeysSet AND FIND CORRESPONDING problem-key-span FOR EACH ELEMENT
-            if (problemKeysSet.size) {
+            if (problemKeysSet.size > 0) {
                 // TEST DIV CURRENTLY DISABLED:
                 // problemKeysSet.forEach((key) => {
                 //     // console.log(key);
@@ -1357,18 +1368,11 @@ const countdown = () => {
             console.log("times up");
             // document.removeEventListener("keydown", handleKeyEvent);
 
-
-
-
             // ???????????????????
 
             // timerOn = false;
 
             // ???????????????????
-
-
-
-
 
             textInput.value = "                 Try Again ➡"; // SET INPUT VALUE
             // textInput.readOnly = true; // DISABLE TXT INPUT
@@ -1397,7 +1401,6 @@ const countdown = () => {
             // timerOn = false;
             // console.log("TIMER ON:", timerOn);
             // document.removeEventListener("keydown", handleKeyEvent);
-
         }
     };
 
@@ -1667,6 +1670,7 @@ levelsApply.addEventListener("click", function () {
 // SHOW BEGINNER LEVELS
 beginnerShowButton.addEventListener("click", function () {
     beginnerOn = true;
+    targetArray = [];
     /*
         CHECK IF ANY LEVEL IS SELECTED, IF SO,
             A. ACTIVATE APPLY TO RE - SUBMIT SETTINGS ??? OR
@@ -1697,6 +1701,8 @@ beginnerShowButton.addEventListener("click", function () {
 // HIDE BEGINNER LEVELS
 beginnerHideButton.addEventListener("click", function () {
     beginnerOn = false;
+    problemKeysSet.clear();
+    targetArray = [];
     // !!! THIS WILL OVERWRITE SETTINGS !!!
     // ONLY SET TO TRUE IF BUTTON STATE IS TRUE
     // !!! DO THE SAME WITH ALL TOGGLE BUTTONS !!!
@@ -1715,82 +1721,46 @@ beginnerHideButton.addEventListener("click", function () {
 });
 
 /*
-MASTER/multiple
-TODOS
-    STATISTICS / MONITOR:
-        ☑️ MAKE NEXT LINE TEXT GREY 
-        ☑️ TIMER (1 MIN)
-        ☑️ SPEEDOMETER (WPM)
-            ☑️ CALCULATE AVE SPEED IN REAL TIME EVERY SECOND
-        GREEN WORDS COUNTER
-        ☑️ GREEN KEYS COUNTER
-        ☑️ RED KEYS COUNTER
-        ☑️ ORANGE KEYS COUNTER (BACKSPACE)
-        COMPLETE WORDS COUNTER
+
+
+    
     FEATURES:
+
+        GREEN WORDS COUNTER
+
+        COMPLETE WORDS COUNTER
+
         ADD ENTER KEY
             BEGINNER 
             PRACTICE 
+
         TRACK KEYS TYPED IN REAL TIME ON KEYBOARD?
             ☑️ LETTER KEYS
-        DISPLAY INFO ON LEVEL SELECTOR HOVER
-            ☑️ POP UP TEXT NEXT TO BUTTON ???
-            MESSAGE DIV ???
+       
         WRITE AND FORMAT INFO CARD
-        OPTIONAL SOUND
-            KEYPRESS
-                ☑️  VALID KEYS
-                ☑️ WRONG KEY WARNING
-            CONTROLS ?
-        ☑️ HIDE AND SHOW INFO
-        ☑️ DISABLE START BUTTON IF CHANGES ARE MADE TO CONTROLS, ENABLE WHEN APPLY IS CLICKED
-        ☑️ DISABLE APPLY BUTTONS BY DEFAULT, ONLY ACTIVATE THEM IF SELECTION IS MADE
-            ☑️ DISABLE APPLY BUTTONS WHAN START BUTTON IS CLICKED
-                MAKE A VARIABLE FOR A COLLECTION OF ALL APPLY BUTTONS AND DISABLE THEM WITH A LOOP INSTEAD OF ONE BY ONE
-        ☑️ DISABLE START BUTTON WHILE TIMER IS ON
-            HIDE START BUTTON AND ADD RESTART/REFRESH WHILE TIMER IS ON?
-        ☑️ FADE OUT TEXT WHEN TIME IS UP
+        
         MAKE ONE COMMON APPLY BUTTON FOR ALL CONTROLS?
-        ☑️ REMOVE ACTIVE CLASS (OR DISABLE?) START BUTTON WHEN CHANGES ARE MADE ON CONTROL PANEL, ONLY HIGHLIGHT APPLY
-        ☑️ ANIMATE CONTROLS/STATS/COLURCODE STATS (FADE IN/OUT)
-        ☑️ HIDE OR BLUR/DIM CONTROLS WHEN TIMER IS ACTIVE?
+        
         RESET TIMER IF START BUTTON IS CLICKED?
-        ☑️ TIMER ON/OFF
-        ☑️ HIGHLIGHT APPLY BUTTONS WHEN CHANGES ARE MADE
-        ☑️ START / NEW BUTTON
-        ☑️ HIGHLIGHT START BUTTON AFTER CONTROL CHANGES HAVE BEEN APPLIED
-        ☑️ ALLOW USER TO SET CUSTOM LINE LENGTH
-        ☑️ LEVEL SELECTOR (100, 200, 500 ETC...)
-            ☑️ TARGET ARRAY 100
-            ☑️ TARGET ARRAY 200
-            TARGET ARRAY 500
-            TARGET ARRAY JAVASCRIPT SYNTAX
-        ☑️ DETECT CAPSLOCK
-        CAPS LOCK WARNING MESSAGE
-            DISPLAY MESSAGE AS TEXT ELEMENT, NOT PLACEHOLDER OR CONTENT
-            ☑️ WHEN PAGE LOADS (WARNING TRIGGERED BY FIRST CLICK OR KEYPRESS)
-            ☑️ DURING SESSION
-            DISABLE TEXT INPUT WHEN CAPSLOCK IS ON?
+        
+        DISPLAY MESSAGE AS TEXT ELEMENT, NOT PLACEHOLDER OR CONTENT
+            
         ADD MOST COMMON SENTENCES TO DIFFICULTY
         PROBLEM KEYS
-            ☑️ TRACK
-            ☑️ DISPLAY (TEMPORARY TEST DIV, HAVE TO FIND PLACE FOR IT IN APP, MAYBE HIDE AND SHOW?)
-            ☑️ WHEN START BTN IS CLICKED NEW TEXT GENERATES WORDS WITH PROBLEM KEYS
-                (!!! THIS MIGHT LOOK ODD WHEN THERE ARE ONLY A FEW MATCHING WORDS !!!)
-                CONCAT TEMPORARY PROBLEM WORDS ARRAY TO TARGET ARRAY TO GET A MIX OF BOTH?
 
-        BUILD RANDOM WORDS FROM PROBLEM CHARACTERS / WORDS
-    CODE:
-        MAKE SEPARATE JS FILE FOR HELPER FUNCTIONS
-        FUNCTIONS:
-            ☑️ STYLING CHARACTERS ASSIGN STYLES TO CSS (ADD AND REMOVE CLASS WITH JS)
-            ☑️ SET CURSOR POSITION (FORWARD, BACK)
-            ☑️ CLEAR INPUT
-            ☑️RESET ALL INDEX TRACKERS (FOR START BUTTON - AND APPLY BUTTONS ON CONTROL PANEL ? MAYBE NOT NECESSARY)
+        DYNAMICALLY GENERATE NEXT LINE + 1 ?
+
+        SHOW ALL TEXT AS ONE BLOCK ?
+       
             
     PROBLEMS:
+
+        DISABLE PROBLEM KEY TRACKING IN BEGINNER MODE
+
+        ☑️ RESET TARGET ARRAY AFTER CLEARING PROBLEMKEYSET BECAUSE IT WILL BE IN A FILTERED STATE (findAndApplyProblemKeyWords)
         LOOK INTO PROBLEMKEYWORDS AGAIN (AFTER COMPLETING PROBLEMKEYWORDS WITH NO ERROR, TARGET ARRAY SHOULD UPDATE TO DEFAULT)
-            WHEN START BUTTON CLICKED CHECK IF PROBLEMKEYARRAY IS EMPTY, IF SO, RESET TARGET ARRAY TO DEFAULT
+        !!! THIS IS A TEMPORARY FIX, HAS TO USE CURRENTLY SELECTED DIFFICULTY ARRAY !!!
+        WHEN START BUTTON CLICKED CHECK WHAT THE CURRENT SELECTON IS ON THE RADIOS, USE MATCHING ARRAY FOR TARGET
 
 
         DO NOT ACTIVATE START BUTTON UNTIL ALL THE APPLY BUTTONS HAVE BEEN CLICKED
@@ -1807,63 +1777,36 @@ TODOS
             SOUND
 
         LINE LENGTH SLIDER SHOULD NOT HIGHLIGHT ON HOVER WHILE TIMER IS ON
-        ☑️ DISABLE LEVELS APPLY WITH START BUTTON 
+
         WHEN BEGINNER PANEL COMES ON, CHECK IF ANY LEVELS PRE-SELECTED FROM PREVIOUS SESSION (LINE 1614)
             ☑️ HIGHLIGHT APPLY BUTTON TO RE-SUBMIT ???
             OR RESET ALL SETTINGS ???
+
         DISABLE TXT INPUT 
             ☑️ ON PAGE LOAD
-            WHEN TIMER ENDS (DISABLE DOES NOT WORK AT SECONDS === 0)
+            ☑️ WHEN TIMER ENDS (KEYPRESS LISTENER ONLY ON INPUT NOW / DISABLED INPUT)
             ☑️ AFTER FLIPPING PANELS (PRACTICE/BEGINNER)
 
         DON'T HIGHLIGT RADIO LABELS AND TOGGLE BUTTONS WHILE TIMER IS ON (WHEN DISABLED)
             ☑️ TOGGLE BUTTONS (:disabled:hover {ORIGINAL FONTWEIGHT})
             ☑️ RADIO LABELS
             SLIDER
-            
-        ☑️ DISABLE CONTROLS (WITHOUT Z-INDEX) WHILE TIMER IS ON, IT WILL CALUSE A BUG IF CHANGES ARE MADE
-            AS START BUTTON HAS TO BE CLICKED AGAIN WHICH ADDS LISTENER AGAIN !!!
-
+      
         CAPSLOCK MUST NOT ACTIVATE TIMER ?
+
         CONTROL APPLY BUTTONS DELETES "CLICK START" MESSAGE FROM TXT INPUT
-        ☑️ CONSECUTIVE WRONG CHARACTERS HANDLING (DISABLE INPUT AND RELOAD)
+
         ☑️ CENTER TEXT INPUT CONTENT (LEADING SPACES ARE HARD CODED IN INPUT.VALUE ALSO SEE CSS .form input - line 218)
-        ☑️ SPACE DIVS CONSISTENTLY IN WRAPPER (50PX. 25PX)
-        ☑️ SIZE DIVS CONSISTENTLY IN WRAPPER (50PX. 25PX)
-        ☑️ ADD COMMON CLASS TO FADE ELEMENTS WHILE TIMER IS ON (.fadeout-with-timer)
-        USE CSS VARIABLES
-            ☑️ APP AND WRAP BORDER
-            ☑️ FONT SIZES 24, 32, 64
-        ARRANGE CONTROL WRAP CONTENTS (LAYOUT, SPACING)
-        ☑️ MAKE FONT FAMILY THE SAME FOR INPUT AND BUTTONS TOO (ROBOTO)
-        ☑️ WORD COUNTER IS INCREMENTED AT NEW LINE WHEN SPACE IS TYPED ON LAST WORD IN LINE
-        REMOVE KEY EVENT LISTENER WHEN TIMER STOPS
-        ALLOW CORRECTION OF ANY CHAR IF SPACE HAS NOT BEEN CLICKED, BUT MULTIPLE RED CAHRACTERS OCCUR INTO NEXT WORD
-        IF ANY KEY WAS TYPED ON SPACE, NEXT WORD WILL NOT WORK CORRECTLY (RED ON CORRECT)
-            REASON: WORD COUNTER IS NOT INCREMENTED
-        TIMER IS NOT WORKING PROPERLY IF START BUTTON IS CLICKED BEFORE TIME RUNS OUT
-            ☑️ TEMP SOLUTION: START BUTTON IS NOW DISABLED WHILE TIMER IS ON
-        ☑️ CONTROL PANEL SETTINGS DON'T WORK TOGETHER WELL (PROBLEM WITH LISTENERS)
-        ☑️ INITIALISE (CLEAR) ALL TEXT DATA WHEN CLICKING START
-        LISTEN FOR KEYPRESS ON INPUT FIELD ONLY !!!
+        
         ADD EVENTLISTENER TO CONTROL OPTIONS WHEN PAGE LOADS? BEFORE START BUTTON IS CLICKED?
         REMOVE EVENTLISTENER WHEN APPLY CHANGES AS START BUTTON WILL ADD IT AGAIN !!!
-        CLEAR SPANS / RESET TRACKERS AFTER CHANGES ARE MADE TO
-            ☑️ DIFFICULTY
-            ☑️ LENGTH
-            ☑️ PUNCTUATION
-            ☑️ CAPITAL
-            ☑️ TIMER
-            ☑️ SOUND
-        THEN,
-        ☑️ HIGHLIGHT START BUTTON
-        ☑️ ADD ORANGE BORDER TO SPACE WHEN BACKSPACE IS USED
-        STOP MOVING CURSOR WHEN LETTER CHARACTER IS TYPED INSTEAD OF SPACE AFTER WORD IS TYPED
-        ☑️ ADD CURSOR TO ACTIVE LINE
-        ☑️ DON'T APPEND TEXT AS SPANS TO NEXT LINE DIV, JUST DISPLAY IT AS PARAGRAPH ?
-        ☑️ INCREMENT LINEIDX WHEN LAST WORD IS ALL GREEN AND SPACE IS PRESSED
-        ☑️ INCREMENT LINEIDX WHEN SPACE IS PRESSED ON LAST WORD OF LINE
-            INITIALISE STRIDX
-        DYNAMICALLY GENERATE NEXT LINE + 1 ?
-        SHOW ALL TEXT AS ONE BLOCK
+        
+        STOP MOVING CURSOR WHEN LETTER CHARACTER IS TYPED INSTEAD OF SPACE AFTER WORD IS TYPED ?
+
+
+
+        NOTES:
+            WHEN TIMER HAS ENDED FIRST START BUTTON PRESS WILL GENERATE POBLEM KEY WORDS ONLY, SECOND CLICK WILL USE COMMON100
+        
+    
 */
