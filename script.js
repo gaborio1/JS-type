@@ -825,6 +825,11 @@ textInput.disabled = true;
 startButton.addEventListener("click", (event) => {
     console.log("START BEGINNER LEVEL STATUS:", beginnerOn);
 
+    // if (beginnerOn) {
+    //     messageDiv.textContent = "BEGINNER LEVEL";
+    //     messageDiv.style.background = "rgba(0, 0, 255, 0.507)";
+    // }
+
     // console.log("<<<<< PROBLEM KEYS SET >>>>>", problemKeysSet);
     // console.log("<<<<< TEMP PROB WORDS >>>>>", tempProbWordsArr);
     // console.log("START TARGET ARRAY:", targetArray);
@@ -854,7 +859,8 @@ startButton.addEventListener("click", (event) => {
         // targetArray = [...common100];
         removeProblemKeyHighlight();
     }
-
+    problemKeysSet.clear();
+    removeProblemKeyHighlight();
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CONTROL PANEL 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
     disableApplyButtons();
@@ -1333,8 +1339,8 @@ capitalApply.addEventListener("click", function () {
 
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
-    let seconds = 59;
-    seconds = 10;
+    let seconds = 60;
+    // seconds = 10;
     const tick = () => {
         const counter = document.getElementById("counter-div");
         seconds -= 1;
@@ -1669,7 +1675,19 @@ levelsApply.addEventListener("click", function () {
 
 // SHOW BEGINNER LEVELS
 beginnerShowButton.addEventListener("click", function () {
+
     beginnerOn = true;
+
+    timerOn = false;
+    console.log("BEGINNER LEVEL, TIMERON:", timerOn);
+
+    console.log("BEGINNER LEVEL ON");
+
+    // if (beginnerOn) {
+    //     messageDiv.textContent = "BEGINNER LEVEL";
+    //     messageDiv.style.background = "rgba(0, 0, 255, 0.507)";
+    // }
+
     targetArray = [];
     /*
         CHECK IF ANY LEVEL IS SELECTED, IF SO,
@@ -1689,8 +1707,6 @@ beginnerShowButton.addEventListener("click", function () {
         levelsApply.classList.add("control-apply-active");
     }
 
-    timerOn = false;
-    console.log("BEGINNER LEVEL, TIMERON:", timerOn);
     startButton.disabled = true;
     startButton.classList.remove("control-apply-active");
     textInput.disabled = true;
@@ -1701,15 +1717,23 @@ beginnerShowButton.addEventListener("click", function () {
 // HIDE BEGINNER LEVELS
 beginnerHideButton.addEventListener("click", function () {
     beginnerOn = false;
+
+    if (timerToggle.innerText === "On") {
+        timerOn = true;
+    }
+
+    // if (!beginnerOn) {
+    //     messageDiv.textContent = "PRACTICE LEVEL";
+    //     messageDiv.style.background = "rgba(255, 0, 0, 0.521)";
+    // }
+
     problemKeysSet.clear();
     targetArray = [];
     // !!! THIS WILL OVERWRITE SETTINGS !!!
     // ONLY SET TO TRUE IF BUTTON STATE IS TRUE
     // !!! DO THE SAME WITH ALL TOGGLE BUTTONS !!!
     // if (timerToggle.classList.contains("control-apply-active")) {
-    if (timerToggle.innerText === "On") {
-        timerOn = true;
-    }
+
     // timerOn = true;
     startButton.disabled = false;
     startButton.classList.add("control-apply-active");
