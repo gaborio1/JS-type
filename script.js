@@ -1086,18 +1086,6 @@ startButton.addEventListener("click", (event) => {
 
                 wordCounter += 1;
 
-                // console.log("<<< COUNT GREEN KEYS NOW >>>");
-                // console.log(
-                //     "LAST WORD COMPLETED:",
-                //     wordArrays[lineIdx][wordIdx - 1],
-                //     "length:",
-                //     wordArrays[lineIdx][wordIdx - 1].length,
-                //     "strIdx:",
-                //     strIdx,
-                //     "stringWords length:",
-                //     stringWords.length
-                // );
-
                 // COUNT COLOUR SPANS IN LAST WORD WHEN TRAILING SPACE IS TYPED CORRECTLY
                 // countSpanColours();
 
@@ -1751,7 +1739,7 @@ beginnerShowButton.addEventListener("click", function () {
         }
     }
     if (preSelectedLevels) {
-        console.log("PRE SELECTED LEVELS");
+        // console.log("PRE SELECTED LEVELS");
         levelsApply.disabled = false;
         levelsApply.classList.add("control-apply-active");
     }
