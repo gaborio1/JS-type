@@ -473,7 +473,7 @@ const findAndApplyProblemKeyWords = () => {
             // targetArray.forEach((word) => {
             common100.forEach((word) => {
                 if (word.indexOf(key) > -1) {
-                    console.log("WORD FOUND", word);
+                    // console.log("WORD FOUND", word);
                     tempProbWordsArr.push(word);
                 }
             });
@@ -483,15 +483,17 @@ const findAndApplyProblemKeyWords = () => {
         // tempProbWordsArr = []; // RESET TEMP PROB WORDS ARRAY ???
     } else {
         // !!! TEMP FIX, THIS SHOULD BE SET TO PREVIOUSLY SET VALUE !!!
-        console.log("NO PROBLEM KEYS IN SET");
+        // console.log("NO PROBLEM KEYS IN SET");
         if (!beginnerOn) {
             targetArray = [...common100];
         }
         // targetArray = [...common100];
     }
-    console.log("<<<<< PROBLEM KEYS SET >>>>>", problemKeysSet);
-    console.log("<<<<< TEMP PROB WORDS >>>>>", tempProbWordsArr);
-    console.log("TARGET ARRAY:", targetArray);
+
+    // console.log("<<<<< PROBLEM KEYS SET >>>>>", problemKeysSet);
+    // console.log("<<<<< TEMP PROB WORDS >>>>>", tempProbWordsArr);
+    // console.log("TARGET ARRAY:", targetArray);
+
 };
 
 const handleCapslockChange = () => {
@@ -657,6 +659,15 @@ const correctSpaceNotLastWord = () => {
 
 // END OF LINE SPACE
 const correctEndOfLineSpace = () => {
+    // console.log("<<<<< END OF LINE SPACE >>>>> STRINGIDX", strIdx);
+    // console.log("<<<<< END OF LINE SPACE >>>>> WORDIDX", wordIdx);
+    // console.log("<<<<< END OF LINE SPACE >>>>> WORD", wordArrays[lineIdx][wordIdx]);
+
+    // 1. HAVE TO COUNT COLOURS IN LAST WORD BEFORE NEXTLINE() TO BE ABLE TO CHECK CURRENT LINE SPANS
+    countSpanColoursInLastWord();
+    // 2. ALSO, UPDATE COLOUR COUNTER VALUES
+    displayColourCounterValues();
+    // 3. NOW, MOVE ON TO NEXT LINE
     nextLine();
     wordCounter += 1;
     // console.log("WORD COUNTER TEST:", wordCounter);
@@ -677,9 +688,9 @@ const correctEndOfLineSpace = () => {
 const correctSpaceNotEndOfLine = () => {
     let currentCharacter = document.getElementById(`span-${strIdx - 1}`);
 
-    // if (currentCharacter !== null) {
+    // console.log("correctSpaceNotEndOfLine", currentCharacter);
+
     currentCharacter.classList.remove("background", "black-border");
-    // }
 
     nextWord();
     clearTextInput();
@@ -695,9 +706,9 @@ const countSpanColours = () => {
         // PRINT LAST WORD SPANS WITHOUT TRAILING SPACE
         // console.log(charSpans[i]);
 
-        if (charSpans[i] === undefined) {
-            console.log("charspans[i] UNDEFINED!!!");
-        }
+        // if (charSpans[i] === undefined) {
+        //     console.log("charspans[i] UNDEFINED!!!");
+        // }
 
         if (charSpans[i].classList.contains("green")) {
             greenCounter += 1;
@@ -711,6 +722,36 @@ const countSpanColours = () => {
         }
     }
     // console.log("<<< green:", greenCounter, "red:", redCounter, "orange", orangeCouner);
+};
+
+// THIS FUNCTION HAS TO RUN IN correctEndOfLineSpace() BEFORE nextline()
+// IT ONLY COUNTS COLOURS IN LAST WORD IN LINE
+const countSpanColoursInLastWord = () => {
+    // console.log("HELLO FROM  COUNTSPANCOLOURSLASTSPACE");
+    let currentWordLength = wordArrays[lineIdx][wordIdx].length;
+    // console.log("CURRENT WORD LENGTH", currentWordLength);
+    let charSpans = document.querySelectorAll(".active-txt-span");
+    // START LOOP BACKWARDS AND COUNT SPANS WITH GREEN CLASS
+    // WE ARE STILL ON CURRENT WORD VS LAST WORD IN countSpanColours() ABOVE
+    for (let i = strIdx - 1; i >= strIdx - currentWordLength + 1; i -= 1) {
+        // PRINT LAST WORD SPANS WITHOUT TRAILING SPACE
+        // console.log(charSpans[i]);
+
+        // if (charSpans[i] === undefined) {
+        //     console.log("charspans[i] UNDEFINED!!!");
+        // }
+
+        if (charSpans[i].classList.contains("green")) {
+            greenCounter += 1;
+        }
+        if (charSpans[i].classList.contains("red")) {
+            redCounter += 1;
+        }
+        // NOT IN USE YET
+        if (charSpans[i].classList.contains("orange")) {
+            orangeCounter += 1;
+        }
+    }
 };
 
 // DISPLAY COLOUR COUNTER VALUES
@@ -823,7 +864,6 @@ textInput.disabled = true;
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
-    console.log("START BEGINNER LEVEL STATUS:", beginnerOn);
 
     // if (beginnerOn) {
     //     messageDiv.textContent = "BEGINNER LEVEL";
@@ -837,6 +877,11 @@ startButton.addEventListener("click", (event) => {
     startButtonCounter += 1; // TRACK NUMBER OF START BUTTON CLICKS
 
     // console.log("START BUTTON", startButtonCounter);
+
+    if (beginnerOn) {
+        timerOn = false;
+        // console.log("TIMER ON", timerOn);
+    }
 
     textInput.disabled = false;
 
@@ -896,7 +941,7 @@ startButton.addEventListener("click", (event) => {
     if (timerOn && !beginnerOn) {
         // timerOn = true;
         textInput.addEventListener("keydown", startCountdown);
-        console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
+        // console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
     }
 
     // REMOVE HIGHLIGHT START BUTTON
@@ -986,9 +1031,9 @@ startButton.addEventListener("click", (event) => {
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 SHIFT 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-        if (typedKey === "Shift") {
-            console.log("SHIFT");
-        }
+        // if (typedKey === "Shift") {
+        //     console.log("SHIFT");
+        // }
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BACKSPACE 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -1036,6 +1081,9 @@ startButton.addEventListener("click", (event) => {
                     correctSpaceNotEndOfLine();
                 }
 
+                // COUNT COLOUR SPANS IN LAST WORD WHEN TRAILING SPACE IS TYPED CORRECTLY
+                countSpanColours();
+
                 wordCounter += 1;
 
                 // console.log("<<< COUNT GREEN KEYS NOW >>>");
@@ -1051,7 +1099,7 @@ startButton.addEventListener("click", (event) => {
                 // );
 
                 // COUNT COLOUR SPANS IN LAST WORD WHEN TRAILING SPACE IS TYPED CORRECTLY
-                countSpanColours();
+                // countSpanColours();
 
                 // DISPLAY COLOUR COUNTER VALUES
                 displayColourCounterValues();
@@ -1089,7 +1137,8 @@ startButton.addEventListener("click", (event) => {
             ) {
                 problemKeysSet.add(wordArrays[lineIdx][wordIdx][charIdx]);
             }
-            console.log("<<<<< PROBLEM KEYS SET >>>>>", problemKeysSet);
+
+            // console.log("<<<<< PROBLEM KEYS SET >>>>>", problemKeysSet);
 
             // IF PROBLEMKEYS SET HAS LENGTH LOOP OVER problemKeysSet AND FIND CORRESPONDING problem-key-span FOR EACH ELEMENT
             if (problemKeysSet.size > 0) {
@@ -1237,7 +1286,7 @@ const disableStartButton = () => {
 // MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
 for (let i = 0, length = difficultyRadios.length; i < length; i++) {
     difficultyRadios[i].addEventListener("click", function () {
-        console.log("difficulty selected");
+        // console.log("difficulty selected");
         difficultyApply.classList.add("control-apply-active");
         difficultyApply.disabled = false;
         startButton.classList.remove("control-apply-active");
@@ -1253,17 +1302,17 @@ difficultyApply.addEventListener("click", function () {
 
     for (let i = 0, length = difficultyRadios.length; i < length; i++) {
         if (difficultyRadios[i].checked) {
-            console.log("RADIOS VALUE:", difficultyRadios[i].value);
+            // console.log("RADIOS VALUE:", difficultyRadios[i].value);
             if (difficultyRadios[i].value === "100") {
-                console.log("100");
+                // console.log("100");
                 targetArray = [...common100];
             }
             if (difficultyRadios[i].value === "200") {
-                console.log("200");
+                // console.log("200");
                 targetArray = [...common200, ...common100];
             }
             if (difficultyRadios[i].value === "JavaScript") {
-                console.log("JaveScript");
+                // console.log("JaveScript");
                 targetArray = [...jsReserved, ...jsObjPropMeth];
             }
             break;
@@ -1279,7 +1328,7 @@ difficultyApply.addEventListener("click", function () {
 slider.onchange = function (event) {
     // console.log("SLIDER VALUE HAS BEEN CHANGED:", slider.value);
     lengthDisplaySpan.textContent = slider.value;
-    console.log("slider changed");
+    // console.log("slider changed");
     lengthApply.classList.add("control-apply-active");
     lengthApply.disabled = false;
     disableStartButton();
@@ -1340,7 +1389,7 @@ capitalApply.addEventListener("click", function () {
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
     let seconds = 60;
-    // seconds = 10;
+    seconds = 10;
     const tick = () => {
         const counter = document.getElementById("counter-div");
         seconds -= 1;
@@ -1349,7 +1398,7 @@ const countdown = () => {
         if (seconds > 0) {
             setTimeout(tick, 1000);
             timerOn = true;
-            console.log("TIMER ON:", timerOn);
+            // console.log("TIMER ON:", timerOn);
         }
 
         let finalSpeed = 0;
@@ -1371,7 +1420,7 @@ const countdown = () => {
         }
 
         if (seconds === 0) {
-            console.log("times up");
+            // console.log("times up");
             // document.removeEventListener("keydown", handleKeyEvent);
 
             // ???????????????????
@@ -1455,7 +1504,7 @@ const startCountdown = () => {
     // console.log("REMOVE LISTENER NOW!");
     countdown();
     textInput.removeEventListener("keydown", startCountdown);
-    console.log("EVENT LISTENER REMOVED FROM TEXT INPUT FOR TIMER");
+    // console.log("EVENT LISTENER REMOVED FROM TEXT INPUT FOR TIMER");
     startButton.disabled = true;
 
     // DISABLE CONTROL INPUTS/TOGGLES
@@ -1511,13 +1560,13 @@ for (let i = 0; i < levelButtons.length; i += 1) {
         let selectionMade = false; // RESET TO FALSE BEFORE LOOP
         for (let i = 0; i < levelButtons.length; i += 1) {
             if (levelButtons[i].classList.contains("control-apply-active")) {
-                console.log("FOUND", levelButtons[i]);
+                // console.log("FOUND", levelButtons[i]);
                 selectionMade = true;
                 break;
             }
         }
 
-        console.log("SELECTION MADE:", selectionMade);
+        // console.log("SELECTION MADE:", selectionMade);
 
         // 2. ONLY ACTIVATE APPLY IF AT LEAST ONE LEVEL IS SELECTED
         if (selectionMade) {
@@ -1615,7 +1664,7 @@ const toggleLevelButtonState = (element) => {
 
 // 2. APPLY CHANGES TO ALL LEVELS WHEN APPLY CLICKED
 levelsApply.addEventListener("click", function () {
-    console.log("LEVEL APPLY CLICKED");
+    // console.log("LEVEL APPLY CLICKED");
     randomKeyWordsArray = []; // RESET TO AVOID DUPLICATES IF APPLY IS CLICKED AGAIN
     selectedBeginerKeys = []; // RESET TO AVOID DUPLICATES
     enableStartButton();
@@ -1639,7 +1688,7 @@ levelsApply.addEventListener("click", function () {
         level_9_On,
     ];
 
-    console.log(levelStateArray);
+    // console.log(levelStateArray);
 
     // UPDATE TARGET ARRAY WITH RANDOM WORDS(RANDOM LENGTH 1-6) MADE FROM SELECTED LEVELS
 
@@ -1652,7 +1701,7 @@ levelsApply.addEventListener("click", function () {
             selectedBeginerKeys = selectedBeginerKeys.concat(keyLevelsArray[i]);
         }
     }
-    console.log(selectedBeginerKeys);
+    // console.log(selectedBeginerKeys);
 
     // 2. GENERATE WORDS USING ONLY THOSE SELECTED KEYS
     const generateWords = (numOfWords) => {
@@ -1679,9 +1728,9 @@ beginnerShowButton.addEventListener("click", function () {
     beginnerOn = true;
 
     timerOn = false;
-    console.log("BEGINNER LEVEL, TIMERON:", timerOn);
+    // console.log("BEGINNER LEVEL", beginnerOn);
+    // console.log("TIMERON:", timerOn);
 
-    console.log("BEGINNER LEVEL ON");
 
     // if (beginnerOn) {
     //     messageDiv.textContent = "BEGINNER LEVEL";
@@ -1722,6 +1771,9 @@ beginnerHideButton.addEventListener("click", function () {
         timerOn = true;
     }
 
+    // console.log("BEGINNER LEVEL", beginnerOn);
+    // console.log("TIMERON:", timerOn);
+
     // if (!beginnerOn) {
     //     messageDiv.textContent = "PRACTICE LEVEL";
     //     messageDiv.style.background = "rgba(255, 0, 0, 0.521)";
@@ -1745,8 +1797,6 @@ beginnerHideButton.addEventListener("click", function () {
 });
 
 /*
-
-
     
     FEATURES:
 
@@ -1779,7 +1829,14 @@ beginnerHideButton.addEventListener("click", function () {
             
     PROBLEMS:
 
-        DISABLE PROBLEM KEY TRACKING IN BEGINNER MODE
+        ☑️ COULUR COUNTER IS NOT WORKING ON LAST WORD IN LINE
+            ☑️ HAVE TO WRITE FUNCTION TO HANDLE THIS countSpanColoursInLastWord()
+
+        END OF LINE ERROR: Uncaught TypeError: Cannot read properties of null (reading 'classList')
+    at correctSpaceNotEndOfLine (script.js:693:22)
+    at HTMLInputElement.handleKeyEvent (script.js:1081:21)
+
+        ☑️ DISABLE PROBLEM KEY TRACKING IN BEGINNER MODE
 
         ☑️ RESET TARGET ARRAY AFTER CLEARING PROBLEMKEYSET BECAUSE IT WILL BE IN A FILTERED STATE (findAndApplyProblemKeyWords)
         LOOK INTO PROBLEMKEYWORDS AGAIN (AFTER COMPLETING PROBLEMKEYWORDS WITH NO ERROR, TARGET ARRAY SHOULD UPDATE TO DEFAULT)
@@ -1830,7 +1887,7 @@ beginnerHideButton.addEventListener("click", function () {
 
 
         NOTES:
-            WHEN TIMER HAS ENDED FIRST START BUTTON PRESS WILL GENERATE POBLEM KEY WORDS ONLY, SECOND CLICK WILL USE COMMON100
+            !!! WHEN TIMER HAS ENDED FIRST START BUTTON PRESS WILL GENERATE POBLEM KEY WORDS ONLY, SECOND CLICK WILL USE COMMON100 !!!
         
     
 */
