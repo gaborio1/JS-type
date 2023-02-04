@@ -888,6 +888,7 @@ textInput.disabled = true;
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
+
     // if (beginnerOn) {
     //     messageDiv.textContent = "BEGINNER LEVEL";
     //     messageDiv.style.background = "rgba(0, 0, 255, 0.507)";
@@ -996,7 +997,22 @@ startButton.addEventListener("click", (event) => {
     const firstCharacter = document.getElementById("span-0");
     firstCharacter.classList.add("background", "black-border");
 
-    console.log("WORDARRAYS", wordArrays);
+    // console.log("WORDARRAYS", wordArrays);
+
+
+
+
+    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    let charSpans = document.querySelectorAll(".active-txt-span");
+    const enterSpan = charSpans[charSpans.length - 1];
+    console.log("ENTER SPAN:", enterSpan);
+    // enterSpan.innerText = "↩️";
+    enterSpan.innerText = "↩︎";
+    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 KEY EVENTS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1834,10 +1850,12 @@ beginnerHideButton.addEventListener("click", function () {
 
 /*
 
+
     CURRENT TASK: ENTER KEY FEATURE (ADVANCED ONLY)
         ☑️ TOGGLE
         ☑️ APPLY
         ☑️ DETECT ENTER KEY (1060)
+        ↩️ ↩︎ ␣
     
     FEATURES:
 
