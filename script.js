@@ -493,12 +493,11 @@ const findAndApplyProblemKeyWords = () => {
     // console.log("<<<<< PROBLEM KEYS SET >>>>>", problemKeysSet);
     // console.log("<<<<< TEMP PROB WORDS >>>>>", tempProbWordsArr);
     // console.log("TARGET ARRAY:", targetArray);
-
 };
 
 const handleCapslockChange = () => {
     if (event.getModifierState("CapsLock")) {
-        console.log("CAPSLOCK IS ON! - START BUTTON");
+        // console.log("CAPSLOCK IS ON! - START BUTTON");
         capsLockWarningsOn();
     } else {
         capsLockWarningsOff();
@@ -686,11 +685,21 @@ const correctEndOfLineSpace = () => {
 
 // ALL OTHER SPACES
 const correctSpaceNotEndOfLine = () => {
+    // console.log("ERROR, THIS FUNCTION SHOULD NOT RUN AT END OF LINE");
+
+    // ONLY GET PREVIOUS CHAR IF ITS NOT FIRST CHAR AS IT WILL BE NULL
+    // CONDITION WILL INTRODUCE ANOTHER BUG, ALL KEYS WILL GO RED
+    // if (strIdx > 0) {
     let currentCharacter = document.getElementById(`span-${strIdx - 1}`);
+    currentCharacter.classList.remove("background", "black-border");
+    // }
+
+    // let currentCharacter = document.getElementById(`span-${strIdx - 1}`);
+    // console.log("CURRENT CHARACTER", currentCharacter, typeof currentCharacter);
 
     // console.log("correctSpaceNotEndOfLine", currentCharacter);
 
-    currentCharacter.classList.remove("background", "black-border");
+    // currentCharacter.classList.remove("background", "black-border");
 
     nextWord();
     clearTextInput();
@@ -699,6 +708,7 @@ const correctSpaceNotEndOfLine = () => {
 // COUNT COLOUR SPANS IN LAST WORD WHEN TRAILING SPACE IS TYPED CORRECTLY
 
 const countSpanColours = () => {
+    // console.log("countSpanColours", "-CHAR IDX", charIdx);
     let lastWordLength = wordArrays[lineIdx][wordIdx - 1].length;
     let charSpans = document.querySelectorAll(".active-txt-span");
     // START LOOP BACKWARDS AND COUNT SPANS WITH GREEN CLASS
@@ -721,6 +731,7 @@ const countSpanColours = () => {
             orangeCounter += 1;
         }
     }
+
     // console.log("<<< green:", greenCounter, "red:", redCounter, "orange", orangeCouner);
 };
 
@@ -864,7 +875,6 @@ textInput.disabled = true;
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
-
     // if (beginnerOn) {
     //     messageDiv.textContent = "BEGINNER LEVEL";
     //     messageDiv.style.background = "rgba(0, 0, 255, 0.507)";
@@ -1712,13 +1722,11 @@ levelsApply.addEventListener("click", function () {
 
 // SHOW BEGINNER LEVELS
 beginnerShowButton.addEventListener("click", function () {
-
     beginnerOn = true;
 
     timerOn = false;
     // console.log("BEGINNER LEVEL", beginnerOn);
     // console.log("TIMERON:", timerOn);
-
 
     // if (beginnerOn) {
     //     messageDiv.textContent = "BEGINNER LEVEL";
@@ -1817,12 +1825,17 @@ beginnerHideButton.addEventListener("click", function () {
             
     PROBLEMS:
 
+        END OF LINE ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'classList')
+                at countSpanColours (script.js:721:26)
+                at HTMLInputElement.handleKeyEvent (script.js:1092:17)
+
         ☑️ COULUR COUNTER IS NOT WORKING ON LAST WORD IN LINE
             ☑️ HAVE TO WRITE FUNCTION TO HANDLE THIS countSpanColoursInLastWord()
 
-        END OF LINE ERROR: Uncaught TypeError: Cannot read properties of null (reading 'classList')
-    at correctSpaceNotEndOfLine (script.js:693:22)
-    at HTMLInputElement.handleKeyEvent (script.js:1081:21)
+        ☑️ COULUR COUNTER IS NOT WORKING ON LAST WORD IN LINE
+
+        END OF LINE ERROR: Uncaught TypeError: Cannot read properties of null (reading 'classList')at correctSpaceNotEndOfLine (script.js:693:22)at HTMLInputElement.handleKeyEvent (script.js:1081:21)
+          
 
         ☑️ DISABLE PROBLEM KEY TRACKING IN BEGINNER MODE
 
