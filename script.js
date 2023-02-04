@@ -1793,6 +1793,10 @@ beginnerHideButton.addEventListener("click", function () {
 });
 
 /*
+
+    CURRENT TASK: ENTER KEY FEATURE (ADVANCED ONLY)
+        TOGGLE
+        APPLY
     
     FEATURES:
 
