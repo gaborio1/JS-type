@@ -45,6 +45,9 @@ const punctuationApply = document.getElementById("punctuation-apply");
 // CAPITAL
 const capitalToggle = document.getElementById("capital-toggle");
 const capitalApply = document.getElementById("capital-apply");
+// ENTER
+const enterToggle = document.getElementById("enter-toggle");
+const enterApply = document.getElementById("enter-apply");
 // SOUND
 const soundToggle = document.getElementById("sound-toggle");
 const soundApply = document.getElementById("sound-apply");
@@ -148,7 +151,8 @@ let startButtonCounter = 0;
 // DEFAULT COMMON 100 WORDS
 let targetArray = [...common100];
 // DEFAULT LINE LENGTH
-let sequenceLength = 30;
+// let sequenceLength = 30;
+let sequenceLength = 10;
 // DEFAULT HARD CODED ARRAY LENGTH (NUMBER OF LINES GENERATED WITH START BUTTON)
 const wordsArrLength = 20;
 // ARRAY OF WORDARRAYS (LINES)
@@ -165,7 +169,10 @@ let charIdx = 0;
 // DEFAULT CONTROL SETTINGS
 let punctuationOn = false;
 let capitalOn = false;
-let timerOn = true;
+let enterOn = false;
+// DISABLED
+// let timerOn = true;
+let timerOn = false;
 let soundOn = true;
 
 let keyStrokeCounter = 0;
@@ -266,6 +273,9 @@ const toggleButtonState = (element) => {
             if (element === timerToggle) {
                 timerOn = true;
             }
+            if (element === enterToggle) {
+                enterOn = true;
+            }
         } else {
             if (element === punctuationToggle) {
                 punctuationOn = false;
@@ -278,6 +288,9 @@ const toggleButtonState = (element) => {
             }
             if (element === timerToggle) {
                 timerOn = false;
+            }
+            if (element === enterToggle) {
+                enterOn = false;
             }
         }
     }
@@ -983,6 +996,8 @@ startButton.addEventListener("click", (event) => {
     const firstCharacter = document.getElementById("span-0");
     firstCharacter.classList.add("background", "black-border");
 
+    console.log("WORDARRAYS", wordArrays);
+
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 KEY EVENTS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -990,7 +1005,7 @@ startButton.addEventListener("click", (event) => {
     const handleKeyEvent = (event) => {
         // const typedKey = event.key;
         typedKey = event.key;
-        // console.log("EVENT: KEYUP", event.key);
+        console.log("EVENT: KEYUP", event.key);
 
         // TRACK TYPED KEY ON KEYBOARD (100MS FLASH)
         for (let i = 0; i < letterKeys.length; i += 1) {
@@ -1038,6 +1053,12 @@ startButton.addEventListener("click", (event) => {
         }
 
         // logKeyEventStart();
+
+        // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 ENTER 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+        if (typedKey === "Enter") {
+            console.log("ENTER");
+        }
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 SHIFT 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -1380,6 +1401,25 @@ capitalApply.addEventListener("click", function () {
     clearArrAndString();
     toggleButtonState(capitalToggle);
     capitalApply.classList.remove("control-apply-active");
+});
+
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 ENTER 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+const handleEnterToggle = () => {
+    toggleButtonStyle(enterToggle);
+    enterApply.classList.add("control-apply-active");
+    enterApply.disabled = false;
+    disableStartButton();
+};
+
+enterToggle.addEventListener("click", handleEnterToggle);
+
+enterApply.addEventListener("click", function () {
+    enableStartButton();
+    clearDataAndDisplay();
+    clearArrAndString();
+    toggleButtonState(enterToggle);
+    enterApply.classList.remove("control-apply-active");
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TIMER 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1795,8 +1835,9 @@ beginnerHideButton.addEventListener("click", function () {
 /*
 
     CURRENT TASK: ENTER KEY FEATURE (ADVANCED ONLY)
-        TOGGLE
-        APPLY
+        ☑️ TOGGLE
+        ☑️ APPLY
+        ☑️ DETECT ENTER KEY (1060)
     
     FEATURES:
 
