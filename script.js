@@ -338,7 +338,7 @@ const buildWordArrays = (numOfLines) => {
             // console.log("<<<< SPACE ADDED >>>");
             arr.push(currWord);
         }
-        // NEW ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // NEW++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         // REPLACE TRAILING SPACE WITH ENTER SIGN ON LAST WORD OF ARRAY
         if (enterOn) {
@@ -855,10 +855,15 @@ const spaceOnLastWord = () => {
 // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND FROM CURRENT
 // ON ALL CHARACTERS BUT LAST
 const spaceOnWord = () => {
+
+
+
     let currentCharacter = document.getElementById(`span-${strIdx - 1}`);
 
     wrongCounter += 1;
 
+    console.log("<<<<< UNCAUGHT TYPE ERROR >>>>>")
+    // ERROR: script.js:720 Uncaught TypeError: Cannot read properties of null (reading 'classList') at correctSpaceNotEndOfLine (script.js:720:22)
     currentCharacter.classList.remove("background", "black-border");
     const nextCharacter = document.getElementById(`span-${strIdx}`);
     nextCharacter.classList.add("background", "black-border");
@@ -1003,6 +1008,7 @@ startButton.addEventListener("click", (event) => {
     // INITIALISE TEXTSPANCONTAINER NEXT
     // let stringWordsNext = "";
     stringWordsNext = wordArrays[lineIdx + 1].join("");
+
     textSpanContainerNextParagraph.innerText = stringWordsNext;
 
     // ADD CURSOR TO FIRST CHARACTER WHEN PAGE LOADS
@@ -1029,7 +1035,7 @@ startButton.addEventListener("click", (event) => {
     const handleKeyEvent = (event) => {
         // const typedKey = event.key;
         typedKey = event.key;
-        console.log("EVENT: KEYUP", event.key);
+        console.log("EVENT: KEYDOWN", event.key);
 
         // TRACK TYPED KEY ON KEYBOARD (100MS FLASH)
         for (let i = 0; i < letterKeys.length; i += 1) {
@@ -1097,13 +1103,13 @@ startButton.addEventListener("click", (event) => {
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CORRECT KEY 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
         if (typedKey === wordArrays[lineIdx][wordIdx][charIdx]) {
-            // console.log(
-            //     "CORRECT KEY!",
-            //     "typed:",
-            //     typedKey,
-            //     "actual:",
-            //     wordArrays[lineIdx][wordIdx][charIdx]
-            // );
+            console.log(
+                "CORRECT KEY!",
+                "typed:",
+                typedKey,
+                "actual:",
+                wordArrays[lineIdx][wordIdx][charIdx]
+            );
 
             if (soundOn) {
                 playSound("mixkit-single-key-press-in-a-laptop-2541.wav", 1);
@@ -1123,11 +1129,18 @@ startButton.addEventListener("click", (event) => {
 
             // REMOVE CURSOR FROM SPACE
             if (typedKey === " ") {
+                console.log("CORRECT KEY - SPACE");
+
                 // END OF LINE SPACE
 
                 if (strIdx === stringWords.length - 1) {
+                    console.log("ENTER SPAN, SPACE TYPED");
                     correctEndOfLineSpace();
                 }
+
+                // if (strIdx === stringWords.length - 1) {
+                //     correctEndOfLineSpace();
+                // }
 
                 // ONLY ACCESS CURRENTCHAR IF IT IS NOT END OF LINE (IF STATEMENT DOESNT WORK FOR CLASSLIST REMOVE, STILL GET TYPE ERROR )
                 // !!! ERROR: Uncaught TypeError: Cannot read properties of null (reading 'classList')at HTMLDocument.handleKeyEvent (script.js:680:33)
@@ -1240,7 +1253,7 @@ startButton.addEventListener("click", (event) => {
                     // }
                 }
             }
-            
+
             // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
             wrongCounter += 1;
