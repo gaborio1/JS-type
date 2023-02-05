@@ -1172,9 +1172,75 @@ startButton.addEventListener("click", (event) => {
             // );
 
             // NEW+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-            if (typedKey === "Enter") {
-                console.log("ENTER KEY TYPED");
+
+            if (typedKey === "Enter" && enterOn) {
+                console.log("ENTER TYPED");
+                if (strIdx === stringWords.length - 1) {
+                    console.log(
+                        "ENTER TYPED - END OF LINE",
+                        stringWords.length - 1,
+                        "/",
+                        strIdx,
+                        "LINE COMPLETED!"
+                    );
+
+                    if (soundOn) {
+                        playSound(
+                            "mixkit-single-key-press-in-a-laptop-2541.wav",
+                            1
+                        );
+                    }
+
+                    wrongCounter = 0;
+
+                    //  WORD[0] - WORD[LENGTH-1], ALL CHARACTERS IN WORD EXCLUDING TRAILING SPACE
+                    if (charIdx < wordArrays[lineIdx][wordIdx].length - 1) {
+                        correctKeyNotLastSpace();
+                    }
+
+                    // WORD[LENGTH-1], TRAILING SPACE ALL WORDS EXCEPT LAST WORD
+                    else if (
+                        charIdx ===
+                        wordArrays[lineIdx][wordIdx].length - 1
+                    ) {
+                        correctSpaceNotLastWord();
+                    }
+
+                    // REMOVE CURSOR FROM SPACE
+                    // if (typedKey === " ") {
+                    // END OF LINE SPACE
+
+                    if (strIdx === stringWords.length - 1) {
+                        correctEndOfLineSpace();
+                    }
+
+                    // ONLY ACCESS CURRENTCHAR IF IT IS NOT END OF LINE (IF STATEMENT DOESNT WORK FOR CLASSLIST REMOVE, STILL GET TYPE ERROR )
+                    // !!! ERROR: Uncaught TypeError: Cannot read properties of null (reading 'classList')at HTMLDocument.handleKeyEvent (script.js:680:33)
+
+                    if (strIdx < stringWords.length - 1) {
+                        correctSpaceNotEndOfLine();
+                    }
+
+                    // COUNT COLOUR SPANS IN LAST WORD WHEN TRAILING SPACE IS TYPED CORRECTLY
+                    countSpanColours();
+
+                    wordCounter += 1;
+
+                    // COUNT COLOUR SPANS IN LAST WORD WHEN TRAILING SPACE IS TYPED CORRECTLY
+                    // countSpanColours();
+
+                    // DISPLAY COLOUR COUNTER VALUES
+                    displayColourCounterValues();
+
+                    // CALC AND DISPLAY ACCURACY  accuracy = (100 / (greenCounter + redCounter)) * greenCounter;
+                    accuracy = calcAccuracy();
+                    resetAccSpanColours();
+                    colourAccuracySpan();
+                    accuracySpan.textContent = `${Math.floor(accuracy)}`;
+                    // }
+                }
             }
+            
             // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
             wrongCounter += 1;
