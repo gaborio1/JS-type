@@ -338,6 +338,19 @@ const buildWordArrays = (numOfLines) => {
             // console.log("<<<< SPACE ADDED >>>");
             arr.push(currWord);
         }
+        // NEW ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        // REPLACE TRAILING SPACE WITH ENTER SIGN ON LAST WORD OF ARRAY
+        if (enterOn) {
+            arr[arr.length - 1] =
+                arr[arr.length - 1].substring(
+                    0,
+                    arr[arr.length - 1].length - 1
+                ) + "⏎";
+
+            // console.log(arr);
+        }
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         wordArrays.push(arr);
     }
 };
@@ -888,7 +901,6 @@ textInput.disabled = true;
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
-
     // if (beginnerOn) {
     //     messageDiv.textContent = "BEGINNER LEVEL";
     //     messageDiv.style.background = "rgba(0, 0, 255, 0.507)";
@@ -999,20 +1011,16 @@ startButton.addEventListener("click", (event) => {
 
     // console.log("WORDARRAYS", wordArrays);
 
+    // NEW+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
+    // let charSpans = document.querySelectorAll(".active-txt-span");
+    // const enterSpan = charSpans[charSpans.length - 1];
+    // console.log("ENTER SPAN:", enterSpan);
+    // // enterSpan.innerText = "↩️";
+    // // enterSpan.innerText = "↩︎";
+    // enterSpan.innerText = "⏎";
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    let charSpans = document.querySelectorAll(".active-txt-span");
-    const enterSpan = charSpans[charSpans.length - 1];
-    console.log("ENTER SPAN:", enterSpan);
-    // enterSpan.innerText = "↩️";
-    enterSpan.innerText = "↩︎";
-    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 KEY EVENTS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1162,6 +1170,12 @@ startButton.addEventListener("click", (event) => {
             //     "actual:",
             //     wordArrays[lineIdx][wordIdx][charIdx]
             // );
+
+            // NEW+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            if (typedKey === "Enter") {
+                console.log("ENTER KEY TYPED");
+            }
+            // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
             wrongCounter += 1;
 
@@ -1852,10 +1866,14 @@ beginnerHideButton.addEventListener("click", function () {
 
 
     CURRENT TASK: ENTER KEY FEATURE (ADVANCED ONLY)
+
+        // TYPING.COM
+        <div class="letter letter--basic screenBasic-letter   ">⏎</div>
+
         ☑️ TOGGLE
         ☑️ APPLY
         ☑️ DETECT ENTER KEY (1060)
-        ↩️ ↩︎ ␣
+        ↩️ ↩︎ ␣       ⏎
     
     FEATURES:
 
@@ -1887,6 +1905,8 @@ beginnerHideButton.addEventListener("click", function () {
        
             
     PROBLEMS:
+
+    
 
         END OF LINE ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'classList')
                 at countSpanColours (script.js:721:26)
