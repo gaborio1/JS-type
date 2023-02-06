@@ -552,15 +552,21 @@ const disableApplyButtons = () => {
 // CREATE SPANS FROM wordArrays' ARRAY OF WORDS, JOIN ELEMENS TO ONE STRING WITH SPACES AND THEN SPLIT
 // wordArrays[lineIdx] WILL BE INCREMENTED IN EVETLISTENER
 const createSpans = (lineIdx, location) => {
-    for (const [idx, char] of wordArrays[lineIdx] // ACCESSING IDX JIN FOR OF LOOP
+    for (const [idx, char] of wordArrays[lineIdx] // ACCESSING IDX IN FOR OF LOOP
+
         .join("")
         .split("")
         .entries()) {
-        // console.log(idx, char);
+
+        console.log(idx, char);
         const span = document.createElement("span"); // CREATE ELEMENT
         // SET TEXT CONTENT / CLASS / ID
         span.innerText = char;
         span.className = "active-txt-span";
+        if (char === '⏎') {
+            console.log("ADD ENTER-ON CLASS TO LAST SPAN");
+            span.className = "active-txt-span active-txt-span--enter";
+        }
         span.id = `span-${idx}`;
         location.appendChild(span); // APPEND TO PARENT DIV
     }
@@ -1946,6 +1952,8 @@ beginnerHideButton.addEventListener("click", function () {
         ☑️ APPLY
         ☑️ DETECT ENTER KEY (1060)
         ↩️ ↩︎ ␣       ⏎
+        ADD ENTER-ON CLASS TO LAST SPAN IN ACTIVE TEXT CONTAINER
+        MAKE LAST CHARACTER OF NEXT LINE PARAGRAPH A SPAN
     
     FEATURES:
         GREEN WORDS COUNTER
