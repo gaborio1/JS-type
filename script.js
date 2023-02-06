@@ -855,14 +855,11 @@ const spaceOnLastWord = () => {
 // APPLY BACKGROUND TO NEXT CHAR AND REMOVE BACKGROUND FROM CURRENT
 // ON ALL CHARACTERS BUT LAST
 const spaceOnWord = () => {
-
-
-
     let currentCharacter = document.getElementById(`span-${strIdx - 1}`);
 
     wrongCounter += 1;
 
-    console.log("<<<<< UNCAUGHT TYPE ERROR >>>>>")
+    console.log("<<<<< UNCAUGHT TYPE ERROR >>>>>");
     // ERROR: script.js:720 Uncaught TypeError: Cannot read properties of null (reading 'classList') at correctSpaceNotEndOfLine (script.js:720:22)
     currentCharacter.classList.remove("background", "black-border");
     const nextCharacter = document.getElementById(`span-${strIdx}`);
@@ -1942,28 +1939,20 @@ beginnerHideButton.addEventListener("click", function () {
 });
 
 /*
-
-
     CURRENT TASK: ENTER KEY FEATURE (ADVANCED ONLY)
-
         // TYPING.COM
         <div class="letter letter--basic screenBasic-letter   ">⏎</div>
-
         ☑️ TOGGLE
         ☑️ APPLY
         ☑️ DETECT ENTER KEY (1060)
         ↩️ ↩︎ ␣       ⏎
     
     FEATURES:
-
         GREEN WORDS COUNTER
-
         COMPLETE WORDS COUNTER
-
         ADD ENTER KEY
             BEGINNER 
             PRACTICE 
-
         TRACK KEYS TYPED IN REAL TIME ON KEYBOARD?
             ☑️ LETTER KEYS
        
@@ -1977,41 +1966,31 @@ beginnerHideButton.addEventListener("click", function () {
             
         ADD MOST COMMON SENTENCES TO DIFFICULTY
         PROBLEM KEYS
-
         DYNAMICALLY GENERATE NEXT LINE + 1 ?
-
         SHOW ALL TEXT AS ONE BLOCK ?
        
             
     PROBLEMS:
 
+        HAVE TO BE ABLE TO STYLE ENTER ICON IN TEXTSPANCONTAINERNEXT
+            REVERT BACK TO APPENDING NEXT LINE AS SPANS
     
-
         END OF LINE ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'classList')
                 at countSpanColours (script.js:721:26)
                 at HTMLInputElement.handleKeyEvent (script.js:1092:17)
-
         ☑️ COULUR COUNTER IS NOT WORKING ON LAST WORD IN LINE
             ☑️ HAVE TO WRITE FUNCTION TO HANDLE THIS countSpanColoursInLastWord()
-
         ☑️ COULUR COUNTER IS NOT WORKING ON LAST WORD IN LINE
-
         END OF LINE ERROR: Uncaught TypeError: Cannot read properties of null (reading 'classList')at correctSpaceNotEndOfLine (script.js:693:22)at HTMLInputElement.handleKeyEvent (script.js:1081:21)
           
-
         ☑️ DISABLE PROBLEM KEY TRACKING IN BEGINNER MODE
-
         ☑️ RESET TARGET ARRAY AFTER CLEARING PROBLEMKEYSET BECAUSE IT WILL BE IN A FILTERED STATE (findAndApplyProblemKeyWords)
         LOOK INTO PROBLEMKEYWORDS AGAIN (AFTER COMPLETING PROBLEMKEYWORDS WITH NO ERROR, TARGET ARRAY SHOULD UPDATE TO DEFAULT)
         !!! THIS IS A TEMPORARY FIX, HAS TO USE CURRENTLY SELECTED DIFFICULTY ARRAY !!!
         WHEN START BUTTON CLICKED CHECK WHAT THE CURRENT SELECTON IS ON THE RADIOS, USE MATCHING ARRAY FOR TARGET
-
-
         DO NOT ACTIVATE START BUTTON UNTIL ALL THE APPLY BUTTONS HAVE BEEN CLICKED
         (WHEN ONE CLICKED, CHECK IF ANY OTHERS HAVE ACTIVE CLASS, IF YES, DO NOT ACTIVATE START BUTTON)
-
         REMOVE FADE CLASS FROM RED PANEL WHEN BLUE PANEL IS HIDDEN (THIS IS A BUG, TRY TO FIX TIMER ISSUE)
-
         HANDLE CONTROL PANEL SETTINGS WHEN SWITCHING PANELS (RESET ALL SETTINGS PROBABLY THE BEST)
             DIFFICULTY
             PUNCTUATION 
@@ -2019,36 +1998,27 @@ beginnerHideButton.addEventListener("click", function () {
             LINE LENGTH 
             TIMER
             SOUND
-
         LINE LENGTH SLIDER SHOULD NOT HIGHLIGHT ON HOVER WHILE TIMER IS ON
-
         WHEN BEGINNER PANEL COMES ON, CHECK IF ANY LEVELS PRE-SELECTED FROM PREVIOUS SESSION (LINE 1614)
             ☑️ HIGHLIGHT APPLY BUTTON TO RE-SUBMIT ???
             OR RESET ALL SETTINGS ???
-
         DISABLE TXT INPUT 
             ☑️ ON PAGE LOAD
             ☑️ WHEN TIMER ENDS (KEYPRESS LISTENER ONLY ON INPUT NOW / DISABLED INPUT)
             ☑️ AFTER FLIPPING PANELS (PRACTICE/BEGINNER)
-
         DON'T HIGHLIGT RADIO LABELS AND TOGGLE BUTTONS WHILE TIMER IS ON (WHEN DISABLED)
             ☑️ TOGGLE BUTTONS (:disabled:hover {ORIGINAL FONTWEIGHT})
             ☑️ RADIO LABELS
             SLIDER
       
         CAPSLOCK MUST NOT ACTIVATE TIMER ?
-
         CONTROL APPLY BUTTONS DELETES "CLICK START" MESSAGE FROM TXT INPUT
-
         ☑️ CENTER TEXT INPUT CONTENT (LEADING SPACES ARE HARD CODED IN INPUT.VALUE ALSO SEE CSS .form input - line 218)
         
         ADD EVENTLISTENER TO CONTROL OPTIONS WHEN PAGE LOADS? BEFORE START BUTTON IS CLICKED?
         REMOVE EVENTLISTENER WHEN APPLY CHANGES AS START BUTTON WILL ADD IT AGAIN !!!
         
         STOP MOVING CURSOR WHEN LETTER CHARACTER IS TYPED INSTEAD OF SPACE AFTER WORD IS TYPED ?
-
-
-
         NOTES:
             !!! WHEN TIMER HAS ENDED FIRST START BUTTON PRESS WILL GENERATE POBLEM KEY WORDS ONLY, SECOND CLICK WILL USE COMMON100 !!!
         
