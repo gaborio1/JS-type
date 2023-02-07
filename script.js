@@ -557,17 +557,24 @@ const createSpans = (lineIdx, location) => {
         .join("")
         .split("")
         .entries()) {
-
-        console.log(idx, char);
+        // console.log(idx, char);
         const span = document.createElement("span"); // CREATE ELEMENT
         // SET TEXT CONTENT / CLASS / ID
         span.innerText = char;
         span.className = "active-txt-span";
-        if (char === '⏎') {
-            console.log("ADD ENTER-ON CLASS TO LAST SPAN");
+        // ADD ACTIVE CLASS TO ENTER TO FOR STYLING PURPOSES
+        if (char === "⏎") {
+            // console.log("ADD ENTER-ON CLASS TO LAST SPAN");
             span.className = "active-txt-span active-txt-span--enter";
         }
-        span.id = `span-${idx}`;
+
+        // ASSINGN DIFFERENT ID BASED ON LOCATION
+        span.id =
+            location === textSpanContainerActive
+                ? `span-${idx}`
+                : `span--next-${idx}`;
+
+        // span.id = `span-${idx}`;
         location.appendChild(span); // APPEND TO PARENT DIV
     }
 };
@@ -711,8 +718,10 @@ const correctEndOfLineSpace = () => {
     stringWords = wordArrays[lineIdx].join(""); // UPDATE STRWORDS
     // DELETE CONTENT / APPEND NEXT LINE TO TEXTSPAN NEXT DIV
     textSpanContainerNextParagraph.innerHTML = "";
-    stringWordsNext = wordArrays[lineIdx + 1].join(" "); // APPEND TEXT AS STRING NOT SPANS !!!
-    textSpanContainerNextParagraph.innerText = stringWordsNext;
+    // APPEND TEXT AS STRING NOT SPANS !!!
+    // stringWordsNext = wordArrays[lineIdx + 1].join(" ");
+    // textSpanContainerNextParagraph.innerText = stringWordsNext;
+    createSpans(lineIdx + 1, textSpanContainerNextParagraph);
 };
 
 // ALL OTHER SPACES
@@ -851,10 +860,11 @@ const spaceOnLastWord = () => {
     firstCharacter.classList.add("background", "black-border");
 
     stringWords = wordArrays[lineIdx].join(""); // UPDATE STRWORDS
+
     textSpanContainerNextParagraph.innerHTML = ""; // DELETE CONTENT
-    // APPEND TEXT AS STRING (INSTEAD OF SPANS )
-    stringWordsNext = wordArrays[lineIdx + 1].join(" ");
-    textSpanContainerNextParagraph.innerText = stringWordsNext;
+    // stringWordsNext = wordArrays[lineIdx + 1].join(" ");
+    // textSpanContainerNextParagraph.innerText = stringWordsNext;
+    createSpans(lineIdx + 1, textSpanContainerNextParagraph);
 };
 
 // SPACE ON WORD
@@ -865,7 +875,7 @@ const spaceOnWord = () => {
 
     wrongCounter += 1;
 
-    console.log("<<<<< UNCAUGHT TYPE ERROR >>>>>");
+    console.log("<<<<< UNCAUGHT TYPE ERROR spaceOnWord()>>>>>");
     // ERROR: script.js:720 Uncaught TypeError: Cannot read properties of null (reading 'classList') at correctSpaceNotEndOfLine (script.js:720:22)
     currentCharacter.classList.remove("background", "black-border");
     const nextCharacter = document.getElementById(`span-${strIdx}`);
@@ -1009,10 +1019,12 @@ startButton.addEventListener("click", (event) => {
     createSpans(lineIdx, textSpanContainerActive);
 
     // INITIALISE TEXTSPANCONTAINER NEXT
-    // let stringWordsNext = "";
-    stringWordsNext = wordArrays[lineIdx + 1].join("");
 
-    textSpanContainerNextParagraph.innerText = stringWordsNext;
+    // APPEND AS STRING:
+    // stringWordsNext = wordArrays[lineIdx + 1].join("");
+    // textSpanContainerNextParagraph.innerText = stringWordsNext;
+
+    createSpans(lineIdx + 1, textSpanContainerNextParagraph);
 
     // ADD CURSOR TO FIRST CHARACTER WHEN PAGE LOADS
     const firstCharacter = document.getElementById("span-0");
@@ -1038,7 +1050,7 @@ startButton.addEventListener("click", (event) => {
     const handleKeyEvent = (event) => {
         // const typedKey = event.key;
         typedKey = event.key;
-        console.log("EVENT: KEYDOWN", event.key);
+        // console.log("EVENT: KEYDOWN", event.key);
 
         // TRACK TYPED KEY ON KEYBOARD (100MS FLASH)
         for (let i = 0; i < letterKeys.length; i += 1) {
@@ -1089,9 +1101,9 @@ startButton.addEventListener("click", (event) => {
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 ENTER 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-        if (typedKey === "Enter") {
-            console.log("ENTER");
-        }
+        // if (typedKey === "Enter") {
+        //     console.log("ENTER");
+        // }
 
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 SHIFT 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -1106,13 +1118,13 @@ startButton.addEventListener("click", (event) => {
         // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CORRECT KEY 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
         if (typedKey === wordArrays[lineIdx][wordIdx][charIdx]) {
-            console.log(
-                "CORRECT KEY!",
-                "typed:",
-                typedKey,
-                "actual:",
-                wordArrays[lineIdx][wordIdx][charIdx]
-            );
+            // console.log(
+            //     "CORRECT KEY!",
+            //     "typed:",
+            //     typedKey,
+            //     "actual:",
+            //     wordArrays[lineIdx][wordIdx][charIdx]
+            // );
 
             if (soundOn) {
                 playSound("mixkit-single-key-press-in-a-laptop-2541.wav", 1);
@@ -1132,12 +1144,12 @@ startButton.addEventListener("click", (event) => {
 
             // REMOVE CURSOR FROM SPACE
             if (typedKey === " ") {
-                console.log("CORRECT KEY - SPACE");
+                // console.log("CORRECT KEY - SPACE");
 
                 // END OF LINE SPACE
 
                 if (strIdx === stringWords.length - 1) {
-                    console.log("ENTER SPAN, SPACE TYPED");
+                    // console.log("ENTER SPAN, SPACE TYPED");
                     correctEndOfLineSpace();
                 }
 
@@ -1190,15 +1202,15 @@ startButton.addEventListener("click", (event) => {
             // NEW+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
             if (typedKey === "Enter" && enterOn) {
-                console.log("ENTER TYPED");
+                // console.log("ENTER TYPED");
                 if (strIdx === stringWords.length - 1) {
-                    console.log(
-                        "ENTER TYPED - END OF LINE",
-                        stringWords.length - 1,
-                        "/",
-                        strIdx,
-                        "LINE COMPLETED!"
-                    );
+                    // console.log(
+                    //     "ENTER TYPED - END OF LINE",
+                    //     stringWords.length - 1,
+                    //     "/",
+                    //     strIdx,
+                    //     "LINE COMPLETED!"
+                    // );
 
                     if (soundOn) {
                         playSound(
@@ -1390,9 +1402,12 @@ startButton.addEventListener("click", (event) => {
         // INITIALISE
         buildWordArrays(wordsArrLength);
         createSpans(lineIdx, textSpanContainerActive);
+
         stringWords = wordArrays[lineIdx].join("");
-        stringWordsNext = wordArrays[lineIdx + 1].join("");
-        textSpanContainerNextParagraph.innerText = stringWordsNext;
+
+        // stringWordsNext = wordArrays[lineIdx + 1].join("");
+        // textSpanContainerNextParagraph.innerText = stringWordsNext;
+        createSpans(lineIdx + 1, textSpanContainerNextParagraph);
         textInput.placeholder = "Start typing or customise text";
     }
 });
@@ -1945,15 +1960,22 @@ beginnerHideButton.addEventListener("click", function () {
 });
 
 /*
-    CURRENT TASK: ENTER KEY FEATURE (ADVANCED ONLY)
-        // TYPING.COM
-        <div class="letter letter--basic screenBasic-letter   ">⏎</div>
+    CURRENT TASK: ENTER KEY FEATURE (ADVANCED ONLY) ↩️ ↩︎ ␣  ⏎
+
+        ENTER KEY ICON SOURCE: TYPING.COM
+            <div class="letter letter--basic screenBasic-letter   ">⏎</div>
+
         ☑️ TOGGLE
+
         ☑️ APPLY
+
         ☑️ DETECT ENTER KEY (1060)
-        ↩️ ↩︎ ␣       ⏎
-        ADD ENTER-ON CLASS TO LAST SPAN IN ACTIVE TEXT CONTAINER
+
+        ☑️ ADD ENTER-ON CLASS TO LAST SPAN IN ACTIVE TEXT CONTAINER
+
         MAKE LAST CHARACTER OF NEXT LINE PARAGRAPH A SPAN
+            ADD SPAN TO stringWordsNext
+            ALSO, WRITE FUNCTION TO RESET, APPEND NEXT LINE
     
     FEATURES:
         GREEN WORDS COUNTER
