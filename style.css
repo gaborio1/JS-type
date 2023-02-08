@@ -25,6 +25,11 @@ body {
     background-color: antiquewhite;
 }
 
+/* body .dark-theme { */
+.dark-theme {
+    background-color: #222020;
+}
+
 h1 {
     /* font-weight: 100; */
     font-weight: 300;
@@ -70,6 +75,10 @@ h4 {
     /* position: absolute;
     transform-style: preserve-3d;
     transition: transform 1s; */
+}
+
+.container.dark-theme {
+    background-color: rgb(28, 28, 28);
 }
 
 .wrapper {

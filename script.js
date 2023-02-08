@@ -195,6 +195,8 @@ const probKeyWordsArr = [];
 let tempProbWordsArr = []; // WORDS THAT CONTAIN BROBLEM KEYS FROM PREVIOUS SESSION
 // BEGINNER STATUS
 let beginnerOn = false;
+// COLOUR THEME
+let darkThemeOn = false;
 // CAPSLOCK STATUS
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -276,6 +278,9 @@ const toggleButtonState = (element) => {
             if (element === enterToggle) {
                 enterOn = true;
             }
+            if (element === themeToggle) {
+                darkThemeOn = true;
+            }
         } else {
             if (element === punctuationToggle) {
                 punctuationOn = false;
@@ -291,6 +296,9 @@ const toggleButtonState = (element) => {
             }
             if (element === enterToggle) {
                 enterOn = false;
+            }
+            if (element === themeToggle) {
+                darkThemeOn = false;
             }
         }
     }
@@ -1698,6 +1706,39 @@ for (let i = 0; i < controlFlipButtons.length; i += 1) {
     });
 }
 
+// DARK COLOUR THEME
+const colourThemeElements = document.getElementsByClassName("colour-theme");
+const themeToggle = document.getElementById("theme-toggle");
+const themeApply = document.getElementById("theme-apply");
+
+const handleThemeToggle = () => {
+    toggleButtonStyle(themeToggle);
+    themeApply.classList.add("control-apply-active");
+    themeApply.disabled = false;
+    // disableStartButton();
+};
+
+themeToggle.addEventListener("click", handleThemeToggle);
+
+themeApply.addEventListener("click", function () {
+    // enableStartButton();
+    // clearDataAndDisplay();
+    // clearArrAndString();
+    toggleButtonState(themeToggle);
+    themeApply.classList.remove("control-apply-active");
+    console.log(colourThemeElements);
+    for (let i = 0; i < colourThemeElements.length; i += 1) {
+        if (darkThemeOn) {
+            colourThemeElements[i].classList.add("dark-theme");
+        } else {
+            colourThemeElements[i].classList.remove("dark-theme");
+        }
+
+    }
+
+});
+
+
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BEGINNER CONTROLS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
 // ARRAY FOR THE CURRENTLY SELECTED KEYS
@@ -1958,6 +1999,8 @@ beginnerHideButton.addEventListener("click", function () {
     // !!! TEMP FIX, HAS TO RETURN TO THE LAST DIFFICULTY SELECTED !!!
     targetArray = [...common100];
 });
+
+
 
 /*
     CURRENT TASK: ENTER KEY FEATURE (ADVANCED ONLY) ↩️ ↩︎ ␣  ⏎
