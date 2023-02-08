@@ -151,8 +151,8 @@ let startButtonCounter = 0;
 // DEFAULT COMMON 100 WORDS
 let targetArray = [...common100];
 // DEFAULT LINE LENGTH
-// let sequenceLength = 30;
-let sequenceLength = 10;
+let sequenceLength = 30;
+// let sequenceLength = 10;
 // DEFAULT HARD CODED ARRAY LENGTH (NUMBER OF LINES GENERATED WITH START BUTTON)
 const wordsArrLength = 20;
 // ARRAY OF WORDARRAYS (LINES)
@@ -171,8 +171,8 @@ let punctuationOn = false;
 let capitalOn = false;
 let enterOn = false;
 // DISABLED
-// let timerOn = true;
-let timerOn = false;
+let timerOn = true;
+// let timerOn = false;
 let soundOn = true;
 
 let keyStrokeCounter = 0;
@@ -2003,7 +2003,7 @@ beginnerHideButton.addEventListener("click", function () {
     PROBLEMS:
 
         HAVE TO BE ABLE TO STYLE ENTER ICON IN TEXTSPANCONTAINERNEXT
-            REVERT BACK TO APPENDING NEXT LINE AS SPANS
+            ☑️ REVERT BACK TO APPENDING NEXT LINE AS SPANS
     
         END OF LINE ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'classList')
                 at countSpanColours (script.js:721:26)
