@@ -2003,22 +2003,25 @@ beginnerHideButton.addEventListener("click", function () {
 
 
 /*
-    CURRENT TASK: ENTER KEY FEATURE (ADVANCED ONLY) ↩️ ↩︎ ␣  ⏎
+    CURRENT TASK: DARK THEME
 
-        ENTER KEY ICON SOURCE: TYPING.COM
-            <div class="letter letter--basic screenBasic-letter   ">⏎</div>
+        ADD COLOUR-THEME CLASS TO
+            ☑️ BODY
+            ☑️ CONTAINER
+                CHANGE BORDER
+            CONTROL PANEL
+                ADVANCED
+                BEGINNER
+            TEXT FIELDS
+            INPUT ROW
+                INPUT
+                TIMER
+            MESSAGE DIV
+            STAT WRAPS
+            COLOUR CODE WRAPS
+            KEYBOARD
+            INFO SIDE
 
-        ☑️ TOGGLE
-
-        ☑️ APPLY
-
-        ☑️ DETECT ENTER KEY (1060)
-
-        ☑️ ADD ENTER-ON CLASS TO LAST SPAN IN ACTIVE TEXT CONTAINER
-
-        MAKE LAST CHARACTER OF NEXT LINE PARAGRAPH A SPAN
-            ADD SPAN TO stringWordsNext
-            ALSO, WRITE FUNCTION TO RESET, APPEND NEXT LINE
     
     FEATURES:
         GREEN WORDS COUNTER
