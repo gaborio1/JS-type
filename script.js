@@ -583,8 +583,18 @@ const createSpans = (lineIdx, location) => {
                 : `span--next-${idx}`;
 
         // span.id = `span-${idx}`;
+
         location.appendChild(span); // APPEND TO PARENT DIV
+
     }
+    // THIS SELECTS LAST SPACE OF ACTIVE LINE WITH DARK THEME / ENTER OFF /
+
+    // if (darkThemeOn && !enterOn && location === textSpanContainerActive) {
+    //     console.log("ADD COLOUR THEME CLASS TO LAST SPAN");
+    //     const charSpans = document.querySelectorAll(".active-txt-span");
+    //     console.log(charSpans[charSpans.length - 1]);
+    //     charSpans[charSpans.length - 1].classList.add("colour-theme");
+    // }
 };
 
 // KEY EVENT START LOGS
