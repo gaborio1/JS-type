@@ -1726,18 +1726,15 @@ themeApply.addEventListener("click", function () {
     // clearArrAndString();
     toggleButtonState(themeToggle);
     themeApply.classList.remove("control-apply-active");
-    console.log(colourThemeElements);
+    // console.log(colourThemeElements);
     for (let i = 0; i < colourThemeElements.length; i += 1) {
         if (darkThemeOn) {
             colourThemeElements[i].classList.add("dark-theme");
         } else {
             colourThemeElements[i].classList.remove("dark-theme");
         }
-
     }
-
 });
-
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BEGINNER CONTROLS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -1999,8 +1996,6 @@ beginnerHideButton.addEventListener("click", function () {
     // !!! TEMP FIX, HAS TO RETURN TO THE LAST DIFFICULTY SELECTED !!!
     targetArray = [...common100];
 });
-
-
 
 /*
     CURRENT TASK: DARK THEME
