@@ -2031,6 +2031,8 @@ beginnerHideButton.addEventListener("click", function () {
 
         ACCURACY SPAN COLOUR CODES NOT WORKING WITH NEW SPAN COLOUR (CSS: .accuracy-span.dark-theme)
 
+        MAKE H3 COLOURS CONSISTENT ON TITLES (GREY)
+
     
     FEATURES:
         GREEN WORDS COUNTER

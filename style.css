@@ -213,6 +213,19 @@ button:disabled:hover {
     font-weight: 100;
 }
 
+.control-wrap.dark-theme button {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    background: #FFFFFF82;
+    background: #4d4d4d;
+    /* background: var(--border-gold); */
+    color: rgb(223, 223, 223);
+}
+
+.control-wrap.dark-theme {
+    color: rgb(194, 194, 194);
+}
+
 /* .control-wrap button:active:hover {
     background: lightgreen;
 } */
@@ -243,6 +256,22 @@ button:disabled:hover {
     font-weight: 500;
 }
 
+.control-wrap.dark-theme .punctuation-toggle:hover,
+.control-wrap.dark-theme .capital-toggle:hover,
+.control-wrap.dark-theme .sound-toggle:hover,
+.control-wrap.dark-theme .info-button:hover,
+.control-wrap.dark-theme .beginner-button:hover,
+.control-wrap.dark-theme .timer-toggle:hover,
+.control-wrap.dark-theme .enter-toggle:hover,
+.control-wrap.dark-theme .theme-toggle:hover {
+    /* background: lightgreen; */
+    color: rgb(215, 215, 215);
+    border: 1px solid darkgoldenrod;
+    font-weight: 500;
+}
+
+
+
 /* DO NOT INCREASE FONT WEIGHT WHEN :DISABLED:HOVER */
 .punctuation-toggle:disabled:hover,
 .capital-toggle:disabled:hover,
@@ -251,6 +280,17 @@ button:disabled:hover {
 .theme-toggle:disabled:hover,
 .info-button:disabled:hover,
 .beginner-button:disabled:hover {
+    /* background: lightgreen; */
+    font-weight: 300;
+}
+
+.control-wrap.dark-theme .punctuation-toggle:disabled:hover,
+.control-wrap.dark-theme .capital-toggle:disabled:hover,
+.control-wrap.dark-theme .sound-toggle:disabled:hover,
+.control-wrap.dark-theme .timer-toggle:disabled:hover,
+.control-wrap.dark-theme .theme-toggle:disabled:hover,
+.control-wrap.dark-theme .info-button:disabled:hover,
+.control-wrap.dark-theme .beginner-button:disabled:hover {
     /* background: lightgreen; */
     font-weight: 300;
 }
@@ -303,11 +343,16 @@ button:disabled:hover {
     border-radius: 4px;
 }
 
-/* .card__face--front--controls.dark-theme {
-    background: rgba(255, 0, 0, 0.521);
+.card__face--front--controls.dark-theme {
+    background: rgb(25, 25, 25);
     border: 1px solid var(--border-gold);
     border-radius: 4px;
-} */
+}
+
+.card__face--front--controls.dark-theme h4 {
+    color: #ababab;
+    /* color: rgb(255, 255, 255); */
+}
 
 .card__face--back--controls {
     display: flex;
@@ -458,6 +503,8 @@ button:disabled:hover {
 .text-span-container.dark-theme {
     /* background: var(--text-field-offwhite); */
     background: rgba(86, 85, 86, 0.412);
+    background: rgba(238, 238, 238, 0.088);
+    background: rgba(48, 75, 92, 0.08);
     border: 1px solid rgba(184, 135, 11, 0.253);
 }
 
@@ -599,9 +646,15 @@ p .active-txt-span.active-txt-span--enter {
 
 .counter-div.dark-theme {
     background: rgba(86, 85, 86, 0.412);
+    background: rgba(48, 75, 92, 0.291);
+    background: rgba(48, 75, 92, 0.08);
 
     border: 1px solid var(--border-gold);
     border: 1px solid rgba(184, 135, 11, 0.253);
+}
+
+.counter-div.dark-theme {
+    color: beige;
 }
 
 .input {
@@ -635,6 +688,7 @@ p .active-txt-span.active-txt-span--enter {
     /* border: none; */
     border: 1px solid rgba(184, 135, 11, 0.253);
     background: rgba(135, 206, 250, 0.156);
+    background: rgba(48, 75, 92, 0.291);
 }
 
 .start-button {
@@ -737,7 +791,8 @@ p .active-txt-span.active-txt-span--enter {
 
 .message-div.dark-theme {
     border: 1px solid rgba(184, 135, 11, 0.253);
-    background: rgba(135, 206, 250, 0.156);
+    background: rgba(135, 206, 250, 0.12);
+    background: rgba(48, 75, 92, 0.08);
 }
 
 /* // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 KEYBOARD 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
@@ -1123,6 +1178,12 @@ p .active-txt-span.active-txt-span--enter {
     background: lightgreen;
 }
 
+.control-wrap.dark-theme .control-apply-active {
+    background: lightgreen;
+    background: rgba(144, 238, 144, 0.491);
+    /* border: 1px solid darkgoldenrod; */
+}
+
 /* CURSOR */
 .background {
     background: lightgrey;
@@ -1427,6 +1488,13 @@ input[type="range"]:focus::-ms-fill-upper {
     border: 1px solid #ddd;
     border-radius: 100%;
     background: #fff;
+}
+
+.control-wrap.dark-theme [type="radio"]:checked+label:before,
+[type="radio"]:not(:checked)+label:before {
+    border: 1px solid rgb(208, 208, 208);
+    border-radius: 100%;
+    background: rgb(239, 239, 239);
 }
 
 /* [type="radio"]:checked + label:before,
