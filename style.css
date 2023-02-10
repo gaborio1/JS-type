@@ -54,6 +54,10 @@ h3 {
     font-weight: 400;
 }
 
+/* .colour-code-wrap--not typed.dark-theme h3 {
+    color: white;
+} */
+
 /* WRAP TITLES */
 h4 {
     font-weight: 400;
@@ -617,6 +621,7 @@ p .active-txt-span.active-txt-span--enter {
     /* text-align: center; */
     /* color: grey; */
     color: rgb(74, 73, 73);
+    color: beige;
     font-weight: 300;
     /* border: none; */
     border: 1px solid var(--border-gold);
@@ -625,7 +630,7 @@ p .active-txt-span.active-txt-span--enter {
 }
 
 .text-input.dark-theme {
-    color: rgb(74, 73, 73);
+    color: rgb(225, 224, 224);
     font-weight: 300;
     /* border: none; */
     border: 1px solid rgba(184, 135, 11, 0.253);
@@ -693,6 +698,13 @@ p .active-txt-span.active-txt-span--enter {
     padding: 8px;
     border: 1px solid var(--border-gold);
     border-radius: 4px;
+}
+
+.stat-wrap.dark-theme {
+    /* SLIGTHLY LIGHTER THAN KEYBOARD KEYS */
+    background: rgb(25, 25, 25);
+
+
 }
 
 .stat-wrap.dark-theme h4 {
@@ -797,7 +809,8 @@ p .active-txt-span.active-txt-span--enter {
     /* border: 1px solid #444; */
     /* border: 1px solid rgb(0, 0, 0); */
     border: 1px solid var(--border-gold);
-
+    background: rgb(20, 20, 20);
+    ;
     /* BLACK KEYS STYLE */
 
     /* background: #333; */
@@ -919,7 +932,19 @@ p .active-txt-span.active-txt-span--enter {
     line-height: 1.6rem;
 }
 
+.colour-code-wrap.dark-theme {
+    /* SLIGHTLY DARKER THAN KEYBOARD KEYS */
+    background: rgb(25, 25, 25);
+}
+
+/* TITLES */
 .colour-code-wrap.dark-theme h4 {
+    color: rgba(255, 255, 255, 0.509);
+}
+
+/* EXAMPLE TEXT */
+.colour-code-wrap--not-typed.dark-theme h3,
+.colour-code-wrap--skipped.dark-theme h3 {
     color: rgba(255, 255, 255, 0.509);
 }
 
@@ -927,9 +952,10 @@ p .active-txt-span.active-txt-span--enter {
     margin-bottom: 8px;
 }
 
-/* .colour-code-wrap.dark-theme h3 {
-    color: rgba(255, 255, 255, 0.509);
-} */
+/* EXAMPLE TEXT CURSOR BACKGROUND */
+.colour-code-wrap--skipped.dark-theme .background {
+    background: rgb(100, 100, 100);
+}
 
 .colour-counter-span {
     font-size: var(--font-32);

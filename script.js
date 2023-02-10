@@ -2017,15 +2017,19 @@ beginnerHideButton.addEventListener("click", function () {
             CONTROL PANEL
                 ADVANCED
                 BEGINNER
-            TEXT FIELDS
+            ☑️ TEXT FIELDS
             INPUT ROW
-                INPUT
-                TIMER
+                ☑️ INPUT
+                ☑️ TIMER
+                MESSAGE DIV (MAKE IT DARKER THAN INPUT)
+                START BUTTON ?
             MESSAGE DIV
-            STAT WRAPS
-            COLOUR CODE WRAPS
-            KEYBOARD
+            ☑️ STAT WRAPS
+            ☑️ COLOUR CODE WRAPS
+            ☑️ KEYBOARD
             INFO SIDE
+
+        ACCURACY SPAN COLOUR CODES NOT WORKING WITH NEW SPAN COLOUR (CSS: .accuracy-span.dark-theme)
 
     
     FEATURES:
