@@ -585,7 +585,6 @@ const createSpans = (lineIdx, location) => {
         // span.id = `span-${idx}`;
 
         location.appendChild(span); // APPEND TO PARENT DIV
-
     }
     // THIS SELECTS LAST SPACE OF ACTIVE LINE WITH DARK THEME / ENTER OFF /
 
@@ -2033,6 +2032,8 @@ beginnerHideButton.addEventListener("click", function () {
 
         MAKE H3 COLOURS CONSISTENT ON TITLES (GREY)
 
+        HIGHLIGT RADIO TEXT ON HOVER
+
     
     FEATURES:
         GREEN WORDS COUNTER
@@ -2058,6 +2059,14 @@ beginnerHideButton.addEventListener("click", function () {
        
             
     PROBLEMS:
+
+        REFACTOR
+            FUNCTIONS
+            IF / ELSE BLOCKS
+            CSS CLASSES
+                COMMON CLASS FOR
+                    TOGGLE BUTTONS (control-toggle-button) DOES NOT INCLUDE INFO, BEGINNER
+                    APPLY BUTTONS
 
         HAVE TO BE ABLE TO STYLE ENTER ICON IN TEXTSPANCONTAINERNEXT
             ☑️ REVERT BACK TO APPENDING NEXT LINE AS SPANS
