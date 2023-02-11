@@ -51,6 +51,10 @@ const enterApply = document.getElementById("enter-apply");
 // SOUND
 const soundToggle = document.getElementById("sound-toggle");
 const soundApply = document.getElementById("sound-apply");
+// COLOUR THEME
+const colourThemeElements = document.getElementsByClassName("colour-theme");
+const themeToggle = document.getElementById("theme-toggle");
+const themeApply = document.getElementById("theme-apply");
 // ALL RADIOS
 // const radios = document.getElementsByClassName("radio");
 // const timerRadios = document.getElementsByClassName("timer-radio");
@@ -553,6 +557,8 @@ const disableApplyButtons = () => {
     punctuationApply.disabled = true;
     capitalApply.disabled = true;
     timerApply.disabled = true;
+    themeApply.disabled = true;
+
 };
 
 // MAKE EACH CHARACTER OF THE STRING A span AND APPEND AS A CHILD ELEMENT TO ITS CONTAINER
@@ -1715,10 +1721,10 @@ for (let i = 0; i < controlFlipButtons.length; i += 1) {
     });
 }
 
-// DARK COLOUR THEME
-const colourThemeElements = document.getElementsByClassName("colour-theme");
-const themeToggle = document.getElementById("theme-toggle");
-const themeApply = document.getElementById("theme-apply");
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 COLOUR THEME 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+// const colourThemeElements = document.getElementsByClassName("colour-theme");
+// const themeToggle = document.getElementById("theme-toggle");
+// const themeApply = document.getElementById("theme-apply");
 
 const handleThemeToggle = () => {
     toggleButtonStyle(themeToggle);
@@ -1730,6 +1736,9 @@ const handleThemeToggle = () => {
 themeToggle.addEventListener("click", handleThemeToggle);
 
 themeApply.addEventListener("click", function () {
+    // !!! THIS BUTON DOES NOT BEHAVE AS OTHER APPLY BUTTONS, HAVE TO DISABLE HERE !!!
+    themeApply.disabled = true;
+
     // enableStartButton();
     // clearDataAndDisplay();
     // clearArrAndString();
@@ -2033,6 +2042,8 @@ beginnerHideButton.addEventListener("click", function () {
         MAKE H3 COLOURS CONSISTENT ON TITLES (GREY)
 
         HIGHLIGT RADIO TEXT ON HOVER
+
+        ☑️ DISABLE APPLY BUTTONS IN DARK THEME 
 
     
     FEATURES:
