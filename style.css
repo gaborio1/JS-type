@@ -231,8 +231,9 @@ button:disabled:hover {
 .control-wrap.dark-theme button {
     font-family: "Roboto", sans-serif;
     font-weight: 100;
-    background: #ffffff82;
-    background: #4d4d4d;
+    /* background: #ffffff82; */
+    /* background: #4d4d4d; */
+    background: #4d4d4d91;
     /* background: var(--border-gold); */
     /* color: rgb(223, 223, 223); */
     color: darkgoldenrod;
@@ -243,9 +244,10 @@ button:disabled:hover {
     opacity: 0.3;
 }
 
-/* TEXT */
+/* TEXT  (20-50) AND CURRENT LENGTH*/
 .control-wrap.dark-theme {
-    color: rgb(194, 194, 194);
+    /* color: rgb(194, 194, 194); */
+    color: darkgoldenrod;
 }
 
 /* .control-wrap button:active:hover {
@@ -274,11 +276,14 @@ button:disabled:hover {
     font-weight: 500;
 }
 
+/* ALL TOGGLE / INFO / BEGINNER BUTTONS  */
 .control-wrap.dark-theme .info-button:hover,
 .control-wrap.dark-theme .beginner-button:hover,
 .control-wrap.dark-theme .control-toggle-button:hover {
     /* background: lightgreen; */
-    color: rgb(215, 215, 215);
+    background: #4d4d4d4a;
+    /* color: rgb(215, 215, 215); */
+    color: rgb(219, 168, 37);
     border: 1px solid darkgoldenrod;
     font-weight: 500;
 }
@@ -1410,7 +1415,7 @@ input[type="range"]:focus::-ms-fill-upper {
     left: -9999px;
 }
 
-/* RADIO TEXT */
+/* RADIO LABEL TEXT */
 [type="radio"]:checked + label,
 [type="radio"]:not(:checked) + label {
     position: relative;
@@ -1428,8 +1433,7 @@ input[type="range"]:focus::-ms-fill-upper {
 
 .control-wrap.dark-theme [type="radio"]:checked + label,
 .control-wrap.dark-theme [type="radio"]:not(:checked) + label {
-    color: #666;
-    color: #cbcbcb;
+    color: darkgoldenrod;
 }
 
 /* [type="radio"]:checked+label,
@@ -1487,9 +1491,11 @@ input[type="range"]:focus::-ms-fill-upper {
 
 .control-wrap.dark-theme [type="radio"]:checked + label:before,
 [type="radio"]:not(:checked) + label:before {
-    border: 1px solid rgb(208, 208, 208);
+    border: 1px solid darkgoldenrod;
     border-radius: 100%;
-    background: rgb(239, 239, 239);
+    /* background: rgb(239, 239, 239); */
+    background: #4d4d4d91;
+    /* background: darkgoldenrod; */
 }
 
 /* [type="radio"]:checked + label:before,
