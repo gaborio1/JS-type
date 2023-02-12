@@ -558,7 +558,6 @@ const disableApplyButtons = () => {
     capitalApply.disabled = true;
     timerApply.disabled = true;
     themeApply.disabled = true;
-
 };
 
 // MAKE EACH CHARACTER OF THE STRING A span AND APPEND AS A CHILD ELEMENT TO ITS CONTAINER
@@ -2044,6 +2043,8 @@ beginnerHideButton.addEventListener("click", function () {
         HIGHLIGT RADIO TEXT ON HOVER
 
         ☑️ DISABLE APPLY BUTTONS IN DARK THEME 
+
+        ADD COMMON CLASS TO ALL WRAP-TITLES (.wrap-title)
 
     
     FEATURES:

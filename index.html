@@ -40,7 +40,7 @@
                                 class="controls-container fadeout-with-timer card__face--controls card__face--front--controls colour-theme">
 
                                 <div class="control-wrap difficulty-control-wrap colour-theme">
-                                    <h4>Difficulty</h4>
+                                    <h4 class="wrap-title">Difficulty</h4>
                                     <!-- MAKE THIS RADIO INSTEAD ??? -->
                                     <!-- <form action="">
                                     <label class="" for="difficulty">Difficulty:</label>
@@ -83,7 +83,7 @@
                                 <div class="spacer-div colour-theme"></div>
 
                                 <div class="control-wrap punctuation-capital-control-wrap colour-theme">
-                                    <h4>Punctuation</h4>
+                                    <h4 class="wrap-title">Punctuation</h4>
                                     <div class="punctuation-buttons-container">
                                         <button id="punctuation-toggle"
                                             class="control-panel-button control-toggle-button punctuation-toggle disabled-during-timer">
@@ -94,7 +94,7 @@
                                         </button>
                                     </div>
 
-                                    <h4>Capital letters</h4>
+                                    <h4 class="wrap-title">Capital letters</h4>
                                     <div class="capital-buttons-container">
                                         <button id="capital-toggle"
                                             class="control-panel-button control-toggle-button capital-toggle disabled-during-timer">
@@ -109,7 +109,7 @@
                                 <div class="spacer-div colour-theme"></div>
 
                                 <div class="control-wrap enter-control-wrap colour-theme">
-                                    <h4>Enter key</h4>
+                                    <h4 class="wrap-title">Enter key</h4>
                                     <div class="enter-buttons-container">
                                         <button id="enter-toggle"
                                             class="control-panel-button control-toggle-button enter-toggle disabled-during-timer toggle-off">
@@ -119,7 +119,7 @@
                                             Apply
                                         </button>
                                     </div>
-                                    <h4>Dark theme</h4>
+                                    <h4 class="wrap-title">Dark theme</h4>
                                     <div class="">
                                         <button id="theme-toggle"
                                             class="control-panel-button control-toggle-button theme-toggle disabled-during-timer">
@@ -136,7 +136,7 @@
                                 <div class="control-wrap line-length-control-wrap colour-theme">
                                     <!-- <form> -->
                                     <!-- <label for="length">Line length (20 - 50):</label> -->
-                                    <h4>Line length</h4>
+                                    <h4 class="wrap-title">Line length</h4>
                                     (20 - 50)<input type="range" id="length" class="disabled-during-timer" name="length"
                                         min="20" max="50" value="40" />
                                     <span id="length-display-span">30</span>
@@ -150,7 +150,7 @@
                                 <div class="spacer-div colour-theme"></div>
 
                                 <div class="control-wrap timer-sound-control-wrap colour-theme">
-                                    <h4>Timer</h4>
+                                    <h4 class="wrap-title">Timer</h4>
                                     <div class="timer-buttons-container">
                                         <button id="timer-toggle"
                                             class="control-panel-button control-toggle-button timer-toggle disabled-during-timer toggle-on">
@@ -160,7 +160,7 @@
                                             Apply
                                         </button>
                                     </div>
-                                    <h4>Sound</h4>
+                                    <h4 class="wrap-title">Sound</h4>
                                     <div class="sound-buttons-container">
                                         <button id="sound-toggle"
                                             class="control-panel-button control-toggle-button sound-toggle toggle-on disabled-during-timer">
@@ -176,11 +176,11 @@
 
 
                                 <div class="control-wrap info-control-wrap colour-theme">
-                                    <h4>Info</h4>
+                                    <h4 class="wrap-title">Info</h4>
                                     <button
                                         class="control-panel-button info-button flip-button--main disabled-during-timer">Show</button>
                                     </button>
-                                    <h4>Beginner Level</h4>
+                                    <h4 class="wrap-title">Beginner Level</h4>
                                     <button id="beginner-control-show-button"
                                         class="control-panel-button beginner-button flip-button--controls disabled-during-timer">Show</button>
                                     </button>
@@ -280,11 +280,11 @@
                     <div class="stats-and-keys-container fadeout-with-timer">
                         <div id="stats-container__left" class="stats-container">
                             <div class="stat-wrap colour-theme">
-                                <h4>Average Speed</h4>
+                                <h4 class="wrap-title">Average Speed</h4>
                                 <span id="speed-span" class="speed-span colour-theme">0</span>
                             </div>
                             <div class="stat-wrap colour-theme">
-                                <h4>Colours</h4>
+                                <h4 class="wrap-title">Colours</h4>
                                 <span id="green-counter-span" class="green colour-counter-span">0</span>
                                 <div class="redOrangeDiv">
                                     <span id="red-counter-span" class="red colour-counter-span">0</span>
@@ -518,13 +518,13 @@
 
                         <div id="stats-container__rigth" class="stats-container">
                             <div class="stat-wrap colour-theme">
-                                <h4>Keystrokes</h4>
+                                <h4 class="wrap-title">Keystrokes</h4>
                                 <span id="keystrokes-span" class="keystrokes-span colour-theme">
                                     0
                                 </span>
                             </div>
                             <div class="stat-wrap colour-theme">
-                                <h4>Accuracy</h4>
+                                <h4 class="wrap-title">Accuracy</h4>
                                 <span id="accuracy-span" class="accuracy-span colour-theme">0</span>
                             </div>
                         </div>
@@ -532,23 +532,23 @@
 
                     <div id="colour-code-container" class="colour-code-container fadeout-with-timer">
                         <div class="colour-code-wrap colour-theme">
-                            <h4>Correct</h4>
+                            <h4 class="wrap-title">Correct</h4>
                             <h3 class="green">Abc</h3>
                         </div>
                         <div class="colour-code-wrap colour-theme">
-                            <h4>Wrong</h4>
+                            <h4 class="wrap-title">Wrong</h4>
                             <h3 class="red">Abc</h3>
                         </div>
                         <div class="colour-code-wrap colour-theme">
-                            <h4>Backspace</h4>
+                            <h4 class="wrap-title">Backspace</h4>
                             <h3 class="orange">Abc</h3>
                         </div>
                         <div class="colour-code-wrap colour-code-wrap--not-typed colour-theme">
-                            <h4>Not typed</h4>
+                            <h4 class="wrap-title">Not typed</h4>
                             <h3>Abc</h3>
                         </div>
                         <div class="colour-code-wrap colour-code-wrap--skipped colour-theme">
-                            <h4>Skipped</h4>
+                            <h4 class="wrap-title">Skipped</h4>
                             <h3>
                                 <span class="green">A</span>
                                 <span class="red-border background">b</span>
