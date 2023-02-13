@@ -2022,14 +2022,14 @@ beginnerHideButton.addEventListener("click", function () {
             ☑️ CONTAINER
                 CHANGE BORDER
             CONTROL PANEL
-                ADVANCED
+                ☑️ ADVANCED
                 BEGINNER
             ☑️ TEXT FIELDS
             INPUT ROW
                 ☑️ INPUT
                 ☑️ TIMER
-                MESSAGE DIV (MAKE IT DARKER THAN INPUT)
-                START BUTTON ?
+                ☑️  MESSAGE DIV (MAKE IT DARKER THAN INPUT)
+                ☑️ START BUTTON ?
             MESSAGE DIV
             ☑️ STAT WRAPS
             ☑️ COLOUR CODE WRAPS
@@ -2038,13 +2038,13 @@ beginnerHideButton.addEventListener("click", function () {
 
         ACCURACY SPAN COLOUR CODES NOT WORKING WITH NEW SPAN COLOUR (CSS: .accuracy-span.dark-theme)
 
-        MAKE H3 COLOURS CONSISTENT ON TITLES (GREY)
+        ☑️ MAKE H3 COLOURS CONSISTENT ON TITLES (GOLD)
 
-        HIGHLIGT RADIO TEXT ON HOVER
+        ☑️ HIGHLIGT RADIO TEXT ON HOVER
 
         ☑️ DISABLE APPLY BUTTONS IN DARK THEME 
 
-        ADD COMMON CLASS TO ALL WRAP-TITLES (.wrap-title)
+        ☑️ ADD COMMON CLASS TO ALL WRAP-TITLES (.wrap-title)
 
     
     FEATURES:
