@@ -119,16 +119,19 @@
                                             Apply
                                         </button>
                                     </div>
-                                    <h4 class="wrap-title">Dark theme</h4>
-                                    <div class="">
-                                        <button id="theme-toggle"
-                                            class="control-panel-button control-toggle-button theme-toggle disabled-during-timer">
-                                            Off
+
+
+                                    <h4 class="wrap-title">Timer</h4>
+                                    <div class="timer-buttons-container">
+                                        <button id="timer-toggle"
+                                            class="control-panel-button control-toggle-button timer-toggle disabled-during-timer toggle-on">
+                                            On
                                         </button>
-                                        <button id="theme-apply" class="control-panel-button" disabled="true">
+                                        <button id="timer-apply" class="control-panel-button" disabled="true">
                                             Apply
                                         </button>
                                     </div>
+
                                 </div>
 
                                 <div class="spacer-div colour-theme"></div>
@@ -150,16 +153,7 @@
                                 <div class="spacer-div colour-theme"></div>
 
                                 <div class="control-wrap timer-sound-control-wrap colour-theme">
-                                    <h4 class="wrap-title">Timer</h4>
-                                    <div class="timer-buttons-container">
-                                        <button id="timer-toggle"
-                                            class="control-panel-button control-toggle-button timer-toggle disabled-during-timer toggle-on">
-                                            On
-                                        </button>
-                                        <button id="timer-apply" class="control-panel-button" disabled="true">
-                                            Apply
-                                        </button>
-                                    </div>
+
                                     <h4 class="wrap-title">Sound</h4>
                                     <div class="sound-buttons-container">
                                         <button id="sound-toggle"
@@ -167,6 +161,16 @@
                                             On
                                         </button>
                                         <button id="sound-apply" class="control-panel-button" disabled="true">
+                                            Apply
+                                        </button>
+                                    </div>
+                                    <h4 class="wrap-title">Dark theme</h4>
+                                    <div class="">
+                                        <button id="theme-toggle"
+                                            class="control-panel-button control-toggle-button theme-toggle disabled-during-timer">
+                                            Off
+                                        </button>
+                                        <button id="theme-apply" class="control-panel-button" disabled="true">
                                             Apply
                                         </button>
                                     </div>
@@ -264,7 +268,7 @@
                         <input type="text" id="input" class="text-input colour-theme" name="input"
                             placeholder="                 Click Start ➡" />
                         <!-- </form> -->
-                        <button id="start-button" class="button start-button">
+                        <button id="start-button" class="button start-button colour-theme">
                             <!-- NOT IN USE -->
                             <!-- <span id="refresh-icon" class="material-symbols-sharp hidden">
                                 autorenew
