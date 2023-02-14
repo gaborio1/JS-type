@@ -2015,7 +2015,14 @@ beginnerHideButton.addEventListener("click", function () {
 });
 
 /*
-    CURRENT TASK: DARK THEME
+
+CURRENT:
+
+    BRANCH light-theme-1
+
+
+
+    BRANCH dark-theme-1:
 
         ADD COLOUR-THEME CLASS TO
             ☑️ BODY
