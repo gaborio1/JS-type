@@ -347,6 +347,7 @@ button:disabled:hover {
 
 .card__face--front--controls {
     background: rgba(255, 0, 0, 0.521);
+    background: rgba(255, 0, 0, 0.512);
     border: 1px solid var(--border-gold);
     border-radius: 4px;
 }
@@ -361,7 +362,9 @@ button:disabled:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background: rgba(0, 0, 255, 0.507);
+    /* background: rgba(0, 0, 255, 0.507); */
+    background: rgba(0, 119, 255, 0.295);
+    background: rgba(0, 76, 163, 0.658);
     border: 1px solid var(--border-gold);
     border-radius: 4px;
     padding: 5px 0px 5px 0px;
@@ -1505,7 +1508,7 @@ input[type="range"]:focus::-ms-fill-upper {
 }
 
 .control-wrap.dark-theme [type="radio"]:checked+label:before,
-[type="radio"]:not(:checked)+label:before {
+.control-wrap.dark-theme [type="radio"]:not(:checked)+label:before {
     border: 1px solid darkgoldenrod;
     border-radius: 100%;
     /* background: rgb(239, 239, 239); */
