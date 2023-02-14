@@ -1,10 +1,10 @@
 :root {
-    --border-gold: darkgoldenrod;
-    --border-gold: rgba(184, 135, 11, 0.641);
+    /* --border-gold: darkgoldenrod; */
+    --border-gold: rgba(184, 135, 11, 0.659);
     /* --border-gold: rgb(41, 30, 2); */
     --border-gold-disabled: rgba(184, 135, 11, 0.547);
     --text-field-offwhite: #efefef;
-    --text-field-offwhite: #efefefbe;
+    --text-field-offwhite: #ffffffba;
     --font-24: 24px;
     --font-32: 32px;
     --font-48: 48px;
@@ -36,7 +36,9 @@ Please notice that removing outline from input is an accessibility bad practice.
 body {
     font-family: "Roboto", sans-serif;
     text-align: center;
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
+    background-color: rgba(250, 235, 215, 0.5);
+    /* background-color: white; */
 }
 
 body.dark-theme {
@@ -99,7 +101,10 @@ h3 {
     /* border: 1px solid darkgoldenrod; */
     border: 1px solid var(--border-gold);
     border-radius: 4px;
-    background-color: rgba(245, 245, 245, 0.206);
+    /* background-color: rgba(245, 245, 245, 0.206); */
+    background-color: antiquewhite;
+    background-color: rgba(250, 235, 215, 0.502);
+
     font-weight: 100;
 
     /* position: relative; */
@@ -265,6 +270,7 @@ button:disabled:hover {
 .control-panel-button,
 .start-button:disabled {
     border: 1px solid var(--border-gold-disabled);
+    /* background: rgba(255, 107, 107, 0.09); */
 }
 
 /* THIS IS TO REPLACE MULTIPLE SELECTORS */
@@ -274,6 +280,12 @@ button:disabled:hover {
 .control-toggle-button:hover {
     /* background: lightgreen; */
     font-weight: 500;
+    border: 1px solid darkgoldenrod;
+    /* background: rgba(255, 0, 0, 0.09); */
+    background: rgba(0, 255, 81, 0.553);
+    border: 1px solid rgba(255, 0, 0, 0.406);
+    /* border: 1px solid rgb(115, 115, 115); */
+    /* border: none; */
 }
 
 /* ALL TOGGLE / INFO / BEGINNER BUTTONS  */
@@ -769,6 +781,8 @@ p .active-txt-span.active-txt-span--enter {
     padding: 8px;
     border: 1px solid var(--border-gold);
     border-radius: 4px;
+
+    background: rgba(184, 135, 11, 0.199);
 }
 
 .stat-wrap.dark-theme {
@@ -858,6 +872,7 @@ p .active-txt-span.active-txt-span--enter {
     /* border: 1px solid #444; */
     /* border: 1px solid rgb(0, 0, 0); */
     border: 1px solid var(--border-gold);
+    border: 1px solid darkgoldenrod;
 
     /* BLACK KEYS STYLE */
 
