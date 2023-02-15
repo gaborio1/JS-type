@@ -1466,6 +1466,7 @@ for (let i = 0, length = difficultyRadios.length; i < length; i++) {
 
 difficultyApply.addEventListener("click", function () {
     difficultyApply.classList.remove("control-apply-active");
+    difficultyApply.disabled = true;
     enableStartButton();
     clearDataAndDisplay();
     clearArrAndString();
@@ -1512,6 +1513,7 @@ lengthApply.addEventListener("click", function () {
     sequenceLength = slider.value;
     // console.log("SLIDER CHANGED, NEW VALUE TO SUBMIT:", sequenceLength);
     lengthApply.classList.remove("control-apply-active");
+    lengthApply.disabled = true;
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 PUNCTUATION 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1533,6 +1535,7 @@ punctuationApply.addEventListener("click", function () {
     clearArrAndString();
     toggleButtonState(punctuationToggle);
     punctuationApply.classList.remove("control-apply-active");
+    punctuationApply.disabled = true;
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CAPITAL 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1552,6 +1555,7 @@ capitalApply.addEventListener("click", function () {
     clearArrAndString();
     toggleButtonState(capitalToggle);
     capitalApply.classList.remove("control-apply-active");
+    capitalApply.disabled = true;
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 ENTER 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1571,6 +1575,7 @@ enterApply.addEventListener("click", function () {
     clearArrAndString();
     toggleButtonState(enterToggle);
     enterApply.classList.remove("control-apply-active");
+    enterApply.disabled = true;
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TIMER 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1666,6 +1671,7 @@ timerApply.addEventListener("click", function () {
     clearArrAndString();
     toggleButtonState(timerToggle);
     timerApply.classList.remove("control-apply-active");
+    timerApply.disabled = true;
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 SOUND 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1685,6 +1691,7 @@ soundApply.addEventListener("click", function () {
     clearArrAndString();
     toggleButtonState(soundToggle);
     soundApply.classList.remove("control-apply-active");
+    soundApply.disabled = true;
 });
 
 // ONE OFF FUNCTION RUNS ON FIRST KEYPRESS
