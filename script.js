@@ -553,10 +553,12 @@ const removeProblemKeyHighlight = () => {
 // DISABLE CONTROL APPLY BUTTONS
 const disableApplyButtons = () => {
     difficultyApply.disabled = true;
-    lengthApply.disabled = true;
     punctuationApply.disabled = true;
     capitalApply.disabled = true;
+    enterApply.disabled = true;
     timerApply.disabled = true;
+    lengthApply.disabled = true;
+    soundApply.disabled = true;
     themeApply.disabled = true;
 };
 
@@ -2023,6 +2025,8 @@ CURRENT:
 
 
     BRANCH dark-theme-1:
+
+        DISABLE START BUTTON IF CHANGES ARE MADE ON CONTROL PANEL (ITS DISABLED, ONLY CHANGE COLOUR)
 
         ADD COLOUR-THEME CLASS TO
             ☑️ BODY
