@@ -333,6 +333,12 @@ const buildWordArrays = (numOfLines) => {
     // console.log("TARGET ARRAY FROM BUILDARRAYS:", targetArray);
     for (let i = 0; i < numOfLines; i += 1) {
         let arr = [];
+
+        // ALLOW EXTRA SPACE FOR ENTER KEY AT THE END OF LINE
+        if (enterOn && sequenceLength > 44) {
+            sequenceLength = 44;
+        }
+
         while (true) {
             if (getStrLength(arr) >= sequenceLength) break;
 
@@ -2098,7 +2104,9 @@ CURRENT:
                     TOGGLE BUTTONS (control-toggle-button) DOES NOT INCLUDE INFO, BEGINNER
                     APPLY BUTTONS
 
-        HAVE TO BE ABLE TO STYLE ENTER ICON IN TEXTSPANCONTAINERNEXT
+        ALLOW EXTRA SPACE FOR ENTER IN ACTIVE SPANS (MAYBE REDUCE LINE LENGT BY 3 IF IT IS > 45 ?)           
+
+        ☑️ HAVE TO BE ABLE TO STYLE ENTER ICON IN TEXTSPANCONTAINERNEXT
             ☑️ REVERT BACK TO APPENDING NEXT LINE AS SPANS
     
         END OF LINE ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'classList')
