@@ -255,8 +255,15 @@ button:disabled:hover {
 /* CONTROL PANEL BUTTONS : DISABLED */
 .control-panel-button:disabled,
 .start-button:disabled {
+    border: 1px solid var(--border-grey);
+    background: rgba(184, 135, 11, 0.037);
+}
+
+.control-wrap.dark-theme .control-panel-button:disabled,
+.start-button.dark-theme:disabled {
     border: 1px solid var(--border-gold-disabled);
     background: rgba(184, 135, 11, 0.037);
+    opacity: 0.3;
 }
 
 /* THIS IS TO REPLACE MULTIPLE SELECTORS */
@@ -264,10 +271,13 @@ button:disabled:hover {
 .info-button:hover,
 .beginner-button:hover,
 .control-toggle-button:hover {
-    /* background: lightgreen; */
+
     font-weight: 500;
-    border: 1px solid darkgoldenrod;
-    background: rgba(184, 135, 11, 0.01);
+    border: 1px solid rgb(149, 149, 149);
+    /* background: lightgreen; */
+    /* background: rgba(184, 135, 11, 0.01); */
+    background: rgb(170, 232, 251);
+
 
 }
 
@@ -326,10 +336,9 @@ button:disabled:hover {
 }
 
 .card__face--front--controls {
-    background: rgba(255, 0, 0, 0.512);
+    /* background: rgba(255, 0, 0, 0.512); */
     background: var(--wrap-highlight--light);
-    border: 1px solid var(--border-gold);
-    /* border: 1px solid darkgoldenrod; */
+    border: 1px solid var(--border-grey);
     border-radius: 4px;
 }
 
@@ -685,6 +694,7 @@ p .active-txt-span.active-txt-span--enter {
 
 .start-button.dark-theme {
     background: rgba(144, 238, 144, 0.374);
+    /* background: rgba(144, 238, 144, 0.495); */
     color: rgb(229, 172, 28);
     font-weight: 400;
     border: 1px solid rgba(184, 135, 11, 0.296);
@@ -1018,6 +1028,7 @@ p .active-txt-span.active-txt-span--enter {
     height: 800px;
     /* margin: 50px auto; */
     margin: 50px auto;
+    background: #f0efeb;
     border: 1px solid var(--border-grey);
     border-radius: 4px;
     padding: 20px 12px 0px 20px;
@@ -1033,6 +1044,32 @@ p .active-txt-span.active-txt-span--enter {
     /* backface-visibility: hidden; */
 }
 
+.instructions-container.dark-theme {
+    width: 1000px;
+    height: 120px;
+    height: 800px;
+    /* margin: 50px auto; */
+    margin: 50px auto;
+    background-color: rgb(28, 28, 28);
+    color: rgb(178, 178, 178);
+    ;
+    border: 1px solid var(--border-gold);
+    border-radius: 4px;
+    padding: 20px 12px 0px 20px;
+    /* font-family: "Roboto", sans-serif; */
+    text-align: left;
+    font-weight: 300;
+    line-height: 1.3rem;
+
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+
+    /* backface-visibility: hidden; */
+}
+
+
+
 .flip-button__card--main {
     /* display: inline-block; */
     width: 45px;
@@ -1043,13 +1080,36 @@ p .active-txt-span.active-txt-span--enter {
     font-family: "Roboto", sans-serif;
     font-weight: 100;
     /* background: lightgreen; */
+    background: rgb(215, 242, 250);
     margin-left: 450px;
 }
 
-.instructions-container .flip-button__card:hover {
-    /* background: lightgreen; */
+.instructions-container .flip-button__card--main:hover {
+    background: lightgreen;
+    background: rgb(170, 232, 251);
+    font-weight: 500;
+    border: 1px solid rgb(149, 149, 149);
+}
+
+.instructions-container.dark-theme .flip-button__card--main {
+    /* font-family: "Roboto", sans-serif; */
+    font-weight: 100;
+    background: #4d4d4d91;
+    color: darkgoldenrod;
+    border: 1px solid var(--border-gold);
+}
+
+.instructions-container.dark-theme .flip-button__card--main:hover {
+
+    background: #4d4d4d4a;
+
+    /* color: rgb(215, 215, 215); */
+    color: rgb(219, 168, 37);
+    border: 1px solid darkgoldenrod;
     font-weight: 500;
 }
+
+
 
 .instructions-container p {
     margin-left: 20px;
@@ -1058,6 +1118,11 @@ p .active-txt-span.active-txt-span--enter {
 .instructions-container h3 {
     margin-bottom: 5px;
     display: inline;
+}
+
+.instructions-container.dark-theme h3 {
+    /* color: rgb(222, 131, 13); */
+    color: darkgoldenrod;
 }
 
 .instructions-container li {
@@ -1161,10 +1226,14 @@ p .active-txt-span.active-txt-span--enter {
 .control-apply-active {
     background: lightgreen;
     background: rgba(144, 238, 144, 0.499);
+    background: rgba(144, 238, 144, 0.765);
+    border: 1px solid var(--border-grey);
 }
 
 .control-wrap.dark-theme .control-apply-active {
     background: rgba(144, 238, 144, 0.374);
+    /* background: rgba(144, 238, 144, 0.495); */
+    /* background: rgb(17, 156, 225); */
     color: rgb(229, 172, 28);
     font-weight: 400;
     border: 1px solid rgba(184, 135, 11, 0.296);
