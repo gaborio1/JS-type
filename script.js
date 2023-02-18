@@ -2033,18 +2033,20 @@ beginnerHideButton.addEventListener("click", function () {
 
 CURRENT:
 
+    STYLE BEGINNER LEVEL
+
     BRANCH light-theme-1
 
 
 
     BRANCH dark-theme-1:
 
-        DISABLE START BUTTON IF CHANGES ARE MADE ON CONTROL PANEL (ITS DISABLED, ONLY CHANGE COLOUR)
+        ☑️ DISABLE START BUTTON IF CHANGES ARE MADE ON CONTROL PANEL (ITS DISABLED, ONLY CHANGE COLOUR)
 
         ADD COLOUR-THEME CLASS TO
             ☑️ BODY
             ☑️ CONTAINER
-                CHANGE BORDER
+                ☑️ CHANGE BORDER
             CONTROL PANEL
                 ☑️ ADVANCED
                 BEGINNER
@@ -2058,7 +2060,7 @@ CURRENT:
             ☑️ STAT WRAPS
             ☑️ COLOUR CODE WRAPS
             ☑️ KEYBOARD
-            INFO SIDE
+            ☑️ INFO SIDE
 
         ACCURACY SPAN COLOUR CODES NOT WORKING WITH NEW SPAN COLOUR (CSS: .accuracy-span.dark-theme)
 
@@ -2104,7 +2106,7 @@ CURRENT:
                     TOGGLE BUTTONS (control-toggle-button) DOES NOT INCLUDE INFO, BEGINNER
                     APPLY BUTTONS
 
-        ALLOW EXTRA SPACE FOR ENTER IN ACTIVE SPANS (MAYBE REDUCE LINE LENGT BY 3 IF IT IS > 45 ?)           
+        ☑️ ALLOW EXTRA SPACE FOR ENTER IN ACTIVE SPANS (MAYBE REDUCE LINE LENGT BY 3 IF IT IS > 45 ?)           
 
         ☑️ HAVE TO BE ABLE TO STYLE ENTER ICON IN TEXTSPANCONTAINERNEXT
             ☑️ REVERT BACK TO APPENDING NEXT LINE AS SPANS
