@@ -1817,20 +1817,16 @@ for (let i = 0; i < levelButtons.length; i += 1) {
     });
 }
 
-// TOGGLE LEVEL BUTTON STYLE
+// TOGGLE LEVEL BUTTON STYLE, CLASSES ARE NOW USED TO STYLE
 const toggleLevelButtonStyle = (element) => {
     if (element.classList.contains("toggle-on")) {
         element.classList.remove("toggle-on");
         element.classList.add("toggle-off");
         element.classList.remove("control-apply-active");
-        // !!! DO THIS WITH CLASS
-        element.style.fontWeight = "300";
     } else {
         element.classList.remove("toggle-off");
         element.classList.add("toggle-on");
         element.classList.add("control-apply-active");
-        // !!! DO THIS WITH CLASS
-        element.style.fontWeight = "800";
     }
 };
 
@@ -2034,12 +2030,19 @@ beginnerHideButton.addEventListener("click", function () {
 CURRENT:
 
     STYLE BEGINNER LEVEL
+        LIGHT
+        DARK
 
     BRANCH light-theme-1
 
 
 
     BRANCH dark-theme-1:
+
+        GREYSCALE FILTER IS TOO MUCH ON START BUTTON
+            MAKE CLASS FOR ELEMENTS THAT NEED FILTERING
+
+        ADD COLOUR-THEME CLASS TO EVERY ELEMENT AFFECTED ???
 
         ☑️ DISABLE START BUTTON IF CHANGES ARE MADE ON CONTROL PANEL (ITS DISABLED, ONLY CHANGE COLOUR)
 
