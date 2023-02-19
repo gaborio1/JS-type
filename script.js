@@ -259,6 +259,7 @@ const toggleButtonStyle = (element) => {
         element.classList.add("toggle-on");
         element.innerText = "On";
     }
+    // element.disabled = true;
 };
 
 // TOGGLE BOOLEAN BUTTON STATE BASED ON CLASS ONLY IF BEGINNER LEVEL IS NOT SELECTED
@@ -2029,15 +2030,15 @@ beginnerHideButton.addEventListener("click", function () {
 
 CURRENT:
 
+    BRANCH control-panel--light-1
+
+        REDUCE NUMBER OF COLOURS (USE GREEN, RED, ORANGE IN CONTROL PANEL)
+        TOGGLE COLOUR OF TOGGLE BUTTONS (OFF-RED / ON-GREEN, USE CLASSES toggle-on/off FROM toggleButtonStyle()) 
+
+
     STYLE BEGINNER LEVEL
         LIGHT
         DARK
-
-    BRANCH light-theme-1
-
-        REDUCE NUMBER OF COLOURS (USE GREEN, RED, ORANGE IN CONTROL PANEL)
-
-
 
     BRANCH dark-theme-1:
 
