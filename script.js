@@ -259,7 +259,10 @@ const toggleButtonStyle = (element) => {
         element.classList.add("toggle-on");
         element.innerText = "On";
     }
-    // element.disabled = true;
+    if (element !== themeToggle) {
+        element.disabled = true;
+    }
+
 };
 
 // TOGGLE BOOLEAN BUTTON STATE BASED ON CLASS ONLY IF BEGINNER LEVEL IS NOT SELECTED
@@ -1543,6 +1546,8 @@ punctuationApply.addEventListener("click", function () {
     toggleButtonState(punctuationToggle);
     punctuationApply.classList.remove("control-apply-active");
     punctuationApply.disabled = true;
+
+    punctuationToggle.disabled = false;
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CAPITAL 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1563,6 +1568,8 @@ capitalApply.addEventListener("click", function () {
     toggleButtonState(capitalToggle);
     capitalApply.classList.remove("control-apply-active");
     capitalApply.disabled = true;
+
+    capitalToggle.disabled = false;
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 ENTER 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1583,6 +1590,8 @@ enterApply.addEventListener("click", function () {
     toggleButtonState(enterToggle);
     enterApply.classList.remove("control-apply-active");
     enterApply.disabled = true;
+
+    enterToggle.disabled = false;
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TIMER 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1679,6 +1688,8 @@ timerApply.addEventListener("click", function () {
     toggleButtonState(timerToggle);
     timerApply.classList.remove("control-apply-active");
     timerApply.disabled = true;
+
+    timerToggle.disabled = false;
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 SOUND 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1699,6 +1710,8 @@ soundApply.addEventListener("click", function () {
     toggleButtonState(soundToggle);
     soundApply.classList.remove("control-apply-active");
     soundApply.disabled = true;
+
+    soundToggle.disabled = false;
 });
 
 // ONE OFF FUNCTION RUNS ON FIRST KEYPRESS
@@ -1741,24 +1754,48 @@ for (let i = 0; i < controlFlipButtons.length; i += 1) {
 // const themeToggle = document.getElementById("theme-toggle");
 // const themeApply = document.getElementById("theme-apply");
 
+// const handleThemeToggle = () => {
+//     toggleButtonStyle(themeToggle);
+//     themeApply.classList.add("control-apply-active");
+//     themeApply.disabled = false;
+//     // disableStartButton();
+// };
+
+// themeToggle.addEventListener("click", handleThemeToggle);
+
+// themeApply.addEventListener("click", function () {
+//     // !!! THIS BUTON DOES NOT BEHAVE AS OTHER APPLY BUTTONS, HAVE TO DISABLE HERE !!!
+//     themeApply.disabled = true;
+
+//     // enableStartButton();
+//     // clearDataAndDisplay();
+//     // clearArrAndString();
+//     toggleButtonState(themeToggle);
+//     themeApply.classList.remove("control-apply-active");
+//     // console.log(colourThemeElements);
+//     for (let i = 0; i < colourThemeElements.length; i += 1) {
+//         if (darkThemeOn) {
+//             colourThemeElements[i].classList.add("dark-theme");
+//         } else {
+//             colourThemeElements[i].classList.remove("dark-theme");
+//         }
+//     }
+
+// });
+
 const handleThemeToggle = () => {
     toggleButtonStyle(themeToggle);
-    themeApply.classList.add("control-apply-active");
-    themeApply.disabled = false;
-    // disableStartButton();
-};
+    // themeApply.classList.add("control-apply-active");
+    // themeApply.disabled = false;
 
-themeToggle.addEventListener("click", handleThemeToggle);
-
-themeApply.addEventListener("click", function () {
     // !!! THIS BUTON DOES NOT BEHAVE AS OTHER APPLY BUTTONS, HAVE TO DISABLE HERE !!!
-    themeApply.disabled = true;
+    // themeApply.disabled = true;
 
     // enableStartButton();
     // clearDataAndDisplay();
     // clearArrAndString();
     toggleButtonState(themeToggle);
-    themeApply.classList.remove("control-apply-active");
+    // themeApply.classList.remove("control-apply-active");
     // console.log(colourThemeElements);
     for (let i = 0; i < colourThemeElements.length; i += 1) {
         if (darkThemeOn) {
@@ -1767,7 +1804,11 @@ themeApply.addEventListener("click", function () {
             colourThemeElements[i].classList.remove("dark-theme");
         }
     }
-});
+};
+
+themeToggle.addEventListener("click", handleThemeToggle);
+
+
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BEGINNER CONTROLS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
