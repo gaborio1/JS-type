@@ -2035,6 +2035,8 @@ CURRENT:
 
     BRANCH light-theme-1
 
+        REDUCE NUMBER OF COLOURS (USE GREEN, RED, ORANGE IN CONTROL PANEL)
+
 
 
     BRANCH dark-theme-1:
