@@ -560,17 +560,18 @@ const removeProblemKeyHighlight = () => {
     }
 };
 
-// DISABLE CONTROL APPLY BUTTONS
-const disableApplyButtons = () => {
-    difficultyApply.disabled = true;
-    punctuationApply.disabled = true;
-    capitalApply.disabled = true;
-    enterApply.disabled = true;
-    timerApply.disabled = true;
-    lengthApply.disabled = true;
-    soundApply.disabled = true;
-    themeApply.disabled = true;
-};
+// DISABLE CONTROL APPLY BUTTONS (DISABLED)
+
+// const disableApplyButtons = () => {
+//     difficultyApply.disabled = true;
+//     punctuationApply.disabled = true;
+//     capitalApply.disabled = true;
+//     enterApply.disabled = true;
+//     timerApply.disabled = true;
+//     lengthApply.disabled = true;
+//     soundApply.disabled = true;
+//     themeApply.disabled = true;
+// };
 
 // MAKE EACH CHARACTER OF THE STRING A span AND APPEND AS A CHILD ELEMENT TO ITS CONTAINER
 
@@ -996,7 +997,8 @@ startButton.addEventListener("click", (event) => {
     removeProblemKeyHighlight();
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CONTROL PANEL 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-    disableApplyButtons();
+    // DISABLED
+    // disableApplyButtons();
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 STATISTICS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -1464,7 +1466,6 @@ const disableStartButton = () => {
 const applyButtons = document.getElementsByClassName("apply-button");
 
 const allChangesApplied = () => {
-    console.log("CHECK IF CHANGES APPLIED");
     let allApplied = true;
     for (let i = 0; i < applyButtons.length; i += 1) {
         if (applyButtons[i].classList.contains("control-apply-active")) {
