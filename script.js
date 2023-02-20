@@ -1461,39 +1461,52 @@ const disableStartButton = () => {
     startButton.disabled = true;
 };
 
+const applyButtons = document.getElementsByClassName("apply-button");
+
+const allChangesApplied = () => {
+    console.log("CHECK IF CHANGES APPLIED");
+    let allApplied = true;
+    for (let i = 0; i < applyButtons.length; i += 1) {
+        if (applyButtons[i].classList.contains("control-apply-active")) {
+            allApplied = false;
+            break;
+        }
+    }
+    return allApplied;
+}
+
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 DIFFICULTY 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
 // MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
 for (let i = 0, length = difficultyRadios.length; i < length; i++) {
     difficultyRadios[i].addEventListener("click", function () {
-        // console.log("difficulty selected");
         difficultyApply.classList.add("control-apply-active");
         difficultyApply.disabled = false;
         startButton.classList.remove("control-apply-active");
-        startButton.disabled = true;
+        if (allChangesApplied()) {
+            enableStartButton();
+        }
     });
 }
 
 difficultyApply.addEventListener("click", function () {
     difficultyApply.classList.remove("control-apply-active");
     difficultyApply.disabled = true;
-    enableStartButton();
+    if (allChangesApplied()) {
+        enableStartButton();
+    }
     clearDataAndDisplay();
     clearArrAndString();
 
     for (let i = 0, length = difficultyRadios.length; i < length; i++) {
         if (difficultyRadios[i].checked) {
-            // console.log("RADIOS VALUE:", difficultyRadios[i].value);
             if (difficultyRadios[i].value === "100") {
-                // console.log("100");
                 targetArray = [...common100];
             }
             if (difficultyRadios[i].value === "200") {
-                // console.log("200");
                 targetArray = [...common200, ...common100];
             }
             if (difficultyRadios[i].value === "JavaScript") {
-                // console.log("JaveScript");
                 targetArray = [...jsReserved, ...jsObjPropMeth];
             }
             break;
@@ -1507,9 +1520,7 @@ difficultyApply.addEventListener("click", function () {
 
 // DISPLAY CURRENT VALUE OF SLIDER
 slider.onchange = function (event) {
-    // console.log("SLIDER VALUE HAS BEEN CHANGED:", slider.value);
     lengthDisplaySpan.textContent = slider.value;
-    // console.log("slider changed");
     lengthApply.classList.add("control-apply-active");
     lengthApply.disabled = false;
     disableStartButton();
@@ -1517,13 +1528,14 @@ slider.onchange = function (event) {
 
 // GET SLIDER FINAL VALUE AND ASSIGN TO SEQUENCE LENGTH
 lengthApply.addEventListener("click", function () {
-    enableStartButton();
     clearDataAndDisplay();
     clearArrAndString();
     sequenceLength = slider.value;
-    // console.log("SLIDER CHANGED, NEW VALUE TO SUBMIT:", sequenceLength);
     lengthApply.classList.remove("control-apply-active");
     lengthApply.disabled = true;
+    if (allChangesApplied()) {
+        enableStartButton();
+    }
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 PUNCTUATION 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1540,13 +1552,14 @@ punctuationToggle.addEventListener("click", handlePunctuationToggle);
 
 // 2. APPLY CHANGES WHEN CLICKED
 punctuationApply.addEventListener("click", function () {
-    enableStartButton();
     clearDataAndDisplay();
     clearArrAndString();
     toggleButtonState(punctuationToggle);
     punctuationApply.classList.remove("control-apply-active");
     punctuationApply.disabled = true;
-
+    if (allChangesApplied()) {
+        enableStartButton();
+    }
     punctuationToggle.disabled = false;
 });
 
@@ -1562,13 +1575,14 @@ const handleCapitalToggle = () => {
 capitalToggle.addEventListener("click", handleCapitalToggle);
 
 capitalApply.addEventListener("click", function () {
-    enableStartButton();
     clearDataAndDisplay();
     clearArrAndString();
     toggleButtonState(capitalToggle);
     capitalApply.classList.remove("control-apply-active");
     capitalApply.disabled = true;
-
+    if (allChangesApplied()) {
+        enableStartButton();
+    }
     capitalToggle.disabled = false;
 });
 
@@ -1584,13 +1598,14 @@ const handleEnterToggle = () => {
 enterToggle.addEventListener("click", handleEnterToggle);
 
 enterApply.addEventListener("click", function () {
-    enableStartButton();
     clearDataAndDisplay();
     clearArrAndString();
     toggleButtonState(enterToggle);
     enterApply.classList.remove("control-apply-active");
     enterApply.disabled = true;
-
+    if (allChangesApplied()) {
+        enableStartButton();
+    }
     enterToggle.disabled = false;
 });
 
@@ -1682,13 +1697,14 @@ const handleTimerToggle = () => {
 timerToggle.addEventListener("click", handleTimerToggle);
 
 timerApply.addEventListener("click", function () {
-    enableStartButton();
     clearDataAndDisplay();
     clearArrAndString();
     toggleButtonState(timerToggle);
     timerApply.classList.remove("control-apply-active");
     timerApply.disabled = true;
-
+    if (allChangesApplied()) {
+        enableStartButton();
+    }
     timerToggle.disabled = false;
 });
 
@@ -1704,13 +1720,14 @@ const handleSoundToggle = () => {
 soundToggle.addEventListener("click", handleSoundToggle);
 
 soundApply.addEventListener("click", function () {
-    enableStartButton();
     clearDataAndDisplay();
     clearArrAndString();
     toggleButtonState(soundToggle);
     soundApply.classList.remove("control-apply-active");
     soundApply.disabled = true;
-
+    if (allChangesApplied()) {
+        enableStartButton();
+    }
     soundToggle.disabled = false;
 });
 
@@ -1750,53 +1767,10 @@ for (let i = 0; i < controlFlipButtons.length; i += 1) {
 }
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 COLOUR THEME 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
-// const colourThemeElements = document.getElementsByClassName("colour-theme");
-// const themeToggle = document.getElementById("theme-toggle");
-// const themeApply = document.getElementById("theme-apply");
-
-// const handleThemeToggle = () => {
-//     toggleButtonStyle(themeToggle);
-//     themeApply.classList.add("control-apply-active");
-//     themeApply.disabled = false;
-//     // disableStartButton();
-// };
-
-// themeToggle.addEventListener("click", handleThemeToggle);
-
-// themeApply.addEventListener("click", function () {
-//     // !!! THIS BUTON DOES NOT BEHAVE AS OTHER APPLY BUTTONS, HAVE TO DISABLE HERE !!!
-//     themeApply.disabled = true;
-
-//     // enableStartButton();
-//     // clearDataAndDisplay();
-//     // clearArrAndString();
-//     toggleButtonState(themeToggle);
-//     themeApply.classList.remove("control-apply-active");
-//     // console.log(colourThemeElements);
-//     for (let i = 0; i < colourThemeElements.length; i += 1) {
-//         if (darkThemeOn) {
-//             colourThemeElements[i].classList.add("dark-theme");
-//         } else {
-//             colourThemeElements[i].classList.remove("dark-theme");
-//         }
-//     }
-
-// });
 
 const handleThemeToggle = () => {
     toggleButtonStyle(themeToggle);
-    // themeApply.classList.add("control-apply-active");
-    // themeApply.disabled = false;
-
-    // !!! THIS BUTON DOES NOT BEHAVE AS OTHER APPLY BUTTONS, HAVE TO DISABLE HERE !!!
-    // themeApply.disabled = true;
-
-    // enableStartButton();
-    // clearDataAndDisplay();
-    // clearArrAndString();
     toggleButtonState(themeToggle);
-    // themeApply.classList.remove("control-apply-active");
-    // console.log(colourThemeElements);
     for (let i = 0; i < colourThemeElements.length; i += 1) {
         if (darkThemeOn) {
             colourThemeElements[i].classList.add("dark-theme");
@@ -1807,8 +1781,6 @@ const handleThemeToggle = () => {
 };
 
 themeToggle.addEventListener("click", handleThemeToggle);
-
-
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BEGINNER CONTROLS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -1937,7 +1909,6 @@ const toggleLevelButtonState = (element) => {
 
 // 2. APPLY CHANGES TO ALL LEVELS WHEN APPLY CLICKED
 levelsApply.addEventListener("click", function () {
-    // console.log("LEVEL APPLY CLICKED");
     randomKeyWordsArray = []; // RESET TO AVOID DUPLICATES IF APPLY IS CLICKED AGAIN
     selectedBeginerKeys = []; // RESET TO AVOID DUPLICATES
     enableStartButton();
@@ -1969,12 +1940,10 @@ levelsApply.addEventListener("click", function () {
 
     // 1. FIND ALL SELECTED KEYS IN GROUPS
     for (let i = 0; i < levelStateArray.length; i += 1) {
-        // console.log(levelStateArray);
         if (levelStateArray[i]) {
             selectedBeginerKeys = selectedBeginerKeys.concat(keyLevelsArray[i]);
         }
     }
-    // console.log(selectedBeginerKeys);
 
     // 2. GENERATE WORDS USING ONLY THOSE SELECTED KEYS
     const generateWords = (numOfWords) => {
@@ -2205,5 +2174,7 @@ CURRENT:
         NOTES:
             !!! WHEN TIMER HAS ENDED FIRST START BUTTON PRESS WILL GENERATE POBLEM KEY WORDS ONLY, SECOND CLICK WILL USE COMMON100 !!!
         
+        ☑️ DO NOT ACTIVATE START BUTTON UNTIL ALL CHANGES HAVE BEEN APPLIED ON CONTROL PANEL 
+            allChangesApplied() RETURNS BOOLEAN
     
 */
