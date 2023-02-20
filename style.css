@@ -1101,6 +1101,10 @@ p .active-txt-span.active-txt-span--enter {
     transform-style: preserve-3d;
     transition: transform 1s;
 
+    /* VERTICAL SCROLL FOR OVERFLOW CONTENT */
+    overflow-x: hidden;
+    overflow-y: auto;
+
     /* backface-visibility: hidden; */
 }
 
@@ -1127,25 +1131,29 @@ p .active-txt-span.active-txt-span--enter {
     /* backface-visibility: hidden; */
 }
 
+/* HIDE BUTTON */
 .flip-button__card--main {
     /* display: inline-block; */
+
     width: 45px;
     height: 25px;
-    border: 1px solid black;
-    border: 1px solid var(--border-grey);
-    border-radius: 4px;
+
+    margin-left: 450px;
+    /* border: 1px solid black; */
+    /* border: 1px solid var(--border-grey); */
     font-family: "Roboto", sans-serif;
     font-weight: 100;
-    /* background: lightgreen; */
-    background: rgb(215, 242, 250);
-    margin-left: 450px;
+    color: green;
+
+    border: 1px solid green;
+    border-radius: 4px;
+
+    /* opacity: 1; */
 }
 
 .instructions-container .flip-button__card--main:hover {
-    background: lightgreen;
-    background: rgb(170, 232, 251);
     font-weight: 500;
-    border: 1px solid rgb(149, 149, 149);
+    border: 2px solid green;
 }
 
 .instructions-container.dark-theme .flip-button__card--main {
