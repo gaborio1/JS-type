@@ -259,10 +259,9 @@ const toggleButtonStyle = (element) => {
         element.classList.add("toggle-on");
         element.innerText = "On";
     }
-    if (element !== themeToggle) {
-        element.disabled = true;
-    }
-
+    // if (element !== themeToggle) {
+    //     element.disabled = true;
+    // }
 };
 
 // TOGGLE BOOLEAN BUTTON STATE BASED ON CLASS ONLY IF BEGINNER LEVEL IS NOT SELECTED
@@ -1474,7 +1473,7 @@ const allChangesApplied = () => {
         }
     }
     return allApplied;
-}
+};
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 DIFFICULTY 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -2043,8 +2042,11 @@ CURRENT:
 
     BRANCH control-panel--light-1
 
-        REDUCE NUMBER OF COLOURS (USE GREEN, RED, ORANGE IN CONTROL PANEL)
-        TOGGLE COLOUR OF TOGGLE BUTTONS (OFF-RED / ON-GREEN, USE CLASSES toggle-on/off FROM toggleButtonStyle()) 
+        ☑️ REDUCE NUMBER OF COLOURS (USE GREEN, RED, ORANGE IN CONTROL PANEL)
+        ☑️ TOGGLE COLOUR OF TOGGLE BUTTONS (OFF-RED / ON-GREEN, USE CLASSES toggle-on/off FROM toggleButtonStyle()) 
+
+        STYLE TOGGLE BUTTONS ONLY WITH COLOR/BORDER 2PX ?
+        KEEP BACKGROUND ON APPLY BUTTONS
 
 
     STYLE BEGINNER LEVEL
@@ -2178,4 +2180,5 @@ CURRENT:
         ☑️ DO NOT ACTIVATE START BUTTON UNTIL ALL CHANGES HAVE BEEN APPLIED ON CONTROL PANEL 
             allChangesApplied() RETURNS BOOLEAN
     
+        DO NOT DISABLE START BUTTON / RESET DATA WITH SOUND ON/OFF
 */
