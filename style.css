@@ -421,14 +421,20 @@ button:disabled:hover {
 /* LEVEL BUTTONS */
 .control-panel-button.level-button {
     font-family: "Roboto", sans-serif;
-    width: fit-content;
-    font-weight: 100;
+    /* width: fit-content; */
     width: 80px;
     margin: 5px;
+    font-weight: 100;
+    background: #f0efeb;
+    color: red;
+    border: 1px inset red;
+    /* border: 1px outset red; */
 }
 
 /* LEVEL BUTTONS : TOGGLE ON */
 .control-panel-button.level-button.toggle-on {
+    color: green;
+    border: 1px solid green;
     font-weight: 500;
 }
 
@@ -436,13 +442,43 @@ button:disabled:hover {
 .control-panel-button.level-button:hover {
     /* THIS IS THE CONTROL-APPLY-ACTIVE COLOUR */
     /* TRY A LIGTHER SHADE ??? */
-    background: rgba(144, 238, 144, 0.765);
-    border: 1px solid rgb(149, 149, 149);
+    /* background: rgba(144, 238, 144, 0.765); */
+    /* border: 2px solid rgb(149, 149, 149); */
+    border-width: 2px;
     font-weight: 500;
 }
 
 .level-button {
     letter-spacing: 5px;
+}
+
+/* LEVELS APPLY BUTTON */
+.beginner-control-hide-container .control-panel-button.levels-apply {
+    color: black;
+    border: 1px solid black;
+}
+
+.beginner-control-hide-container .control-panel-button.levels-apply:disabled {
+    color: black;
+    border: 1px solid black;
+    opacity: 0.3;
+}
+
+.beginner-control-hide-container
+    .control-panel-button.levels-apply:disabled:hover {
+    /* !!! TEMP FIX FOR DISABLED HOVER !!! */
+    color: rgb(56, 56, 56);
+    border: 1px solid black;
+    opacity: 0.3;
+}
+
+.beginner-control-hide-container
+    .control-panel-button.control-apply-active.levels-apply {
+    color: green;
+    font-weight: 500;
+    border: 2px double green;
+
+    opacity: 1;
 }
 
 /* TOOLTIP */
@@ -514,9 +550,22 @@ button:disabled:hover {
     /* border: 1px solid black; */
 }
 
+/* ADVANCED */
 .beginner-control-hide-container .control-panel-button {
     width: 80px;
     margin: 0px 5px 0px 5px;
+    font-family: "Roboto", sans-serif;
+    color: green;
+    border: 1px solid green;
+}
+
+.beginner-control-hide-container .control-panel-button:hover {
+    border-width: 2px;
+    font-weight: 500;
+    /* width: 80px;
+    margin: 0px 5px 0px 5px;
+    color: green;
+    border: 1px solid green; */
 }
 
 /* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TEXT CONTAINERS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
