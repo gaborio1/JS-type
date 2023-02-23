@@ -70,6 +70,7 @@ const flipButtons = document.getElementsByClassName("flip-button--main");
 const disabledDuringTimer = document.getElementsByClassName(
     "disabled-during-timer"
 );
+const instructionsContainer = document.getElementById("instructions-container");
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰   BEGINNER CONTROL PANEL   🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -1751,7 +1752,11 @@ const startCountdown = () => {
 
 for (let i = 0; i < flipButtons.length; i += 1) {
     flipButtons[i].addEventListener("click", function () {
+        console.log("CARD FLIPPED");
         card.classList.toggle("flipped");
+        instructionsContainer.scrollTop = 0;
+        // NOT WORKING:
+        // instructionsContainer.scrollIntoView();
     });
 }
 
@@ -1765,6 +1770,12 @@ for (let i = 0; i < controlFlipButtons.length; i += 1) {
         // console.log("CONTROL FLIP BUTTON CLICKED");
     });
 }
+
+// CLICK ANYWHERE TO CLOSE INSTRUCTIONS
+instructionsContainer.addEventListener("click", function () {
+    // console.log("CONTAINER CLICKED");
+    card.classList.toggle("flipped");
+});
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 COLOUR THEME 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
@@ -1912,6 +1923,7 @@ levelsApply.addEventListener("click", function () {
     randomKeyWordsArray = []; // RESET TO AVOID DUPLICATES IF APPLY IS CLICKED AGAIN
     selectedBeginerKeys = []; // RESET TO AVOID DUPLICATES
     enableStartButton();
+    levelsApply.disabled = true;
 
     levelsApply.classList.remove("control-apply-active");
     // THIS WILL UPDATE LEVEL STATES ARRAY
@@ -2052,7 +2064,7 @@ CURRENT:
 
         MAKE HIDE INFO BUTTON STICKY
 
-        DISABLE LEVEL-APPLY ONCE IT IS CLICKED
+        ☑️ DISABLE LEVEL-APPLY ONCE IT IS CLICKED
 
 
     STYLE BEGINNER LEVEL
