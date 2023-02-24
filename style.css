@@ -39,20 +39,15 @@ Please notice that removing outline from input is an accessibility bad practice.
 }
 
 body {
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
+
     font-family: "Roboto", sans-serif;
     /* THIS AFFECTS SPANS IN TEXT FIELDS */
     text-align: center;
-    background-color: white;
     background-color: whitesmoke;
     filter: grayscale(0.2);
 }
 
 body.dark-theme {
-    /* background-color: #222020;
-    background-color: #151414e6; */
     background-color: #000000;
     filter: grayscale(0.45);
 }
@@ -67,9 +62,6 @@ h3 {
     font-weight: 400;
 }
 
-/* .colour-code-wrap--not typed.dark-theme h3 {
-    color: white;
-} */
 
 .hidden {
     /* visibility: hidden; */
@@ -96,25 +88,18 @@ h3 {
 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
 .container {
-    width: 1000px;
-    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    /* position: absolute;
-    left: 0%;
-    top: 10%; */
-
-    /* margin: 50px auto; */
-
-    /* border: 1px solid darkgoldenrod; */
-    border: 1px solid var(--border-grey);
-    border-radius: 4px;
-
+    width: 1000px;
+    height: 100px;
     background: #f0efeb;
     /* background: whitesmoke; */
     font-weight: 100;
+    /* margin: 50px auto; */
+    /* border: 1px solid darkgoldenrod; */
+    border: 1px solid var(--border-grey);
+    border-radius: 4px;
 }
 
 .container.dark-theme {
@@ -663,9 +648,7 @@ button:disabled:hover {
     justify-content: space-between;
     justify-content: space-around;
     width: 33%;
-    /* height: 70px; */
     margin: 0px auto;
-    /* border: 1px solid black; */
 }
 
 
