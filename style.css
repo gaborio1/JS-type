@@ -415,6 +415,10 @@ button:disabled:hover {
 .card__face--back--controls.dark-theme {
     background: rgba(0, 119, 255, 0.507);
     background: rgba(0, 119, 255, 0.295);
+    background: rgb(25, 25, 25);
+    border: 1px solid var(--border-gold);
+    border-radius: 4px;
+
 }
 
 .spacer-div__beginner-controls {
@@ -425,6 +429,12 @@ button:disabled:hover {
     /* border-top: 1px solid var(--border-grey); */
     border-left: 1px solid var(--border-grey);
 }
+
+.spacer-div__beginner-controls.dark-theme {
+    border-left: 1px solid var(--border-gold);
+}
+
+
 
 .card--controls.flipped {
     transform: rotateY(180deg);
@@ -439,7 +449,12 @@ button:disabled:hover {
 }
 
 /* LEVEL BUTTONS */
-.control-panel-button.level-button {
+
+.level-button {
+    letter-spacing: 5px;
+}
+
+.beginner-container .level-button {
     font-family: "Roboto", sans-serif;
     /* width: fit-content; */
     width: 80px;
@@ -455,11 +470,24 @@ button:disabled:hover {
     color: black;
     /* border: 1px inset red; */
     border: 1px solid red;
+    border-radius: 4px;
     /* border: 1px outset red; */
 }
 
+.beginner-container.dark-theme .level-button {
+    background: rgba(255, 0, 0, 0.321);
+    background: rgba(255, 0, 0, 0.37);
+    /* color: red; */
+    color: grey;
+    color: orange;
+    /* border: 1px inset red; */
+    border: 1px solid red;
+    /* border: 1px solid var(--border-gold); */
+}
+
+
 /* LEVEL BUTTONS : TOGGLE ON */
-.control-panel-button.level-button.toggle-on {
+.beginner-container .level-button.toggle-on {
     /* color: green; */
     color: black;
     background: rgba(0, 128, 0, 0.304);
@@ -467,18 +495,24 @@ button:disabled:hover {
     font-weight: 500;
 }
 
+.beginner-container.dark-theme .level-button.toggle-on {
+    /* color: green; */
+    color: orange;
+    background: rgba(0, 128, 0, 0.304);
+    border: 1px solid green;
+    font-weight: 500;
+}
+
+
+
 /* LEVEL BUTTONS : HOVER */
-.control-panel-button.level-button:hover {
+.beginner-container .level-button:hover {
     /* THIS IS THE CONTROL-APPLY-ACTIVE COLOUR */
     /* TRY A LIGTHER SHADE ??? */
     /* background: rgba(144, 238, 144, 0.765); */
     /* border: 2px solid rgb(149, 149, 149); */
     border-width: 2px;
     font-weight: 500;
-}
-
-.level-button {
-    letter-spacing: 5px;
 }
 
 /* MORE CONTROLS, CURRENTLY EMPTY */
@@ -488,30 +522,56 @@ button:disabled:hover {
 }
 
 /* LEVELS APPLY BUTTON */
-.beginner-control-hide-container .control-panel-button.levels-apply {
+
+.levels-apply {
+    background: yellow;
+}
+
+
+
+.beginner-container .control-panel-button.levels-apply {
     color: black;
     border: 1px solid black;
 }
 
-.beginner-control-hide-container .control-panel-button.levels-apply:disabled {
+.beginner-container .control-panel-button.levels-apply:disabled {
     color: black;
     border: 1px solid black;
     opacity: 0.3;
 }
 
-.beginner-control-hide-container .control-panel-button.levels-apply:disabled:hover {
-    /* !!! TEMP FIX FOR DISABLED HOVER !!! */
-    color: rgb(56, 56, 56);
-    border: 1px solid black;
-    opacity: 0.3;
+
+.control-panel-button.levels-apply.dark-theme:disabled {
+    color: var(--border-gold);
+    background: none;
+    /* background: yellow; */
+    border: 1px solid var(--border-gold);
+    opacity: 0.7;
 }
 
-.beginner-control-hide-container .control-panel-button.control-apply-active.levels-apply {
+.control-panel-button.levels-apply.dark-theme:disabled:hover {
+    color: var(--border-gold);
+    background: none;
+    border: 1px solid var(--border-gold);
+    opacity: 0.7;
+}
+
+
+.beginner-container .control-apply-active.levels-apply {
     color: green;
     font-weight: 500;
     border: 2px double green;
 
     opacity: 1;
+}
+
+.beginner-container .control-apply-active.levels-apply.dark-theme {
+    color: rgb(229, 172, 28);
+    font-weight: 500;
+    background: rgba(0, 128, 0, 0.304);
+    border: 1px solid green;
+
+    /* opacity: 1; */
 }
 
 /* TOOLTIP */
@@ -608,25 +668,78 @@ button:disabled:hover {
     /* border: 1px solid black; */
 }
 
-/* APPLY, ADVANCED */
-.beginner-control-hide-container .control-panel-button {
+
+
+
+
+
+
+/* BOTH APPLY, ADVANCED */
+.beginner-container .control-panel-button {
     width: 90px;
     height: 30px;
-    /* margin: 0px 5px 0px 5px; */
     font-family: "Roboto", sans-serif;
-    background: var(--wrap-highlight--light);
-    color: green;
-    border: 1px solid green;
     opacity: 1;
 }
 
-.beginner-control-hide-container .control-panel-button:hover {
+.beginner-container .control-panel-button:hover {
     border-width: 2px;
     font-weight: 500;
     /* width: 80px;
     margin: 0px 5px 0px 5px;
     color: green;
     border: 1px solid green; */
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++ */
+/* APPLY */
+.beginner-container .levels-apply {
+    color: green;
+    border: 1px solid green;
+    background: var(--wrap-highlight--light);
+}
+
+.beginner-container .beginner-hide-button {
+    color: green;
+    border: 1px solid green;
+    background: var(--wrap-highlight--light);
+}
+
+
+
+/* ++++++++++++++++++++++++++++++++++++++++++ */
+
+
+/* DARK */
+.beginner-hide-button.dark-theme {
+    width: 90px;
+    height: 30px;
+    /* margin: 0px 5px 0px 5px; */
+    font-family: "Roboto", sans-serif;
+    /* background: var(--wrap-highlight--light); */
+
+    background: #4d4d4d91;
+    /* background: yellow; */
+    color: darkgoldenrod;
+    border: 1px solid green;
+    opacity: 1;
+}
+
+.beginner-hide-button.dark-theme:hover {
+    width: 90px;
+    height: 30px;
+    /* margin: 0px 5px 0px 5px; */
+    font-family: "Roboto", sans-serif;
+    /* background: var(--wrap-highlight--light); */
+    background: none;
+    color: rgb(229, 172, 28);
+
+
+    background: #4d4d4d91;
+    background: rgba(0, 128, 0, 0.304);
+    /* color: darkgoldenrod; */
+    border: 1px solid green;
+    opacity: 1;
 }
 
 /* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TEXT CONTAINERS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
