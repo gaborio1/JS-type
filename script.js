@@ -943,6 +943,37 @@ const reloadSequence = () => {
     }, 5000);
 };
 
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 ALWAYS CENTER APP VERTICALLY 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+// SOURCE: https://stackoverflow.com/questions/15615552/get-div-height-with-plain-javascript
+
+// APP CONTAINER HEIGHT
+const appHeight = document.getElementById('container').clientHeight;
+// GET WINDOW HEIGHT
+let viewportHeight = window.innerHeight;
+// INITIALISE MARGIN TOP
+let marginTop = 0;
+
+// CALC MARGIN TOP
+const calcMarginTop = () => {
+    return (viewportHeight - appHeight) / 2;
+}
+
+// SET MARGIN TOP IF APP HEIGHT IS SMALLER THAN WINDOW HEIGHT
+const setMarginTop = function () {
+    viewportHeight = window.innerHeight;
+    // console.log(viewportHeight);
+    if (viewportHeight > appHeight) {
+        marginTop = calcMarginTop();
+        // console.log("MARGIN TOP:", marginTop);
+        container.style.marginTop = `${marginTop}px`;
+    }
+}
+
+// LISTENER EVENTS
+window.addEventListener("resize", setMarginTop);
+window.addEventListener("load", setMarginTop);
+
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 PAGE LOAD 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
 startButton.classList.add("control-apply-active"); // HIGHLIGHT START BUTTON
@@ -2048,6 +2079,7 @@ beginnerHideButton.addEventListener("click", function () {
     targetArray = [...common100];
 });
 
+
 /*
 
 CURRENT:
@@ -2199,4 +2231,6 @@ CURRENT:
             allChangesApplied() RETURNS BOOLEAN
     
         DO NOT DISABLE START BUTTON / RESET DATA WITH SOUND ON/OFF
+
+        CENTER APP VERTICALLY RESPONSIVE TO WINDOW HEIGHT
 */
