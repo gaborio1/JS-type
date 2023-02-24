@@ -94,10 +94,8 @@ h3 {
     width: 1000px;
     height: 100px;
     background: #f0efeb;
-    /* background: whitesmoke; */
     font-weight: 100;
     /* margin: 50px auto; */
-    /* border: 1px solid darkgoldenrod; */
     border: 1px solid var(--border-grey);
     border-radius: 4px;
 }
@@ -105,7 +103,6 @@ h3 {
 .container.dark-theme {
     border: 1px solid var(--border-gold);
     background-color: rgb(28, 28, 28);
-    /* border: 1px solid rgb(23, 96, 24); */
 }
 
 .wrapper {
@@ -212,10 +209,6 @@ button:disabled:hover {
     color: darkgoldenrod;
 }
 
-/* .control-wrap button:disabled {
-    opacity: 0.7;
-} */
-
 /* COLOUR APPLY BUTTON GETS DISABLED IN JS: themeApply.addEventListener */
 .control-wrap.dark-theme button:disabled {
     opacity: 0.4;
@@ -226,26 +219,16 @@ button:disabled:hover {
     color: darkgoldenrod;
 }
 
-/* .control-wrap button:active:hover {
-    background: lightgreen;
-} */
-
-/* ++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* CONTROL PANEL BUTTONS */
 .control-panel-button {
     width: 45px;
     height: 25px;
-
-    /* border: 1px solid var(--border-grey);
-    background: rgb(252, 122, 122);
-     */
 
     /* 1. MAKE DEFAULT RED */
     border: 1px solid red;
     color: red;
 
     border-radius: 4px;
-
     opacity: 0.75;
 }
 
@@ -277,7 +260,6 @@ button:disabled:hover {
     color: black;
 }
 
-/* ++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 .control-wrap.dark-theme .control-panel-button {
     border: 1px solid var(--border-gold);
@@ -306,7 +288,6 @@ button:disabled:hover {
 .control-toggle-button:hover {
     font-weight: 500;
     /* border: 1px solid rgba(149, 149, 149, 0.515); */
-    /* background: rgb(170, 232, 251); */
     border-width: 2px;
 
     /* opacity: 1; */
@@ -384,7 +365,6 @@ button:disabled:hover {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    /* background: rgba(0, 0, 255, 0.507); */
     /* background: rgba(0, 119, 255, 0.295); */
     /* background: rgba(0, 76, 163, 0.658); */
     /* border: 1px solid var(--border-gold); */
@@ -398,8 +378,8 @@ button:disabled:hover {
 }
 
 .card__face--back--controls.dark-theme {
-    background: rgba(0, 119, 255, 0.507);
-    background: rgba(0, 119, 255, 0.295);
+    /* background: rgba(0, 119, 255, 0.507);
+    background: rgba(0, 119, 255, 0.295); */
     background: rgb(25, 25, 25);
     border: 1px solid var(--border-gold);
     border-radius: 4px;
@@ -407,11 +387,8 @@ button:disabled:hover {
 }
 
 .spacer-div__beginner-controls {
-    /* width: 93%; */
     height: 90%;
-    /* margin: 0px auto; */
     margin: auto 5px;
-    /* border-top: 1px solid var(--border-grey); */
     border-left: 1px solid var(--border-grey);
 }
 
@@ -426,11 +403,8 @@ button:disabled:hover {
 }
 
 .level-button-container {
-    /* display: flex; */
     width: 850px;
     width: 300px;
-    /* margin: 0px auto; */
-    /* border: 1px solid black; */
 }
 
 /* LEVEL BUTTONS */
@@ -441,39 +415,27 @@ button:disabled:hover {
 
 .beginner-container .level-button {
     font-family: "Roboto", sans-serif;
-    /* width: fit-content; */
     width: 80px;
-    /* width: 75px; */
-    /* height: 50px; */
     height: 35px;
     margin: 5px;
     font-weight: 100;
-    /* background: #f0efeb; */
-    /* background: var(--wrap-highlight--light); */
     background: rgba(255, 0, 0, 0.321);
-    /* color: red; */
     color: black;
-    /* border: 1px inset red; */
     border: 1px solid red;
     border-radius: 4px;
-    /* border: 1px outset red; */
 }
 
 .beginner-container.dark-theme .level-button {
     background: rgba(255, 0, 0, 0.321);
     background: rgba(255, 0, 0, 0.37);
-    /* color: red; */
     color: grey;
     color: orange;
-    /* border: 1px inset red; */
     border: 1px solid red;
-    /* border: 1px solid var(--border-gold); */
 }
 
 
 /* LEVEL BUTTONS : TOGGLE ON */
 .beginner-container .level-button.toggle-on {
-    /* color: green; */
     color: black;
     background: rgba(0, 128, 0, 0.304);
     border: 1px solid green;
@@ -481,7 +443,6 @@ button:disabled:hover {
 }
 
 .beginner-container.dark-theme .level-button.toggle-on {
-    /* color: green; */
     color: orange;
     background: rgba(0, 128, 0, 0.304);
     border: 1px solid green;
@@ -508,12 +469,6 @@ button:disabled:hover {
 
 /* LEVELS APPLY BUTTON */
 
-.levels-apply {
-    background: yellow;
-}
-
-
-
 .beginner-container .control-panel-button.levels-apply {
     color: black;
     border: 1px solid black;
@@ -529,7 +484,6 @@ button:disabled:hover {
 .control-panel-button.levels-apply.dark-theme:disabled {
     color: var(--border-gold);
     background: none;
-    /* background: yellow; */
     border: 1px solid var(--border-gold);
     opacity: 0.7;
 }
@@ -555,7 +509,6 @@ button:disabled:hover {
     font-weight: 500;
     background: rgba(0, 128, 0, 0.304);
     border: 1px solid green;
-
     /* opacity: 1; */
 }
 
@@ -668,13 +621,8 @@ button:disabled:hover {
 .beginner-container .control-panel-button:hover {
     border-width: 2px;
     font-weight: 500;
-    /* width: 80px;
-    margin: 0px 5px 0px 5px;
-    color: green;
-    border: 1px solid green; */
 }
 
-/* ++++++++++++++++++++++++++++++++++++++++++ */
 /* APPLY */
 .beginner-container .levels-apply {
     color: green;
@@ -688,21 +636,13 @@ button:disabled:hover {
     background: var(--wrap-highlight--light);
 }
 
-
-
-/* ++++++++++++++++++++++++++++++++++++++++++ */
-
-
 /* DARK */
 .beginner-hide-button.dark-theme {
     width: 90px;
     height: 30px;
-    /* margin: 0px 5px 0px 5px; */
     font-family: "Roboto", sans-serif;
-    /* background: var(--wrap-highlight--light); */
 
     background: #4d4d4d91;
-    /* background: yellow; */
     color: darkgoldenrod;
     border: 1px solid green;
     opacity: 1;
@@ -711,16 +651,9 @@ button:disabled:hover {
 .beginner-hide-button.dark-theme:hover {
     width: 90px;
     height: 30px;
-    /* margin: 0px 5px 0px 5px; */
     font-family: "Roboto", sans-serif;
-    /* background: var(--wrap-highlight--light); */
-    background: none;
     color: rgb(229, 172, 28);
-
-
-    background: #4d4d4d91;
     background: rgba(0, 128, 0, 0.304);
-    /* color: darkgoldenrod; */
     border: 1px solid green;
     opacity: 1;
 }
@@ -841,8 +774,6 @@ p .active-txt-span.active-txt-span--enter {
     top: -1px;
     left: 10px;
     width: 45px;
-    /* height: 20px;
-    height: 30px; */
     height: 39px;
 
     padding-top: 6px;
@@ -882,9 +813,6 @@ p .active-txt-span.active-txt-span--enter {
     height: 50px;
     margin: 50px 0px 0px 0px;
     padding: 0px 25px 0px 25px;
-    /* display: flex; */
-    /* justify-content: space-around; */
-    /* justify-content: space-between; */
 }
 
 /* TIMER */
@@ -929,7 +857,6 @@ p .active-txt-span.active-txt-span--enter {
     /* text-align: center; */
     /* color: grey; */
     color: rgb(74, 73, 73);
-    /* color: beige; */
     font-weight: 300;
     /* border: none; */
     border: 1px solid var(--border-grey);
