@@ -949,6 +949,7 @@ const reloadSequence = () => {
 
 // APP CONTAINER HEIGHT
 const appHeight = document.getElementById('container').clientHeight;
+console.log("CONTAINER HEIGHT", appHeight)
 // GET WINDOW HEIGHT
 let viewportHeight = window.innerHeight;
 // INITIALISE MARGIN TOP
@@ -966,7 +967,9 @@ const setMarginTop = function () {
     if (viewportHeight > appHeight) {
         marginTop = calcMarginTop();
         // console.log("MARGIN TOP:", marginTop);
+        // BOTH CARD SIDES
         container.style.marginTop = `${marginTop}px`;
+        instructionsContainer.style.marginTop = `${marginTop}px`;
     }
 }
 
@@ -1783,7 +1786,7 @@ const startCountdown = () => {
 
 for (let i = 0; i < flipButtons.length; i += 1) {
     flipButtons[i].addEventListener("click", function () {
-        console.log("CARD FLIPPED");
+        // console.log("CARD FLIPPED");
         card.classList.toggle("flipped");
         instructionsContainer.scrollTop = 0;
         // NOT WORKING:
@@ -2094,7 +2097,7 @@ CURRENT:
 
         ☑️ POSITION TOOLTIPS INDIVIDUALLY TO ALWAYS APPEAR ABOVE LEVEL CONTAINER DIV
 
-        MAKE HIDE INFO BUTTON STICKY
+        MAKE HIDE INFO BUTTON STICKY ?
 
         ☑️ DISABLE LEVEL-APPLY ONCE IT IS CLICKED
 
@@ -2232,5 +2235,5 @@ CURRENT:
     
         DO NOT DISABLE START BUTTON / RESET DATA WITH SOUND ON/OFF
 
-        CENTER APP VERTICALLY RESPONSIVE TO WINDOW HEIGHT
+        ☑️ CENTER APP VERTICALLY RESPONSIVE TO WINDOW HEIGHT
 */

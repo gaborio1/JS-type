@@ -43,7 +43,8 @@ body {
     justify-content: center;
     align-items: center; */
     font-family: "Roboto", sans-serif;
-    /* text-align: center; */
+    /* THIS AFFECTS SPANS IN TEXT FIELDS */
+    text-align: center;
     background-color: white;
     background-color: whitesmoke;
     filter: grayscale(0.2);
@@ -447,9 +448,11 @@ button:disabled:hover {
     height: 35px;
     margin: 5px;
     font-weight: 100;
-    background: #f0efeb;
-    background: var(--wrap-highlight--light);
-    color: red;
+    /* background: #f0efeb; */
+    /* background: var(--wrap-highlight--light); */
+    background: rgba(255, 0, 0, 0.321);
+    /* color: red; */
+    color: black;
     /* border: 1px inset red; */
     border: 1px solid red;
     /* border: 1px outset red; */
@@ -457,7 +460,9 @@ button:disabled:hover {
 
 /* LEVEL BUTTONS : TOGGLE ON */
 .control-panel-button.level-button.toggle-on {
-    color: green;
+    /* color: green; */
+    color: black;
+    background: rgba(0, 128, 0, 0.304);
     border: 1px solid green;
     font-weight: 500;
 }
@@ -612,7 +617,7 @@ button:disabled:hover {
     background: var(--wrap-highlight--light);
     color: green;
     border: 1px solid green;
-    /* opacity: 1; */
+    opacity: 1;
 }
 
 .beginner-control-hide-container .control-panel-button:hover {
@@ -1216,10 +1221,9 @@ p .active-txt-span.active-txt-span--enter {
 
 .instructions-container.dark-theme {
     width: 1000px;
-    height: 120px;
-    height: 800px;
+    height: 850px;
     /* margin: 50px auto; */
-    margin: 50px auto;
+    /* margin: 50px auto; */
     background-color: rgb(28, 28, 28);
     color: rgb(178, 178, 178);
     border: 1px solid var(--border-gold);
