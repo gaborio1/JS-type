@@ -1391,7 +1391,13 @@ p .active-txt-span.active-txt-span--enter {
 }
 
 .dark-gold-background {
-    background-color: darkgoldenrod;
+    /* background-color: darkgoldenrod; */
+    background: rgba(255, 166, 0, 0.581);
+}
+
+.keyboard.dark-theme .dark-gold-background {
+    /* background: rgba(255, 255, 255, 0.509); */
+    background: rgba(255, 166, 0, 0.581);
 }
 
 /* .ligtht-sky-blue-background {
