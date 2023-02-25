@@ -948,8 +948,8 @@ const reloadSequence = () => {
 // SOURCE: https://stackoverflow.com/questions/15615552/get-div-height-with-plain-javascript
 
 // APP CONTAINER HEIGHT
-const appHeight = document.getElementById('container').clientHeight;
-console.log("CONTAINER HEIGHT", appHeight)
+const appHeight = document.getElementById("container").clientHeight;
+// console.log("CONTAINER HEIGHT", appHeight);
 // GET WINDOW HEIGHT
 let viewportHeight = window.innerHeight;
 // INITIALISE MARGIN TOP
@@ -958,7 +958,7 @@ let marginTop = 0;
 // CALC MARGIN TOP
 const calcMarginTop = () => {
     return (viewportHeight - appHeight) / 2;
-}
+};
 
 // SET MARGIN TOP IF APP HEIGHT IS SMALLER THAN WINDOW HEIGHT
 const setMarginTop = function () {
@@ -971,7 +971,7 @@ const setMarginTop = function () {
         container.style.marginTop = `${marginTop}px`;
         instructionsContainer.style.marginTop = `${marginTop}px`;
     }
-}
+};
 
 // LISTENER EVENTS
 window.addEventListener("resize", setMarginTop);
@@ -2082,6 +2082,18 @@ beginnerHideButton.addEventListener("click", function () {
     targetArray = [...common100];
 });
 
+// INSTRUCTIONS CONTAINER HOVER : CURSOR TOOLTIP
+// SOURCE: https://codepen.io/paulvddool/pen/mROEGa
+const cursorTooltip = document.getElementById("instructions-cursor-tooltip");
+
+const trackCursor = (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
+    cursorTooltip.style.left = x - 100 + "px";
+    cursorTooltip.style.top = y - 50 + "px";
+};
+
+instructionsContainer.addEventListener("mouseover", trackCursor);
 
 /*
 
@@ -2110,16 +2122,30 @@ CURRENT:
 
     
     FEATURES:
+        ADD TOOLTIP TO CURSOR ON INSTRUCTIONS CARD ("CLICK ANYWHERE TO CLOSE")
+
+        DISPLAY MESSAGES IN MESSAGE DIV
+            ☑️ CHANGE MESSAGE DIV COLOR TO GREY OR ORANGE?
+            CAPSLOCK WARNING
+
+
         ADD NUMERIC CHARACTERS
+
         GREEN WORDS COUNTER
+
         COMPLETE WORDS COUNTER
+
         ADD ENTER KEY
             BEGINNER 
-            PRACTICE 
+            ☑️ ADVANCED 
+
         TRACK KEYS TYPED IN REAL TIME ON KEYBOARD?
             ☑️ LETTER KEYS
+            ENTER
+            NUMBERS
        
-        WRITE AND FORMAT INFO CARD
+        ☑️ WRITE AND FORMAT INFO CARD
+            ADD MORE CONTENT
         
         MAKE ONE COMMON APPLY BUTTON FOR ALL CONTROLS?
         
