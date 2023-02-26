@@ -2084,16 +2084,16 @@ beginnerHideButton.addEventListener("click", function () {
 
 // INSTRUCTIONS CONTAINER HOVER : CURSOR TOOLTIP
 // SOURCE: https://codepen.io/paulvddool/pen/mROEGa
-const cursorTooltip = document.getElementById("instructions-cursor-tooltip");
+// const cursorTooltip = document.getElementById("instructions-cursor-tooltip");
 
-const trackCursor = (e) => {
-    const x = e.clientX;
-    const y = e.clientY;
-    cursorTooltip.style.left = x - 100 + "px";
-    cursorTooltip.style.top = y - 50 + "px";
-};
+// const trackCursor = (e) => {
+//     let x = e.clientX;
+//     let y = e.clientY;
+//     cursorTooltip.style.left = x + "px";
+//     cursorTooltip.style.top = y + "px";
+// };
 
-instructionsContainer.addEventListener("mouseover", trackCursor);
+// instructionsContainer.addEventListener("mouseover", trackCursor);
 
 /*
 
