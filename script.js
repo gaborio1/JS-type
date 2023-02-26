@@ -1755,8 +1755,8 @@ const handleSoundToggle = () => {
 soundToggle.addEventListener("click", handleSoundToggle);
 
 soundApply.addEventListener("click", function () {
-    clearDataAndDisplay();
-    clearArrAndString();
+    // clearDataAndDisplay();
+    // clearArrAndString();
     toggleButtonState(soundToggle);
     soundApply.classList.remove("control-apply-active");
     soundApply.disabled = true;
@@ -2082,6 +2082,8 @@ beginnerHideButton.addEventListener("click", function () {
     targetArray = [...common100];
 });
 
+// JS NOT IN USE, POSITION IS NOW STICKY IN CSS
+
 // INSTRUCTIONS CONTAINER HOVER : CURSOR TOOLTIP
 // SOURCE: https://codepen.io/paulvddool/pen/mROEGa
 // const cursorTooltip = document.getElementById("instructions-cursor-tooltip");
@@ -2097,28 +2099,24 @@ beginnerHideButton.addEventListener("click", function () {
 
 /*
 
-CURRENT:
-
-    BRANCH control-panel--light-1
-
-        KEEP BACKGROUND ON APPLY BUTTONS ?
 
 
-        MAKE HIDE INFO BUTTON STICKY ?
+    ADD BACKGROUND TO APPLY BUTTONS ?
 
+    DARK THEME: CHANGE BLUE COLOUR ON
+        RADIO INNER CIRCLE
+        SLIDER
 
     STYLE BEGINNER LEVEL
         LIGHT
         DARK
 
-    BRANCH dark-theme-1:
-
-        GREYSCALE FILTER IS TOO MUCH ON START BUTTON
+    GREYSCALE FILTER IS TOO MUCH ON START BUTTON
             MAKE CLASS FOR ELEMENTS THAT NEED FILTERING
 
-        ADD COLOUR-THEME CLASS TO EVERY ELEMENT AFFECTED ???
+    ADD COLOUR-THEME CLASS TO EVERY ELEMENT AFFECTED ???
 
-        ACCURACY SPAN COLOUR CODES NOT WORKING WITH NEW SPAN COLOUR (CSS: .accuracy-span.dark-theme)
+     ACCURACY SPAN COLOUR CODES NOT WORKING WITH NEW SPAN COLOUR (CSS: .accuracy-span.dark-theme)
 
     
     FEATURES:
@@ -2162,7 +2160,7 @@ CURRENT:
     PROBLEMS:
 
 
-        INCLUDE ENTER KEY IN REAL TIME HIGHLIGHT
+        INCLUDE ENTER KEY IN REAL TIME HIGHLIGHT ?
 
         REFACTOR
             FUNCTIONS
@@ -2213,6 +2211,7 @@ CURRENT:
             !!! WHEN TIMER HAS ENDED FIRST START BUTTON PRESS WILL GENERATE POBLEM KEY WORDS ONLY, SECOND CLICK WILL USE COMMON100 !!!
        
     
-        DO NOT DISABLE START BUTTON / RESET DATA WITH SOUND ON/OFF
+        DO NOT DISABLE START BUTTON  WITH SOUND ON/OFF ?
+        ☑️ DO NOT RESET DATA WITH SOUND ON/OFF
 
 */
