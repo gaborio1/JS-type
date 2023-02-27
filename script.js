@@ -1798,6 +1798,7 @@ const controlFlipButtons = document.getElementsByClassName(
     "flip-button--controls"
 );
 const controlsCard = document.getElementById("card--controls");
+
 for (let i = 0; i < controlFlipButtons.length; i += 1) {
     controlFlipButtons[i].addEventListener("click", function () {
         controlsCard.classList.toggle("flipped");
@@ -1805,11 +1806,10 @@ for (let i = 0; i < controlFlipButtons.length; i += 1) {
     });
 }
 
-// CLICK ANYWHERE TO CLOSE INSTRUCTIONS
-instructionsContainer.addEventListener("click", function () {
-    // console.log("CONTAINER CLICKED");
-    card.classList.toggle("flipped");
-});
+// CLICK ANYWHERE TO CLOSE INSTRUCTIONS (DISABLED)
+// instructionsContainer.addEventListener("click", function () {
+//     card.classList.toggle("flipped");
+// });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 COLOUR THEME 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
