@@ -1215,6 +1215,11 @@ p .active-txt-span.active-txt-span--enter {
 
 /* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 INSTRUCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
+.instructions-header {
+    font-weight: 400;
+    margin: 0px 0px 50px 300px;
+}
+
 .instructions-container {
     width: 1000px;
     height: 120px;
@@ -1244,7 +1249,9 @@ p .active-txt-span.active-txt-span--enter {
 
 .instructions-wrapper {
     width: 800px;
-    height: 1000px;
+    height: fit-content;
+    margin-top: -50px;
+    /* border: 1px solid red; */
 }
 
 .instructions-container.dark-theme {
