@@ -1215,10 +1215,16 @@ p .active-txt-span.active-txt-span--enter {
 
 /* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 INSTRUCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
+/* h1 */
 .instructions-header {
+    text-decoration: underline;
     font-weight: 400;
     margin: 0px 0px 50px 300px;
-    border: 1px solid green;
+    /* border: 1px solid green; */
+}
+
+.instructions-header.dark-theme {
+    color: darkgoldenrod;
 }
 
 .instructions-container {
@@ -1249,14 +1255,30 @@ p .active-txt-span.active-txt-span--enter {
     /* backface-visibility: hidden; */
     border: 1px solid var(--border-grey);
     border-radius: 4px;
-    border: 2px solid orange;
+    /* border: 2px solid orange; */
+}
+
+.instructions-container p,
+.instructions-container li {
+    line-height: 1.4rem;
 }
 
 .instructions-wrapper {
     width: 800px;
     height: fit-content;
     /* margin-top: -50px; */
-    border: 1px solid red;
+    /* border: 1px solid red; */
+}
+
+.instructions-wrapper hr {
+    width: 100%;
+    border-top: 3px solid var(--border-grey);
+}
+
+.instructions-wrapper.dark-theme hr {
+    width: 100%;
+    border: none;
+    border-top: 3px solid darkgoldenrod;
 }
 
 .instructions-container.dark-theme {
@@ -1302,6 +1324,7 @@ p .active-txt-span.active-txt-span--enter {
     opacity: 1;
     background: rgb(255, 255, 255);
     font-weight: 500;
+    border-width: 2px;
     cursor: pointer;
 }
 
@@ -1330,6 +1353,7 @@ p .active-txt-span.active-txt-span--enter {
     /* color: rgb(215, 215, 215); */
     color: rgb(219, 168, 37);
     border: 1px solid darkgoldenrod;
+    border-width: 2px;
     font-weight: 500;
 }
 
