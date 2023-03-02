@@ -1279,6 +1279,7 @@ p .active-txt-span.active-txt-span--enter {
     width: 100%;
     border: none;
     border-top: 3px solid darkgoldenrod;
+    border-top: 3px solid rgba(184, 135, 11, 0.258);
 }
 
 .instructions-container.dark-theme {
