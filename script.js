@@ -2101,13 +2101,6 @@ beginnerShowButton.addEventListener("click", function () {
     beginnerOn = true;
 
     timerOn = false;
-    // console.log("BEGINNER LEVEL", beginnerOn);
-    // console.log("TIMERON:", timerOn);
-
-    // if (beginnerOn) {
-    //     messageDiv.textContent = "BEGINNER LEVEL";
-    //     messageDiv.style.background = "rgba(0, 0, 255, 0.507)";
-    // }
 
     targetArray = [];
     /*
@@ -2142,14 +2135,6 @@ beginnerHideButton.addEventListener("click", function () {
     if (timerToggle.innerText === "On") {
         timerOn = true;
     }
-
-    // console.log("BEGINNER LEVEL", beginnerOn);
-    // console.log("TIMERON:", timerOn);
-
-    // if (!beginnerOn) {
-    //     messageDiv.textContent = "PRACTICE LEVEL";
-    //     messageDiv.style.background = "rgba(255, 0, 0, 0.521)";
-    // }
 
     problemKeysSet.clear();
     targetArray = [];
@@ -2186,6 +2171,11 @@ beginnerHideButton.addEventListener("click", function () {
 /*
 
 CURRENT BRANCH: inclusive-selection
+
+    RESET BEGINNER SETTINGS WHEN SWITCHED TO ADVANCED ?
+    RESET ADVANCED SETTINGS WHEN SWITCHED TO BEGINNER ?
+
+
     BEGINNER LEVEL SELECTION
             ☑️ ADD TOGGLE BUTTON
             ☑️ INDIVIDUAL
