@@ -1843,6 +1843,8 @@ let inclusiveSelected = false;
 const selectInclusiveToggle = document.getElementById("selection-type-toggle");
 selectInclusiveToggle.addEventListener("click", function () {
 
+    levelsApply.disabled = true;
+
     // RESET ALL BUTTONS (REMOVE CONTROL-APPLY-ACTIVE AND TOGGLE ON CLASSES)
     for (let i = 0; i < levelButtons.length; i += 1) {
         levelButtons[i].classList.remove("toggle-on", "control-apply-active");
@@ -2185,14 +2187,14 @@ beginnerHideButton.addEventListener("click", function () {
 
 CURRENT BRANCH: inclusive-selection
     BEGINNER LEVEL SELECTION
-            ADD TOGGLE BUTTON
+            ☑️ ADD TOGGLE BUTTON
             ☑️ INDIVIDUAL
-            INCLUSIVE
-                MAKE INCLUSIVE DEFAULT ?
+            ☑️ INCLUSIVE
+            ☑️ MAKE SINGLE SELECTION DEFAULT
 
     ☑️ STYLE HIDE INFO BUTTON IN LIGHT THEME (3 STATES)
 
-    ALIGN HIDE BUTTON WITH HEADER
+    ☑️ ALIGN HIDE BUTTON WITH HEADER IN INFO CARD
 
     ADD BACKGROUND TO APPLY BUTTONS ?
 
