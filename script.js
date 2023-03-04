@@ -1842,7 +1842,6 @@ let inclusiveSelected = false;
 
 const selectInclusiveToggle = document.getElementById("selection-type-toggle");
 selectInclusiveToggle.addEventListener("click", function () {
-
     levelsApply.disabled = true;
 
     // RESET ALL BUTTONS (REMOVE CONTROL-APPLY-ACTIVE AND TOGGLE ON CLASSES)
@@ -1863,18 +1862,16 @@ selectInclusiveToggle.addEventListener("click", function () {
         selectInclusiveToggle.innerText = "Off";
         // console.log(inclusiveSelected);
     }
-})
+});
 
-console.log("INCLUSIVE SELECTED");
+// console.log("INCLUSIVE SELECTED");
 for (let i = 0; i < levelButtons.length; i += 1) {
-
     // console.log(this);
     // console.log(this.innerText);
     // console.log(this.id);
 
     // console.log("CLICKED", levelButtons[i], "index:", i);
     levelButtons[i].addEventListener("click", function () {
-
         // INCLUSIVE SELECTED
         if (inclusiveSelected) {
             // REMOVE CLASSES FIRST
@@ -1889,7 +1886,10 @@ for (let i = 0; i < levelButtons.length; i += 1) {
             // LOOP THROUGH LEVELBUTTOONS AND ACTIVATE THEM UP TO INDEX OF SELECTED LEVEL
             for (let j = 0; j <= i; j += 1) {
                 console.log("INCLUSIVE SELECTION:", levelButtons[j]);
-                levelButtons[j].classList.add("control-apply-active", "toggle-on");
+                levelButtons[j].classList.add(
+                    "control-apply-active",
+                    "toggle-on"
+                );
             }
 
             disableStartButton();
@@ -1898,7 +1898,9 @@ for (let i = 0; i < levelButtons.length; i += 1) {
             // 1. CHECK IF AT LEAST ONE LEVEL IS SELECTED
             let selectionMade = false; // RESET TO FALSE BEFORE LOOP
             for (let i = 0; i < levelButtons.length; i += 1) {
-                if (levelButtons[i].classList.contains("control-apply-active")) {
+                if (
+                    levelButtons[i].classList.contains("control-apply-active")
+                ) {
                     // console.log("FOUND", levelButtons[i]);
                     selectionMade = true;
                     break;
@@ -1930,7 +1932,9 @@ for (let i = 0; i < levelButtons.length; i += 1) {
             // 1. CHECK IF AT LEAST ONE LEVEL IS SELECTED
             let selectionMade = false; // RESET TO FALSE BEFORE LOOP
             for (let i = 0; i < levelButtons.length; i += 1) {
-                if (levelButtons[i].classList.contains("control-apply-active")) {
+                if (
+                    levelButtons[i].classList.contains("control-apply-active")
+                ) {
                     // console.log("FOUND", levelButtons[i]);
                     selectionMade = true;
                     break;
@@ -1951,12 +1955,10 @@ for (let i = 0; i < levelButtons.length; i += 1) {
             // RESET SELECTED BEGINNER KEYS ARRAY, IT WILL BE UPDATED WITH APPLY BUTTON
             selectedBeginerKeys = [];
         }
-
     });
 }
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 
 // TOGGLE LEVEL BUTTON STYLE, CLASSES ARE NOW USED TO STYLE
 const toggleLevelButtonStyle = (element) => {
@@ -2036,9 +2038,7 @@ const toggleLevelButtonState = (element) => {
 
 // 2. APPLY CHANGES TO ALL LEVELS WHEN APPLY CLICKED
 levelsApply.addEventListener("click", function () {
-
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 
     randomKeyWordsArray = []; // RESET TO AVOID DUPLICATES IF APPLY IS CLICKED AGAIN
     selectedBeginerKeys = []; // RESET TO AVOID DUPLICATES
