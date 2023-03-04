@@ -294,6 +294,80 @@ export const common100 = [
     "part",
 ];
 
+// SOURCE: https://www3.nd.edu/~busiforc/handouts/cryptography/Letter%20Frequencies.html
+export const bigrams = [
+    "th",
+    "he",
+    "in",
+    "en",
+    "nt",
+    "re",
+    "er",
+    "an",
+    "ti",
+    "es",
+    "on",
+    "at",
+    "se",
+    "nd",
+    "or",
+    "ar",
+    "al",
+    "te",
+    "co",
+    "de",
+    "to",
+    "ra",
+    "et",
+    "ed",
+    "it",
+    "sa",
+    "em",
+    "ro",
+];
+
+export const trigrams = [
+    "the",
+    "and",
+    "tha",
+    "ent",
+    "ing",
+    "ion",
+    "tio",
+    "for",
+    "nde",
+    "has",
+    "nce",
+    "edt",
+    "tis",
+    "oft",
+    "sth",
+    "men",
+];
+
+export const quadrigrams = [
+    "that",
+    "ther",
+    "with",
+    "tion",
+    "here",
+    "ould",
+    "ight",
+    "have",
+    "hich",
+    "whic",
+    "this",
+    "thin",
+    "they",
+    "atio",
+    "ever",
+    "from",
+    "ough",
+    "were",
+    "hing",
+    "ment",
+];
+
 export const punctMarks = [",", ".", "!", "?", ":", ";", "-", "'"];
 
 // export default common100;
