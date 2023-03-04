@@ -2173,7 +2173,15 @@ beginnerHideButton.addEventListener("click", function () {
 
 /*
 
-CURRENT BRANCH: inclusive-selection
+CURRENT BRANCH: grams
+    BIGRAMS
+    TRIGRAMS
+    QUADRIGRAMS
+
+    RANDOM SELECTION
+
+
+BRANCH: inclusive-selection
 
     RESET BEGINNER SETTINGS WHEN SWITCHED TO ADVANCED ?
     RESET ADVANCED SETTINGS WHEN SWITCHED TO BEGINNER ?
@@ -2248,6 +2256,7 @@ CURRENT BRANCH: inclusive-selection
             
     PROBLEMS:
 
+        ENTER AND SPACE KEYS TRIGGER CARD FLIP AFTER FLIP BUTTON IS CLICKED (FOCUS???)
 
         INCLUDE ENTER KEY IN REAL TIME HIGHLIGHT ?
 
