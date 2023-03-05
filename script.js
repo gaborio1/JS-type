@@ -518,6 +518,24 @@ const testCapsLock = (event) => {
 doc.addEventListener("keyup", testCapsLock);
 doc.addEventListener("keydown", testCapsLock);
 
+// SET DIFFICULTY LEVEL BASED ON RADIOS STATE
+const setDifficultyLevel = () => {
+    for (let i = 0, length = difficultyRadios.length; i < length; i++) {
+        if (difficultyRadios[i].checked) {
+            if (difficultyRadios[i].value === "100") {
+                targetArray = [...common100];
+            }
+            if (difficultyRadios[i].value === "200") {
+                targetArray = [...common200, ...common100];
+            }
+            if (difficultyRadios[i].value === "JavaScript") {
+                targetArray = [...jsReserved, ...jsObjPropMeth];
+            }
+            break;
+        }
+    }
+};
+
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON FUNCTIONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
 // FIND PROBLEM KEY WORDS IN CURRENT TARGET ARRAY / UPDATE TARGET ARRAY WITH PROBLEM WORDS ONLY
@@ -537,32 +555,12 @@ const findAndApplyProblemKeyWords = () => {
 
         // tempProbWordsArr = []; // RESET TEMP PROB WORDS ARRAY ???
     } else {
-        // !!! TEMP FIX, THIS SHOULD BE SET TO PREVIOUSLY SET VALUE !!!
         // console.log("NO PROBLEM KEYS IN SET");
 
-        // !!! FIND WHICH LEVEL IS SELECTED AND UPDATE TARGET ARRAY ACCORDINGLY !!!
-
-
+        // FIND WHICH LEVEL IS SELECTED AND UPDATE TARGET ARRAY ACCORDINGLY
         if (!beginnerOn) {
-            // !!! THIS IS DUPLICATE FROM DIFFICULTY APPLY, REFACTOR !!!
-            for (let i = 0, length = difficultyRadios.length; i < length; i++) {
-                if (difficultyRadios[i].checked) {
-                    if (difficultyRadios[i].value === "100") {
-                        targetArray = [...common100];
-                    }
-                    if (difficultyRadios[i].value === "200") {
-                        targetArray = [...common200, ...common100];
-                    }
-                    if (difficultyRadios[i].value === "JavaScript") {
-                        targetArray = [...jsReserved, ...jsObjPropMeth];
-                    }
-                    break;
-                }
-            }
-            // targetArray = [...common100];
+            setDifficultyLevel();
         }
-
-        // targetArray = [...common100];
     }
 
     // console.log("<<<<< PROBLEM KEYS SET >>>>>", problemKeysSet);
@@ -1563,20 +1561,7 @@ difficultyApply.addEventListener("click", function () {
     clearDataAndDisplay();
     clearArrAndString();
 
-    for (let i = 0, length = difficultyRadios.length; i < length; i++) {
-        if (difficultyRadios[i].checked) {
-            if (difficultyRadios[i].value === "100") {
-                targetArray = [...common100];
-            }
-            if (difficultyRadios[i].value === "200") {
-                targetArray = [...common200, ...common100];
-            }
-            if (difficultyRadios[i].value === "JavaScript") {
-                targetArray = [...jsReserved, ...jsObjPropMeth];
-            }
-            break;
-        }
-    }
+    setDifficultyLevel();
     // console.log("DIFFICULTY SELECTED", targetArray);
 });
 
@@ -1594,12 +1579,21 @@ for (let i = 0, length = gramRadios.length; i < length; i++) {
         if (allChangesApplied()) {
             enableStartButton();
         }
-        // DISABLE ALL OTHER OPTIONS
+        // DISABLE ROWS
         for (let i = 0, length = rowRadios.length; i < length; i++) {
             rowRadios[i].checked = false;
         }
         rowsApply.disabled = true;
         rowsApply.classList.remove("control-apply-active");
+        // DISABLE LEVELS AND LEVELS APPLY
+        for (let i = 0; i < levelButtons.length; i += 1) {
+            levelButtons[i].classList.remove(
+                "control-apply-active",
+                "toggle-on"
+            );
+        }
+        levelsApply.disabled = true;
+        levelsApply.classList.remove("control-apply-active", "toggle-on");
     });
 }
 
@@ -1626,7 +1620,6 @@ gramsApply.addEventListener("click", function () {
             break;
         }
     }
-
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BEGINNER ROWS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1643,13 +1636,21 @@ for (let i = 0, length = rowRadios.length; i < length; i++) {
         if (allChangesApplied()) {
             enableStartButton();
         }
-        // DISABLE ALL OTHER OPTIONS
+        // DISABLE GRAMS
         for (let i = 0, length = gramRadios.length; i < length; i++) {
             gramRadios[i].checked = false;
         }
         gramsApply.disabled = true;
         gramsApply.classList.remove("control-apply-active");
-
+        // DISABLE LEVELS AND LEVELS APPLY
+        for (let i = 0; i < levelButtons.length; i += 1) {
+            levelButtons[i].classList.remove(
+                "control-apply-active",
+                "toggle-on"
+            );
+        }
+        levelsApply.disabled = true;
+        levelsApply.classList.remove("control-apply-active", "toggle-on");
     });
 }
 
@@ -1676,7 +1677,6 @@ rowsApply.addEventListener("click", function () {
             break;
         }
     }
-
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 LINE LENGTH 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -2308,8 +2308,13 @@ beginnerHideButton.addEventListener("click", function () {
     rowsApply.disabled = true;
     rowsApply.classList.remove("control-apply-active");
 
-    // TEMP FIX FOR RESETTING DIFFICULTY RADIOS
-    // difficultyRadios[0].checked = true;
+    // RESTORE TARGET ARRAY BASED ON DIFFICULTY RADIOS CURRENT SETTING
+    // !!! NOT WORKING WHEN OTHER RADIOS HAVE BEEN SET IN BEGINNER !!!
+    // setDifficultyLevel();
+
+    // RESET TO COMMON 100
+    // !!! TEST IF IT WORKS !!!
+    difficultyRadios[0].checked = true;
 });
 
 // JS NOT IN USE, POSITION IS NOW STICKY IN CSS
@@ -2331,9 +2336,27 @@ beginnerHideButton.addEventListener("click", function () {
 
 CURRENT BRANCH: grams
 
-    DISABLE LEVEL SELECTOR BUTTONS WHEN RADIO IS CLICKED
+    ☑️ DISABLE LEVEL SELECTOR BUTTONS WHEN RADIO IS CLICKED
 
-    RESTORE DIFFICULTY LEVEL SETTING WHEN COMING BACK FROM BEGINNER
+    RESTORE DIFFICULTY LEVEL SETTING WHEN COMING BACK FROM BEGINNER ? (NOT WORKING)
+    TRY RESETTING LEVEL TO COMMON100 - LINE 2317
+
+
+    ☑️ MAKE THIS A FUNCTION (setDifficultyLevel())
+    for (let i = 0, length = difficultyRadios.length; i < length; i++) {
+        if (difficultyRadios[i].checked) {
+            if (difficultyRadios[i].value === "100") {
+                targetArray = [...common100];
+            }
+            if (difficultyRadios[i].value === "200") {
+                targetArray = [...common200, ...common100];
+            }
+            if (difficultyRadios[i].value === "JavaScript") {
+                targetArray = [...jsReserved, ...jsObjPropMeth];
+            }
+            break;
+        }
+    }
 
      !!! WRITE A FUNCTION FOR THESE !!! (disableGrams(), disableRows()) !!!
 
