@@ -9,6 +9,9 @@ import {
     quadrigrams,
     jsObjPropMeth,
     punctMarks,
+    topRow,
+    bottomRow,
+    homeRow,
     // keysLevel_1,
     // keysLevel_2,
     // keysLevel_3,
@@ -58,9 +61,7 @@ const soundApply = document.getElementById("sound-apply");
 const colourThemeElements = document.getElementsByClassName("colour-theme");
 const themeToggle = document.getElementById("theme-toggle");
 const themeApply = document.getElementById("theme-apply");
-// ALL RADIOS
-// const radios = document.getElementsByClassName("radio");
-// const timerRadios = document.getElementsByClassName("timer-radio");
+
 // TIMER
 const timerToggle = document.getElementById("timer-toggle");
 const timerApply = document.getElementById("timer-apply");
@@ -158,6 +159,8 @@ const capsLockKey = document.getElementById("capslock-key");
 let startButtonCounter = 0;
 // DEFAULT COMMON 100 WORDS
 let targetArray = [...common100];
+// let targetArray = [...jsReserved];
+// let targetArray = [];
 // DEFAULT LINE LENGTH
 let sequenceLength = 30;
 // let sequenceLength = 10;
@@ -337,6 +340,7 @@ const getStrLength = (arr) => {
 
 // POPULATE wordArrays WITH ARRAYS OF WORDS (wordsArr), ONE FOR EACH TEXT LINE
 const buildWordArrays = (numOfLines) => {
+    // console.log("BUILD TARGET ARRAY", targetArray);
     // console.log("TARGET ARRAY FROM BUILDARRAYS:", targetArray);
     for (let i = 0; i < numOfLines; i += 1) {
         let arr = [];
@@ -535,9 +539,29 @@ const findAndApplyProblemKeyWords = () => {
     } else {
         // !!! TEMP FIX, THIS SHOULD BE SET TO PREVIOUSLY SET VALUE !!!
         // console.log("NO PROBLEM KEYS IN SET");
+
+        // !!! FIND WHICH LEVEL IS SELECTED AND UPDATE TARGET ARRAY ACCORDINGLY !!!
+
+
         if (!beginnerOn) {
-            targetArray = [...common100];
+            // !!! THIS IS DUPLICATE FROM DIFFICULTY APPLY, REFACTOR !!!
+            for (let i = 0, length = difficultyRadios.length; i < length; i++) {
+                if (difficultyRadios[i].checked) {
+                    if (difficultyRadios[i].value === "100") {
+                        targetArray = [...common100];
+                    }
+                    if (difficultyRadios[i].value === "200") {
+                        targetArray = [...common200, ...common100];
+                    }
+                    if (difficultyRadios[i].value === "JavaScript") {
+                        targetArray = [...jsReserved, ...jsObjPropMeth];
+                    }
+                    break;
+                }
+            }
+            // targetArray = [...common100];
         }
+
         // targetArray = [...common100];
     }
 
@@ -1503,6 +1527,7 @@ const disableStartButton = () => {
 const applyButtons = document.getElementsByClassName("apply-button");
 
 const allChangesApplied = () => {
+    // console.log(applyButtons);
     let allApplied = true;
     for (let i = 0; i < applyButtons.length; i += 1) {
         if (applyButtons[i].classList.contains("control-apply-active")) {
@@ -1518,6 +1543,8 @@ const allChangesApplied = () => {
 // MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
 for (let i = 0, length = difficultyRadios.length; i < length; i++) {
     difficultyRadios[i].addEventListener("click", function () {
+        // console.log(this);
+        // console.log(targetArray);
         difficultyApply.classList.add("control-apply-active");
         difficultyApply.disabled = false;
         startButton.classList.remove("control-apply-active");
@@ -1550,6 +1577,106 @@ difficultyApply.addEventListener("click", function () {
             break;
         }
     }
+    // console.log("DIFFICULTY SELECTED", targetArray);
+});
+
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BEGINNER GRAMS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+const gramRadios = document.getElementsByClassName("gram-radio");
+const gramsApply = document.getElementById("grams-apply");
+
+// MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
+for (let i = 0, length = gramRadios.length; i < length; i++) {
+    gramRadios[i].addEventListener("click", function () {
+        gramsApply.classList.add("control-apply-active");
+        gramsApply.disabled = false;
+        startButton.classList.remove("control-apply-active");
+        if (allChangesApplied()) {
+            enableStartButton();
+        }
+        // DISABLE ALL OTHER OPTIONS
+        for (let i = 0, length = rowRadios.length; i < length; i++) {
+            rowRadios[i].checked = false;
+        }
+        rowsApply.disabled = true;
+        rowsApply.classList.remove("control-apply-active");
+    });
+}
+
+gramsApply.addEventListener("click", function () {
+    gramsApply.classList.remove("control-apply-active");
+    gramsApply.disabled = true;
+    if (allChangesApplied()) {
+        enableStartButton();
+    }
+    clearDataAndDisplay();
+    clearArrAndString();
+
+    for (let i = 0, length = gramRadios.length; i < length; i++) {
+        if (gramRadios[i].checked) {
+            if (gramRadios[i].value === "2") {
+                targetArray = [...bigrams];
+            }
+            if (gramRadios[i].value === "3") {
+                targetArray = [...trigrams];
+            }
+            if (gramRadios[i].value === "4") {
+                targetArray = [...quadrigrams];
+            }
+            break;
+        }
+    }
+
+});
+
+// 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BEGINNER ROWS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+const rowRadios = document.getElementsByClassName("row-radio");
+const rowsApply = document.getElementById("rows-apply");
+
+// MAKE APPLY BUTTON ACTIVE IF SELECTION IS MADE
+for (let i = 0, length = rowRadios.length; i < length; i++) {
+    rowRadios[i].addEventListener("click", function () {
+        rowsApply.classList.add("control-apply-active");
+        rowsApply.disabled = false;
+        startButton.classList.remove("control-apply-active");
+        if (allChangesApplied()) {
+            enableStartButton();
+        }
+        // DISABLE ALL OTHER OPTIONS
+        for (let i = 0, length = gramRadios.length; i < length; i++) {
+            gramRadios[i].checked = false;
+        }
+        gramsApply.disabled = true;
+        gramsApply.classList.remove("control-apply-active");
+
+    });
+}
+
+rowsApply.addEventListener("click", function () {
+    rowsApply.classList.remove("control-apply-active");
+    rowsApply.disabled = true;
+    if (allChangesApplied()) {
+        enableStartButton();
+    }
+    clearDataAndDisplay();
+    clearArrAndString();
+
+    for (let i = 0, length = rowRadios.length; i < length; i++) {
+        if (rowRadios[i].checked) {
+            if (rowRadios[i].value === "top") {
+                targetArray = [...topRow];
+            }
+            if (rowRadios[i].value === "home") {
+                targetArray = [...homeRow];
+            }
+            if (rowRadios[i].value === "bottom") {
+                targetArray = [...bottomRow];
+            }
+            break;
+        }
+    }
+
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 LINE LENGTH 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1841,7 +1968,8 @@ let randomKeyWordsArray = [];
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // CHOOSE SELECTION TYPE (RANDOM (ONE AT A TIME) OR INCLUSIVE (UP TO SELECTED))
-let inclusiveSelected = false;
+// INCLUSIVE UP TO SELECTION IS NOW DEFAULT
+let inclusiveSelected = true;
 
 const selectInclusiveToggle = document.getElementById("selection-type-toggle");
 selectInclusiveToggle.addEventListener("click", function () {
@@ -1857,11 +1985,11 @@ selectInclusiveToggle.addEventListener("click", function () {
 
     selectInclusiveToggle.classList.toggle("toggle-on");
     if (selectInclusiveToggle.classList.contains("toggle-on")) {
-        inclusiveSelected = true;
+        inclusiveSelected = false;
         selectInclusiveToggle.innerText = "On";
         // console.log(inclusiveSelected);
     } else {
-        inclusiveSelected = false;
+        inclusiveSelected = true;
         selectInclusiveToggle.innerText = "Off";
         // console.log(inclusiveSelected);
     }
@@ -1888,7 +2016,7 @@ for (let i = 0; i < levelButtons.length; i += 1) {
 
             // LOOP THROUGH LEVELBUTTOONS AND ACTIVATE THEM UP TO INDEX OF SELECTED LEVEL
             for (let j = 0; j <= i; j += 1) {
-                console.log("INCLUSIVE SELECTION:", levelButtons[j]);
+                // console.log("INCLUSIVE SELECTION:", levelButtons[j]);
                 levelButtons[j].classList.add(
                     "control-apply-active",
                     "toggle-on"
@@ -1958,6 +2086,18 @@ for (let i = 0; i < levelButtons.length; i += 1) {
             // RESET SELECTED BEGINNER KEYS ARRAY, IT WILL BE UPDATED WITH APPLY BUTTON
             selectedBeginerKeys = [];
         }
+        // DISABLE RADIOS
+        for (let i = 0, length = gramRadios.length; i < length; i++) {
+            gramRadios[i].checked = false;
+        }
+        gramsApply.disabled = true;
+        gramsApply.classList.remove("control-apply-active");
+
+        for (let i = 0, length = rowRadios.length; i < length; i++) {
+            rowRadios[i].checked = false;
+        }
+        rowsApply.disabled = true;
+        rowsApply.classList.remove("control-apply-active");
     });
 }
 
@@ -2154,6 +2294,22 @@ beginnerHideButton.addEventListener("click", function () {
     clearArrAndString();
     // !!! TEMP FIX, HAS TO RETURN TO THE LAST DIFFICULTY SELECTED !!!
     targetArray = [...common100];
+
+    // DISABLE RADIOS IN BEGINNER CARD
+    for (let i = 0, length = gramRadios.length; i < length; i++) {
+        gramRadios[i].checked = false;
+    }
+    gramsApply.disabled = true;
+    gramsApply.classList.remove("control-apply-active");
+
+    for (let i = 0, length = rowRadios.length; i < length; i++) {
+        rowRadios[i].checked = false;
+    }
+    rowsApply.disabled = true;
+    rowsApply.classList.remove("control-apply-active");
+
+    // TEMP FIX FOR RESETTING DIFFICULTY RADIOS
+    // difficultyRadios[0].checked = true;
 });
 
 // JS NOT IN USE, POSITION IS NOW STICKY IN CSS
@@ -2174,11 +2330,38 @@ beginnerHideButton.addEventListener("click", function () {
 /*
 
 CURRENT BRANCH: grams
-    BIGRAMS
-    TRIGRAMS
-    QUADRIGRAMS
 
-    RANDOM SELECTION
+    DISABLE LEVEL SELECTOR BUTTONS WHEN RADIO IS CLICKED
+
+    RESTORE DIFFICULTY LEVEL SETTING WHEN COMING BACK FROM BEGINNER
+
+     !!! WRITE A FUNCTION FOR THESE !!! (disableGrams(), disableRows()) !!!
+
+    DISABLE ALL OTHER OPTIONS
+        for (let i = 0, length = gramRadios.length; i < length; i++) {
+            gramRadios[i].checked = false;
+        }
+        gramsApply.disabled = true;
+        gramsApply.classList.remove("control-apply-active");
+
+        for (let i = 0, length = rowRadios.length; i < length; i++) {
+            rowRadios[i].checked = false;
+        }
+        rowsApply.disabled = true;
+        rowsApply.classList.remove("control-apply-active");
+
+    RESET ALL RADIOS WHEN SWITCHING BETWEEN BEGINNER AND ADVANCED
+
+    SELECT ONE
+        ☑️ BIGRAMS
+        ☑️ TRIGRAMS
+        ☑️ QUADRIGRAMS
+
+    MULTIPLE SELECTION?
+
+    DISABLE OTHER SECTIONS WITH APPLY
+        LEVEL BUTTONS / RANDOM / APPLY BUTTONS
+        ☑️ KEYBOARD ROWS
 
 
 BRANCH: inclusive-selection

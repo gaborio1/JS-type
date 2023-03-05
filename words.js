@@ -368,6 +368,61 @@ export const quadrigrams = [
     "ment",
 ];
 
+export const topRow = [
+    "Piroque", "Poutier", "Wipeout", "Equipt", "Equity", "Piquet",
+    "Poetry", "Pouter", "Purity", "Pyrite", "Quoter", "Qwerty",
+    "Roquet", "Torque", "Towery", "Troupe", "Typier", "Uptore",
+    "Equip", "Erupt", "Outer", "Outre", "Pewit", "Piety",
+    "Pique", "Pouty", "Power", "Purty", "Query", "Quiet",
+    "Quire", "Quirt", "Quite", "Quoit", "Quote", "Repot",
+    "Ropey", "Roque", "Route", "Tepoy", "Toper", "Toque",
+    "Tower", "Towie", "Tripe", "Trope", "Twerp", "Twirp",
+    "Twyer", "Uteri", "Wiper", "Write", "Wrote", "Etui",
+    "Euro", "Peri", "Pert", "Pier", "Pity", "Poet",
+    "Pore", "Port", "Pour", "Pout", "Prey", "Prow",
+    "Pure", "Puri", "Pyre", "Pyro", "Quip", "Quit",
+    "Repo", "Riot", "Ripe", "Rite", "Rope", "Ropy",
+    "Rote", "Roti", "Roup", "Rout", "Ryot", "Tier",
+    "Tire", "Tiro", "Tope", "Tore", "Tori", "Tory",
+    "Tour", "Towy", "Trey", "Trio", "Trip", "Trop",
+    "Trow", "Troy", "True", "Type", "Typo", "Tyre",
+    "Tyro", "Weir", "Wept", "Wert", "Wipe", "Wire",
+    "Wiry", "Wore", "Wort", "Writ", "Yeti", "Yore",
+    "Your", "Yurt", "Ire", "Opt", "Ore", "Ort",
+    "Our", "Out", "Owe", "Per", "Pet", "Pew",
+    "Pie", "Pit", "Poi", "Pot", "Pow", "Pro",
+    "Pry", "Pur", "Put", "Rep", "Ret", "Rip",
+    "Roe", "Rot", "Row", "Rue", "Rut", "Rye",
+    "Tie", "Tip", "Toe", "Top", "Tor", "Tow",
+    "Toy", "Try", "Two", "Ute", "Wet", "Wit",
+    "Woe", "Wot", "Wry", "Wye", "Yep", "Yet",
+    "Yew", "Yip", "You", "Yow", "Yup"
+]
+export const homeRow = [
+    "ashfalls", "hallahs", "ashfall", "daggas"
+    // skalds	hallah	salads	flasks
+    // flash	skald	kakas	slags
+    // jaggs	galas	hadal	slash
+    // shahs	gaffs	algal	dagga
+    // flask	dahls	daffs	lakhs
+    // shags	halls	glass	sagas
+    // kasha	salad	galls	shall
+    // dadas	falls	salsa	shads
+    // flags	alfas	saga	half
+    // sags	fads	dhal	glad
+    // lash	kaka	lads	fall
+    // hall	gads	alfa	adds
+    // gags	gaga	hash	dahl
+    // agha	hajj	lass	gaff
+    // alga	dahs	asks	gals
+    // lags	jagg	alas	jags
+    // flak	daff	lakh	dash
+    // gala	 	 	
+]
+export const bottomRow = [
+    "bcnxv", "zxcm", "mbcnz", "bnvcnm", "zxcv", "vbnm", "mnxz", "nxv", "zmnx", "vbcn", "mvz", "vzxcmvx", "mnbxcvz"
+]
+
 export const punctMarks = [",", ".", "!", "?", ":", ";", "-", "'"];
 
 // export default common100;
