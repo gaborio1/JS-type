@@ -243,10 +243,10 @@
                                     </div>
 
                                     <div class="level-selection-type-container">
-                                        <h4 class="wrap-title">Random</h4>
+                                        <!-- <h4 class="wrap-title"></h4> -->
                                         <button id="selection-type-toggle"
                                             class="control-panel-button selection-type-toggle colour-theme">
-                                            Off
+                                            Through
                                         </button>
                                         <button id="levels-apply" class="control-panel-button levels-apply colour-theme"
                                             disabled="true">
@@ -263,20 +263,23 @@
 
                                     <div class="grams-radios-container">
                                         <h4 class="wrap-title">Consecutive</h4>
-                                        <input type="radio" id="2" class="radio gram-radio disabled-during-timer"
-                                            name="difficulty" value="2" />
-                                        <label for="2">2</label>
-                                        <br />
+                                        <div class="gram-radios-container__inner">
+                                            <input type="radio" id="2" class="radio gram-radio disabled-during-timer"
+                                                name="difficulty" value="2" />
+                                            <label for="2">2</label>
+                                            <br />
 
-                                        <input type="radio" id="3" class="radio gram-radio disabled-during-timer"
-                                            name="difficulty" value="3" />
-                                        <label for="3">3</label>
-                                        <br />
+                                            <input type="radio" id="3" class="radio gram-radio disabled-during-timer"
+                                                name="difficulty" value="3" />
+                                            <label for="3">3</label>
+                                            <br />
 
-                                        <input type="radio" id="4" class="radio gram-radio disabled-during-timer"
-                                            name="difficulty" value="4" />
-                                        <label for="4">4</label>
-                                        <br />
+                                            <input type="radio" id="4" class="radio gram-radio disabled-during-timer"
+                                                name="difficulty" value="4" />
+                                            <label for="4">4</label>
+                                            <br />
+                                        </div>
+
                                         <button id="grams-apply" class="control-panel-button apply-button grams-apply"
                                             disabled="true">
                                             Apply
@@ -285,20 +288,24 @@
 
                                     <div class="rows-radios-container">
                                         <h4 class="wrap-title">Keyboard rows</h4>
-                                        <input type="radio" id="top" class="radio row-radio disabled-during-timer"
-                                            name="rows" value="top" />
-                                        <label for="top">Top</label>
-                                        <br />
+                                        <div class="rows-radios-container__inner">
+                                            <input type="radio" id="top" class="radio row-radio disabled-during-timer"
+                                                name="rows" value="top" />
+                                            <label for="top">Top</label>
+                                            <br />
 
-                                        <input type="radio" id="home" class="radio row-radio disabled-during-timer"
-                                            name="rows" value="home" />
-                                        <label for="home">Home</label>
-                                        <br />
+                                            <input type="radio" id="home" class="radio row-radio disabled-during-timer"
+                                                name="rows" value="home" />
+                                            <label for="home">Home</label>
+                                            <br />
 
-                                        <input type="radio" id="bottom" class="radio row-radio disabled-during-timer"
-                                            name="rows" value="bottom" />
-                                        <label for="bottom">Bottom</label>
-                                        <br />
+                                            <input type="radio" id="bottom"
+                                                class="radio row-radio disabled-during-timer" name="rows"
+                                                value="bottom" />
+                                            <label for="bottom">Bottom</label>
+                                            <br />
+                                        </div>
+
                                         <button id="rows-apply" class="control-panel-button apply-button rows-apply"
                                             disabled="true">
                                             Apply

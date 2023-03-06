@@ -420,14 +420,14 @@ button:disabled:hover {
 
     width: 100%;
     height: 100px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 .level-selection-type-container {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 
@@ -498,21 +498,37 @@ button:disabled:hover {
     /* border: 1px solid black; */
 }
 
-.grams-radios-container {
-    /* display: flex; */
-    /* flex-direction: column; */
-    border: 1px solid black;
-}
-
+/* H4, RADIOS-CONTAINER__INNER, APPLY */
+.grams-radios-container,
 .rows-radios-container {
-    border: 1px solid red;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* width: fit-content; */
+    width: 150px;
+    height: 150px;
+    padding: 10px 0px 10px 0px;
+    /* border: 1px solid black; */
 }
 
+/* RADIOS ONLY */
+.gram-radios-container__inner,
+.rows-radios-container__inner {
+    height: fit-content;
+    /* border: 1px solid red; */
+}
+
+
+/* SELECTION TYPE */
 .selection-type-toggle {
-    /* margin-top: 7px; */
-    /* margin-bottom: 20px; */
+
+    font-weight: 100;
     color: black;
-    background: rgba(255, 0, 0, 0.321);
+    /* background: rgba(255, 0, 0, 0.321); */
+    background: rgba(255, 166, 0, 0.474);
+    border: 1px solid orange;
 }
 
 .selection-type-toggle.dark-theme {
@@ -526,8 +542,11 @@ button:disabled:hover {
 .selection-type-toggle.toggle-on {
     /* margin-top: 7px; */
     /* margin-bottom: 20px; */
+    font-weight: 100;
     color: black;
-    background: rgba(0, 128, 0, 0.304);
+    /* background: rgba(0, 128, 0, 0.304); */
+    background: rgba(255, 166, 0, 0.474);
+    border: 1px solid orange;
 }
 
 /* background: rgba(255, 0, 0, 0.321); */
@@ -556,6 +575,14 @@ button:disabled:hover {
     opacity: 0.7;
 }
 
+.control-panel-button.levels-apply:disabled:hover {
+    /* color: var(--border-gold); */
+    /* background: none; */
+    /* border: 1px solid var(--border-gold); */
+    font-weight: 100;
+    opacity: 0.3;
+}
+
 .control-panel-button.levels-apply.dark-theme:disabled:hover {
     color: var(--border-gold);
     background: none;
@@ -564,10 +591,15 @@ button:disabled:hover {
 }
 
 .beginner-container .control-apply-active.levels-apply {
-    color: black;
-    font-weight: 100;
-    background: rgba(0, 128, 0, 0.304);
-    border: 1px solid green;
+    /* color: black; */
+    /* font-weight: 100; */
+    /* background: rgba(0, 128, 0, 0.304); */
+    /* border: 1px solid green; */
+
+    background: #efefef;
+    border: 2px double green;
+    color: green;
+    font-weight: 500;
 
     opacity: 1;
 }

@@ -1986,11 +1986,11 @@ selectInclusiveToggle.addEventListener("click", function () {
     selectInclusiveToggle.classList.toggle("toggle-on");
     if (selectInclusiveToggle.classList.contains("toggle-on")) {
         inclusiveSelected = false;
-        selectInclusiveToggle.innerText = "On";
+        selectInclusiveToggle.innerText = "Random";
         // console.log(inclusiveSelected);
     } else {
         inclusiveSelected = true;
-        selectInclusiveToggle.innerText = "Off";
+        selectInclusiveToggle.innerText = "Through";
         // console.log(inclusiveSelected);
     }
 });
