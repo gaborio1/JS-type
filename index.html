@@ -200,7 +200,7 @@
                                 <!-- <h3>Beginner level - select key groups</h3> -->
 
                                 <!-- WRAP 1. -->
-                                <div class="levels-wrap">
+                                <div class="control-wrap levels-wrap">
                                     <div class="level-button-container colour-theme">
                                         <!-- <h4>Levels</h4> -->
                                         <button id="level-1" class="level-1 level-button tooltip">
@@ -258,12 +258,11 @@
 
                                 <div class="spacer-div__beginner-controls colour-theme"></div>
 
-                                <!-- WRAP 2. -->
-                                <div class="grams-wrap">
+                                <!-- WRAP . -->
 
-                                    <div class="grams-radios-container">
+                                    <div class="control-wrap">
                                         <h4 class="wrap-title">Consecutive</h4>
-                                        <div class="gram-radios-container__inner">
+                                        <div class="gram-radios-container">
                                             <input type="radio" id="2" class="radio gram-radio disabled-during-timer"
                                                 name="difficulty" value="2" />
                                             <label for="2">2</label>
@@ -286,9 +285,11 @@
                                         </button>
                                     </div>
 
-                                    <div class="rows-radios-container">
+                                    <div class="spacer-div__beginner-controls colour-theme"></div>
+
+                                    <div class="control-wrap">
                                         <h4 class="wrap-title">Keyboard rows</h4>
-                                        <div class="rows-radios-container__inner">
+                                        <div class="rows-radios-container">
                                             <input type="radio" id="top" class="radio row-radio disabled-during-timer"
                                                 name="rows" value="top" />
                                             <label for="top">Top</label>
@@ -313,18 +314,53 @@
                                     </div>
 
 
-                                </div>
+                                    
+
+
                                 <div class="spacer-div__beginner-controls colour-theme"></div>
-                                <div class="beginner-control-hide-container">
-                                    <!-- <button id="levels-apply" class="control-panel-button levels-apply colour-theme"
-                                        disabled="true">
-                                        Apply
-                                    </button> -->
-                                    <button id="beginner-control-hide-button"
+                               
+                                
+
+                                    <div class="control-wrap">
+
+                                        <h4 class="wrap-title">Punctuation</h4>
+                                        <div class="punctuation-buttons-container">
+
+                                            <button id="punctuation-toggle"
+                                                class="control-panel-button control-toggle-button punctuation-toggle disabled-during-timer">
+                                                Off
+                                            </button>
+                                            <button id="punctuation-apply" class="control-panel-button apply-button"
+                                                disabled="true">
+                                                Apply
+                                            </button>
+                                        </div>
+
+                                        <h4 class="wrap-title">Capital letters</h4>
+                                        <div class="capital-buttons-container">
+                                            <button id="capital-toggle"
+                                                class="control-panel-button control-toggle-button capital-toggle disabled-during-timer">
+                                                Off
+                                            </button>
+                                            <button id="capital-apply" class="control-panel-button      apply-button"
+                                            disabled="true">
+                                                Apply
+                                            </button>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="spacer-div__beginner-controls colour-theme"></div>
+
+                                    <div class="control-wrap">
+                                        <button id="beginner-control-hide-button"
                                         class="control-panel-button flip-button--controls beginner-hide-button colour-theme">
                                         Advanced
                                     </button>
-                                </div>
+                                    </div>
+
 
                             </div>
                         </div>
