@@ -1150,9 +1150,12 @@ startButton.addEventListener("click", (event) => {
         // TRACK TYPED KEY ON KEYBOARD (100MS FLASH)
         for (let i = 0; i < letterKeys.length; i += 1) {
             if (typedKey.toUpperCase() === letterKeys[i].innerText) {
-                letterKeys[i].classList.add("dark-gold-background");
+                // letterKeys[i].classList.add("dark-gold-background");
+                letterKeys[i].style.background = "rgba(0, 128, 0, 0.304)";
+
                 setTimeout(function () {
-                    letterKeys[i].classList.remove("dark-gold-background");
+                    // letterKeys[i].classList.remove("dark-gold-background");
+                    letterKeys[i].style.background = "none";
                 }, 100);
             }
         }
@@ -1576,6 +1579,9 @@ for (let i = 0, length = gramRadios.length; i < length; i++) {
         gramsApply.classList.add("control-apply-active");
         gramsApply.disabled = false;
         startButton.classList.remove("control-apply-active");
+        disableStartButton();
+        clearDataAndDisplay();
+
         if (allChangesApplied()) {
             enableStartButton();
         }
@@ -1633,6 +1639,9 @@ for (let i = 0, length = rowRadios.length; i < length; i++) {
         rowsApply.classList.add("control-apply-active");
         rowsApply.disabled = false;
         startButton.classList.remove("control-apply-active");
+        disableStartButton();
+        clearDataAndDisplay();
+
         if (allChangesApplied()) {
             enableStartButton();
         }
@@ -1705,8 +1714,13 @@ lengthApply.addEventListener("click", function () {
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 PUNCTUATION 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
+// SELECT BOTH ADVANCED AND BEGINNER
+// const punctuationToggles = document.getElementsByClassName("punctuation-toggle");
+// console.log(punctuationToggles);
+
 // 1. ONLY TOGGLE STYLE
 const handlePunctuationToggle = () => {
+    console.log("PUNCTUATION TOGGLE");
     toggleButtonStyle(punctuationToggle);
     punctuationApply.classList.add("control-apply-active");
     punctuationApply.disabled = false;
@@ -1714,6 +1728,10 @@ const handlePunctuationToggle = () => {
 };
 
 punctuationToggle.addEventListener("click", handlePunctuationToggle);
+
+// for (let i = 0; i < punctuationToggles.length; i += 1) {
+//     punctuationToggles[i].addEventListener("click", handlePunctuationToggle);
+// }
 
 // 2. APPLY CHANGES WHEN CLICKED
 punctuationApply.addEventListener("click", function () {
