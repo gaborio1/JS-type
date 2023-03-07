@@ -2352,7 +2352,13 @@ beginnerHideButton.addEventListener("click", function () {
 
 /*
 
-CURRENT BRANCH: grams
+CURRENT BRANCH: BUTTON-REFACTOR-LIGHT
+
+    REFACTOR BUTTONS
+        CLASSES
+        CSS VARIABLES
+
+ GRAMS-1
 
     ☑️ DISABLE LEVEL SELECTOR BUTTONS WHEN RADIO IS CLICKED
 
