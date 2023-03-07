@@ -215,9 +215,9 @@ button:disabled:hover {
 }
 
 /* COLOUR APPLY BUTTON GETS DISABLED IN JS: themeApply.addEventListener */
-.control-wrap.dark-theme button:disabled {
+/* .control-wrap.dark-theme button:disabled {
     opacity: 0.4;
-}
+} */
 
 /* TEXT  (20-50) AND CURRENT LENGTH*/
 .control-wrap.dark-theme {
@@ -275,7 +275,7 @@ button:disabled:hover {
     /* border: 1px solid var(--border-grey); */
     /* background: rgba(255, 255, 255, 0.52);
     background: rgba(251, 239, 214, 0.521); */
-    opacity: 0.5;
+    opacity: 0.3;
 }
 
 .control-wrap.dark-theme .control-panel-button:disabled,
@@ -543,6 +543,27 @@ button:disabled:hover {
     opacity: 0.3;
 }
 
+.beginner-container .control-panel-button.levels-apply:disabled:hover,
+.beginner-container .control-panel-button.grams-apply:disabled:hover,
+.beginner-container .control-panel-button.rows-apply:disabled:hover {
+    color: black;
+    border: 1px solid black;
+    opacity: 0.3;
+}
+
+/* +++++++++++++ */
+.beginner-container.dark-theme
+    .control-panel-button.levels-apply:disabled:hover,
+.beginner-container.dark-theme .control-panel-button.grams-apply:disabled:hover,
+.beginner-container.dark-theme .control-panel-button.rows-apply:disabled:hover {
+    color: var(--border-gold);
+    background: none;
+    border: 1px solid var(--border-gold-disabled);
+
+    opacity: 0.7;
+}
+/* +++++++++++++ */
+
 .control-panel-button.levels-apply.dark-theme:disabled,
 .control-panel-button.grams-apply.dark-theme:disabled,
 .control-panel-button.rows-apply.dark-theme:disabled {
@@ -552,12 +573,16 @@ button:disabled:hover {
     opacity: 0.7;
 }
 
-.control-panel-button.levels-apply:disabled:hover {
-    /* color: var(--border-gold); */
-    /* background: none; */
-    /* border: 1px solid var(--border-gold); */
+.control-panel-button.levels-apply:disabled:hover,
+.control-panel-button.grams-apply:disabled:hover,
+.control-panel-button.rows-apply:disabled:hover {
+    color: var(--border-gold);
+    background: none;
+    border: 1px solid var(--border-gold);
     font-weight: 100;
     opacity: 0.3;
+    /* opacity: 1;f */
+    /* background: yellow; */
 }
 
 .control-panel-button.levels-apply.dark-theme:disabled:hover {
