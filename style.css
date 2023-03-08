@@ -160,17 +160,6 @@ button:disabled:hover {
     border-radius: 4px;
 }
 
-/* +++++++++++++++++++++++++++++++++ */
-/* TEMPORARY SETTINGS FOR TIMER WRAP */
-/* .control-wrap.enter-control-wrap {
-    display: block;
-} */
-
-/* .enter-buttons-container {
-    margin-top: 14px;
-} */
-/* +++++++++++++++++++++++++++++++++ */
-
 .spacer-div {
     height: 125px;
     border-left: 1px solid var(--border-grey);
@@ -202,128 +191,14 @@ button:disabled:hover {
     border: 1px solid red;
 } */
 
-.control-wrap button {
-    font-family: "Roboto", sans-serif;
-    font-weight: 100;
-}
 
-.control-wrap.dark-theme button {
-    font-family: "Roboto", sans-serif;
-    font-weight: 100;
-    background: #4d4d4d91;
-    color: darkgoldenrod;
-}
-
-/* COLOUR APPLY BUTTON GETS DISABLED IN JS: themeApply.addEventListener */
-/* .control-wrap.dark-theme button:disabled {
-    opacity: 0.4;
-} */
 
 /* TEXT  (20-50) AND CURRENT LENGTH*/
 .control-wrap.dark-theme {
     color: darkgoldenrod;
 }
 
-/* CONTROL PANEL BUTTONS */
-.control-panel-button {
-    width: 45px;
-    height: 25px;
 
-    /* 1. MAKE DEFAULT RED */
-    border: 1px solid red;
-    color: red;
-
-    border-radius: 4px;
-    opacity: 0.75;
-}
-
-.control-panel-button.control-apply-active {
-    opacity: 1;
-}
-
-.info-button,
-.beginner-button,
-.theme-toggle {
-    color: green;
-    border: 1px solid green;
-    /* background: rgb(164, 215, 164); */
-
-    opacity: 1;
-}
-
-/* 2. TOGGLE ON - GREEN */
-.control-panel-button.toggle-on {
-    /* background: rgb(164, 215, 164); */
-    border: 1px solid green;
-    color: green;
-    opacity: 1;
-}
-
-.control-panel-button.apply-button {
-    /* border: 1px solid var(--border-grey); */
-    border: 1px solid black;
-    color: black;
-}
-
-.control-wrap.dark-theme .control-panel-button {
-    border: 1px solid var(--border-gold);
-}
-
-/* CONTROL PANEL BUTTONS : DISABLED */
-.control-panel-button:disabled,
-.start-button:disabled {
-    /* border: 1px solid var(--border-grey); */
-    /* background: rgba(255, 255, 255, 0.52);
-    background: rgba(251, 239, 214, 0.521); */
-    opacity: 0.3;
-}
-
-.control-wrap.dark-theme .control-panel-button:disabled,
-.start-button.dark-theme:disabled {
-    border: 1px solid var(--border-gold-disabled);
-    background: rgba(184, 135, 11, 0.037);
-    opacity: 0.3;
-}
-
-/* THIS IS TO REPLACE MULTIPLE SELECTORS */
-/* HIGHLIGHT TOGGLE BUTTONS (.control-toggle-button) ON HOVER */
-.info-button:hover,
-.beginner-button:hover,
-.control-toggle-button:hover {
-    font-weight: 500;
-    /* border: 1px solid rgba(149, 149, 149, 0.515); */
-    border-width: 2px;
-
-    /* opacity: 1; */
-}
-
-/* ALL TOGGLE / INFO / BEGINNER BUTTONS  */
-.control-wrap.dark-theme .info-button:hover,
-.control-wrap.dark-theme .beginner-button:hover,
-.control-wrap.dark-theme .control-toggle-button:hover {
-    /* background: lightgreen; */
-    background: #4d4d4d4a;
-
-    /* color: rgb(215, 215, 215); */
-    color: rgb(219, 168, 37);
-    border: 1px solid darkgoldenrod;
-    font-weight: 500;
-}
-
-/* DO NOT INCREASE FONT WEIGHT WHEN :DISABLED:HOVER */
-.control-toggle-button:disabled:hover,
-.info-button:disabled:hover,
-.beginner-button:disabled:hover {
-    /* background: lightgreen; */
-    font-weight: 300;
-}
-
-.control-wrap.dark-theme .control-toggle-button:disabled:hover,
-.control-wrap.dark-theme .info-button:disabled:hover,
-.control-wrap.dark-theme .beginner-button:disabled:hover {
-    /* background: lightgreen; */
-    font-weight: 300;
-}
 
 /* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BEGINNER CONTROLS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
@@ -436,59 +311,7 @@ button:disabled:hover {
     /* border: 1px solid red; */
 }
 
-/* LEVEL BUTTONS */
 
-.level-button {
-    letter-spacing: 5px;
-}
-
-.beginner-container .level-button {
-    font-family: "Roboto", sans-serif;
-    width: 80px;
-    /* height: 35px; */
-    /* height: 25px; */
-    height: 20px;
-    margin: 5px;
-    margin: 4px;
-    font-weight: 100;
-    background: rgba(255, 0, 0, 0.321);
-    color: black;
-    border: 1px solid red;
-    border-radius: 4px;
-}
-
-.beginner-container.dark-theme .level-button {
-    background: rgba(255, 0, 0, 0.321);
-    background: rgba(255, 0, 0, 0.37);
-    color: grey;
-    color: orange;
-    border: 1px solid red;
-}
-
-/* LEVEL BUTTONS : TOGGLE ON */
-.beginner-container .level-button.toggle-on {
-    color: black;
-    background: rgba(0, 128, 0, 0.304);
-    border: 1px solid green;
-    font-weight: 500;
-}
-
-.beginner-container.dark-theme .level-button.toggle-on {
-    color: orange;
-    background: rgba(0, 128, 0, 0.304);
-    border: 1px solid green;
-    font-weight: 500;
-}
-
-/* LEVEL BUTTONS : HOVER */
-.beginner-container .level-button:hover {
-    /* THIS IS THE CONTROL-APPLY-ACTIVE COLOUR */
-    /* TRY A LIGTHER SHADE ??? */
-    /* background: rgba(144, 238, 144, 0.765); */
-    /* border: 2px solid rgb(149, 149, 149); */
-    border-width: 2px;
-    font-weight: 500;
-}
 
 /* RADIOS ONLY */
 .gram-radios-container,
@@ -497,129 +320,7 @@ button:disabled:hover {
     /* border: 1px solid red; */
 }
 
-/* SELECTION TYPE */
-.beginner-container .selection-type-toggle {
-    width: 100px;
-    font-weight: 100;
-    color: black;
-    /* background: rgba(255, 0, 0, 0.321); */
-    background: rgba(255, 166, 0, 0.474);
-    border: 1px solid orange;
-}
 
-.selection-type-toggle.dark-theme {
-    color: orange;
-}
-
-.selection-type-toggle.toggle-on.dark-theme {
-    color: orange;
-}
-
-.selection-type-toggle.toggle-on {
-    /* margin-top: 7px; */
-    /* margin-bottom: 20px; */
-    font-weight: 100;
-    color: black;
-    /* background: rgba(0, 128, 0, 0.304); */
-    background: rgba(255, 166, 0, 0.474);
-    border: 1px solid orange;
-}
-
-/* background: rgba(255, 0, 0, 0.321); */
-/* background: rgba(0, 128, 0, 0.304); */
-
-/* LEVELS APPLY BUTTON */
-
-.beginner-container .control-panel-button.levels-apply {
-    color: black;
-    border: 1px solid black;
-}
-
-.beginner-container .control-panel-button.levels-apply:disabled,
-.beginner-container .control-panel-button.grams-apply:disabled,
-.beginner-container .control-panel-button.rows-apply:disabled {
-    /* color: black;
-    border: 1px solid black; */
-    opacity: 0.3;
-}
-
-.beginner-container .control-panel-button.levels-apply:disabled:hover,
-.beginner-container .control-panel-button.grams-apply:disabled:hover,
-.beginner-container .control-panel-button.rows-apply:disabled:hover {
-    color: black;
-    border: 1px solid black;
-    opacity: 0.3;
-}
-
-/* +++++++++++++ */
-.beginner-container.dark-theme
-    .control-panel-button.levels-apply:disabled:hover,
-.beginner-container.dark-theme .control-panel-button.grams-apply:disabled:hover,
-.beginner-container.dark-theme .control-panel-button.rows-apply:disabled:hover {
-    color: var(--border-gold);
-    background: none;
-    border: 1px solid var(--border-gold-disabled);
-
-    opacity: 0.7;
-}
-/* +++++++++++++ */
-
-.control-panel-button.levels-apply.dark-theme:disabled,
-.control-panel-button.grams-apply.dark-theme:disabled,
-.control-panel-button.rows-apply.dark-theme:disabled {
-    color: var(--border-gold);
-    background: none;
-    border: 1px solid var(--border-gold);
-    opacity: 0.7;
-}
-
-.control-panel-button.levels-apply:disabled:hover,
-.control-panel-button.grams-apply:disabled:hover,
-.control-panel-button.rows-apply:disabled:hover {
-    color: var(--border-gold);
-    background: none;
-    border: 1px solid var(--border-gold);
-    font-weight: 100;
-    opacity: 0.3;
-    /* opacity: 1;f */
-    /* background: yellow; */
-}
-
-.control-panel-button.levels-apply.dark-theme:disabled:hover {
-    color: var(--border-gold);
-    background: none;
-    border: 1px solid var(--border-gold);
-    opacity: 0.7;
-}
-
-.beginner-container .control-apply-active.levels-apply {
-    /* color: black; */
-    /* font-weight: 100; */
-    /* background: rgba(0, 128, 0, 0.304); */
-    /* border: 1px solid green; */
-
-    background: #efefef;
-    border: 2px double green;
-    border: 2px solid green;
-    color: green;
-    font-weight: 500;
-
-    opacity: 1;
-}
-
-.beginner-container .control-apply-active.levels-apply.dark-theme {
-    color: rgb(229, 172, 28);
-    font-weight: 100;
-    background: rgba(0, 128, 0, 0.304);
-    border: 1px solid green;
-    /* opacity: 1; */
-}
-
-.beginner-container .control-apply-active.levels-apply.dark-theme:hover {
-    font-weight: 500;
-    border-width: 2px;
-    /* opacity: 1; */
-}
 
 /* TOOLTIP */
 /* SOURCE: https://www.w3schools.com/css/css_tooltip.asp#:~:text=HTML%3A%20Use%20a%20container%20element,with%20class%3D%22tooltiptext%22%20. */
@@ -712,71 +413,14 @@ button:disabled:hover {
     margin: 0px auto;
 } */
 
-/* BOTH APPLY, ADVANCED */
-.beginner-container .control-panel-button {
-    width: 90px;
-    width: 45px;
-    /* height: 30px; */
-    height: 25px;
-    font-family: "Roboto", sans-serif;
-    opacity: 1;
-}
 
-.beginner-container .control-panel-button.selection-type-toggle {
-    width: 80px;
-    font-weight: 100;
-    color: black;
-    /* background: rgba(255, 0, 0, 0.321); */
-    background: rgba(255, 166, 0, 0.474);
-    border: 1px solid orange;
-}
 
-.beginner-container .control-panel-button.beginner-hide-button {
-    width: 80px;
-}
 
-.beginner-container .control-panel-button:hover {
-    border-width: 2px;
-    font-weight: 500;
-}
 
-/* APPLY */
-.beginner-container .levels-apply {
-    color: green;
-    border: 1px solid green;
-    background: var(--wrap-highlight--light);
-}
 
-.beginner-container .beginner-hide-button {
-    color: green;
-    border: 1px solid green;
-    /* !!! TEMP FIX UNTIL MORE CONTENT IS ADDED !!! */
-    margin-top: 14px;
-    /* background: var(--wrap-highlight--light); */
-    /* background: rgba(0, 128, 0, 0.304); */
-}
 
-/* DARK */
-.beginner-hide-button.dark-theme {
-    width: 90px;
-    height: 30px;
-    font-family: "Roboto", sans-serif;
 
-    /* background: #4d4d4d91; */
-    color: darkgoldenrod;
-    border: 1px solid green;
-    opacity: 1;
-}
 
-.beginner-hide-button.dark-theme:hover {
-    width: 90px;
-    height: 30px;
-    font-family: "Roboto", sans-serif;
-    color: rgb(229, 172, 28);
-    background: rgba(0, 128, 0, 0.304);
-    border: 2px solid green;
-    opacity: 1;
-}
 
 /* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TEXT CONTAINERS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
@@ -993,39 +637,8 @@ p .active-txt-span.active-txt-span--enter {
     background: rgba(48, 75, 92, 0.291);
 }
 
-.start-button {
-    width: 125px;
-    height: 50px;
-    /* border: none; */
-    border: 1px solid var(--border-grey);
-    border-radius: 4px;
-    font-size: var(--font-32);
-    font-family: "Roboto", sans-serif;
-    font-weight: 300;
-}
 
-.start-button.dark-theme {
-    background: rgba(144, 238, 144, 0.374);
-    /* GREEN */
-    background: rgba(0, 128, 0, 0.75);
-    /* background: rgba(144, 238, 144, 0.495); */
-    color: rgb(229, 172, 28);
-    font-weight: 400;
-    border: 1px solid rgba(184, 135, 11, 0.296);
-    /* filter: grayscale(0); */
-}
 
-.start-button.control-apply-active.dark-theme {
-    /* background: rgba(144, 238, 144, 0.495); */
-    /* background: rgba(238, 144, 207, 0.495); */
-    background: rgba(144, 238, 144, 0.374);
-    /* GREEN */
-    background: rgba(0, 128, 0, 0.75);
-    color: rgb(229, 172, 28);
-    font-weight: 400;
-    border: 1px solid rgba(184, 135, 11, 0.296);
-    /* filter: grayscale(0); */
-}
 
 /* REFRESH ICON FOR NEW TEXT */
 /* NOT IN USE */
@@ -1154,7 +767,7 @@ p .active-txt-span.active-txt-span--enter {
     height: 3.3em;
 }
 
-.keyboard__row > * {
+.keyboard__row>* {
     position: relative;
     text-align: center;
     float: left;
@@ -1181,7 +794,7 @@ p .active-txt-span.active-txt-span--enter {
     /* border-bottom-color: #555; */
 }
 
-.keyboard.dark-theme .keyboard__row > * {
+.keyboard.dark-theme .keyboard__row>* {
     color: var(--border-gold);
     -webkit-user-select: none;
     /* border: 1px solid #444; */
@@ -1198,13 +811,13 @@ p .active-txt-span.active-txt-span--enter {
     /* border-bottom-color: #555; */
 }
 
-.keyboard__row--h1 > div {
+.keyboard__row--h1>div {
     width: 3.5em;
 }
 
 /* KEY PRESSED ON KEYBOARD */
-.keyboard__row > div[data-pressed],
-.keyboard__row > div:active {
+.keyboard__row>div[data-pressed],
+.keyboard__row>div:active {
     /* background: #2a2a2a; */
     background: var(--wrap-highlight--light);
     /* background: rgba(255, 166, 0, 0.474); */
@@ -1239,7 +852,7 @@ p .active-txt-span.active-txt-span--enter {
     width: 18em;
 }
 
-.key--double > * {
+.key--double>* {
     padding-top: 0.1em;
 }
 
@@ -1247,21 +860,21 @@ p .active-txt-span.active-txt-span--enter {
     line-height: 2.8em;
 }
 
-.key--bottom-left > * {
+.key--bottom-left>* {
     position: absolute;
     text-align: left;
     bottom: 0.4em;
     left: 0.4em;
 }
 
-.key--bottom-right > * {
+.key--bottom-right>* {
     position: absolute;
     text-align: right;
     bottom: 0.4em;
     right: 0.4em;
 }
 
-.key--fn > * {
+.key--fn>* {
     font-size: 0.6em;
     line-height: 1em;
     padding-top: 1.2em;
@@ -1270,12 +883,12 @@ p .active-txt-span.active-txt-span--enter {
     float: right;
 }
 
-.key--word > * {
+.key--word>* {
     font-size: 0.8em;
 }
 
-.key--arrow--tall > *,
-.key--arrow > * {
+.key--arrow--tall>*,
+.key--arrow>* {
     font-size: 0.5em;
     line-height: 3em;
 }
@@ -1286,11 +899,11 @@ p .active-txt-span.active-txt-span--enter {
     line-height: 0.5em;
 }
 
-.key--arrow--tall > * {
+.key--arrow--tall>* {
     padding-top: 0.2em;
 }
 
-.keyboard > .keyboard__row {
+.keyboard>.keyboard__row {
     text-align: center;
 }
 
@@ -1430,74 +1043,7 @@ p .active-txt-span.active-txt-span--enter {
     /* padding: 25px 0px 50px 50px; */
 }
 
-/* HIDE BUTTON */
 
-.flip-button__card--main {
-    opacity: 0.3;
-
-    position: sticky;
-
-    width: 75px;
-    height: 25px;
-
-    padding: 2px 4px 2px 4px;
-
-    text-align: center;
-    font-family: "Roboto", sans-serif;
-    font-weight: 100;
-    background: whitesmoke;
-    color: black;
-
-    top: 25px;
-    left: 825px;
-
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 4px;
-
-    /* opacity: 1; */
-}
-
-/* HIGHLIGHT HIDE BUTTON 0.7 ON CONTAINER:HOVER */
-.instructions-container:hover .flip-button__card--main {
-    opacity: 0.7;
-}
-
-.flip-button__card--main.colour-theme:hover {
-    opacity: 1;
-    background: rgb(255, 255, 255);
-    font-weight: 500;
-    border-width: 2px;
-    cursor: pointer;
-}
-
-.flip-button__card--main.dark-theme {
-    background: #4d4d4d91;
-    color: rgb(219, 168, 37);
-    border: 1px solid rgb(219, 168, 37);
-}
-
-/* .instructions-container .flip-button__card--main:hover {
-    font-weight: 500;
-
-} */
-
-.instructions-container.dark-theme .flip-button__card--main {
-    /* font-family: "Roboto", sans-serif; */
-    font-weight: 100;
-    background: #4d4d4d91;
-    color: darkgoldenrod;
-    border: 1px solid var(--border-gold);
-}
-
-.instructions-container.dark-theme .flip-button__card--main:hover {
-    background: #4d4d4d4a;
-
-    /* color: rgb(215, 215, 215); */
-    color: rgb(219, 168, 37);
-    border: 1px solid darkgoldenrod;
-    border-width: 2px;
-    font-weight: 500;
-}
 
 .instructions-container p {
     margin-left: 20px;
@@ -1666,32 +1212,7 @@ p .active-txt-span.active-txt-span--enter {
 
 } */
 
-.control-panel-button.control-apply-active {
-    /* background: rgb(144, 238, 144); */
-    /* border: 1px solid var(--border-grey); */
-    border: 2px double green;
-    border: 2px solid green;
-    color: green;
-    font-weight: 500;
-}
 
-/* !!! HAVE TO STYLE DARK THEME START BUTTON SEPARATELY */
-.start-button.control-apply-active {
-    background: rgb(144, 238, 144);
-    color: black;
-    border: 1px solid var(--border-grey);
-    /* border: 1px solid green; */
-}
-
-.control-wrap.dark-theme .control-apply-active {
-    /* GREEN WITH OPACITY */
-    background: rgba(0, 128, 0, 0.75);
-
-    /* background: rgb(17, 156, 225); */
-    color: rgb(229, 172, 28);
-    font-weight: 500;
-    border: 1px solid rgba(184, 135, 11, 0.296);
-}
 
 /* CURSOR */
 .background {
@@ -1940,8 +1461,8 @@ input[type="range"]:focus::-ms-fill-upper {
 }
 
 /* RADIO LABEL TEXT */
-[type="radio"]:checked + label,
-[type="radio"]:not(:checked) + label {
+[type="radio"]:checked+label,
+[type="radio"]:not(:checked)+label {
     position: relative;
     width: 75px;
     height: 16px;
@@ -1955,8 +1476,8 @@ input[type="range"]:focus::-ms-fill-upper {
     color: #666;
 }
 
-.control-wrap.dark-theme [type="radio"]:checked + label,
-.control-wrap.dark-theme [type="radio"]:not(:checked) + label {
+.control-wrap.dark-theme [type="radio"]:checked+label,
+.control-wrap.dark-theme [type="radio"]:not(:checked)+label {
     color: darkgoldenrod;
 }
 
@@ -1970,7 +1491,7 @@ input[type="range"]:focus::-ms-fill-upper {
 /* RADIO HOVER BACKGROUND HIGHLIGHT */
 /* TRY TO ADJUST WIDTH */
 /* [type="radio"]:checked + label, */
-[type="radio"]:not(:checked) + label:hover {
+[type="radio"]:not(:checked)+label:hover {
     /* BACKGROUND ONLY */
     /* background: lightgreen;
     border-top-left-radius: 10px;
@@ -1984,7 +1505,7 @@ input[type="range"]:focus::-ms-fill-upper {
 }
 
 /* DISABLED: HOVER */
-[type="radio"]:not(:checked):disabled + label:hover {
+[type="radio"]:not(:checked):disabled+label:hover {
     cursor: default;
     font-weight: 300;
 
@@ -1992,7 +1513,7 @@ input[type="range"]:focus::-ms-fill-upper {
 }
 
 /* :CHECKED: DISABLED: HOVER */
-[type="radio"]:checked:disabled + label:hover {
+[type="radio"]:checked:disabled+label:hover {
     cursor: default;
     font-weight: 300;
 
@@ -2000,8 +1521,8 @@ input[type="range"]:focus::-ms-fill-upper {
 }
 
 /* OUTER CIRCLE */
-[type="radio"]:checked + label:before,
-[type="radio"]:not(:checked) + label:before {
+[type="radio"]:checked+label:before,
+[type="radio"]:not(:checked)+label:before {
     content: "";
     position: absolute;
     left: 0;
@@ -2013,8 +1534,8 @@ input[type="range"]:focus::-ms-fill-upper {
     background: #fff;
 }
 
-.control-wrap.dark-theme [type="radio"]:checked + label:before,
-.control-wrap.dark-theme [type="radio"]:not(:checked) + label:before {
+.control-wrap.dark-theme [type="radio"]:checked+label:before,
+.control-wrap.dark-theme [type="radio"]:not(:checked)+label:before {
     border: 1px solid darkgoldenrod;
     border-radius: 100%;
     background: #4d4d4d91;
@@ -2026,8 +1547,8 @@ input[type="range"]:focus::-ms-fill-upper {
 } */
 
 /* INNER CIRCLE */
-[type="radio"]:checked + label:after,
-[type="radio"]:not(:checked) + label:after {
+[type="radio"]:checked+label:after,
+[type="radio"]:not(:checked)+label:after {
     content: "";
     width: 10px;
     height: 10px;
@@ -2056,13 +1577,13 @@ input[type="range"]:focus::-ms-fill-upper {
     background: red;
 } */
 
-[type="radio"]:not(:checked) + label:after {
+[type="radio"]:not(:checked)+label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0);
 }
 
-[type="radio"]:checked + label:after {
+[type="radio"]:checked+label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
@@ -2408,4 +1929,481 @@ input[type="range"]:focus::-ms-fill-upper {
 
 .card--main.flipped {
     transform: rotateY(180deg);
+}
+
+/* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰  BUTTONS  🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
+
+/* 
+font-family: "Roboto", sans-serif;
+font-weight: 100; */
+
+
+/* background: rgba(255, 0, 0, 0.321); */
+/* background: rgba(0, 128, 0, 0.304); */
+/* background: rgb(164, 215, 164); */
+
+/* .control-wrap button {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+}
+
+.control-wrap.dark-theme button {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    background: #4d4d4d91;
+    color: darkgoldenrod;
+} */
+
+/* CONTROL PANEL BUTTONS */
+/* .control-panel-button {
+    width: 45px;
+    height: 25px;
+
+    border: 1px solid red;
+    color: red;
+
+    border-radius: 4px;
+    opacity: 0.75;
+} */
+
+/* .control-panel-button.apply--active {
+    opacity: 1;
+} */
+
+/* .info-button,
+.beginner-button,
+.theme-toggle {
+    color: green;
+    border: 1px solid green;
+
+    opacity: 1;
+} */
+
+/* 2. TOGGLE ON - GREEN */
+/* .control-panel-button.toggle-on {
+    border: 1px solid green;
+    color: green;
+    opacity: 1;
+} */
+
+/* .control-panel-button.apply-button {
+    border: 1px solid black;
+    color: black;
+} */
+
+/* .control-wrap.dark-theme .control-panel-button {
+    border: 1px solid var(--border-gold);
+} */
+
+/* CONTROL PANEL BUTTONS : DISABLED */
+/* .control-panel-button:disabled,
+.start-button:disabled {
+   
+    opacity: 0.3;
+} */
+
+/* .control-wrap.dark-theme .control-panel-button:disabled,
+.start-button.dark-theme:disabled {
+    border: 1px solid var(--border-gold-disabled);
+    background: rgba(184, 135, 11, 0.037);
+    opacity: 0.3;
+} */
+
+/* THIS IS TO REPLACE MULTIPLE SELECTORS */
+/* HIGHLIGHT TOGGLE BUTTONS (.control-toggle-button) ON HOVER */
+/* .info-button:hover,
+.beginner-button:hover,
+.control-toggle-button:hover {
+    font-weight: 500;
+    border-width: 2px;
+} */
+
+/* ALL TOGGLE / INFO / BEGINNER BUTTONS  */
+
+/* .control-wrap.dark-theme .info-button:hover,
+.control-wrap.dark-theme .beginner-button:hover,
+.control-wrap.dark-theme .control-toggle-button:hover {
+    background: #4d4d4d4a;
+    color: rgb(219, 168, 37);
+    border: 1px solid darkgoldenrod;
+    font-weight: 500;
+} */
+
+/* DO NOT INCREASE FONT WEIGHT WHEN :DISABLED:HOVER */
+/* .control-toggle-button:disabled:hover,
+.info-button:disabled:hover,
+.beginner-button:disabled:hover {
+    font-weight: 300;
+} */
+
+/* .control-wrap.dark-theme .control-toggle-button:disabled:hover,
+.control-wrap.dark-theme .info-button:disabled:hover,
+.control-wrap.dark-theme .beginner-button:disabled:hover {
+    font-weight: 300;
+} */
+
+
+/* LEVEL BUTTONS */
+
+/* .level-button {
+    letter-spacing: 5px;
+} */
+
+/* .beginner-container .level-button {
+    font-family: "Roboto", sans-serif;
+    width: 80px;
+   
+    height: 20px;
+    margin: 5px;
+    margin: 4px;
+    font-weight: 100;
+    background: rgba(255, 0, 0, 0.321);
+    color: black;
+    border: 1px solid red;
+    border-radius: 4px;
+} */
+
+/* .beginner-container.dark-theme .level-button {
+    background: rgba(255, 0, 0, 0.321);
+    background: rgba(255, 0, 0, 0.37);
+    color: grey;
+    color: orange;
+    border: 1px solid red;
+} */
+
+/* LEVEL BUTTONS : TOGGLE ON */
+/* .beginner-container .level-button.toggle-on {
+    color: black;
+    background: rgba(0, 128, 0, 0.304);
+    border: 1px solid green;
+    font-weight: 500;
+} */
+
+/* .beginner-container.dark-theme .level-button.toggle-on {
+    color: orange;
+    background: rgba(0, 128, 0, 0.304);
+    border: 1px solid green;
+    font-weight: 500;
+} */
+
+/* LEVEL BUTTONS : HOVER */
+/* .beginner-container .level-button:hover {
+    border-width: 2px;
+    font-weight: 500;
+} */
+
+/* SELECTION TYPE */
+/* .beginner-container .selection-type-toggle {
+    width: 100px;
+    font-weight: 100;
+    color: black;
+    background: rgba(255, 166, 0, 0.474);
+    border: 1px solid orange;
+} */
+
+/* .selection-type-toggle.dark-theme {
+    color: orange;
+} */
+
+/* .selection-type-toggle.toggle-on.dark-theme {
+    color: orange;
+} */
+
+/* .selection-type-toggle.toggle-on {
+   
+    font-weight: 100;
+    color: black;
+    background: rgba(255, 166, 0, 0.474);
+    border: 1px solid orange;
+} */
+
+
+/* LEVELS APPLY BUTTON */
+
+/* .beginner-container .control-panel-button.levels-apply {
+    color: black;
+    border: 1px solid black;
+} */
+
+/* .beginner-container .control-panel-button.levels-apply:disabled,
+.beginner-container .control-panel-button.grams-apply:disabled,
+.beginner-container .control-panel-button.rows-apply:disabled {
+   
+    opacity: 0.3;
+} */
+
+/* .beginner-container .control-panel-button.levels-apply:disabled:hover,
+.beginner-container .control-panel-button.grams-apply:disabled:hover,
+.beginner-container .control-panel-button.rows-apply:disabled:hover {
+    color: black;
+    border: 1px solid black;
+    opacity: 0.3;
+} */
+
+/* .beginner-container.dark-theme .control-panel-button.levels-apply:disabled:hover,
+.beginner-container.dark-theme .control-panel-button.grams-apply:disabled:hover,
+.beginner-container.dark-theme .control-panel-button.rows-apply:disabled:hover {
+    color: var(--border-gold);
+    background: none;
+    border: 1px solid var(--border-gold-disabled);
+
+    opacity: 0.7;
+} */
+
+
+/* .control-panel-button.levels-apply.dark-theme:disabled,
+.control-panel-button.grams-apply.dark-theme:disabled,
+.control-panel-button.rows-apply.dark-theme:disabled {
+    color: var(--border-gold);
+    background: none;
+    border: 1px solid var(--border-gold);
+    opacity: 0.7;
+} */
+
+/* .control-panel-button.levels-apply:disabled:hover,
+.control-panel-button.grams-apply:disabled:hover,
+.control-panel-button.rows-apply:disabled:hover {
+    color: var(--border-gold);
+    background: none;
+    border: 1px solid var(--border-gold);
+    font-weight: 100;
+    opacity: 0.3;
+   
+} */
+
+/* .control-panel-button.levels-apply.dark-theme:disabled:hover {
+    color: var(--border-gold);
+    background: none;
+    border: 1px solid var(--border-gold);
+    opacity: 0.7;
+} */
+
+/* .beginner-container .apply--active.levels-apply {
+
+    background: #efefef;
+    border: 2px double green;
+    border: 2px solid green;
+    color: green;
+    font-weight: 500;
+
+    opacity: 1;
+} */
+
+/* .beginner-container .apply--active.levels-apply.dark-theme {
+    color: rgb(229, 172, 28);
+    font-weight: 100;
+    background: rgba(0, 128, 0, 0.304);
+    border: 1px solid green;
+} */
+
+/* .beginner-container .apply--active.levels-apply.dark-theme:hover {
+    font-weight: 500;
+    border-width: 2px;
+} */
+
+/* BOTH APPLY, ADVANCED */
+/* .beginner-container .control-panel-button {
+    width: 90px;
+    width: 45px;
+    height: 25px;
+    font-family: "Roboto", sans-serif;
+    opacity: 1;
+} */
+
+/* .beginner-container .control-panel-button.selection-type-toggle {
+    width: 80px;
+    font-weight: 100;
+    color: black;
+    background: rgba(255, 166, 0, 0.474);
+    border: 1px solid orange;
+} */
+
+/* .beginner-container .control-panel-button.beginner-hide-button {
+    width: 80px;
+} */
+
+/* .beginner-container .control-panel-button:hover {
+    border-width: 2px;
+    font-weight: 500;
+} */
+
+/* APPLY */
+/* .beginner-container .levels-apply {
+    color: green;
+    border: 1px solid green;
+    background: var(--wrap-highlight--light);
+} */
+
+/* !!! TEMP FIX UNTIL MORE CONTENT IS ADDED !!! */
+/* .beginner-container .beginner-hide-button {
+    color: green;
+    border: 1px solid green;
+
+    margin-top: 14px;
+
+} */
+
+/* DARK */
+/* .beginner-hide-button.dark-theme {
+    width: 90px;
+    height: 30px;
+    font-family: "Roboto", sans-serif;
+
+    color: darkgoldenrod;
+    border: 1px solid green;
+    opacity: 1;
+} */
+
+/* .beginner-hide-button.dark-theme:hover {
+    width: 90px;
+    height: 30px;
+    font-family: "Roboto", sans-serif;
+    color: rgb(229, 172, 28);
+    background: rgba(0, 128, 0, 0.304);
+    border: 2px solid green;
+    opacity: 1;
+} */
+
+
+/* .start-button.dark-theme {
+    background: rgba(144, 238, 144, 0.374);
+    background: rgba(0, 128, 0, 0.75);
+    color: rgb(229, 172, 28);
+    font-weight: 400;
+    border: 1px solid rgba(184, 135, 11, 0.296);
+} */
+
+/* .start-button.apply--active.dark-theme {
+   
+    background: rgba(144, 238, 144, 0.374);
+    background: rgba(0, 128, 0, 0.75);
+    color: rgb(229, 172, 28);
+    font-weight: 400;
+    border: 1px solid rgba(184, 135, 11, 0.296);
+} */
+
+/* HIDE BUTTON */
+
+.flip-button__card--main {
+    opacity: 0.3;
+
+    position: sticky;
+
+    width: 75px;
+    height: 25px;
+
+    padding: 2px 4px 2px 4px;
+
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    background: whitesmoke;
+    color: black;
+
+    top: 25px;
+    left: 825px;
+
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 4px;
+
+}
+
+/* HIGHLIGHT HIDE BUTTON 0.7 ON CONTAINER:HOVER */
+/* .instructions-container:hover .flip-button__card--main {
+    opacity: 0.7;
+} */
+
+/* .flip-button__card--main.colour-theme:hover {
+    opacity: 1;
+    background: rgb(255, 255, 255);
+    font-weight: 500;
+    border-width: 2px;
+    cursor: pointer;
+} */
+
+/* .flip-button__card--main.dark-theme {
+    background: #4d4d4d91;
+    color: rgb(219, 168, 37);
+    border: 1px solid rgb(219, 168, 37);
+} */
+
+
+/* .instructions-container.dark-theme .flip-button__card--main {
+    font-weight: 100;
+    background: #4d4d4d91;
+    color: darkgoldenrod;
+    border: 1px solid var(--border-gold);
+} */
+
+/* .instructions-container.dark-theme .flip-button__card--main:hover {
+    background: #4d4d4d4a;
+
+    color: rgb(219, 168, 37);
+    border: 1px solid darkgoldenrod;
+    border-width: 2px;
+    font-weight: 500;
+} */
+
+/* .control-panel-button.apply--active {
+
+    border: 2px double green;
+    border: 2px solid green;
+    color: green;
+    font-weight: 500;
+} */
+
+/* .start-button {
+    width: 125px;
+    height: 50px;
+    border: 1px solid var(--border-grey);
+    border-radius: 4px;
+    font-size: var(--font-32);
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+} */
+
+/* !!! HAVE TO STYLE DARK THEME START BUTTON SEPARATELY */
+/* .start-button.apply--active {
+    background: rgb(144, 238, 144);
+    color: black;
+    border: 1px solid var(--border-grey);
+} */
+
+/* .control-wrap.dark-theme .apply--active {
+    background: rgba(0, 128, 0, 0.75);
+    color: rgb(229, 172, 28);
+    font-weight: 500;
+    border: 1px solid rgba(184, 135, 11, 0.296);
+} */
+
+button {
+    font-family: "Roboto", sans-serif;
+    border-radius: 4px;
+}
+
+.btn--control {
+    width: 45px;
+    height: 25px;
+    /* background: rgba(0, 128, 128, 0.228) */
+}
+
+/* TOGGLE BUTTONS */
+.btn--toggle {
+    color: red;
+    border: 1px solid red;
+}
+
+.btn--toggle.toggle-on {
+    color: green;
+    border: 1px solid green;
+}
+
+/* APPLY BUTTONS */
+.btn--apply {
+    color: black;
+    border: 1px solid black;
+}
+
+.btn--apply:disabled {
+    opacity: 0.3;
 }

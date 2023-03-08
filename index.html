@@ -68,8 +68,7 @@
 
                                     </div>
 
-                                    <button id="diffuculty-apply" class="control-panel-button apply-button"
-                                        disabled="true">
+                                    <button id="diffuculty-apply" class="btn--control btn--apply" disabled="true">
                                         Apply
                                     </button>
 
@@ -81,11 +80,10 @@
                                     <h4 class="wrap-title">Punctuation</h4>
                                     <div class="punctuation-buttons-container">
                                         <button id="punctuation-toggle"
-                                            class="control-panel-button control-toggle-button punctuation-toggle disabled-during-timer">
+                                            class="btn--control btn--toggle btn--toggle__punctuation disabled-during-timer">
                                             Off
                                         </button>
-                                        <button id="punctuation-apply"
-                                            class="punctuation-apply control-panel-button apply-button" disabled="true">
+                                        <button id="punctuation-apply" class="btn--control btn--apply" disabled="true">
                                             Apply
                                         </button>
                                     </div>
@@ -93,11 +91,10 @@
                                     <h4 class="wrap-title">Capital letters</h4>
                                     <div class="capital-buttons-container">
                                         <button id="capital-toggle"
-                                            class="control-panel-button control-toggle-button capital-toggle disabled-during-timer">
+                                            class="btn--control btn--toggle disabled-during-timer">
                                             Off
                                         </button>
-                                        <button id="capital-apply" class="control-panel-button apply-button"
-                                            disabled="true">
+                                        <button id="capital-apply" class="btn--control btn--apply" disabled="true">
                                             Apply
                                         </button>
                                     </div>
@@ -109,11 +106,10 @@
                                     <h4 class="wrap-title">Enter key</h4>
                                     <div class="enter-buttons-container">
                                         <button id="enter-toggle"
-                                            class="control-panel-button control-toggle-button enter-toggle disabled-during-timer toggle-off">
+                                            class="btn--control btn--toggle disabled-during-timer toggle-off">
                                             Off
                                         </button>
-                                        <button id="enter-apply" class="control-panel-button apply-button"
-                                            disabled="true">
+                                        <button id="enter-apply" class="btn--control btn--apply" disabled="true">
                                             Apply
                                         </button>
                                     </div>
@@ -122,11 +118,10 @@
                                     <h4 class="wrap-title">Timer</h4>
                                     <div class="timer-buttons-container">
                                         <button id="timer-toggle"
-                                            class="control-panel-button control-toggle-button timer-toggle disabled-during-timer toggle-on">
+                                            class="btn--control btn--toggle disabled-during-timer toggle-on">
                                             On
                                         </button>
-                                        <button id="timer-apply" class="control-panel-button apply-button"
-                                            disabled="true">
+                                        <button id="timer-apply" class="btn--control btn--apply" disabled="true">
                                             Apply
                                         </button>
                                     </div>
@@ -142,7 +137,7 @@
                                     (20 - 50)<input type="range" id="length" class="disabled-during-timer" name="length"
                                         min="20" max="50" value="40" />
                                     <span id="length-display-span">30</span>
-                                    <button id="length-apply" class="control-panel-button apply-button" disabled="true">
+                                    <button id="length-apply" class="btn--control btn--apply" disabled="true">
                                         Apply
                                     </button>
                                     <!-- <input type=" submit" value="Apply"> -->
@@ -156,24 +151,20 @@
                                     <h4 class="wrap-title">Sound</h4>
                                     <div class="sound-buttons-container">
                                         <button id="sound-toggle"
-                                            class="control-panel-button control-toggle-button sound-toggle toggle-on disabled-during-timer">
+                                            class="btn--control btn--toggle toggle-on disabled-during-timer">
                                             On
                                         </button>
-                                        <button id="sound-apply" class="control-panel-button apply-button"
-                                            disabled="true">
+                                        <button id="sound-apply" class="btn--control btn--apply" disabled="true">
                                             Apply
                                         </button>
                                     </div>
                                     <h4 class="wrap-title">Dark theme</h4>
                                     <div class="">
                                         <button id="theme-toggle"
-                                            class="control-panel-button control-toggle-button theme-toggle disabled-during-timer">
+                                            class="btn--control btn--toggle disabled-during-timer">
                                             Off
                                         </button>
-                                        <!-- NOT IN USE -->
-                                        <!-- <button id="theme-apply" class="control-panel-button" disabled="true">
-                                            Apply
-                                        </button> -->
+
                                     </div>
                                 </div>
 
@@ -183,11 +174,11 @@
                                 <div class="control-wrap info-control-wrap colour-theme">
                                     <h4 class="wrap-title">Info</h4>
                                     <button
-                                        class="control-panel-button info-button flip-button--main colour-theme disabled-during-timer">Show</button>
+                                        class="btn--control flip-button--main colour-theme disabled-during-timer">Show</button>
                                     </button>
                                     <h4 class="wrap-title">Beginner Level</h4>
                                     <button id="beginner-control-show-button"
-                                        class="control-panel-button beginner-button flip-button--controls disabled-during-timer">Show</button>
+                                        class="btn--control flip-button--controls disabled-during-timer">Show</button>
                                     </button>
                                 </div>
 
@@ -206,53 +197,51 @@
 
                                     <div class="level-button-container colour-theme">
                                         <!-- <h4>Levels</h4> -->
-                                        <button id="level-1" class="level-1 level-button tooltip">
+                                        <button id="level-1" class="level-1 btn--level tooltip">
                                             J F
                                             <h4 class="tooltiptext">R Index<br>L index</h4>
                                         </button>
-                                        <button id="level-2" class="level-2 level-button tooltip">
+                                        <button id="level-2" class="level-2 btn--level tooltip">
                                             U R K
                                             <h4 class="tooltiptext">R Index<br>L index<br>L middle</h4>
                                         </button>
-                                        <button id="level-3" class="level-3 level-button tooltip">
+                                        <button id="level-3" class="level-3 btn--level tooltip">
                                             D E I
                                             <h4 class="tooltiptext">L middle<br>L middle<br>R middle</h4>
                                         </button>
-                                        <button id="level-4" class="level-4 level-button tooltip">
+                                        <button id="level-4" class="level-4 btn--level tooltip">
                                             C G N
                                             <h4 class="tooltiptext">L index<br>L index<br>R index</h4>
                                         </button>
-                                        <button id="level-5" class="level-5 level-button tooltip">
+                                        <button id="level-5" class="level-5 btn--level tooltip">
                                             T S L
                                             <h4 class="tooltiptext">L Index<br>L ring<br>R ring</h4>
                                         </button>
-                                        <button id="level-6" class="level-6 level-button tooltip">
+                                        <button id="level-6" class="level-6 btn--level tooltip">
                                             O B A
                                             <h4 class="tooltiptext">R ring<br>L index<br>L pinky</h4>
                                         </button>
-                                        <button id="level-7" class="level-7 level-button tooltip">
+                                        <button id="level-7" class="level-7 btn--level tooltip">
                                             V H M
                                             <h4 class="tooltiptext">L Index<br>R index<br>R index</h4>
                                         </button>
-                                        <button id="level-8" class="level-8 level-button tooltip">
+                                        <button id="level-8" class="level-8 btn--level tooltip">
                                             W X Q
                                             <h4 class="tooltiptext">L ring<br>L middle<br>R pinky</h4>
                                         </button>
-                                        <button id="level-9" class="level-9 level-button tooltip">
+                                        <button id="level-9" class="level-9 btn--level tooltip">
                                             Y P Z
                                             <h4 class="tooltiptext">R Index<br>R pinky<br>L ring</h4>
                                         </button>
-                                        <!-- <button id="level-12" class="control-panel-button level-button"></button> -->
                                     </div>
 
                                     <div class="level-selection-type-container">
                                         <!-- <h4 class="wrap-title"></h4> -->
-                                        <button id="selection-type-toggle"
-                                            class="control-panel-button selection-type-toggle colour-theme">
+                                        <button id="btn--toggle__selection-type"
+                                            class="btn--control btn--toggle__selection-type colour-theme">
                                             Through
                                         </button>
-                                        <button id="levels-apply" class="control-panel-button levels-apply colour-theme"
-                                            disabled="true">
+                                        <button id="levels-apply" class="btn--control colour-theme" disabled="true">
                                             Apply
                                         </button>
                                     </div>
@@ -282,8 +271,7 @@
                                         <br />
                                     </div>
 
-                                    <button id="grams-apply" class="control-panel-button apply-button grams-apply"
-                                        disabled="true">
+                                    <button id="grams-apply" class="btn--control btn--apply" disabled="true">
                                         Apply
                                     </button>
                                 </div>
@@ -309,8 +297,7 @@
                                         <br />
                                     </div>
 
-                                    <button id="rows-apply" class="control-panel-button apply-button rows-apply"
-                                        disabled="true">
+                                    <button id="rows-apply" class="btn--control btn--apply" disabled="true">
                                         Apply
                                     </button>
                                 </div>
@@ -329,11 +316,11 @@
                                     <div class="punctuation-buttons-container">
 
                                         <button id="punctuation-toggle__beginner"
-                                            class="control-panel-button control-toggle-button punctuation-toggle disabled-during-timer">
+                                            class="btn--control btn--toggle disabled-during-timer">
                                             Off
                                         </button>
-                                        <button id="punctuation-apply__beginner"
-                                            class="punctuation-apply control-panel-button apply-button" disabled="true">
+                                        <button id="punctuation-apply__beginner" class="btn--control btn--apply"
+                                            disabled="true">
                                             Apply
                                         </button>
                                     </div>
@@ -341,11 +328,11 @@
                                     <h4 class="wrap-title">Capital letters</h4>
                                     <div class="capital-buttons-container">
                                         <button id="capital-toggle__beginner"
-                                            class="control-panel-button control-toggle-button capital-toggle disabled-during-timer">
+                                            class="btn--control btn--toggle disabled-during-timer">
                                             Off
                                         </button>
-                                        <button id="capital-apply__beginner"
-                                            class="control-panel-button      apply-button" disabled="true">
+                                        <button id="capital-apply__beginner" class="btn--control btn--apply"
+                                            disabled="true">
                                             Apply
                                         </button>
                                     </div>
@@ -359,7 +346,7 @@
                                 <div class="control-wrap control-wrap__beginner control-wrap__beginner-5 colour-theme">
                                     <h4 class="wrap-title">Advanced level</h4>
                                     <button id="beginner-control-hide-button"
-                                        class="control-panel-button flip-button--controls beginner-hide-button colour-theme">
+                                        class="btn--control flip-button--controls colour-theme">
                                         Show
                                     </button>
                                 </div>
