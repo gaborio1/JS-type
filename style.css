@@ -2378,6 +2378,8 @@ font-weight: 100; */
 
 button {
     font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    background: none;
     border-radius: 4px;
 }
 
@@ -2393,6 +2395,11 @@ button {
     border: 1px solid red;
 }
 
+.btn--control.btn--toggle:hover {
+    font-weight: 500;
+    border-width: 2px;
+}
+
 .btn--toggle.toggle-on {
     color: green;
     border: 1px solid green;
@@ -2404,6 +2411,34 @@ button {
     border: 1px solid black;
 }
 
+.btn--apply.apply--active:hover {
+    font-weight: 500;
+    border-width: 2px;
+}
+
 .btn--apply:disabled {
     opacity: 0.3;
+}
+
+/* ALL FLIP BUTTONS */
+button.btn--flip {
+    /* HAVE TO RESET BORDER WIDTH AS THEY ARE ALWAYS ACTIVE */
+    border-width: 1px;
+}
+
+button.btn--flip:hover {
+    font-weight: 500;
+    border-width: 2px;
+}
+
+
+/* START BUTTON */
+.btn--start {
+    width: 125px;
+    height: 50px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    border: 1px solid var(--border-grey);
+    font-size: var(--font-32);
+
 }

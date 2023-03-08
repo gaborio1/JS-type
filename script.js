@@ -124,7 +124,7 @@ const textSpanContainerNextParagraph =
 // TEXT INPUT
 const textInput = document.getElementById("input");
 // START BUTTON
-const startButton = document.getElementById("start-button");
+const startButton = document.getElementById("btn--start");
 // REFRESH ICON
 const refreshIcon = document.getElementById("refresh-icon");
 
