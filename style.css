@@ -2451,7 +2451,7 @@ button {
 .beginner-container .btn--level.toggle-on {
     /* color: black; */
     background: rgba(0, 128, 0, 0.304);
-    border: 2px solid green;
+    border: 1px solid green;
     font-weight: 500;
 }
 
@@ -2499,4 +2499,9 @@ button.btn--flip:hover {
     border: 1px solid var(--border-grey);
     font-size: var(--font-32);
 
+}
+
+/* HIDE INFO BUTTON */
+.instructions-container:hover .flip-button__card--main {
+    opacity: 0.7;
 }

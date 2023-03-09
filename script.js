@@ -1721,10 +1721,15 @@ lengthApply.addEventListener("click", function () {
 
 // 1. ONLY TOGGLE STYLE
 const handlePunctuationToggle = () => {
-    console.log("PUNCTUATION TOGGLE");
+    // console.log("PUNCTUATION TOGGLE");
     toggleButtonStyle(punctuationToggle);
-    punctuationApply.classList.add("apply--active");
-    punctuationApply.disabled = false;
+    // 1. TOGGLE CLASS
+    punctuationApply.classList.toggle("apply--active");
+    // 2. SET STATUS BASED ON CLASS
+    punctuationApply.disabled = punctuationApply.classList.contains("apply--active")
+        ? false
+        : true;
+
     disableStartButton();
 };
 
@@ -1751,8 +1756,10 @@ punctuationApply.addEventListener("click", function () {
 
 const handleCapitalToggle = () => {
     toggleButtonStyle(capitalToggle);
-    capitalApply.classList.add("apply--active");
-    capitalApply.disabled = false;
+    capitalApply.classList.toggle("apply--active");
+    capitalApply.disabled = capitalApply.classList.contains("apply--active")
+        ? false
+        : true;
     disableStartButton();
 };
 
@@ -1774,8 +1781,10 @@ capitalApply.addEventListener("click", function () {
 
 const handleEnterToggle = () => {
     toggleButtonStyle(enterToggle);
-    enterApply.classList.add("apply--active");
-    enterApply.disabled = false;
+    enterApply.classList.toggle("apply--active");
+    enterApply.disabled = enterApply.classList.contains("apply--active")
+        ? false
+        : true;
     disableStartButton();
 };
 
@@ -1873,8 +1882,10 @@ const countdown = () => {
 
 const handleTimerToggle = () => {
     toggleButtonStyle(timerToggle);
-    timerApply.classList.add("apply--active");
-    timerApply.disabled = false;
+    timerApply.classList.toggle("apply--active");
+    timerApply.disabled = timerApply.classList.contains("apply--active")
+        ? false
+        : true;
     disableStartButton();
 };
 
@@ -1896,8 +1907,10 @@ timerApply.addEventListener("click", function () {
 
 const handleSoundToggle = () => {
     toggleButtonStyle(soundToggle);
-    soundApply.classList.add("apply--active");
-    soundApply.disabled = false;
+    soundApply.classList.toggle("apply--active");
+    soundApply.disabled = soundApply.classList.contains("apply--active")
+        ? false
+        : true;
     disableStartButton();
 };
 
@@ -2447,6 +2460,9 @@ BRANCH: inclusive-selection
 
     
     FEATURES:
+
+        ☑️ TOGGLE apply--active CLASS ON APPLY BUTTONS
+            ☑️ TOGGLE DISABLED STATE BASED ON ABOVE CLASS
 
         (DISABLED)ADD TOOLTIP TO CURSOR ON INSTRUCTIONS CARD ("CLICK ANYWHERE TO CLOSE")
 
