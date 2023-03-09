@@ -1892,7 +1892,7 @@ input[type="range"]:focus::-ms-fill-upper {
     border: 3px solid darkgoldenrod;
 } */
 
-/* // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 APP / INFO FLIP 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
+/* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 APP / INFO FLIP 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
 .scene--main {
     width: 1000px;
@@ -2376,6 +2376,20 @@ font-weight: 100; */
     border: 1px solid rgba(184, 135, 11, 0.296);
 } */
 
+/* 
+🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 ALL BUTTONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
+
+/* DUPLICATES: 
+
+HOVER:
+    font-weight: 500;
+    border-width: 2px;
+
+
+*/
+
 button {
     font-family: "Roboto", sans-serif;
     font-weight: 100;
@@ -2420,10 +2434,54 @@ button {
     opacity: 0.3;
 }
 
+/* BEGINNER LEVEL BUTTONS */
+
+.btn--level {
+    width: 80px;
+    height: 20px;
+    /* margin: 5px; */
+    margin: 4px;
+    /* color: black; */
+    background: rgba(255, 0, 0, 0.321);
+
+    border: 1px solid red;
+    letter-spacing: 5px;
+}
+
+.beginner-container .btn--level.toggle-on {
+    /* color: black; */
+    background: rgba(0, 128, 0, 0.304);
+    border: 2px solid green;
+    font-weight: 500;
+}
+
+.btn--level:hover {
+    font-weight: 500;
+    border-width: 2px;
+}
+
+/* SELECTION TYPE BUTTON */
+.btn--toggle__selection-type {
+    width: 100px;
+    color: black;
+    background: rgba(255, 166, 0, 0.474);
+    border: 1px solid orange;
+}
+
+.btn--toggle__selection-type:hover {
+    font-weight: 500;
+    border-width: 2px;
+}
+
 /* ALL FLIP BUTTONS */
 button.btn--flip {
     /* HAVE TO RESET BORDER WIDTH AS THEY ARE ALWAYS ACTIVE */
     border-width: 1px;
+}
+
+/* TEMP SETTING TO POSITION HIDE BEGINNER */
+.control-wrap__beginner-5 button.btn--flip {
+    margin-top: 13px;
 }
 
 button.btn--flip:hover {
