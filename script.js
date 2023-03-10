@@ -1730,7 +1730,11 @@ const handlePunctuationToggle = () => {
         ? false
         : true;
 
-    disableStartButton();
+    startButton.disabled = punctuationApply.classList.contains("apply--active")
+        ? true
+        : false;
+
+    // disableStartButton();
 };
 
 punctuationToggle.addEventListener("click", handlePunctuationToggle);
@@ -1760,7 +1764,11 @@ const handleCapitalToggle = () => {
     capitalApply.disabled = capitalApply.classList.contains("apply--active")
         ? false
         : true;
-    disableStartButton();
+
+    startButton.disabled = capitalApply.classList.contains("apply--active")
+        ? true
+        : false;
+    // disableStartButton();
 };
 
 capitalToggle.addEventListener("click", handleCapitalToggle);
@@ -1785,7 +1793,11 @@ const handleEnterToggle = () => {
     enterApply.disabled = enterApply.classList.contains("apply--active")
         ? false
         : true;
-    disableStartButton();
+
+    startButton.disabled = enterApply.classList.contains("apply--active")
+        ? true
+        : false;
+    // disableStartButton();
 };
 
 enterToggle.addEventListener("click", handleEnterToggle);
@@ -1886,7 +1898,11 @@ const handleTimerToggle = () => {
     timerApply.disabled = timerApply.classList.contains("apply--active")
         ? false
         : true;
-    disableStartButton();
+
+    startButton.disabled = timerApply.classList.contains("apply--active")
+        ? true
+        : false;
+    // disableStartButton();
 };
 
 timerToggle.addEventListener("click", handleTimerToggle);
@@ -1911,7 +1927,11 @@ const handleSoundToggle = () => {
     soundApply.disabled = soundApply.classList.contains("apply--active")
         ? false
         : true;
-    disableStartButton();
+
+    startButton.disabled = soundApply.classList.contains("apply--active")
+        ? true
+        : false;
+    // disableStartButton();
 };
 
 soundToggle.addEventListener("click", handleSoundToggle);
@@ -2463,6 +2483,7 @@ BRANCH: inclusive-selection
 
         ☑️ TOGGLE apply--active CLASS ON APPLY BUTTONS
             ☑️ TOGGLE DISABLED STATE BASED ON ABOVE CLASS
+            TOGGLE START BUTTON AS WELL
 
         (DISABLED)ADD TOOLTIP TO CURSOR ON INSTRUCTIONS CARD ("CLICK ANYWHERE TO CLOSE")
 
