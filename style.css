@@ -369,22 +369,28 @@ button:disabled:hover {
 .tooltip.level-1 .tooltiptext,
 .tooltip.level-2 .tooltiptext,
 .tooltip.level-3 .tooltiptext {
-    top: -255%;
-    left: 50%;
+    /* top: -255%;
+    left: 50%; */
+    top: -80px;
+    left: 40px;
 }
 
 .tooltip.level-4 .tooltiptext,
 .tooltip.level-5 .tooltiptext,
 .tooltip.level-6 .tooltiptext {
-    top: -400%;
-    left: 50%;
+    /* top: -400%;
+    left: 50%; */
+    top: -108px;
+    left: 40px;
 }
 
 .tooltip.level-7 .tooltiptext,
 .tooltip.level-8 .tooltiptext,
 .tooltip.level-9 .tooltiptext {
-    top: -550%;
-    left: 50%;
+    /* top: -550%;
+    left: 50%; */
+    top: -136px;
+    left: 40px;
 }
 
 /* TOOLTIP BOTTOM ARROW */
