@@ -421,13 +421,6 @@ button:disabled:hover {
 
 
 
-
-
-
-
-
-
-
 /* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TEXT CONTAINERS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
 .active-container {
@@ -2431,6 +2424,12 @@ button {
     border: 1px solid black;
 }
 
+.btn--apply.dark-theme {
+    background: #4d4d4d4a;
+    color: rgb(219, 168, 37);
+    border: 1px solid darkgoldenrod;
+}
+
 .btn--apply.apply--active:hover {
     font-weight: 500;
     border-width: 2px;
@@ -2483,6 +2482,19 @@ button {
 button.btn--flip {
     /* HAVE TO RESET BORDER WIDTH AS THEY ARE ALWAYS ACTIVE */
     border-width: 1px;
+}
+
+button.btn--flip.dark-theme {
+    /* HAVE TO RESET BORDER WIDTH AS THEY ARE ALWAYS ACTIVE */
+    border-width: 1px;
+    background: #4d4d4d4a;
+    color: rgb(219, 168, 37);
+    border: 1px solid darkgoldenrod;
+}
+
+button.btn--flip.dark-theme:hover {
+    /* HAVE TO RESET BORDER WIDTH AS THEY ARE ALWAYS ACTIVE */
+    opacity: 1;
 }
 
 /* TEMP SETTING TO POSITION HIDE BEGINNER */

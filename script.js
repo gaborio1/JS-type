@@ -1730,11 +1730,10 @@ const handlePunctuationToggle = () => {
         ? false
         : true;
 
-    startButton.disabled = punctuationApply.classList.contains("apply--active")
-        ? true
-        : false;
+    startButton.disabled = allChangesApplied()
+        ? false
+        : true;
 
-    // disableStartButton();
 };
 
 punctuationToggle.addEventListener("click", handlePunctuationToggle);
@@ -1765,10 +1764,9 @@ const handleCapitalToggle = () => {
         ? false
         : true;
 
-    startButton.disabled = capitalApply.classList.contains("apply--active")
-        ? true
-        : false;
-    // disableStartButton();
+    startButton.disabled = allChangesApplied()
+        ? false
+        : true;
 };
 
 capitalToggle.addEventListener("click", handleCapitalToggle);
@@ -1794,10 +1792,9 @@ const handleEnterToggle = () => {
         ? false
         : true;
 
-    startButton.disabled = enterApply.classList.contains("apply--active")
-        ? true
-        : false;
-    // disableStartButton();
+    startButton.disabled = allChangesApplied()
+        ? false
+        : true;
 };
 
 enterToggle.addEventListener("click", handleEnterToggle);
@@ -1899,10 +1896,9 @@ const handleTimerToggle = () => {
         ? false
         : true;
 
-    startButton.disabled = timerApply.classList.contains("apply--active")
-        ? true
-        : false;
-    // disableStartButton();
+    startButton.disabled = allChangesApplied()
+        ? false
+        : true;
 };
 
 timerToggle.addEventListener("click", handleTimerToggle);
@@ -1928,10 +1924,9 @@ const handleSoundToggle = () => {
         ? false
         : true;
 
-    startButton.disabled = soundApply.classList.contains("apply--active")
-        ? true
-        : false;
-    // disableStartButton();
+    startButton.disabled = allChangesApplied()
+        ? false
+        : true;
 };
 
 soundToggle.addEventListener("click", handleSoundToggle);
@@ -2489,6 +2484,7 @@ BRANCH: inclusive-selection
         ☑️ TOGGLE apply--active CLASS ON APPLY BUTTONS
             ☑️ TOGGLE DISABLED STATE BASED ON ABOVE CLASS
             ☑️ buttons-refactor-lightTOGGLE START BUTTON AS WELL
+            ☑️ ONLY ACTIVATE START BTN IF ALL THE APPLY BUTTONS HAVE BEEN CLICKED
 
         (DISABLED)ADD TOOLTIP TO CURSOR ON INSTRUCTIONS CARD ("CLICK ANYWHERE TO CLOSE")
 
