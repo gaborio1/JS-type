@@ -518,11 +518,13 @@ button:disabled:hover {
     font-size: 20px;
     margin: 0px 0px 0px 10px;
     /* SAME AS CONTROL PANEL BUTTONS : ACTIVE */
-    background: rgb(215, 242, 250);
+    /* background: rgb(226, 226, 226); */
+    background: rgba(135, 206, 250, 0.647);
 }
 
 .text-span-container.dark-theme .active-txt-span--enter {
-    background: rgba(135, 206, 250, 0.252);
+    /* background: rgb(100, 100, 100); */
+    background: #529ce193;
 }
 
 /* NEXT ENTER */

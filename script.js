@@ -1924,9 +1924,10 @@ const handleSoundToggle = () => {
         ? false
         : true;
 
-    startButton.disabled = allChangesApplied()
-        ? false
-        : true;
+    // DO NOT DISABLE START BUTTON WHEN TURNING SOUND ON / OFF
+    // startButton.disabled = allChangesApplied()
+    //     ? false
+    //     : true;
 };
 
 soundToggle.addEventListener("click", handleSoundToggle);
@@ -2385,39 +2386,11 @@ beginnerHideButton.addEventListener("click", function () {
 CURRENT BRANCH: NONE
 
 
-BUTTON-REFACTOR-DARK
-     REFACTOR BUTTONS
-      
-
- BUTTON-REFACTOR-LIGHT
-
-    REFACTOR BUTTONS
-        ☑️ CLASSES
         CSS VARIABLES
-
- GRAMS-1
-
-    ☑️ DISABLE LEVEL SELECTOR BUTTONS WHEN RADIO IS CLICKED
 
     RESTORE DIFFICULTY LEVEL SETTING WHEN COMING BACK FROM BEGINNER ? (NOT WORKING)
     TRY RESETTING LEVEL TO COMMON100 - LINE 2317
 
-
-    ☑️ MAKE THIS A FUNCTION (setDifficultyLevel())
-    for (let i = 0, length = difficultyRadios.length; i < length; i++) {
-        if (difficultyRadios[i].checked) {
-            if (difficultyRadios[i].value === "100") {
-                targetArray = [...common100];
-            }
-            if (difficultyRadios[i].value === "200") {
-                targetArray = [...common200, ...common100];
-            }
-            if (difficultyRadios[i].value === "JavaScript") {
-                targetArray = [...jsReserved, ...jsObjPropMeth];
-            }
-            break;
-        }
-    }
 
      !!! WRITE A FUNCTION FOR THESE !!! (disableGrams(), disableRows()) !!!
 
@@ -2434,48 +2407,11 @@ BUTTON-REFACTOR-DARK
         rowsApply.disabled = true;
         rowsApply.classList.remove("apply--active");
 
-    RESET ALL RADIOS WHEN SWITCHING BETWEEN BEGINNER AND ADVANCED
 
-    SELECT ONE
-        ☑️ BIGRAMS
-        ☑️ TRIGRAMS
-        ☑️ QUADRIGRAMS
-
-    MULTIPLE SELECTION?
-
-    DISABLE OTHER SECTIONS WITH APPLY
-        LEVEL BUTTONS / RANDOM / APPLY BUTTONS
-        ☑️ KEYBOARD ROWS
-
-
-BRANCH: inclusive-selection
-
-    RESET BEGINNER SETTINGS WHEN SWITCHED TO ADVANCED ?
-    RESET ADVANCED SETTINGS WHEN SWITCHED TO BEGINNER ?
-
-
-    BEGINNER LEVEL SELECTION
-            ☑️ ADD TOGGLE BUTTON
-            ☑️ INDIVIDUAL
-            ☑️ INCLUSIVE
-            ☑️ MAKE SINGLE SELECTION DEFAULT
-
-    ☑️ STYLE HIDE INFO BUTTON IN LIGHT THEME (3 STATES)
-
-    ☑️ ALIGN HIDE BUTTON WITH HEADER IN INFO CARD
-
-    ADD BACKGROUND TO APPLY BUTTONS ?
 
     DARK THEME: CHANGE BLUE COLOUR ON
-        RADIO INNER CIRCLE
-        SLIDER
-
-    STYLE BEGINNER LEVEL
-        LIGHT
-        DARK
-
-    GREYSCALE FILTER IS TOO MUCH ON START BUTTON
-            MAKE CLASS FOR ELEMENTS THAT NEED FILTERING
+        RADIO INNER CIRCLE ?
+        SLIDER ?
 
     ADD COLOUR-THEME CLASS TO EVERY ELEMENT AFFECTED ???
 
@@ -2484,17 +2420,11 @@ BRANCH: inclusive-selection
     
     FEATURES:
 
-        ☑️ TOGGLE apply--active CLASS ON APPLY BUTTONS
-            ☑️ TOGGLE DISABLED STATE BASED ON ABOVE CLASS
-            ☑️ buttons-refactor-lightTOGGLE START BUTTON AS WELL
-            ☑️ ONLY ACTIVATE START BTN IF ALL THE APPLY BUTTONS HAVE BEEN CLICKED
-
         (DISABLED)ADD TOOLTIP TO CURSOR ON INSTRUCTIONS CARD ("CLICK ANYWHERE TO CLOSE")
 
         DISPLAY MESSAGES IN MESSAGE DIV
             ☑️ CHANGE MESSAGE DIV COLOR TO GREY OR ORANGE?
             CAPSLOCK WARNING
-
 
         ADD NUMERIC CHARACTERS
 
@@ -2515,30 +2445,24 @@ BRANCH: inclusive-selection
             ADD MORE CONTENT
         
         MAKE ONE COMMON APPLY BUTTON FOR ALL CONTROLS?
-        
-        RESET TIMER IF START BUTTON IS CLICKED?
-        
+        RESET TIMER IF START BUTTON IS CLICKED? 
         DISPLAY MESSAGE AS TEXT ELEMENT, NOT PLACEHOLDER OR CONTENT
-            
         ADD MOST COMMON SENTENCES TO DIFFICULTY
         PROBLEM KEYS
         DYNAMICALLY GENERATE NEXT LINE + 1 ?
         SHOW ALL TEXT AS ONE BLOCK ?
+        INCLUDE ENTER KEY IN REAL TIME HIGHLIGHT ?
        
             
     PROBLEMS:
 
         ENTER AND SPACE KEYS TRIGGER CARD FLIP AFTER FLIP BUTTON IS CLICKED (FOCUS???)
 
-        INCLUDE ENTER KEY IN REAL TIME HIGHLIGHT ?
-
         REFACTOR
             FUNCTIONS
             IF / ELSE BLOCKS
             CSS CLASSES
-                COMMON CLASS FOR
-                    TOGGLE BUTTONS (control-toggle-button) DOES NOT INCLUDE INFO, BEGINNER
-                    APPLY BUTTONS
+               
 
     
         END OF LINE ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'classList')
@@ -2581,7 +2505,7 @@ BRANCH: inclusive-selection
             !!! WHEN TIMER HAS ENDED FIRST START BUTTON PRESS WILL GENERATE POBLEM KEY WORDS ONLY, SECOND CLICK WILL USE COMMON100 !!!
        
     
-        DO NOT DISABLE START BUTTON  WITH SOUND ON/OFF ?
+        ☑️ DO NOT DISABLE START BUTTON  WITH SOUND ON/OFF ?
         ☑️ DO NOT RESET DATA WITH SOUND ON/OFF
 
 */
