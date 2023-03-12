@@ -1958,7 +1958,7 @@ button {
     /* background: rgba(0, 128, 128, 0.228) */
 }
 
-/* TOGGLE BUTTONS */
+/* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TOGGLE BUTTONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 .btn--toggle {
     color: red;
     border: 1px solid red;
@@ -1995,7 +1995,7 @@ button {
     opacity: 0.3;
 }
 
-/* BEGINNER LEVEL BUTTONS */
+/* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BEGINNER LEVEL BUTTONS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
 .btn--level {
     width: 80px;
@@ -2007,6 +2007,10 @@ button {
 
     border: 1px solid red;
     letter-spacing: 5px;
+}
+
+.btn--level.dark-theme {
+    color: rgb(219, 168, 37);
 }
 
 .beginner-container .btn--level.toggle-on {
@@ -2021,7 +2025,7 @@ button {
     border-width: 2px;
 }
 
-/* SELECTION TYPE BUTTON */
+/* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 SELECTION TYPE BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰*/
 .btn--toggle__selection-type {
     width: 100px;
     color: black;
@@ -2029,12 +2033,18 @@ button {
     border: 1px solid orange;
 }
 
+.btn--toggle__selection-type.dark-theme {
+    background: #4d4d4d4a;
+    color: rgb(219, 168, 37);
+    border: 1px solid darkgoldenrod;
+}
+
 .btn--toggle__selection-type:hover {
     font-weight: 500;
     border-width: 2px;
 }
 
-/* ALL FLIP BUTTONS */
+/* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 ALL FLIP BUTTONS🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 /* HIDE BUTTON */
 
 .flip-button__card--main {
@@ -2090,7 +2100,7 @@ button.btn--flip:hover {
 }
 
 
-/* START BUTTON */
+/* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 START BUTTON 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 .btn--start {
     width: 125px;
     height: 50px;
@@ -2113,8 +2123,6 @@ button.btn--flip:hover {
     background: rgba(0, 128, 0, 0.75);
     border: 1px solid darkgoldenrod;
 }
-
-/* .btn--start.apply--active {} */
 
 .btn--start.apply--active.dark-theme:hover {
     border-width: 2px;
