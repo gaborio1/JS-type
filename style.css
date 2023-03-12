@@ -1930,450 +1930,6 @@ input[type="range"]:focus::-ms-fill-upper {
     transform: rotateY(180deg);
 }
 
-/* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰  BUTTONS  🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
-
-/* 
-font-family: "Roboto", sans-serif;
-font-weight: 100; */
-
-
-/* background: rgba(255, 0, 0, 0.321); */
-/* background: rgba(0, 128, 0, 0.304); */
-/* background: rgb(164, 215, 164); */
-
-/* .control-wrap button {
-    font-family: "Roboto", sans-serif;
-    font-weight: 100;
-}
-
-.control-wrap.dark-theme button {
-    font-family: "Roboto", sans-serif;
-    font-weight: 100;
-    background: #4d4d4d91;
-    color: darkgoldenrod;
-} */
-
-/* CONTROL PANEL BUTTONS */
-/* .control-panel-button {
-    width: 45px;
-    height: 25px;
-
-    border: 1px solid red;
-    color: red;
-
-    border-radius: 4px;
-    opacity: 0.75;
-} */
-
-/* .control-panel-button.apply--active {
-    opacity: 1;
-} */
-
-/* .info-button,
-.beginner-button,
-.theme-toggle {
-    color: green;
-    border: 1px solid green;
-
-    opacity: 1;
-} */
-
-/* 2. TOGGLE ON - GREEN */
-/* .control-panel-button.toggle-on {
-    border: 1px solid green;
-    color: green;
-    opacity: 1;
-} */
-
-/* .control-panel-button.apply-button {
-    border: 1px solid black;
-    color: black;
-} */
-
-/* .control-wrap.dark-theme .control-panel-button {
-    border: 1px solid var(--border-gold);
-} */
-
-/* CONTROL PANEL BUTTONS : DISABLED */
-/* .control-panel-button:disabled,
-.start-button:disabled {
-   
-    opacity: 0.3;
-} */
-
-/* .control-wrap.dark-theme .control-panel-button:disabled,
-.start-button.dark-theme:disabled {
-    border: 1px solid var(--border-gold-disabled);
-    background: rgba(184, 135, 11, 0.037);
-    opacity: 0.3;
-} */
-
-/* THIS IS TO REPLACE MULTIPLE SELECTORS */
-/* HIGHLIGHT TOGGLE BUTTONS (.control-toggle-button) ON HOVER */
-/* .info-button:hover,
-.beginner-button:hover,
-.control-toggle-button:hover {
-    font-weight: 500;
-    border-width: 2px;
-} */
-
-/* ALL TOGGLE / INFO / BEGINNER BUTTONS  */
-
-/* .control-wrap.dark-theme .info-button:hover,
-.control-wrap.dark-theme .beginner-button:hover,
-.control-wrap.dark-theme .control-toggle-button:hover {
-    background: #4d4d4d4a;
-    color: rgb(219, 168, 37);
-    border: 1px solid darkgoldenrod;
-    font-weight: 500;
-} */
-
-/* DO NOT INCREASE FONT WEIGHT WHEN :DISABLED:HOVER */
-/* .control-toggle-button:disabled:hover,
-.info-button:disabled:hover,
-.beginner-button:disabled:hover {
-    font-weight: 300;
-} */
-
-/* .control-wrap.dark-theme .control-toggle-button:disabled:hover,
-.control-wrap.dark-theme .info-button:disabled:hover,
-.control-wrap.dark-theme .beginner-button:disabled:hover {
-    font-weight: 300;
-} */
-
-
-/* LEVEL BUTTONS */
-
-/* .level-button {
-    letter-spacing: 5px;
-} */
-
-/* .beginner-container .level-button {
-    font-family: "Roboto", sans-serif;
-    width: 80px;
-   
-    height: 20px;
-    margin: 5px;
-    margin: 4px;
-    font-weight: 100;
-    background: rgba(255, 0, 0, 0.321);
-    color: black;
-    border: 1px solid red;
-    border-radius: 4px;
-} */
-
-/* .beginner-container.dark-theme .level-button {
-    background: rgba(255, 0, 0, 0.321);
-    background: rgba(255, 0, 0, 0.37);
-    color: grey;
-    color: orange;
-    border: 1px solid red;
-} */
-
-/* LEVEL BUTTONS : TOGGLE ON */
-/* .beginner-container .level-button.toggle-on {
-    color: black;
-    background: rgba(0, 128, 0, 0.304);
-    border: 1px solid green;
-    font-weight: 500;
-} */
-
-/* .beginner-container.dark-theme .level-button.toggle-on {
-    color: orange;
-    background: rgba(0, 128, 0, 0.304);
-    border: 1px solid green;
-    font-weight: 500;
-} */
-
-/* LEVEL BUTTONS : HOVER */
-/* .beginner-container .level-button:hover {
-    border-width: 2px;
-    font-weight: 500;
-} */
-
-/* SELECTION TYPE */
-/* .beginner-container .selection-type-toggle {
-    width: 100px;
-    font-weight: 100;
-    color: black;
-    background: rgba(255, 166, 0, 0.474);
-    border: 1px solid orange;
-} */
-
-/* .selection-type-toggle.dark-theme {
-    color: orange;
-} */
-
-/* .selection-type-toggle.toggle-on.dark-theme {
-    color: orange;
-} */
-
-/* .selection-type-toggle.toggle-on {
-   
-    font-weight: 100;
-    color: black;
-    background: rgba(255, 166, 0, 0.474);
-    border: 1px solid orange;
-} */
-
-
-/* LEVELS APPLY BUTTON */
-
-/* .beginner-container .control-panel-button.levels-apply {
-    color: black;
-    border: 1px solid black;
-} */
-
-/* .beginner-container .control-panel-button.levels-apply:disabled,
-.beginner-container .control-panel-button.grams-apply:disabled,
-.beginner-container .control-panel-button.rows-apply:disabled {
-   
-    opacity: 0.3;
-} */
-
-/* .beginner-container .control-panel-button.levels-apply:disabled:hover,
-.beginner-container .control-panel-button.grams-apply:disabled:hover,
-.beginner-container .control-panel-button.rows-apply:disabled:hover {
-    color: black;
-    border: 1px solid black;
-    opacity: 0.3;
-} */
-
-/* .beginner-container.dark-theme .control-panel-button.levels-apply:disabled:hover,
-.beginner-container.dark-theme .control-panel-button.grams-apply:disabled:hover,
-.beginner-container.dark-theme .control-panel-button.rows-apply:disabled:hover {
-    color: var(--border-gold);
-    background: none;
-    border: 1px solid var(--border-gold-disabled);
-
-    opacity: 0.7;
-} */
-
-
-/* .control-panel-button.levels-apply.dark-theme:disabled,
-.control-panel-button.grams-apply.dark-theme:disabled,
-.control-panel-button.rows-apply.dark-theme:disabled {
-    color: var(--border-gold);
-    background: none;
-    border: 1px solid var(--border-gold);
-    opacity: 0.7;
-} */
-
-/* .control-panel-button.levels-apply:disabled:hover,
-.control-panel-button.grams-apply:disabled:hover,
-.control-panel-button.rows-apply:disabled:hover {
-    color: var(--border-gold);
-    background: none;
-    border: 1px solid var(--border-gold);
-    font-weight: 100;
-    opacity: 0.3;
-   
-} */
-
-/* .control-panel-button.levels-apply.dark-theme:disabled:hover {
-    color: var(--border-gold);
-    background: none;
-    border: 1px solid var(--border-gold);
-    opacity: 0.7;
-} */
-
-/* .beginner-container .apply--active.levels-apply {
-
-    background: #efefef;
-    border: 2px double green;
-    border: 2px solid green;
-    color: green;
-    font-weight: 500;
-
-    opacity: 1;
-} */
-
-/* .beginner-container .apply--active.levels-apply.dark-theme {
-    color: rgb(229, 172, 28);
-    font-weight: 100;
-    background: rgba(0, 128, 0, 0.304);
-    border: 1px solid green;
-} */
-
-/* .beginner-container .apply--active.levels-apply.dark-theme:hover {
-    font-weight: 500;
-    border-width: 2px;
-} */
-
-/* BOTH APPLY, ADVANCED */
-/* .beginner-container .control-panel-button {
-    width: 90px;
-    width: 45px;
-    height: 25px;
-    font-family: "Roboto", sans-serif;
-    opacity: 1;
-} */
-
-/* .beginner-container .control-panel-button.selection-type-toggle {
-    width: 80px;
-    font-weight: 100;
-    color: black;
-    background: rgba(255, 166, 0, 0.474);
-    border: 1px solid orange;
-} */
-
-/* .beginner-container .control-panel-button.beginner-hide-button {
-    width: 80px;
-} */
-
-/* .beginner-container .control-panel-button:hover {
-    border-width: 2px;
-    font-weight: 500;
-} */
-
-/* APPLY */
-/* .beginner-container .levels-apply {
-    color: green;
-    border: 1px solid green;
-    background: var(--wrap-highlight--light);
-} */
-
-/* !!! TEMP FIX UNTIL MORE CONTENT IS ADDED !!! */
-/* .beginner-container .beginner-hide-button {
-    color: green;
-    border: 1px solid green;
-
-    margin-top: 14px;
-
-} */
-
-/* DARK */
-/* .beginner-hide-button.dark-theme {
-    width: 90px;
-    height: 30px;
-    font-family: "Roboto", sans-serif;
-
-    color: darkgoldenrod;
-    border: 1px solid green;
-    opacity: 1;
-} */
-
-/* .beginner-hide-button.dark-theme:hover {
-    width: 90px;
-    height: 30px;
-    font-family: "Roboto", sans-serif;
-    color: rgb(229, 172, 28);
-    background: rgba(0, 128, 0, 0.304);
-    border: 2px solid green;
-    opacity: 1;
-} */
-
-
-/* .start-button.dark-theme {
-    background: rgba(144, 238, 144, 0.374);
-    background: rgba(0, 128, 0, 0.75);
-    color: rgb(229, 172, 28);
-    font-weight: 400;
-    border: 1px solid rgba(184, 135, 11, 0.296);
-} */
-
-/* .start-button.apply--active.dark-theme {
-   
-    background: rgba(144, 238, 144, 0.374);
-    background: rgba(0, 128, 0, 0.75);
-    color: rgb(229, 172, 28);
-    font-weight: 400;
-    border: 1px solid rgba(184, 135, 11, 0.296);
-} */
-
-/* HIDE BUTTON */
-
-.flip-button__card--main {
-    opacity: 0.3;
-
-    position: sticky;
-
-    width: 75px;
-    height: 25px;
-
-    padding: 2px 4px 2px 4px;
-
-    text-align: center;
-    font-family: "Roboto", sans-serif;
-    font-weight: 100;
-    background: whitesmoke;
-    color: black;
-
-    top: 25px;
-    left: 825px;
-
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 4px;
-
-}
-
-/* HIGHLIGHT HIDE BUTTON 0.7 ON CONTAINER:HOVER */
-/* .instructions-container:hover .flip-button__card--main {
-    opacity: 0.7;
-} */
-
-/* .flip-button__card--main.colour-theme:hover {
-    opacity: 1;
-    background: rgb(255, 255, 255);
-    font-weight: 500;
-    border-width: 2px;
-    cursor: pointer;
-} */
-
-/* .flip-button__card--main.dark-theme {
-    background: #4d4d4d91;
-    color: rgb(219, 168, 37);
-    border: 1px solid rgb(219, 168, 37);
-} */
-
-
-/* .instructions-container.dark-theme .flip-button__card--main {
-    font-weight: 100;
-    background: #4d4d4d91;
-    color: darkgoldenrod;
-    border: 1px solid var(--border-gold);
-} */
-
-/* .instructions-container.dark-theme .flip-button__card--main:hover {
-    background: #4d4d4d4a;
-
-    color: rgb(219, 168, 37);
-    border: 1px solid darkgoldenrod;
-    border-width: 2px;
-    font-weight: 500;
-} */
-
-/* .control-panel-button.apply--active {
-
-    border: 2px double green;
-    border: 2px solid green;
-    color: green;
-    font-weight: 500;
-} */
-
-/* .start-button {
-    width: 125px;
-    height: 50px;
-    border: 1px solid var(--border-grey);
-    border-radius: 4px;
-    font-size: var(--font-32);
-    font-family: "Roboto", sans-serif;
-    font-weight: 300;
-} */
-
-/* !!! HAVE TO STYLE DARK THEME START BUTTON SEPARATELY */
-/* .start-button.apply--active {
-    background: rgb(144, 238, 144);
-    color: black;
-    border: 1px solid var(--border-grey);
-} */
-
-/* .control-wrap.dark-theme .apply--active {
-    background: rgba(0, 128, 0, 0.75);
-    color: rgb(229, 172, 28);
-    font-weight: 500;
-    border: 1px solid rgba(184, 135, 11, 0.296);
-} */
 
 /* 
 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -2479,6 +2035,32 @@ button {
 }
 
 /* ALL FLIP BUTTONS */
+/* HIDE BUTTON */
+
+.flip-button__card--main {
+    opacity: 0.3;
+
+    position: sticky;
+
+    width: 75px;
+    height: 25px;
+
+    padding: 2px 4px 2px 4px;
+
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    background: whitesmoke;
+    color: black;
+
+    top: 25px;
+    left: 825px;
+
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 4px;
+
+}
+
 button.btn--flip {
     /* HAVE TO RESET BORDER WIDTH AS THEY ARE ALWAYS ACTIVE */
     border-width: 1px;
@@ -2520,14 +2102,41 @@ button.btn--flip:hover {
     /* border: 1px solid black; */
 }
 
-.btn--start.apply--active {
-    background: rgb(144, 238, 144);
+.btn--start:disabled:hover {
+    /* background-color: yellow; */
+    font-weight: 100;
+    border-width: 1px;
+}
+
+.btn--start.dark-theme {
+    color: rgb(229, 172, 28);
+    background: rgba(0, 128, 0, 0.75);
+    border: 1px solid darkgoldenrod;
+}
+
+/* .btn--start.apply--active {} */
+
+.btn--start.apply--active.dark-theme:hover {
+    border-width: 2px;
 }
 
 .btn--start.apply--active:hover {
     font-weight: 400;
-    border: 1px solid rgba(0, 0, 0, 0.381);
-    border-width: 3px;
+    border: 2px solid rgb(118, 118, 118);
+}
+
+.btn--start.apply--active:disabled:hover {
+    font-weight: 100;
+    border: 1px solid var(--border-grey);
+}
+
+.btn--start.apply--active.dark-theme:hover {
+    border: 2px solid darkgoldenrod;
+}
+
+.btn--start.apply--active.dark-theme:disabled:hover {
+    font-weight: 100;
+    border: 1px solid darkgoldenrod;
 }
 
 .btn--start:disabled {
