@@ -2335,7 +2335,17 @@ beginnerHideButton.addEventListener("click", function () {
     // if (timerToggle.classList.contains("apply--active")) {
 
     // timerOn = true;
+
+    // !!! LOOK INTO THIS !!!
+    // +++++++++
+    // startButton.disabled = allChangesApplied()
+    //     ? false
+    //     : true;
+    // startButton.disabled = true;
+    // +++++++++
+
     startButton.disabled = false;
+
     startButton.classList.add("apply--active");
     textInput.disabled = true;
     clearDataAndDisplay();
@@ -2455,6 +2465,8 @@ CURRENT BRANCH: NONE
        
             
     PROBLEMS:
+
+        LINE:2339 HOW TO HANDLE APPLY BUTTONS WHEN SWITCHING BETWEEN ADV/BEGINNER ???
 
         ENTER AND SPACE KEYS TRIGGER CARD FLIP AFTER FLIP BUTTON IS CLICKED (FOCUS???)
 
