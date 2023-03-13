@@ -1755,6 +1755,47 @@ punctuationApply.addEventListener("click", function () {
     punctuationToggle.disabled = false;
 });
 
+// BEGINNER LEVEL
+
+const punctuationToggleBeginner = document.getElementById("punctuation-toggle__beginner");
+const punctuationApplyBegineer = document.getElementById("punctuation-apply__beginner");
+
+// 1. ONLY TOGGLE STYLE
+const handlePunctuationToggleBeginner = () => {
+    // console.log("PUNCTUATION TOGGLE");
+    toggleButtonStyle(punctuationToggleBeginner);
+    // 1. TOGGLE CLASS
+    punctuationApplyBegineer.classList.toggle("apply--active");
+    // 2. SET STATUS BASED ON CLASS
+    punctuationApplyBegineer.disabled = punctuationApplyBegineer.classList.contains("apply--active")
+        ? false
+        : true;
+
+    startButton.disabled = allChangesApplied()
+        ? false
+        : true;
+
+};
+
+punctuationApplyBegineer.addEventListener("click", handlePunctuationToggleBeginner);
+
+// for (let i = 0; i < punctuationToggles.length; i += 1) {
+//     punctuationToggles[i].addEventListener("click", handlePunctuationToggle);
+// }
+
+// 2. APPLY CHANGES WHEN CLICKED
+punctuationApplyBegineer.addEventListener("click", function () {
+    clearDataAndDisplay();
+    clearArrAndString();
+    toggleButtonState(punctuationToggleBeginner);
+    punctuationApplyBegineer.classList.remove("apply--active");
+    punctuationApplyBegineer.disabled = true;
+    if (allChangesApplied()) {
+        enableStartButton();
+    }
+    punctuationToggleBeginner.disabled = false;
+});
+
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CAPITAL 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
 const handleCapitalToggle = () => {
@@ -2396,7 +2437,7 @@ beginnerHideButton.addEventListener("click", function () {
 CURRENT BRANCH: NONE
 
 
-        CSS VARIABLES
+    CSS VARIABLES
 
     RESTORE DIFFICULTY LEVEL SETTING WHEN COMING BACK FROM BEGINNER ? (NOT WORKING)
     TRY RESETTING LEVEL TO COMMON100 - LINE 2317
@@ -2429,6 +2470,11 @@ CURRENT BRANCH: NONE
 
     
     FEATURES:
+
+        CONNECT BEGINNER CONTROLS TO JAVASCRIPT
+            PUNCTUATION
+            CAPITAL
+            ENTER
 
         (DISABLED)ADD TOOLTIP TO CURSOR ON INSTRUCTIONS CARD ("CLICK ANYWHERE TO CLOSE")
 

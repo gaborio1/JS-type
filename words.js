@@ -420,7 +420,10 @@ export const homeRow = [
     // gala	 	 	
 ]
 export const bottomRow = [
-    "bcnxv", "zxcm", "mbcnz", "bnvcnm", "zxcv", "vbnm", "mnxz", "nxv", "zmnx", "vbcn", "mvz", "vzxcmvx", "mnbxcvz"
+    // "bcnxv", "zxcm", "mbcnz", "bnvcnm", "zxcv", "vbnm", "mnxz", "nxv", "zmnx", "vbcn", "mvz", "vzxcmvx", "mnbxcvz"
+    "zero", "zebra", "zigzag", "zipper", "zoo", "xenops", "xerox", "xiphias", "crony", "coal", "code", "cola",
+    "vacuum", "vest", "violin", "volcano", "vote", "vowel", "balloon", "bee", "bird", "broom", "butterfly",
+    "navigation", "net", "nine", "number", "mitten", "moon", "mouse"
 ]
 
 export const punctMarks = [",", ".", "!", "?", ":", ";", "-", "'"];

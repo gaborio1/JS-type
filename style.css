@@ -293,9 +293,9 @@ button:disabled:hover {
 }
 
 /* !!! TEMP FIX UNTIL MORE CONTENT IS ADDED !!! */
-.control-wrap__beginner.control-wrap__beginner-5 {
+/* .control-wrap__beginner.control-wrap__beginner-5 {
     justify-content: start;
-}
+} */
 
 .level-button-container {
     width: 100%;
@@ -2092,9 +2092,9 @@ button.btn--flip.dark-theme:hover {
 }
 
 /* TEMP SETTING TO POSITION HIDE BEGINNER */
-.control-wrap__beginner-5 button.btn--flip {
+/* .control-wrap__beginner-5 button.btn--flip {
     margin-top: 13px;
-}
+} */
 
 button.btn--flip:hover {
     font-weight: 500;
