@@ -48,12 +48,18 @@ const lengthDisplaySpan = document.getElementById("length-display-span");
 // PUNCTUATION
 const punctuationToggle = document.getElementById("punctuation-toggle");
 const punctuationApply = document.getElementById("punctuation-apply");
+const punctuationToggleBeginner = document.getElementById("punctuation-toggle__beginner");
+const punctuationApplyBegineer = document.getElementById("punctuation-apply__beginner");
 // CAPITAL
 const capitalToggle = document.getElementById("capital-toggle");
 const capitalApply = document.getElementById("capital-apply");
+const capitalToggleBeginner = document.getElementById("capital-toggle__beginner");
+const capitalApplyBeginner = document.getElementById("capital-apply__beginner");
 // ENTER
 const enterToggle = document.getElementById("enter-toggle");
 const enterApply = document.getElementById("enter-apply");
+const enterToggleBeginner = document.getElementById("enter-toggle__beginner");
+const enterApplyBeginner = document.getElementById("enter-apply__beginner");
 // SOUND
 const soundToggle = document.getElementById("sound-toggle");
 const soundApply = document.getElementById("sound-apply");
@@ -274,48 +280,66 @@ const toggleButtonStyle = (element) => {
 // TOGGLE BOOLEAN BUTTON STATE BASED ON CLASS ONLY IF BEGINNER LEVEL IS NOT SELECTED
 const toggleButtonState = (element) => {
     // console.log(element);
-    if (!beginnerOn) {
-        if (element.classList.contains("toggle-on")) {
-            if (element === punctuationToggle) {
-                punctuationOn = true;
-            }
-            if (element === capitalToggle) {
-                capitalOn = true;
-            }
-            if (element === soundToggle) {
-                soundOn = true;
-            }
-            // if (element === timerToggle && !beginnerOn) {
-            if (element === timerToggle) {
-                timerOn = true;
-            }
-            if (element === enterToggle) {
-                enterOn = true;
-            }
-            if (element === themeToggle) {
-                darkThemeOn = true;
-            }
-        } else {
-            if (element === punctuationToggle) {
-                punctuationOn = false;
-            }
-            if (element === capitalToggle) {
-                capitalOn = false;
-            }
-            if (element === soundToggle) {
-                soundOn = false;
-            }
-            if (element === timerToggle) {
-                timerOn = false;
-            }
-            if (element === enterToggle) {
-                enterOn = false;
-            }
-            if (element === themeToggle) {
-                darkThemeOn = false;
-            }
+    // if (!beginnerOn) {
+    if (element.classList.contains("toggle-on")) {
+        if (element === punctuationToggle) {
+            punctuationOn = true;
+        }
+        if (element === punctuationToggleBeginner) {
+            punctuationOn = true;
+        }
+        if (element === capitalToggle) {
+            capitalOn = true;
+        }
+        if (element === capitalToggleBeginner) {
+            capitalOn = true;
+        }
+        if (element === soundToggle) {
+            soundOn = true;
+        }
+        // if (element === timerToggle && !beginnerOn) {
+        if (element === timerToggle) {
+            timerOn = true;
+        }
+        if (element === enterToggle) {
+            enterOn = true;
+        }
+        if (element === enterToggleBeginner) {
+            enterOn = true;
+        }
+        if (element === themeToggle) {
+            darkThemeOn = true;
+        }
+    } else {
+        if (element === punctuationToggle) {
+            punctuationOn = false;
+        }
+        if (element === punctuationToggleBeginner) {
+            punctuationOn = false;
+        }
+        if (element === capitalToggle) {
+            capitalOn = false;
+        }
+        if (element === capitalToggleBeginner) {
+            capitalOn = false;
+        }
+        if (element === soundToggle) {
+            soundOn = false;
+        }
+        if (element === timerToggle) {
+            timerOn = false;
+        }
+        if (element === enterToggle) {
+            enterOn = false;
+        }
+        if (element === enterToggleBeginner) {
+            enterOn = false;
+        }
+        if (element === themeToggle) {
+            darkThemeOn = false;
         }
     }
+    // }
 };
 
 // UPPERCASE FIRST LETTER IN WORD
@@ -1757,16 +1781,10 @@ punctuationApply.addEventListener("click", function () {
 
 // BEGINNER LEVEL
 
-const punctuationToggleBeginner = document.getElementById("punctuation-toggle__beginner");
-const punctuationApplyBegineer = document.getElementById("punctuation-apply__beginner");
-
-// 1. ONLY TOGGLE STYLE
 const handlePunctuationToggleBeginner = () => {
-    // console.log("PUNCTUATION TOGGLE");
+    // console.log("BEGINNER PUNCTUATION TOGGLE");
     toggleButtonStyle(punctuationToggleBeginner);
-    // 1. TOGGLE CLASS
     punctuationApplyBegineer.classList.toggle("apply--active");
-    // 2. SET STATUS BASED ON CLASS
     punctuationApplyBegineer.disabled = punctuationApplyBegineer.classList.contains("apply--active")
         ? false
         : true;
@@ -1777,13 +1795,8 @@ const handlePunctuationToggleBeginner = () => {
 
 };
 
-punctuationApplyBegineer.addEventListener("click", handlePunctuationToggleBeginner);
+punctuationToggleBeginner.addEventListener("click", handlePunctuationToggleBeginner);
 
-// for (let i = 0; i < punctuationToggles.length; i += 1) {
-//     punctuationToggles[i].addEventListener("click", handlePunctuationToggle);
-// }
-
-// 2. APPLY CHANGES WHEN CLICKED
 punctuationApplyBegineer.addEventListener("click", function () {
     clearDataAndDisplay();
     clearArrAndString();
@@ -1824,6 +1837,35 @@ capitalApply.addEventListener("click", function () {
     capitalToggle.disabled = false;
 });
 
+// BEGINNER LEVEL
+
+const handleCapitalToggleBeginner = () => {
+    toggleButtonStyle(capitalToggleBeginner);
+    capitalApplyBeginner.classList.toggle("apply--active");
+    capitalApplyBeginner.disabled = capitalApplyBeginner.classList.contains("apply--active")
+        ? false
+        : true;
+
+    startButton.disabled = allChangesApplied()
+        ? false
+        : true;
+
+};
+
+capitalToggleBeginner.addEventListener("click", handleCapitalToggleBeginner);
+
+capitalApplyBeginner.addEventListener("click", function () {
+    clearDataAndDisplay();
+    clearArrAndString();
+    toggleButtonState(capitalToggleBeginner);
+    capitalApplyBeginner.classList.remove("apply--active");
+    capitalApplyBeginner.disabled = true;
+    if (allChangesApplied()) {
+        enableStartButton();
+    }
+    capitalToggleBeginner.disabled = false;
+});
+
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 ENTER 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
 const handleEnterToggle = () => {
@@ -1850,6 +1892,34 @@ enterApply.addEventListener("click", function () {
         enableStartButton();
     }
     enterToggle.disabled = false;
+});
+
+// BEGINNER LEVEL
+
+const handleEnterToggleBeginner = () => {
+    toggleButtonStyle(enterToggleBeginner);
+    enterApplyBeginner.classList.toggle("apply--active");
+    enterApplyBeginner.disabled = enterApplyBeginner.classList.contains("apply--active")
+        ? false
+        : true;
+
+    startButton.disabled = allChangesApplied()
+        ? false
+        : true;
+};
+
+enterToggleBeginner.addEventListener("click", handleEnterToggleBeginner);
+
+enterApplyBeginner.addEventListener("click", function () {
+    clearDataAndDisplay();
+    clearArrAndString();
+    toggleButtonState(enterToggleBeginner);
+    enterApplyBeginner.classList.remove("apply--active");
+    enterApplyBeginner.disabled = true;
+    if (allChangesApplied()) {
+        enableStartButton();
+    }
+    enterToggleBeginner.disabled = false;
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TIMER 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
