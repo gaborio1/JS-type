@@ -726,26 +726,11 @@
                         page will reload and current session will be lost,
                         including all control settings.
                     </p>
+
                     <br>
                     <hr>
                     <br>
-                    <h3>Beginner level</h3>
-                    <p>
-                        Click "Show" Beninner level in bottom right corner of control panel.
-                        Select groups of keys you want to learn, a tooltip text with the recommended
-                        finger placements will appear above the selector buttons when selector is hovered over.
-                        (L - Left / R - right + finger).
-                        <br>
-                        Once selection is made, button colour changes to green (selected) from red (not selected).
-                        <br>
-                        Ideally, you want to learn the key groups in order (This is based on typing.com).
-                        <br>
-                        Start with J and F moving horizontally along each row until you have completed all nine groups.
-                        Start button will generate random words with random length (up to 6 characters long) using
-                        all the characters from selected groups.
 
-                    </p>
-                    <br>
                     <h3>Advanced level (default)</h3>
                     <p>
                         If you are confident typing all letter keys, this advanced level will help you practice what
@@ -760,20 +745,7 @@
 
                     </p>
                     <br>
-                    <h3>Problem keys</h3>
-                    <p>
-                        Your problem keys are being highlighted in red on the keyboard during a session.
-                        When current session ends, all mistyped keys are remembered for the next session and
-                        the new text will only use words that contain your problem key(s) when you click "New".
-                        This feature will make you practice those keys.
-                        <br>
-                        If you want to skip this option, just click "New" again and you will get a new random set of
-                        words from the currently selected difficulty level.
-                    </p>
-                    <br>
-                    <hr>
-                    <br>
-                    <h3>Controls</h3>
+                    <h3>Advanced controls (Use any combination of text modifiers)</h3>
                     <ul>
                         <li>
                             <span>Difficulty:</span>
@@ -816,9 +788,11 @@
                             Switches to beginner level controls.
                         </li>
                     </ul>
+
                     <br>
-                    <hr>
-                    <br>
+                    <!-- <hr> -->
+                    <!-- <br> -->
+
                     <h3>Text fields</h3>
                     <ul>
                         <li>
@@ -830,9 +804,11 @@
                             Text field 2. Preview of the next active field text.
                         </li>
                     </ul>
+
                     <br>
-                    <hr>
-                    <br>
+                    <!-- <hr> -->
+                    <!-- <br> -->
+
                     <h3>Input section</h3>
                     <ul>
                         <li>
@@ -847,9 +823,11 @@
                             Generates text
                         </li>
                     </ul>
+
+                    <!-- <br> -->
+                    <!-- <hr> -->
                     <br>
-                    <hr>
-                    <br>
+
                     <h3>Counters / Statistics</h3>
                     <ul>
                         <li>
@@ -870,7 +848,9 @@
                             Current and total accuracy percentage rounded down to nearest integer
                         </li>
                     </ul>
+
                     <br>
+
                     <h3>Message field</h3>
                     <ul>
                         <li>
@@ -878,37 +858,61 @@
                             All messages, instructions and warnings are displayed here.
                         </li>
                     </ul>
+
                     <br>
+
                     <h3>Keyboard</h3>
                     <ul>
                         <li>
                             <span>Problem key trackers:</span>
-                            Problem keys from previous session are highlighted
+                            Problem keys from previous session are highlighted in red.
                         </li>
                         <li>
                             <span>Real time key tracker:</span>
-                            Keyboard tracks your keypresses and typed key is highlighted
+                            Keyboard tracks your keypresses and typed key is highlighted in green.
                         </li>
                         <li><span>Capslock detection:</span>
                             Capslock key will flash if capslock is on.
                         </li>
                     </ul>
+
                     <br>
-                    <hr>
+                    <!-- <hr> -->
+                    <!-- <br> -->
+
+                    <h3>Problem keys</h3>
+                    <p>
+                        Your problem keys are being highlighted in red on the keyboard during a session.
+                        When current session ends, all mistyped keys are remembered for the next session and
+                        the new text will only use words that contain your problem key(s) when you click "New".
+                        This feature will make you practice those keys.
+                        <br>
+                        If you want to skip this option, just click "New" again and you will get a new random set of
+                        words from the currently selected difficulty level.
+                    </p>
+
                     <br>
+                    <!-- <hr> -->
+                    <!-- <br> -->
+
                     <h3>Key / Cursor colour codes</h3>
                     <ul>
                         <li>
+                            <span>Cursor: </span>
+                            Actual cursor position has grey background with black border.
+                        </li>
+                        <li>
                             <span>Correct: </span>
-                            Green.
+                            All letters typed correctly are green.
                         </li>
                         <li>
                             <span>Wrong:</span>
-                            Red.
+                            Letter / space errors are marked with red colour and red border respectively.
                         </li>
                         <li>
                             <span>Backspace:</span>
-                            orange.
+                            Backspace corrections will temporarily be coloured orange until you re-type,
+                            backspace on space has an orange border.
                         </li>
                         <li>
                             <span>Not typed:</span>
@@ -916,12 +920,37 @@
                         </li>
                         <li>
                             <span>Skipped:</span>
-                            Space typed anywhere on word.
+                            This app is very strict about space, hitting space on a word will result in the cursor
+                            moving to
+                            the first character of the next word. This action can not be undone!
                         </li>
                     </ul>
+
                     <br>
                     <hr>
                     <br>
+
+                    <h3>Beginner level</h3>
+                    <p>
+                        Click "Show" Beninner level in bottom right corner of control panel.
+                        Select groups of keys you want to learn, a tooltip text with the recommended
+                        finger placements will appear above the selector buttons when selector is hovered over.
+                        (L - Left / R - right + finger).
+                        <br>
+                        Once selection is made, button colour changes to green (selected) from red (not selected).
+                        <br>
+                        Ideally, you want to learn the key groups in order (This is based on typing.com).
+                        <br>
+                        Start with J and F moving horizontally along each row until you have completed all nine groups.
+                        Start button will generate random words with random length (up to 6 characters long) using
+                        all the characters from selected groups.
+                        You can only practice one of the three types at once. (Letter group(s), consecutive letters or
+                        rows)
+
+                    </p>
+
+                    <br>
+
                     <h3>Beginner controls</h3>
                     <ul>
                         <li>
