@@ -2124,7 +2124,6 @@ let selectedBeginerKeys = [];
 // ARRAY FOR RANDOMLY GENERATED WORDS
 let randomKeyWordsArray = [];
 
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // CHOOSE SELECTION TYPE (RANDOM (ONE AT A TIME) OR INCLUSIVE (UP TO SELECTED))
 // INCLUSIVE UP TO SELECTION IS NOW DEFAULT
@@ -2260,7 +2259,6 @@ for (let i = 0; i < levelButtons.length; i += 1) {
     });
 }
 
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // TOGGLE LEVEL BUTTON STYLE, CLASSES ARE NOW USED TO STYLE
 const toggleLevelButtonStyle = (element) => {
@@ -2340,7 +2338,6 @@ const toggleLevelButtonState = (element) => {
 
 // 2. APPLY CHANGES TO ALL LEVELS WHEN APPLY CLICKED
 levelsApply.addEventListener("click", function () {
-    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     randomKeyWordsArray = []; // RESET TO AVOID DUPLICATES IF APPLY IS CLICKED AGAIN
     selectedBeginerKeys = []; // RESET TO AVOID DUPLICATES
@@ -2400,9 +2397,26 @@ levelsApply.addEventListener("click", function () {
 
 // SHOW BEGINNER LEVELS
 beginnerShowButton.addEventListener("click", function () {
+    console.log("SWITCHED TO BEGINNER");
     beginnerOn = true;
 
     timerOn = false;
+    // +++++++++++++++++++++++++++++++++++++++++++++
+    // RESET ALL MODIFIER TOGGLES TO OFF
+    punctuationOn = false;
+    punctuationToggleBeginner.classList.remove("toggle-on");
+    punctuationToggleBeginner.classList.add("toggle-off");
+    punctuationToggleBeginner.innerText = "Off";
+    capitalOn = false;
+    capitalToggleBeginner.classList.remove("toggle-on");
+    capitalToggleBeginner.classList.add("toggle-off");
+    capitalToggleBeginner.innerText = "Off";
+    enterOn = false;
+    enterToggleBeginner.classList.remove("toggle-on");
+    enterToggleBeginner.classList.add("toggle-off");
+    enterToggleBeginner.innerText = "Off";
+
+    // +++++++++++++++++++++++++++++++++++++++++++++
 
     targetArray = [];
     /*
@@ -2434,12 +2448,46 @@ beginnerShowButton.addEventListener("click", function () {
 beginnerHideButton.addEventListener("click", function () {
     beginnerOn = false;
 
+    // +++++++++++++++++++++++++++++++++++++++++++++
+    // RESTORE / ACTIVATE ADVACED LEVEL CONTROL SETTINGS
+
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰 DIFFICULTY 🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+    // TEMP FIX: RESET TO COMMON 100
+    difficultyRadios[0].checked = true;
+    // !!! TEMP FIX, HAS TO RETURN TO THE LAST DIFFICULTY SELECTED !!!
+    targetArray = [...common100];
+    // !!! NOT WORKING WHEN OTHER RADIOS HAVE BEEN SET IN BEGINNER !!!
+    // setDifficultyLevel();
+
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰 PUNCTUATION 🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+    punctuationOn = punctuationToggle.classList.contains("toggle-on")
+        ? true
+        : false;
+
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰 CAPITAL 🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+    capitalOn = capitalToggle.classList.contains("toggle-on")
+        ? true
+        : false;
+
+    // 🀰🀰🀰🀰🀰🀰🀰🀰🀰 ENTER 🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+    enterOn = enterToggle.classList.contains("toggle-on")
+        ? true
+        : false;
+
+    // +++++++++++++++++++++++++++++++++++++++++++++
+
     if (timerToggle.innerText === "On") {
         timerOn = true;
     }
 
     problemKeysSet.clear();
-    targetArray = [];
+
+    // targetArray = [];
+
     // !!! THIS WILL OVERWRITE SETTINGS !!!
     // ONLY SET TO TRUE IF BUTTON STATE IS TRUE
     // !!! DO THE SAME WITH ALL TOGGLE BUTTONS !!!
@@ -2461,8 +2509,6 @@ beginnerHideButton.addEventListener("click", function () {
     textInput.disabled = true;
     clearDataAndDisplay();
     clearArrAndString();
-    // !!! TEMP FIX, HAS TO RETURN TO THE LAST DIFFICULTY SELECTED !!!
-    targetArray = [...common100];
 
     // DISABLE RADIOS IN BEGINNER CARD
     for (let i = 0, length = gramRadios.length; i < length; i++) {
@@ -2477,13 +2523,6 @@ beginnerHideButton.addEventListener("click", function () {
     rowsApply.disabled = true;
     rowsApply.classList.remove("apply--active");
 
-    // RESTORE TARGET ARRAY BASED ON DIFFICULTY RADIOS CURRENT SETTING
-    // !!! NOT WORKING WHEN OTHER RADIOS HAVE BEEN SET IN BEGINNER !!!
-    // setDifficultyLevel();
-
-    // RESET TO COMMON 100
-    // !!! TEST IF IT WORKS !!!
-    difficultyRadios[0].checked = true;
 });
 
 // JS NOT IN USE, POSITION IS NOW STICKY IN CSS
@@ -2506,6 +2545,7 @@ beginnerHideButton.addEventListener("click", function () {
 
 CURRENT BRANCH: NONE
 
+    BEGINNER: DO NOT ACTIVATE START BUTTON WITH PUNCT/CAPITAL/ENTER APPLY UNTIL LEVEL HAS BEEN SELECTED!
 
     CSS VARIABLES
         CONTAINER HEIGHT
