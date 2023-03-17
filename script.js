@@ -1629,6 +1629,12 @@ for (let i = 0, length = gramRadios.length; i < length; i++) {
 }
 
 gramsApply.addEventListener("click", function () {
+
+    // ENABLE BEGINNER TOGGLES (PUNCTUATION, CAPITAL AND ENTER)
+    for (let i = 0; i < beginnerToggles.length; i += 1) {
+        beginnerToggles[i].disabled = false;
+    }
+
     gramsApply.classList.remove("apply--active");
     gramsApply.disabled = true;
     if (allChangesApplied()) {
@@ -1689,6 +1695,12 @@ for (let i = 0, length = rowRadios.length; i < length; i++) {
 }
 
 rowsApply.addEventListener("click", function () {
+
+    // ENABLE BEGINNER TOGGLES (PUNCTUATION, CAPITAL AND ENTER)
+    for (let i = 0; i < beginnerToggles.length; i += 1) {
+        beginnerToggles[i].disabled = false;
+    }
+
     rowsApply.classList.remove("apply--active");
     rowsApply.disabled = true;
     if (allChangesApplied()) {
@@ -2124,6 +2136,9 @@ let selectedBeginerKeys = [];
 // ARRAY FOR RANDOMLY GENERATED WORDS
 let randomKeyWordsArray = [];
 
+// ALL 3 TOGGLE BUTTONS (PUNCTUATION, CAPITAL AND ENTER)
+const beginnerToggles = document.getElementsByClassName("btn--toggle__beginner");
+
 
 // CHOOSE SELECTION TYPE (RANDOM (ONE AT A TIME) OR INCLUSIVE (UP TO SELECTED))
 // INCLUSIVE UP TO SELECTION IS NOW DEFAULT
@@ -2339,6 +2354,11 @@ const toggleLevelButtonState = (element) => {
 // 2. APPLY CHANGES TO ALL LEVELS WHEN APPLY CLICKED
 levelsApply.addEventListener("click", function () {
 
+    // ENABLE BEGINNER TOGGLES (PUNCTUATION, CAPITAL AND ENTER)
+    for (let i = 0; i < beginnerToggles.length; i += 1) {
+        beginnerToggles[i].disabled = false;
+    }
+
     randomKeyWordsArray = []; // RESET TO AVOID DUPLICATES IF APPLY IS CLICKED AGAIN
     selectedBeginerKeys = []; // RESET TO AVOID DUPLICATES
     enableStartButton();
@@ -2401,17 +2421,25 @@ beginnerShowButton.addEventListener("click", function () {
     beginnerOn = true;
 
     timerOn = false;
+
+    // DISABLE BEGINNER TOGGLES (PUNCTUATION, CAPITAL AND ENTER)
+    for (let i = 0; i < beginnerToggles.length; i += 1) {
+        beginnerToggles[i].disabled = true;
+    }
+
     // +++++++++++++++++++++++++++++++++++++++++++++
     // RESET ALL MODIFIER TOGGLES TO OFF
     punctuationOn = false;
     punctuationToggleBeginner.classList.remove("toggle-on");
     punctuationToggleBeginner.classList.add("toggle-off");
     punctuationToggleBeginner.innerText = "Off";
+
     capitalOn = false;
     capitalToggleBeginner.classList.remove("toggle-on");
     capitalToggleBeginner.classList.add("toggle-off");
     capitalToggleBeginner.innerText = "Off";
     enterOn = false;
+
     enterToggleBeginner.classList.remove("toggle-on");
     enterToggleBeginner.classList.add("toggle-off");
     enterToggleBeginner.innerText = "Off";
@@ -2545,7 +2573,7 @@ beginnerHideButton.addEventListener("click", function () {
 
 CURRENT BRANCH: NONE
 
-    BEGINNER: DO NOT ACTIVATE START BUTTON WITH PUNCT/CAPITAL/ENTER APPLY UNTIL LEVEL HAS BEEN SELECTED!
+    ☑️ BEGINNER: DO NOT ACTIVATE START BUTTON WITH PUNCT/CAPITAL/ENTER APPLY UNTIL LEVEL HAS BEEN SELECTED!
 
     CSS VARIABLES
         CONTAINER HEIGHT

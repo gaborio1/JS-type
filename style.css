@@ -2008,6 +2008,15 @@ button {
     border: 1px solid green;
 }
 
+.btn--toggle:disabled {
+    opacity: 0.3;
+}
+
+.btn--toggle:disabled:hover {
+    font-weight: 100;
+    border-width: 1px;
+}
+
 /* APPLY BUTTONS */
 .btn--apply {
     color: black;
@@ -2066,6 +2075,7 @@ button {
     background: rgba(255, 166, 0, 0.474);
     border: 1px solid orange;
 }
+
 
 .btn--toggle__selection-type.dark-theme {
     background: #4d4d4d4a;
