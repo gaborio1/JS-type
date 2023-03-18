@@ -605,7 +605,6 @@ const handleCapslockChange = () => {
 const removeProblemKeyHighlight = () => {
     for (let i = 0; i < letterKeys.length; i += 1) {
         letterKeys[i].classList.remove("red-background");
-        // letterKeys[i].style.color = "red";
     }
 };
 
@@ -905,9 +904,7 @@ const highlightProblemKeys = () => {
         if (key !== undefined) {
             for (let i = 0; i < letterKeys.length; i += 1) {
                 if (letterKeys[i].innerText === key.toUpperCase()) {
-                    // !!! RED CLASS DOES NOT OVERWRITE CSS COLOUR !!!
                     letterKeys[i].classList.add("red-background");
-                    // letterKeys[i].style.color = "red";
                 }
             }
         }
@@ -1037,10 +1034,6 @@ textInput.disabled = true;
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
-    // if (beginnerOn) {
-    //     messageDiv.textContent = "BEGINNER LEVEL";
-    //     messageDiv.style.background = "rgba(0, 0, 255, 0.507)";
-    // }
 
     // console.log("<<<<< PROBLEM KEYS SET >>>>>", problemKeysSet);
     // console.log("<<<<< TEMP PROB WORDS >>>>>", tempProbWordsArr);
@@ -1174,12 +1167,11 @@ startButton.addEventListener("click", (event) => {
         // TRACK TYPED KEY ON KEYBOARD (100MS FLASH)
         for (let i = 0; i < letterKeys.length; i += 1) {
             if (typedKey.toUpperCase() === letterKeys[i].innerText) {
-                // letterKeys[i].classList.add("dark-gold-background");
-                letterKeys[i].style.background = "rgba(0, 128, 0, 0.304)";
+                // CLASS COLOUR: rgba(0, 128, 0, 0.304)
+                letterKeys[i].classList.add("green-background__keyboard");
 
                 setTimeout(function () {
-                    // letterKeys[i].classList.remove("dark-gold-background");
-                    letterKeys[i].style.background = "none";
+                    letterKeys[i].classList.remove("green-background__keyboard");
                 }, 100);
             }
         }
@@ -1407,17 +1399,6 @@ startButton.addEventListener("click", (event) => {
 
             // IF PROBLEMKEYS SET HAS LENGTH LOOP OVER problemKeysSet AND FIND CORRESPONDING problem-key-span FOR EACH ELEMENT
             if (problemKeysSet.size > 0) {
-                // TEST DIV CURRENTLY DISABLED:
-                // problemKeysSet.forEach((key) => {
-                //     // console.log(key);
-                //     for (let i = 0; i < problemKeySpans.length; i += 1) {
-                //         if (problemKeySpans[i].innerText === key) {
-                //             // !!! RED CLASS DOES NOT OVERWRITE CSS COLOUR !!!
-                //             // problemKeySpans[i].classList.add("red", "red-background");
-                //             problemKeySpans[i].style.color = "red";
-                //         }
-                //     }
-                // });
 
                 // HIGHLIGHT PROBLEM KEYS ON KEYBOARD
                 highlightProblemKeys();

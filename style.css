@@ -1223,13 +1223,26 @@ p .active-txt-span.active-txt-span--enter {
     /* background: rgba(255, 0, 0, 0.463); */
 }
 
+/* PROBLEM KEYS ON KEYBOARD */
 .red-background {
     background: rgba(255, 0, 0, 0.463);
+}
+
+/* CURRENTLY TYPED KEY 100MS FLASH */
+.green-background__keyboard {
+    background: rgba(0, 128, 0, 0.304);
+}
+
+/* CURRENTLY TYPED KEY WITH EXISTING RED BACKGROUND */
+#keyboard .red-background.green-background__keyboard {
+    background: rgba(0, 128, 0, 0.304);
 }
 
 .keyboard.dark-theme .red-background {
     background: rgba(255, 0, 0, 0.463);
 }
+
+
 
 .dark-gold-background {
     /* background-color: darkgoldenrod; */
