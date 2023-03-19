@@ -282,62 +282,51 @@ const toggleButtonState = (element) => {
     // console.log(element);
     // if (!beginnerOn) {
     if (element.classList.contains("toggle-on")) {
-        if (element === punctuationToggle) {
-            punctuationOn = true;
+
+        switch (element) {
+            case punctuationToggle:
+                punctuationOn = true;
+            case punctuationToggleBeginner:
+                punctuationOn = true;
+            case capitalToggle:
+                capitalOn = true;
+            case capitalToggleBeginner:
+                capitalOn = true;
+            case soundToggle:
+                soundOn = true;
+            case timerToggle:
+                timerOn = true;
+            case enterToggle:
+                enterOn = true;
+            case enterToggleBeginner:
+                enterOn = true;
+            case themeToggle:
+                darkThemeOn = true;
         }
-        if (element === punctuationToggleBeginner) {
-            punctuationOn = true;
-        }
-        if (element === capitalToggle) {
-            capitalOn = true;
-        }
-        if (element === capitalToggleBeginner) {
-            capitalOn = true;
-        }
-        if (element === soundToggle) {
-            soundOn = true;
-        }
-        // if (element === timerToggle && !beginnerOn) {
-        if (element === timerToggle) {
-            timerOn = true;
-        }
-        if (element === enterToggle) {
-            enterOn = true;
-        }
-        if (element === enterToggleBeginner) {
-            enterOn = true;
-        }
-        if (element === themeToggle) {
-            darkThemeOn = true;
-        }
+
     } else {
-        if (element === punctuationToggle) {
-            punctuationOn = false;
+
+        switch (element) {
+            case punctuationToggle:
+                punctuationOn = false;
+            case punctuationToggleBeginner:
+                punctuationOn = false;
+            case capitalToggle:
+                capitalOn = false;
+            case capitalToggleBeginner:
+                capitalOn = false;
+            case soundToggle:
+                soundOn = false;
+            case timerToggle:
+                timerOn = false;
+            case enterToggle:
+                enterOn = false;
+            case enterToggleBeginner:
+                enterOn = false;
+            case themeToggle:
+                darkThemeOn = false;
         }
-        if (element === punctuationToggleBeginner) {
-            punctuationOn = false;
-        }
-        if (element === capitalToggle) {
-            capitalOn = false;
-        }
-        if (element === capitalToggleBeginner) {
-            capitalOn = false;
-        }
-        if (element === soundToggle) {
-            soundOn = false;
-        }
-        if (element === timerToggle) {
-            timerOn = false;
-        }
-        if (element === enterToggle) {
-            enterOn = false;
-        }
-        if (element === enterToggleBeginner) {
-            enterOn = false;
-        }
-        if (element === themeToggle) {
-            darkThemeOn = false;
-        }
+
     }
     // }
 };
@@ -356,7 +345,6 @@ const getStrLength = (arr) => {
     arr.forEach((word) => {
         length += word.length;
     });
-
     return length;
 };
 
@@ -368,7 +356,6 @@ const buildWordArrays = (numOfLines) => {
     // console.log("TARGET ARRAY FROM BUILDARRAYS:", targetArray);
     for (let i = 0; i < numOfLines; i += 1) {
         let arr = [];
-
         // ALLOW EXTRA SPACE FOR ENTER KEY AT THE END OF LINE
         if (enterOn && sequenceLength > 44) {
             sequenceLength = 44;
@@ -378,20 +365,16 @@ const buildWordArrays = (numOfLines) => {
             if (getStrLength(arr) >= sequenceLength) break;
 
             let currWord = getRandomFromArr(targetArray); // GET RANDOM WORD
-
             if (punctuationOn) {
                 currWord += getRandomFromArr(punctMarks); // CONCAT RANDOM PUNCT MARK
             }
-
             if (capitalOn) {
                 currWord = capitaliseWord(currWord); // MAKE FIRST CHAR UPPERCASE
             }
-
             currWord += " ";
-            // console.log("<<<< SPACE ADDED >>>");
+
             arr.push(currWord);
         }
-        // NEW++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         // REPLACE TRAILING SPACE WITH ENTER SIGN ON LAST WORD OF ARRAY
         if (enterOn) {
@@ -400,10 +383,8 @@ const buildWordArrays = (numOfLines) => {
                     0,
                     arr[arr.length - 1].length - 1
                 ) + "⏎";
-
-            // console.log(arr);
         }
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         wordArrays.push(arr);
     }
 };
@@ -470,34 +451,20 @@ const resetAccSpanColours = () => {
 const colourAccuracySpan = () => {
     if (accuracy <= 87) {
         accuracySpan.classList.add("red");
-    }
-
-    if (accuracy > 87 && accuracy <= 89) {
+    } else if (accuracy > 87 && accuracy <= 89) {
         accuracySpan.classList.add("orange-red");
-    }
-
-    if (accuracy > 89 && accuracy <= 91) {
+    } else if (accuracy > 89 && accuracy <= 91) {
         accuracySpan.classList.add("orange");
-    }
-
-    if (accuracy > 91 && accuracy <= 93) {
+    } else if (accuracy > 91 && accuracy <= 93) {
         accuracySpan.classList.add("gold");
-    }
-
-    if (accuracy > 93 && accuracy <= 95) {
+    } else if (accuracy > 93 && accuracy <= 95) {
         accuracySpan.classList.add("yellow");
-    }
-
-    if (accuracy > 95 && accuracy <= 97) {
+    } else if (accuracy > 95 && accuracy <= 97) {
         accuracySpan.classList.add("yellow-green");
-    }
-
-    if (accuracy > 97 && accuracy < 100) {
+    } else if (accuracy > 97 && accuracy < 100) {
         accuracySpan.classList.add("light-green");
-    }
-
-    if (accuracy === 100) {
-        accuracySpan.classList.add("green");
+    } else {
+        accuracySpan.classList.add("green"); // 100%
     }
 };
 
@@ -520,7 +487,6 @@ const capsLockWarningsOn = () => {
 
 const capsLockWarningsOff = () => {
     capsLockKey.style.background = "none";
-    // capsLockKey.style.background = "#333"; // BLACK KEYS, NOT IN USE
     capsLockKey.classList.remove("blink");
     messageDiv.textContent = "";
 };
@@ -548,11 +514,9 @@ const setDifficultyLevel = () => {
         if (difficultyRadios[i].checked) {
             if (difficultyRadios[i].value === "100") {
                 targetArray = [...common100];
-            }
-            if (difficultyRadios[i].value === "200") {
+            } else if (difficultyRadios[i].value === "200") {
                 targetArray = [...common200, ...common100];
-            }
-            if (difficultyRadios[i].value === "JavaScript") {
+            } else {
                 targetArray = [...jsReserved, ...jsObjPropMeth];
             }
             break;
@@ -566,20 +530,16 @@ const setDifficultyLevel = () => {
 const findAndApplyProblemKeyWords = () => {
     if (problemKeysSet.size > 0) {
         problemKeysSet.forEach((key) => {
-            // !!! HAVE TO RESET TARGET ARRAY BECAUSE IT WILL HAVE A FILTERED STATE FROM BEFORE
-            // targetArray.forEach((word) => {
+
             common100.forEach((word) => {
                 if (word.indexOf(key) > -1) {
-                    // console.log("WORD FOUND", word);
                     tempProbWordsArr.push(word);
                 }
             });
         });
         targetArray = [...tempProbWordsArr]; // UPDATE TARGET ARRAY WITH FILTERED WORDS ARRAY
 
-        // tempProbWordsArr = []; // RESET TEMP PROB WORDS ARRAY ???
     } else {
-        // console.log("NO PROBLEM KEYS IN SET");
 
         // FIND WHICH LEVEL IS SELECTED AND UPDATE TARGET ARRAY ACCORDINGLY
         if (!beginnerOn) {
@@ -628,17 +588,17 @@ const removeProblemKeyHighlight = () => {
 const createSpans = (lineIdx, location) => {
     for (const [idx, char] of wordArrays[lineIdx] // ACCESSING IDX IN FOR OF LOOP
 
+        // console.log(idx, char);
         .join("")
         .split("")
         .entries()) {
-        // console.log(idx, char);
+
         const span = document.createElement("span"); // CREATE ELEMENT
         // SET TEXT CONTENT / CLASS / ID
         span.innerText = char;
         span.className = "active-txt-span";
         // ADD ACTIVE CLASS TO ENTER TO FOR STYLING PURPOSES
         if (char === "⏎") {
-            // console.log("ADD ENTER-ON CLASS TO LAST SPAN");
             span.className = "active-txt-span active-txt-span--enter";
         }
 
@@ -648,18 +608,9 @@ const createSpans = (lineIdx, location) => {
                 ? `span-${idx}`
                 : `span--next-${idx}`;
 
-        // span.id = `span-${idx}`;
-
         location.appendChild(span); // APPEND TO PARENT DIV
     }
-    // THIS SELECTS LAST SPACE OF ACTIVE LINE WITH DARK THEME / ENTER OFF /
 
-    // if (darkThemeOn && !enterOn && location === textSpanContainerActive) {
-    //     console.log("ADD COLOUR THEME CLASS TO LAST SPAN");
-    //     const charSpans = document.querySelectorAll(".active-txt-span");
-    //     console.log(charSpans[charSpans.length - 1]);
-    //     charSpans[charSpans.length - 1].classList.add("colour-theme");
-    // }
 };
 
 // KEY EVENT START LOGS
@@ -708,6 +659,7 @@ const logKeyEventEnd = () => {
 
 // BACKSPACE
 let typedKey = "";
+
 const handleBackspace = () => {
     if (typedKey === "Backspace" && charIdx > 0) {
         // console.log("BACKSPACE");
@@ -716,7 +668,6 @@ const handleBackspace = () => {
         prevChar();
 
         const currentCharacter = document.getElementById(`span-${strIdx}`);
-        // console.log("CURRENT CHAR ORANGE", currentCharacter);
 
         // ADD ORANGE BORDER TO BACKSPACE'D SPACE  !!! HAVE TO CHECK TEXTCONTENT !!!
         if (currentCharacter.innerText === " ") {
@@ -728,7 +679,6 @@ const handleBackspace = () => {
         }
 
         currentCharacter.classList.add("orange", "background", "black-border");
-
         currentCharacter.classList.remove("red", "green");
 
         const nextCharacter = document.getElementById(`span-${strIdx + 1}`);
@@ -768,7 +718,6 @@ const correctSpaceNotLastWord = () => {
     if (wordIdx < wordArrays[lineIdx].length - 1) {
         // console.log("<<<<< LAST CHARACER !!! >>>>>");
         let nextCharacter = document.getElementById(`span-${strIdx + 1}`);
-
         // REMOVE RED BORDER FROM SPACE IF CORRECTED
         let currentCharacter = document.getElementById(`span-${strIdx}`);
         currentCharacter.classList.remove("red-border", "orange-border");
@@ -801,9 +750,7 @@ const correctEndOfLineSpace = () => {
     stringWords = wordArrays[lineIdx].join(""); // UPDATE STRWORDS
     // DELETE CONTENT / APPEND NEXT LINE TO TEXTSPAN NEXT DIV
     textSpanContainerNextParagraph.innerHTML = "";
-    // APPEND TEXT AS STRING NOT SPANS !!!
-    // stringWordsNext = wordArrays[lineIdx + 1].join(" ");
-    // textSpanContainerNextParagraph.innerText = stringWordsNext;
+    // APPEND TEXT AS SPANS !!!
     createSpans(lineIdx + 1, textSpanContainerNextParagraph);
 };
 
@@ -818,13 +765,6 @@ const correctSpaceNotEndOfLine = () => {
     currentCharacter.classList.remove("background", "black-border");
     // }
 
-    // let currentCharacter = document.getElementById(`span-${strIdx - 1}`);
-    // console.log("CURRENT CHARACTER", currentCharacter, typeof currentCharacter);
-
-    // console.log("correctSpaceNotEndOfLine", currentCharacter);
-
-    // currentCharacter.classList.remove("background", "black-border");
-
     nextWord();
     clearTextInput();
 };
@@ -832,7 +772,6 @@ const correctSpaceNotEndOfLine = () => {
 // COUNT COLOUR SPANS IN LAST WORD WHEN TRAILING SPACE IS TYPED CORRECTLY
 
 const countSpanColours = () => {
-    // console.log("countSpanColours", "-CHAR IDX", charIdx);
     let lastWordLength = wordArrays[lineIdx][wordIdx - 1].length;
     let charSpans = document.querySelectorAll(".active-txt-span");
     // START LOOP BACKWARDS AND COUNT SPANS WITH GREEN CLASS
@@ -850,7 +789,6 @@ const countSpanColours = () => {
         if (charSpans[i].classList.contains("red")) {
             redCounter += 1;
         }
-        // NOT IN USE YET
         if (charSpans[i].classList.contains("orange")) {
             orangeCounter += 1;
         }
@@ -864,7 +802,6 @@ const countSpanColours = () => {
 const countSpanColoursInLastWord = () => {
     // console.log("HELLO FROM  COUNTSPANCOLOURSLASTSPACE");
     let currentWordLength = wordArrays[lineIdx][wordIdx].length;
-    // console.log("CURRENT WORD LENGTH", currentWordLength);
     let charSpans = document.querySelectorAll(".active-txt-span");
     // START LOOP BACKWARDS AND COUNT SPANS WITH GREEN CLASS
     // WE ARE STILL ON CURRENT WORD VS LAST WORD IN countSpanColours() ABOVE
@@ -882,7 +819,6 @@ const countSpanColoursInLastWord = () => {
         if (charSpans[i].classList.contains("red")) {
             redCounter += 1;
         }
-        // NOT IN USE YET
         if (charSpans[i].classList.contains("orange")) {
             orangeCounter += 1;
         }
@@ -899,7 +835,6 @@ const displayColourCounterValues = () => {
 // HIGHLIGHT PROBLEM KEYS ON KEYBOARD
 const highlightProblemKeys = () => {
     problemKeysSet.forEach((key) => {
-        // console.log(key);
         // !!! WITHOUT THIS CONDITION CURSOR WILL NOT MOVE FORWARD INTO NEXT WORD, IT WILL STAY ON SPACE !!!
         if (key !== undefined) {
             for (let i = 0; i < letterKeys.length; i += 1) {
@@ -943,8 +878,6 @@ const spaceOnLastWord = () => {
     stringWords = wordArrays[lineIdx].join(""); // UPDATE STRWORDS
 
     textSpanContainerNextParagraph.innerHTML = ""; // DELETE CONTENT
-    // stringWordsNext = wordArrays[lineIdx + 1].join(" ");
-    // textSpanContainerNextParagraph.innerText = stringWordsNext;
     createSpans(lineIdx + 1, textSpanContainerNextParagraph);
 };
 
@@ -1142,18 +1075,6 @@ startButton.addEventListener("click", (event) => {
     const firstCharacter = document.getElementById("span-0");
     firstCharacter.classList.add("background", "black-border");
 
-    // console.log("WORDARRAYS", wordArrays);
-
-    // NEW+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    // let charSpans = document.querySelectorAll(".active-txt-span");
-    // const enterSpan = charSpans[charSpans.length - 1];
-    // console.log("ENTER SPAN:", enterSpan);
-    // // enterSpan.innerText = "↩️";
-    // // enterSpan.innerText = "↩︎";
-    // enterSpan.innerText = "⏎";
-
-    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 KEY EVENTS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1313,8 +1234,6 @@ startButton.addEventListener("click", (event) => {
             //     wordArrays[lineIdx][wordIdx][charIdx]
             // );
 
-            // NEW+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
             if (typedKey === "Enter" && enterOn) {
                 // console.log("ENTER TYPED");
                 if (strIdx === stringWords.length - 1) {
@@ -1383,8 +1302,6 @@ startButton.addEventListener("click", (event) => {
                 }
             }
 
-            // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
             wrongCounter += 1;
 
             // UPDATE PROBLEM KEY SET
@@ -1395,7 +1312,6 @@ startButton.addEventListener("click", (event) => {
                 problemKeysSet.add(wordArrays[lineIdx][wordIdx][charIdx]);
             }
 
-            // console.log("<<<<< PROBLEM KEYS SET >>>>>", problemKeysSet);
 
             // IF PROBLEMKEYS SET HAS LENGTH LOOP OVER problemKeysSet AND FIND CORRESPONDING problem-key-span FOR EACH ELEMENT
             if (problemKeysSet.size > 0) {
@@ -1508,8 +1424,6 @@ startButton.addEventListener("click", (event) => {
 
         stringWords = wordArrays[lineIdx].join("");
 
-        // stringWordsNext = wordArrays[lineIdx + 1].join("");
-        // textSpanContainerNextParagraph.innerText = stringWordsNext;
         createSpans(lineIdx + 1, textSpanContainerNextParagraph);
         textInput.placeholder = "Start typing or customise text";
     }
@@ -1533,7 +1447,6 @@ const disableStartButton = () => {
 const applyButtons = document.getElementsByClassName("btn--apply");
 
 const allChangesApplied = () => {
-    // console.log(applyButtons);
     let allApplied = true;
     for (let i = 0; i < applyButtons.length; i += 1) {
         if (applyButtons[i].classList.contains("apply--active")) {
@@ -1628,14 +1541,12 @@ gramsApply.addEventListener("click", function () {
         if (gramRadios[i].checked) {
             if (gramRadios[i].value === "2") {
                 targetArray = [...bigrams];
-            }
-            if (gramRadios[i].value === "3") {
+            } else if (gramRadios[i].value === "3") {
                 targetArray = [...trigrams];
+            } else {
+                targetArray = [...quadrigrams]; // "4"
             }
-            if (gramRadios[i].value === "4") {
-                targetArray = [...quadrigrams];
-            }
-            break;
+            // break;
         }
     }
 });
@@ -1694,14 +1605,12 @@ rowsApply.addEventListener("click", function () {
         if (rowRadios[i].checked) {
             if (rowRadios[i].value === "top") {
                 targetArray = [...topRow];
-            }
-            if (rowRadios[i].value === "home") {
+            } else if (rowRadios[i].value === "home") {
                 targetArray = [...homeRow];
+            } else {
+                targetArray = [...bottomRow]; // "bottom"
             }
-            if (rowRadios[i].value === "bottom") {
-                targetArray = [...bottomRow];
-            }
-            break;
+            // break;
         }
     }
 });
@@ -1953,12 +1862,6 @@ const countdown = () => {
         if (seconds === 0) {
             // console.log("times up");
             // document.removeEventListener("keydown", handleKeyEvent);
-
-            // ???????????????????
-
-            // timerOn = false;
-
-            // ???????????????????
 
             textInput.value = "                 Try Again ➡"; // SET INPUT VALUE
             // textInput.readOnly = true; // DISABLE TXT INPUT
@@ -2274,61 +2177,50 @@ const toggleLevelButtonStyle = (element) => {
 const toggleLevelButtonState = (element) => {
     // console.log(element);
     if (element.classList.contains("toggle-on")) {
-        if (element === level_1) {
-            level_1_On = true;
-        }
-        if (element === level_2) {
-            level_2_On = true;
-        }
-        if (element === level_3) {
-            level_3_On = true;
-        }
-        if (element === level_4) {
-            level_4_On = true;
-        }
-        if (element === level_5) {
-            level_5_On = true;
-        }
-        if (element === level_6) {
-            level_6_On = true;
-        }
-        if (element === level_7) {
-            level_7_On = true;
-        }
-        if (element === level_8) {
-            level_8_On = true;
-        }
-        if (element === level_9) {
-            level_9_On = true;
+
+        switch (element) {
+            case level_1:
+                level_1_On = true;
+            case level_2:
+                level_2_On = true;
+            case level_3:
+                level_3_On = true;
+            case level_4:
+                level_4_On = true;
+            case level_5:
+                level_5_On = true;
+            case level_6:
+                level_6_On = true;
+            case level_7:
+                level_7_On = true;
+            case level_8:
+                level_8_On = true;
+            case level_9:
+                level_9_On = true;
         }
     } else {
-        if (element === level_1) {
-            level_1_On = false;
+
+        switch (element) {
+            case level_1:
+                level_1_On = false;
+            case level_2:
+                level_2_On = false;
+            case level_3:
+                level_3_On = false;
+            case level_4:
+                level_4_On = false;
+            case level_5:
+                level_5_On = false;
+            case level_6:
+                level_6_On = false;
+            case level_7:
+                level_7_On = false;
+            case level_8:
+                level_8_On = false;
+            case level_9:
+                level_9_On = false;
         }
-        if (element === level_2) {
-            level_2_On = false;
-        }
-        if (element === level_3) {
-            level_3_On = false;
-        }
-        if (element === level_4) {
-            level_4_On = false;
-        }
-        if (element === level_5) {
-            level_5_On = false;
-        }
-        if (element === level_6) {
-            level_6_On = false;
-        }
-        if (element === level_7) {
-            level_7_On = false;
-        }
-        if (element === level_8) {
-            level_8_On = false;
-        }
-        if (element === level_9) {
-            level_9_On = false;
-        }
+
     }
 };
 
@@ -2553,6 +2445,8 @@ beginnerHideButton.addEventListener("click", function () {
 
 
 CURRENT BRANCH: NONE
+
+    LOOK INTO timerON BOOLEAN
 
     ☑️ BEGINNER: DO NOT ACTIVATE START BUTTON WITH PUNCT/CAPITAL/ENTER APPLY UNTIL LEVEL HAS BEEN SELECTED!
 
