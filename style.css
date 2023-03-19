@@ -1,27 +1,58 @@
 :root {
-    /* --border-gold: darkgoldenrod; */
-    --border-gold: rgba(184, 135, 11, 0.659);
-    --border-gold: rgba(184, 135, 11, 0.401);
-    --border-grey: rgb(200, 200, 200);
-    --border-gold-disabled: rgba(184, 135, 11, 0.547);
 
-    /* --text-field-offwhite: #efefef; */
-    /* --text-field-offwhite: #ffffffe3; */
+    /* BORDERS */
+    /* --border-gold: darkgoldenrod; */
+    /* --border-gold: rgba(184, 135, 11, 0.659); */
+    --border-gold: rgba(184, 135, 11, 0.401);
+
+    --border-grey: rgb(208, 208, 208);
+    /* --border-grey: rgb(87, 97, 105); */
+    /* --border-grey: #1B1B1B; */
+
     --text-field-offwhite: #ffffffba;
 
-    --wrap-highlight--light: rgba(251, 239, 214, 0.521);
-    /* --wrap-highlight--light: rgba(251, 239, 214, 0.68); */
-    /* --wrap-highlight--light: #fff1e6; */
-    /* --wrap-highlight--light: #f9e2d1; */
+    /* FONT SIZES */
     --font-24: 24px;
     --font-32: 32px;
     --font-48: 48px;
     --font-64: 64px;
 
+    /* BORDER RADIUS */
     --wrap-border-radius: 10px;
     --small-border-radius: 10px;
     --button-border-radius: 4px;
     --cursor-border-radius: 4px;
+
+    /* WIDTH / HEIGHT */
+    --app-width: 1000px;
+    --app-height: 850px;
+
+    --app__main-wrap-width: 900px;
+
+    /* BODY BACKGROUND */
+    /* --body-background--light: whitesmoke; */
+    --body-background--light: #ffffff;
+
+    --body-background--dark: #000000;
+
+    /* APP BACKGROUND*/
+    /* --app-background--light: #f0efeb; */
+    --app-background--light: ##F3F3F3;
+    --app-background--light: rgb(244, 244, 244);
+
+    --app-background--dark: rgb(28, 28, 28);
+
+    /* WRAP BACKGROUND */
+    /* --wrap-highlight--light: rgba(251, 239, 214, 0.521); */
+    --wrap-highlight--light: #E1E1E1;
+    --wrap-highlight--light: #ebebeb;
+
+    --wrap-highlight--dark: rgb(25, 25, 25);
+
+    /* #FFFFFF */
+    /* #F3F3F3 */
+    /* #E1E1E1 */
+    /* #1B1B1B */
 }
 
 /* CSS reset */
@@ -50,12 +81,14 @@ body {
     font-family: "Roboto", sans-serif;
     /* THIS AFFECTS SPANS IN TEXT FIELDS */
     text-align: center;
-    background-color: whitesmoke;
+    background: var(--body-background--light);
+    /* background-color: rgba(251, 239, 214, 0.521) */
     filter: grayscale(0.2);
+    /* filter: grayscale(1); */
 }
 
 body.dark-theme {
-    background-color: #000000;
+    background: var(--body-background--dark);
     filter: grayscale(0.45);
 }
 
@@ -97,9 +130,9 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 1000px;
+    width: var(--app-width);
     height: 100px;
-    background: #f0efeb;
+    background: var(--app-background--light);
     font-weight: 100;
     /* margin: 50px auto; */
     border: 1px solid var(--border-grey);
@@ -112,7 +145,7 @@ h3 {
 }
 
 .wrapper {
-    width: 900px;
+    width: var(--app__main-wrap-width);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -161,7 +194,6 @@ button:disabled:hover {
     align-items: center;
     justify-content: space-between;
     width: 150px;
-    height: 125px;
     height: 150px;
     padding: 10px 0px 10px 0px;
 
@@ -210,7 +242,7 @@ button:disabled:hover {
 /* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BEGINNER CONTROLS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
 .scene--controls {
-    width: 900px;
+    width: var(--app__main-wrap-width);
     height: 150px;
     margin: 0px auto;
     perspective: 800px;
@@ -241,7 +273,7 @@ button:disabled:hover {
 }
 
 .card__face--front--controls.dark-theme {
-    background: rgb(25, 25, 25);
+    background: var(--wrap-highlight--dark);
     border: 1px solid var(--border-gold);
     border-radius: var(--wrap-border-radius);
 }
@@ -266,7 +298,7 @@ button:disabled:hover {
 .card__face--back--controls.dark-theme {
     /* background: rgba(0, 119, 255, 0.507);
     background: rgba(0, 119, 255, 0.295); */
-    background: rgb(25, 25, 25);
+    background: var(--wrap-highlight--dark);
     border: 1px solid var(--border-gold);
     border-radius: var(--wrap-border-radius);
 }
@@ -441,8 +473,8 @@ button:disabled:hover {
     margin-top: 75px;
     /* padding: 10px 0px 10px 0px; */
     background: var(--text-field-offwhite);
-    background: var(--wrap-highlight--light);
-    /* background: #f7f7f7; */
+    /* background: var(--wrap-highlight--light); */
+    background: #ffffff;
     border: 1px solid var(--border-grey);
     border-radius: var(--wrap-border-radius);
     /* border: 1px solid red; */
@@ -450,7 +482,7 @@ button:disabled:hover {
 
 .text-fields-wrap.dark-theme {
 
-    background: rgb(25, 25, 25);
+    background: var(--wrap-highlight--dark);
     border: 1px solid var(--border-gold);
 }
 
@@ -658,6 +690,7 @@ p .active-txt-span.active-txt-span--enter {
     border: 1px solid var(--border-grey);
     border-radius: var(--small-border-radius);
     background-color: var(--text-field-offwhite);
+    background: #FFFFFF;
 }
 
 .text-input.dark-theme {
@@ -726,7 +759,7 @@ p .active-txt-span.active-txt-span--enter {
 
 .stat-wrap.dark-theme {
     /* SLIGTHLY LIGHTER THAN KEYBOARD KEYS */
-    background: rgb(25, 25, 25);
+    background: var(--wrap-highlight--dark);
     border: 1px solid var(--border-gold);
 }
 
@@ -813,9 +846,9 @@ p .active-txt-span.active-txt-span--enter {
     cursor: pointer;
     /* color: var(--border-gold); */
     -webkit-user-select: none;
-    /* border: 1px solid #444; */
-    /* border: 1px solid rgb(0, 0, 0); */
+
     border: 1px solid var(--border-grey);
+    border: 1px solid rgb(177, 177, 177);
 
     /* BLACK KEYS STYLE */
 
@@ -963,7 +996,7 @@ p .active-txt-span.active-txt-span--enter {
 
 .colour-code-wrap.dark-theme {
     /* SLIGHTLY DARKER THAN KEYBOARD KEYS */
-    background: rgb(25, 25, 25);
+    background: var(--wrap-highlight--dark);
     border: 1px solid var(--border-gold);
 }
 
@@ -1017,7 +1050,7 @@ p .active-txt-span.active-txt-span--enter {
 .instructions-container {
     position: absolute;
 
-    width: 1000px;
+    width: var(--app-width);
     height: fit-content;
 
     margin: 50px auto;
@@ -1941,8 +1974,8 @@ input[type="range"]:focus::-ms-fill-upper {
 /* 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 APP / INFO FLIP 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
 
 .scene--main {
-    width: 1000px;
-    height: 850px;
+    width: var(--app-width);
+    height: var(--app-height);
     margin: 0px auto;
     /* perspective: 2000px; */
     perspective: 800px;
