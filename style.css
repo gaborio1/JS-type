@@ -889,6 +889,7 @@ p .active-txt-span.active-txt-span--enter {
     background: var(--wrap-highlight--light);
     /* background: rgba(255, 166, 0, 0.474); */
     background: rgba(0, 128, 0, 0.304);
+    background: #529ce180;
 
     border-width: 2px;
     /* BLACK KEYBOARD */
@@ -897,6 +898,12 @@ p .active-txt-span.active-txt-span--enter {
     position: relative;
     top: 0.2em;
     /* box-shadow: 0 0 0 0.05em black; */
+}
+
+.keyboard.dark-theme .keyboard__row>div[data-pressed],
+.keyboard.dark-theme .keyboard__row>div:active {
+    background: rgba(0, 128, 0, 0.304);
+    background: #529ce180;
 }
 
 .key--w3 {
@@ -2227,8 +2234,9 @@ button.btn--flip:hover {
 .btn--start.dark-theme {
     color: rgb(229, 172, 28);
     background: rgba(0, 128, 0, 0.75);
-    background: var(--border-blue);
-    background: #184e81;
+    /* background: var(--border-blue); */
+    /* background: #184e81; */
+    background: #175ea0;
     border: 1px solid darkgoldenrod;
 }
 
