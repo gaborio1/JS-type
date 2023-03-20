@@ -9,7 +9,10 @@
     /* --border-grey: rgb(87, 97, 105); */
     /* --border-grey: #1B1B1B; */
 
+    --border-blue: #529de1;
+
     --text-field-offwhite: #ffffffba;
+    --text-field-white: white;
 
     /* FONT SIZES */
     --font-24: 24px;
@@ -472,9 +475,7 @@ button:disabled:hover {
     /* !!! ONLY 50 PX MARGING IS VISIBLE, FIND OTHER 25PX !!! */
     margin-top: 75px;
     /* padding: 10px 0px 10px 0px; */
-    background: var(--text-field-offwhite);
-    /* background: var(--wrap-highlight--light); */
-    background: #ffffff;
+    background: var(--text-field-white);
     border: 1px solid var(--border-grey);
     border-radius: var(--wrap-border-radius);
     /* border: 1px solid red; */
@@ -535,6 +536,7 @@ button:disabled:hover {
 
 .text-span-container.dark-theme .active-txt-span.green {
     color: green;
+    color: var(--border-blue);
 }
 
 /* LAST SPACE IN ACTIVE LINE(BORDER NEEDS WIDTH AND HEIGHT) */
@@ -689,8 +691,7 @@ p .active-txt-span.active-txt-span--enter {
     /* border: none; */
     border: 1px solid var(--border-grey);
     border-radius: var(--small-border-radius);
-    background-color: var(--text-field-offwhite);
-    background: #FFFFFF;
+    background: var(--text-field-white);
 }
 
 .text-input.dark-theme {
@@ -1225,6 +1226,7 @@ p .active-txt-span.active-txt-span--enter {
 
 .green {
     color: green;
+    color: var(--border-blue);
 }
 
 .light-green {
@@ -1264,11 +1266,18 @@ p .active-txt-span.active-txt-span--enter {
 /* CURRENTLY TYPED KEY 100MS FLASH */
 .green-background__keyboard {
     background: rgba(0, 128, 0, 0.304);
+    background: #529ce194;
+}
+
+#keyboard.dark-theme .green-background__keyboard {
+    background: rgba(0, 128, 0, 0.304);
+    background: #529ce194;
 }
 
 /* CURRENTLY TYPED KEY WITH EXISTING RED BACKGROUND */
 #keyboard .red-background.green-background__keyboard {
     background: rgba(0, 128, 0, 0.304);
+    background: #529ce194;
 }
 
 .keyboard.dark-theme .red-background {
@@ -2052,6 +2061,8 @@ button {
 .btn--toggle.toggle-on {
     color: green;
     border: 1px solid green;
+    color: var(--border-blue);
+    border: 1px solid var(--border-blue);
 }
 
 .btn--toggle:disabled {
@@ -2106,6 +2117,9 @@ button {
     /* color: black; */
     background: rgba(0, 128, 0, 0.304);
     border: 1px solid green;
+    background: #529ce180;
+    border: 1px solid var(--border-blue);
+
     font-weight: 500;
 }
 
@@ -2198,6 +2212,8 @@ button.btn--flip:hover {
     font-size: var(--font-32);
     font-weight: 100;
     background: rgb(144, 238, 144);
+    background: var(--border-blue);
+    background: #68b6ff;
     border: 1px solid var(--border-grey);
     /* border: 1px solid black; */
 }
@@ -2211,6 +2227,8 @@ button.btn--flip:hover {
 .btn--start.dark-theme {
     color: rgb(229, 172, 28);
     background: rgba(0, 128, 0, 0.75);
+    background: var(--border-blue);
+    background: #184e81;
     border: 1px solid darkgoldenrod;
 }
 
