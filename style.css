@@ -1369,7 +1369,7 @@ p .active-txt-span.active-txt-span--enter {
 
 @keyframes fadeIn {
     0% {
-        opacity: 0.2;
+        opacity: 0;
     }
 
     100% {
@@ -1383,14 +1383,14 @@ p .active-txt-span.active-txt-span--enter {
     }
 
     100% {
-        opacity: 0.2;
+        opacity: 0;
     }
 }
 
 .totalFadeOut {
     /* DISABLE WITH Z INDEX */
     /* z-index: -1; */
-    animation: totalFadeOut 2s linear;
+    animation: totalFadeOut 1.5s linear;
     /* FADE OUT AND STAY SO */
     animation-fill-mode: forwards;
 }
@@ -1404,6 +1404,43 @@ p .active-txt-span.active-txt-span--enter {
         opacity: 0;
     }
 }
+
+.timer-style__container {
+    border: none;
+    /* animation: timer-style__container 2s linear; */
+}
+
+.timer-style__container.dark-theme {
+    border: none;
+    background: black;
+    /* animation: timer-style__container 2s linear; */
+}
+
+/* @keyframes timer-style__container {
+    0% {
+        border: none;
+    }
+
+    100% {
+        border: 2px solid var(--border-grey);
+    }
+} */
+
+
+.timer-style__body {
+    background: var(--app-background--light);
+}
+
+.timer-style__message-div {
+    border: none;
+    background: var(--app-background--light);
+}
+
+.timer-style__message-div.dark-theme {
+    border: none;
+    background: black;
+}
+
 
 /* .enlarged {
     font-size: 35px;

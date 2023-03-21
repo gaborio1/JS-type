@@ -1045,6 +1045,9 @@ textInput.disabled = true;
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
 
+    // RESET WRONG COUNTER
+    wrongCounter = 0;
+
     // console.log("<<<<< PROBLEM KEYS SET >>>>>", problemKeysSet);
     // console.log("<<<<< TEMP PROB WORDS >>>>>", tempProbWordsArr);
     // console.log("START TARGET ARRAY:", targetArray);
@@ -1126,6 +1129,7 @@ startButton.addEventListener("click", (event) => {
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 TEXT FIELDS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
+    textSpanContainerActive.classList.remove("totalFadeOut"); // SHOW NEXT LINE
     textSpanContainerNextParagraph.classList.remove("totalFadeOut"); // SHOW NEXT LINE
     clearTextFields(); // CLEAR ALL STRING DATA FROM TEXT FIELDS AND EMPTY ARRAYS
     buildWordArrays(wordsArrLength);
@@ -1195,21 +1199,25 @@ startButton.addEventListener("click", (event) => {
 
         // DISABLE CONTROLS BY HIDING IT BEHIND MAIN CONTAINER WHILE TIMER IS ON WITH FIRST KEYPRESS
         // !!! THIS ONLY RUNS IF TIMER IS ON !!!
-        if (keyStrokeCounter === 1) {
-            for (let i = 0; i < fadeWithTimerElements.length; i += 1) {
-                fadeWithTimerElements[i].classList.add("fadeOut");
-            }
-        }
+        // if (keyStrokeCounter === 1) {
+        //     for (let i = 0; i < fadeWithTimerElements.length; i += 1) {
+        //         fadeWithTimerElements[i].classList.add("fadeOut");
+        //         // document.querySelector(".body").classList.add("timer-style__body");
+        //         // container.classList.add("timer-style__container");
+        //     }
+        // }
 
         // ENABLE CONTROLS WHEN TIME IS UP
         // +++++++++++++++++++++++++++++++++++++++++++++
         // if (!timerOn) {
-        if (!timerRunning) {
-            // console.log("<<<<< TIMER OFF >>>>>");
-            for (let i = 0; i < fadeWithTimerElements.length; i += 1) {
-                fadeWithTimerElements[i].classList.remove("fadeOut");
-            }
-        }
+        // if (!timerRunning) {
+        //     // console.log("<<<<< TIMER OFF >>>>>");
+        //     for (let i = 0; i < fadeWithTimerElements.length; i += 1) {
+        //         fadeWithTimerElements[i].classList.remove("fadeOut");
+        //         // document.querySelector(".body").classList.remove("timer-style__body");
+        //         // container.classList.remove("timer-style__container");
+        //     }
+        // }
         // +++++++++++++++++++++++++++++++++++++++++++++
 
         // logKeyEventStart();
@@ -1548,6 +1556,7 @@ for (let i = 0, length = difficultyRadios.length; i < length; i++) {
         difficultyApply.disabled = false;
         startButton.classList.remove("apply--active");
         disableStartButton();
+        messageDiv.textContent = "Apply changes!";
         // if (allChangesApplied()) {
         //     enableStartButton();
         // }
@@ -1559,6 +1568,7 @@ difficultyApply.addEventListener("click", function () {
     difficultyApply.disabled = true;
     if (allChangesApplied()) {
         enableStartButton();
+        messageDiv.textContent = "";
     }
     clearDataAndDisplay();
     clearArrAndString();
@@ -1580,6 +1590,7 @@ for (let i = 0, length = gramRadios.length; i < length; i++) {
         startButton.classList.remove("apply--active");
         disableStartButton();
         clearDataAndDisplay();
+        messageDiv.textContent = "Apply changes!";
 
         if (allChangesApplied()) {
             enableStartButton();
@@ -1613,6 +1624,7 @@ gramsApply.addEventListener("click", function () {
     gramsApply.disabled = true;
     if (allChangesApplied()) {
         enableStartButton();
+        messageDiv.textContent = "";
     }
     clearDataAndDisplay();
     clearArrAndString();
@@ -1644,6 +1656,7 @@ for (let i = 0, length = rowRadios.length; i < length; i++) {
         startButton.classList.remove("apply--active");
         disableStartButton();
         clearDataAndDisplay();
+        messageDiv.textContent = "Apply changes!";
 
         if (allChangesApplied()) {
             enableStartButton();
@@ -1677,6 +1690,7 @@ rowsApply.addEventListener("click", function () {
     rowsApply.disabled = true;
     if (allChangesApplied()) {
         enableStartButton();
+        messageDiv.textContent = "";
     }
     clearDataAndDisplay();
     clearArrAndString();
@@ -1705,6 +1719,7 @@ slider.onchange = function (event) {
     lengthApply.classList.add("apply--active");
     lengthApply.disabled = false;
     disableStartButton();
+    messageDiv.textContent = "Apply changes!";
 };
 
 // GET SLIDER FINAL VALUE AND ASSIGN TO SEQUENCE LENGTH
@@ -1716,6 +1731,7 @@ lengthApply.addEventListener("click", function () {
     lengthApply.disabled = true;
     if (allChangesApplied()) {
         enableStartButton();
+        messageDiv.textContent = "";
     }
 });
 
@@ -1740,6 +1756,7 @@ const handlePunctuationToggle = () => {
         ? false
         : true;
 
+    messageDiv.textContent = "Apply changes!"
 };
 
 punctuationToggle.addEventListener("click", handlePunctuationToggle);
@@ -1757,6 +1774,7 @@ punctuationApply.addEventListener("click", function () {
     punctuationApply.disabled = true;
     if (allChangesApplied()) {
         enableStartButton();
+        messageDiv.textContent = "";
     }
     punctuationToggle.disabled = false;
 });
@@ -1775,6 +1793,7 @@ const handlePunctuationToggleBeginner = () => {
         ? false
         : true;
 
+    messageDiv.textContent = "Apply changes!";
 };
 
 punctuationToggleBeginner.addEventListener("click", handlePunctuationToggleBeginner);
@@ -1787,6 +1806,7 @@ punctuationApplyBegineer.addEventListener("click", function () {
     punctuationApplyBegineer.disabled = true;
     if (allChangesApplied()) {
         enableStartButton();
+        messageDiv.textContent = "";
     }
     punctuationToggleBeginner.disabled = false;
 });
@@ -1803,6 +1823,8 @@ const handleCapitalToggle = () => {
     startButton.disabled = allChangesApplied()
         ? false
         : true;
+
+    messageDiv.textContent = "Apply changes!";
 };
 
 capitalToggle.addEventListener("click", handleCapitalToggle);
@@ -1815,6 +1837,7 @@ capitalApply.addEventListener("click", function () {
     capitalApply.disabled = true;
     if (allChangesApplied()) {
         enableStartButton();
+        messageDiv.textContent = "";
     }
     capitalToggle.disabled = false;
 });
@@ -1832,6 +1855,8 @@ const handleCapitalToggleBeginner = () => {
         ? false
         : true;
 
+    messageDiv.textContent = "Apply changes!";
+
 };
 
 capitalToggleBeginner.addEventListener("click", handleCapitalToggleBeginner);
@@ -1844,6 +1869,7 @@ capitalApplyBeginner.addEventListener("click", function () {
     capitalApplyBeginner.disabled = true;
     if (allChangesApplied()) {
         enableStartButton();
+        messageDiv.textContent = "";
     }
     capitalToggleBeginner.disabled = false;
 });
@@ -1860,6 +1886,8 @@ const handleEnterToggle = () => {
     startButton.disabled = allChangesApplied()
         ? false
         : true;
+
+    messageDiv.textContent = "Apply changes!";
 };
 
 enterToggle.addEventListener("click", handleEnterToggle);
@@ -1872,6 +1900,7 @@ enterApply.addEventListener("click", function () {
     enterApply.disabled = true;
     if (allChangesApplied()) {
         enableStartButton();
+        messageDiv.textContent = "";
     }
     enterToggle.disabled = false;
 });
@@ -1888,6 +1917,8 @@ const handleEnterToggleBeginner = () => {
     startButton.disabled = allChangesApplied()
         ? false
         : true;
+
+    messageDiv.textContent = "Apply changes!";
 };
 
 enterToggleBeginner.addEventListener("click", handleEnterToggleBeginner);
@@ -1900,6 +1931,7 @@ enterApplyBeginner.addEventListener("click", function () {
     enterApplyBeginner.disabled = true;
     if (allChangesApplied()) {
         enableStartButton();
+        messageDiv.textContent = "";
     }
     enterToggleBeginner.disabled = false;
 });
@@ -1913,10 +1945,13 @@ const countdown = () => {
         fadeWithTimerElements[i].classList.remove("fadeIn");
         fadeWithTimerElements[i].classList.add("fadeOut");
     }
+    document.querySelector(".body").classList.add("timer-style__body");
+    container.classList.add("timer-style__container");
+    messageDiv.classList.add("timer-style__message-div");
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     let seconds = 60;
-    // seconds = 10;
+    seconds = 10;
     const tick = () => {
         const counter = document.getElementById("counter-div");
         seconds -= 1;
@@ -1944,10 +1979,18 @@ const countdown = () => {
             for (let i = 0; i < fadeWithTimerElements.length; i += 1) {
                 fadeWithTimerElements[i].classList.add("fadeIn");
                 fadeWithTimerElements[i].classList.remove("fadeOut");
+                // document.querySelector(".body").classList.remove("timer-style__body");
+                // container.classList.remove("timer-style__container");
             }
         }
 
+        // if (seconds === 1) {
+        //     textSpanContainerNextParagraph.classList.add("totalFadeOut");
+        //     textSpanContainerActive.classList.add("totalFadeOut");
+        // }
+
         if (seconds === 0) {
+
             // console.log("times up");
             // document.removeEventListener("keydown", handleKeyEvent);
             timerRunning = false;
@@ -1959,15 +2002,24 @@ const countdown = () => {
             startButton.disabled = false;
             startButton.classList.add("apply--active");
             startButton.innerText = "Start";
-            // CLEAR TEXT AFTER 2 SECONDS, SYNC CLEARTEXFIELDS WITH ANIMATION DURATION (FADE OUT AND THEN CLEAR)
-            setTimeout(clearTextFields, 2000);
+            // CLEAR TEXT AFTER 1750 SECONDS, SYNC CLEARTEXFIELDS WITH ANIMATION DURATION (FADE OUT 1500 AND THEN CLEAR)
+            setTimeout(clearTextFields, 1750);
             // textSpanContainerActive.classList.add("fadeOut");
+
+            // THIS IS NOT NECESSARY, ADD CLASS TO BOTH LINES AT ONCE SEE BELOW:
+            // const activeTextSpans =
+            //     document.getElementsByClassName("active-txt-span");
+            // for (let i = 0; i < activeTextSpans.length; i += 1) {
+            //     activeTextSpans[i].classList.add("totalFadeOut");
+            // }
+
             textSpanContainerNextParagraph.classList.add("totalFadeOut");
-            const activeTextSpans =
-                document.getElementsByClassName("active-txt-span");
-            for (let i = 0; i < activeTextSpans.length; i += 1) {
-                activeTextSpans[i].classList.add("totalFadeOut");
-            }
+            textSpanContainerActive.classList.add("totalFadeOut");
+
+            document.querySelector(".body").classList.remove("timer-style__body");
+            container.classList.remove("timer-style__container");
+            messageDiv.classList.remove("timer-style__message-div");
+
             textInput.removeEventListener("keydown", startCountdown);
             const totalKeystrokes = keyStrokeCounter;
             keystrokesSpan.textContent = totalKeystrokes;
@@ -1994,6 +2046,8 @@ const handleTimerToggle = () => {
     startButton.disabled = allChangesApplied()
         ? false
         : true;
+
+    messageDiv.textContent = "Apply changes!";
 };
 
 timerToggle.addEventListener("click", handleTimerToggle);
@@ -2011,6 +2065,7 @@ timerApply.addEventListener("click", function () {
     if (allChangesApplied()) {
         // console.log("TIMER APPLY", enterOn);
         enableStartButton();
+        messageDiv.textContent = "";
         // console.log("TIMER APPLY", enterOn);
     }
     timerToggle.disabled = false;
@@ -2025,6 +2080,8 @@ const handleSoundToggle = () => {
     soundApply.disabled = soundApply.classList.contains("apply--active")
         ? false
         : true;
+
+    messageDiv.textContent = "Apply changes!";
 
     // DO NOT DISABLE START BUTTON WHEN TURNING SOUND ON / OFF
     // startButton.disabled = allChangesApplied()
@@ -2042,6 +2099,7 @@ soundApply.addEventListener("click", function () {
     soundApply.disabled = true;
     if (allChangesApplied()) {
         enableStartButton();
+        messageDiv.textContent = "";
     }
     soundToggle.disabled = false;
 });
@@ -2177,6 +2235,7 @@ for (let i = 0; i < levelButtons.length; i += 1) {
 
             disableStartButton();
             clearDataAndDisplay();
+            messageDiv.textContent = "Apply changes!";
 
             // 1. CHECK IF AT LEAST ONE LEVEL IS SELECTED
             let selectionMade = false; // RESET TO FALSE BEFORE LOOP
@@ -2208,6 +2267,7 @@ for (let i = 0; i < levelButtons.length; i += 1) {
         else {
             disableStartButton();
             clearDataAndDisplay();
+            messageDiv.textContent = "Apply changes!";
 
             toggleLevelButtonStyle(this);
             // console.log(levelButtons);
@@ -2354,6 +2414,8 @@ levelsApply.addEventListener("click", function () {
         toggleLevelButtonState(levelButtons[i]);
     }
 
+    messageDiv.textContent = "";
+
     // LEVEL BUTTON STATES ARRAY IS USED TO LOOP THROUGH ALL BOOLEANS
     let levelStateArray = [
         level_1_On,
@@ -2401,7 +2463,6 @@ levelsApply.addEventListener("click", function () {
 
 // SHOW BEGINNER LEVELS
 beginnerShowButton.addEventListener("click", function () {
-    console.log("SWITCHED TO BEGINNER");
     beginnerOn = true;
 
     timerOn = false;
@@ -2628,6 +2689,8 @@ CURRENT BRANCH: TIMER-BUG-1
        
             
     PROBLEMS:
+
+        ☑️ RESET WRONG KEY COUNTER WITH START !!! IT IS KEEPING TRACK OF IT FROM PREVIOUS SESSION !!!
 
         LINE:2339 HOW TO HANDLE APPLY BUTTONS WHEN SWITCHING BETWEEN ADV/BEGINNER ???
 
