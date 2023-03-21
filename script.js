@@ -1951,7 +1951,7 @@ const countdown = () => {
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     let seconds = 60;
-    seconds = 10;
+    // seconds = 10;
     const tick = () => {
         const counter = document.getElementById("counter-div");
         seconds -= 1;
@@ -2605,11 +2605,11 @@ beginnerHideButton.addEventListener("click", function () {
 /*
 
 
-CURRENT BRANCH: TIMER-BUG-1
+CURRENT BRANCH: none
 
     MAKE TIMER DISABLED BY DEFAULT???
 
-    MAKE STYLE CHANGES BASED ON timerRunning INSTEAD OF timerOn
+    ☑️ MAKE STYLE CHANGES BASED ON timerRunning INSTEAD OF timerOn
 
     ☑️ BEGINNER: DO NOT ACTIVATE START BUTTON WITH PUNCT/CAPITAL/ENTER APPLY UNTIL LEVEL HAS BEEN SELECTED!
 
