@@ -189,6 +189,7 @@ let capitalOn = false;
 let enterOn = false;
 // DISABLED
 let timerOn = true;
+let timerRunning = false;
 // let timerOn = false;
 let soundOn = true;
 
@@ -283,23 +284,92 @@ const toggleButtonState = (element) => {
     // if (!beginnerOn) {
     if (element.classList.contains("toggle-on")) {
 
+
+        //     if (element === punctuationToggle) {
+        //         punctuationOn = true;
+        //     }
+        //     if (element === punctuationToggleBeginner) {
+        //         punctuationOn = true;
+        //     }
+        //     if (element === capitalToggle) {
+        //         capitalOn = true;
+        //     }
+        //     if (element === capitalToggleBeginner) {
+        //         capitalOn = true;
+        //     }
+        //     if (element === soundToggle) {
+        //         soundOn = true;
+        //     }
+        //     // if (element === timerToggle && !beginnerOn) {
+        //     if (element === timerToggle) {
+        //         timerOn = true;
+        //     }
+        //     if (element === enterToggle) {
+        //         enterOn = true;
+        //     }
+        //     if (element === enterToggleBeginner) {
+        //         enterOn = true;
+        //     }
+        //     if (element === themeToggle) {
+        //         darkThemeOn = true;
+        //     }
+        // } else {
+        //     if (element === punctuationToggle) {
+        //         punctuationOn = false;
+        //     }
+        //     if (element === punctuationToggleBeginner) {
+        //         punctuationOn = false;
+        //     }
+        //     if (element === capitalToggle) {
+        //         capitalOn = false;
+        //     }
+        //     if (element === capitalToggleBeginner) {
+        //         capitalOn = false;
+        //     }
+        //     if (element === soundToggle) {
+        //         soundOn = false;
+        //     }
+        //     if (element === timerToggle) {
+        //         timerOn = false;
+        //     }
+        //     if (element === enterToggle) {
+        //         enterOn = false;
+        //     }
+        //     if (element === enterToggleBeginner) {
+        //         enterOn = false;
+        //     }
+        //     if (element === themeToggle) {
+        //         darkThemeOn = false;
+        //     }
+        // }
+
+        // !!! BUG: SWITCH() WILL ENABLE ENTERON IF OTHER TOGGLES ARE SWITCHED ON !!!
+
         switch (element) {
             case punctuationToggle:
                 punctuationOn = true;
+                break;
             case punctuationToggleBeginner:
                 punctuationOn = true;
+                break;
             case capitalToggle:
                 capitalOn = true;
+                break;
             case capitalToggleBeginner:
                 capitalOn = true;
+                break;
             case soundToggle:
                 soundOn = true;
+                break;
             case timerToggle:
                 timerOn = true;
+                break;
             case enterToggle:
                 enterOn = true;
+                break;
             case enterToggleBeginner:
                 enterOn = true;
+                break;
             case themeToggle:
                 darkThemeOn = true;
         }
@@ -309,24 +379,31 @@ const toggleButtonState = (element) => {
         switch (element) {
             case punctuationToggle:
                 punctuationOn = false;
+                break;
             case punctuationToggleBeginner:
                 punctuationOn = false;
+                break;
             case capitalToggle:
                 capitalOn = false;
+                break;
             case capitalToggleBeginner:
                 capitalOn = false;
+                break;
             case soundToggle:
                 soundOn = false;
+                break;
             case timerToggle:
                 timerOn = false;
+                break;
             case enterToggle:
                 enterOn = false;
+                break;
             case enterToggleBeginner:
                 enterOn = false;
+                break;
             case themeToggle:
                 darkThemeOn = false;
         }
-
     }
     // }
 };
@@ -978,7 +1055,6 @@ startButton.addEventListener("click", (event) => {
 
     if (beginnerOn) {
         timerOn = false;
-        // console.log("TIMER ON", timerOn);
     }
 
     textInput.disabled = false;
@@ -1038,7 +1114,6 @@ startButton.addEventListener("click", (event) => {
     // INSTEAD OF TIMERON, CHECK IS BUTTON IS ACTIVE AND IF IT IS, SET TIMERON TO TRUE
     // if (timerToggle.classList.contains("apply--active") && !beginnerOn) {
     if (timerOn && !beginnerOn) {
-        // timerOn = true;
         textInput.addEventListener("keydown", startCountdown);
         // console.log("EVENT LISTENER ADDED TEXT INPUT FOR TIMER");
     }
@@ -1065,10 +1140,7 @@ startButton.addEventListener("click", (event) => {
 
     // INITIALISE TEXTSPANCONTAINER NEXT
 
-    // APPEND AS STRING:
-    // stringWordsNext = wordArrays[lineIdx + 1].join("");
-    // textSpanContainerNextParagraph.innerText = stringWordsNext;
-
+    // APPEND AS SPANS:
     createSpans(lineIdx + 1, textSpanContainerNextParagraph);
 
     // ADD CURSOR TO FIRST CHARACTER WHEN PAGE LOADS
@@ -1107,14 +1179,19 @@ startButton.addEventListener("click", (event) => {
         //NOT USED
         // console.log("event.code:", event.code)
 
-        // ONLY KEEP TRACK OF KEYSTROKES WHILE CLOCK IS RUNNING
-        if (timerOn) {
-            if (typedKey !== "CapsLock") {
-                keyStrokeCounter += 1;
-            }
-            // console.log("KEYSTROKE COUNTER:", keyStrokeCounter);
-            keystrokesSpan.textContent = keyStrokeCounter;
+        // ONLY KEEP TRACK OF KEYSTROKES WHILE CLOCK IS RUNNING (NOW DISABLED, KEYSTROKES ARE ALWAYS COUNTED)
+        // if (timerOn) {
+        // +++++++++++++++++++++++++++++++++++++++++++++
+
+        // if (timerRunning) {
+        if (typedKey !== "CapsLock") {
+            keyStrokeCounter += 1;
         }
+        // +++++++++++++++++++++++++++++++++++++++++++++
+
+        // console.log("KEYSTROKE COUNTER:", keyStrokeCounter);
+        keystrokesSpan.textContent = keyStrokeCounter;
+        // }
 
         // DISABLE CONTROLS BY HIDING IT BEHIND MAIN CONTAINER WHILE TIMER IS ON WITH FIRST KEYPRESS
         // !!! THIS ONLY RUNS IF TIMER IS ON !!!
@@ -1125,12 +1202,15 @@ startButton.addEventListener("click", (event) => {
         }
 
         // ENABLE CONTROLS WHEN TIME IS UP
-        if (!timerOn) {
+        // +++++++++++++++++++++++++++++++++++++++++++++
+        // if (!timerOn) {
+        if (!timerRunning) {
             // console.log("<<<<< TIMER OFF >>>>>");
             for (let i = 0; i < fadeWithTimerElements.length; i += 1) {
                 fadeWithTimerElements[i].classList.remove("fadeOut");
             }
         }
+        // +++++++++++++++++++++++++++++++++++++++++++++
 
         // logKeyEventStart();
 
@@ -1828,6 +1908,13 @@ enterApplyBeginner.addEventListener("click", function () {
 
 // ONE TIME LISTENER FOR TIMER SETTIMEOUT
 const countdown = () => {
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    for (let i = 0; i < fadeWithTimerElements.length; i += 1) {
+        fadeWithTimerElements[i].classList.remove("fadeIn");
+        fadeWithTimerElements[i].classList.add("fadeOut");
+    }
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     let seconds = 60;
     // seconds = 10;
     const tick = () => {
@@ -1837,7 +1924,8 @@ const countdown = () => {
         // counter.innerHTML = seconds;
         if (seconds > 0) {
             setTimeout(tick, 1000);
-            timerOn = true;
+            // timerOn = true;
+            timerRunning = true;
             // console.log("TIMER ON:", timerOn);
         }
 
@@ -1862,6 +1950,7 @@ const countdown = () => {
         if (seconds === 0) {
             // console.log("times up");
             // document.removeEventListener("keydown", handleKeyEvent);
+            timerRunning = false;
 
             textInput.value = "                 Try Again ➡"; // SET INPUT VALUE
             // textInput.readOnly = true; // DISABLE TXT INPUT
@@ -1887,8 +1976,6 @@ const countdown = () => {
                 disabledDuringTimer[i].disabled = false;
             }
 
-            // timerOn = false;
-            // console.log("TIMER ON:", timerOn);
             // document.removeEventListener("keydown", handleKeyEvent);
         }
     };
@@ -1897,6 +1984,7 @@ const countdown = () => {
 };
 
 const handleTimerToggle = () => {
+    console.log("TIMER TOGGLE", enterOn);
     toggleButtonStyle(timerToggle);
     timerApply.classList.toggle("apply--active");
     timerApply.disabled = timerApply.classList.contains("apply--active")
@@ -1911,15 +1999,22 @@ const handleTimerToggle = () => {
 timerToggle.addEventListener("click", handleTimerToggle);
 
 timerApply.addEventListener("click", function () {
+    // console.log("TIMER APPLY START", enterOn);
     clearDataAndDisplay();
+    // console.log("TIMER APPLY", enterOn);
     clearArrAndString();
+    // console.log("TIMER APPLY", enterOn);
     toggleButtonState(timerToggle);
+    console.log("TIMER APPLY", enterOn);
     timerApply.classList.remove("apply--active");
     timerApply.disabled = true;
     if (allChangesApplied()) {
+        // console.log("TIMER APPLY", enterOn);
         enableStartButton();
+        // console.log("TIMER APPLY", enterOn);
     }
     timerToggle.disabled = false;
+    // console.log("TIMER APPLY END", enterOn);
 });
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 SOUND 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -2181,20 +2276,28 @@ const toggleLevelButtonState = (element) => {
         switch (element) {
             case level_1:
                 level_1_On = true;
+                break;
             case level_2:
                 level_2_On = true;
+                break;
             case level_3:
                 level_3_On = true;
+                break;
             case level_4:
                 level_4_On = true;
+                break;
             case level_5:
                 level_5_On = true;
+                break;
             case level_6:
                 level_6_On = true;
+                break;
             case level_7:
                 level_7_On = true;
+                break;
             case level_8:
                 level_8_On = true;
+                break;
             case level_9:
                 level_9_On = true;
         }
@@ -2203,20 +2306,28 @@ const toggleLevelButtonState = (element) => {
         switch (element) {
             case level_1:
                 level_1_On = false;
+                break;
             case level_2:
                 level_2_On = false;
+                break;
             case level_3:
                 level_3_On = false;
+                break;
             case level_4:
                 level_4_On = false;
+                break;
             case level_5:
                 level_5_On = false;
+                break;
             case level_6:
                 level_6_On = false;
+                break;
             case level_7:
                 level_7_On = false;
+                break;
             case level_8:
                 level_8_On = false;
+                break;
             case level_9:
                 level_9_On = false;
         }
@@ -2295,12 +2406,18 @@ beginnerShowButton.addEventListener("click", function () {
 
     timerOn = false;
 
+    // +++++++++++++++++++++++++++++++++++++++++++++
+    // MAKING SURE TIMERON IS FALSE IN BEGINNER
+    if (timerToggle.classList.contains("toggle-on") && beginnerOn) {
+        timerOn = false;
+    }
+    // +++++++++++++++++++++++++++++++++++++++++++++
+
     // DISABLE BEGINNER TOGGLES (PUNCTUATION, CAPITAL AND ENTER)
     for (let i = 0; i < beginnerToggles.length; i += 1) {
         beginnerToggles[i].disabled = true;
     }
 
-    // +++++++++++++++++++++++++++++++++++++++++++++
     // RESET ALL MODIFIER TOGGLES TO OFF
     punctuationOn = false;
     punctuationToggleBeginner.classList.remove("toggle-on");
@@ -2311,15 +2428,15 @@ beginnerShowButton.addEventListener("click", function () {
     capitalToggleBeginner.classList.remove("toggle-on");
     capitalToggleBeginner.classList.add("toggle-off");
     capitalToggleBeginner.innerText = "Off";
-    enterOn = false;
 
+    enterOn = false;
     enterToggleBeginner.classList.remove("toggle-on");
     enterToggleBeginner.classList.add("toggle-off");
     enterToggleBeginner.innerText = "Off";
 
-    // +++++++++++++++++++++++++++++++++++++++++++++
 
     targetArray = [];
+
     /*
         CHECK IF ANY LEVEL IS SELECTED, IF SO,
             A. ACTIVATE APPLY TO RE - SUBMIT SETTINGS ??? OR
@@ -2349,7 +2466,6 @@ beginnerShowButton.addEventListener("click", function () {
 beginnerHideButton.addEventListener("click", function () {
     beginnerOn = false;
 
-    // +++++++++++++++++++++++++++++++++++++++++++++
     // RESTORE / ACTIVATE ADVACED LEVEL CONTROL SETTINGS
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰 DIFFICULTY 🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -2380,29 +2496,13 @@ beginnerHideButton.addEventListener("click", function () {
         : false;
 
     // +++++++++++++++++++++++++++++++++++++++++++++
-
-    if (timerToggle.innerText === "On") {
+    // if (timerToggle.innerText === "On") {
+    if (timerToggle.classList.contains("toggle-on")) {
         timerOn = true;
     }
+    // +++++++++++++++++++++++++++++++++++++++++++++
 
     problemKeysSet.clear();
-
-    // targetArray = [];
-
-    // !!! THIS WILL OVERWRITE SETTINGS !!!
-    // ONLY SET TO TRUE IF BUTTON STATE IS TRUE
-    // !!! DO THE SAME WITH ALL TOGGLE BUTTONS !!!
-    // if (timerToggle.classList.contains("apply--active")) {
-
-    // timerOn = true;
-
-    // !!! LOOK INTO THIS !!!
-    // +++++++++
-    // startButton.disabled = allChangesApplied()
-    //     ? false
-    //     : true;
-    // startButton.disabled = true;
-    // +++++++++
 
     startButton.disabled = false;
 
@@ -2444,9 +2544,11 @@ beginnerHideButton.addEventListener("click", function () {
 /*
 
 
-CURRENT BRANCH: NONE
+CURRENT BRANCH: TIMER-BUG-1
 
-    LOOK INTO timerON BOOLEAN
+    MAKE TIMER DISABLED BY DEFAULT???
+
+    MAKE STYLE CHANGES BASED ON timerRunning INSTEAD OF timerOn
 
     ☑️ BEGINNER: DO NOT ACTIVATE START BUTTON WITH PUNCT/CAPITAL/ENTER APPLY UNTIL LEVEL HAS BEEN SELECTED!
 
@@ -2521,7 +2623,7 @@ CURRENT BRANCH: NONE
         DYNAMICALLY GENERATE NEXT LINE + 1 ?
 
         SHOW ALL TEXT AS ONE BLOCK ?
-        
+
         INCLUDE ENTER KEY IN REAL TIME HIGHLIGHT ?
        
             

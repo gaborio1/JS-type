@@ -21,9 +21,11 @@
     --font-64: 64px;
 
     /* BORDER RADIUS */
-    --wrap-border-radius: 10px;
-    --small-border-radius: 10px;
-    --button-border-radius: 4px;
+    /* APP, WRAPS */
+    --wrap-border-radius: 8px;
+    /* TIMER, INPUT, MESSAGE DIV */
+    --small-border-radius: 5px;
+    --button-border-radius: 5px;
     --cursor-border-radius: 4px;
 
     /* WIDTH / HEIGHT */
@@ -1367,7 +1369,7 @@ p .active-txt-span.active-txt-span--enter {
 
 @keyframes fadeIn {
     0% {
-        opacity: 0.5;
+        opacity: 0.2;
     }
 
     100% {
@@ -1381,7 +1383,7 @@ p .active-txt-span.active-txt-span--enter {
     }
 
     100% {
-        opacity: 0.5;
+        opacity: 0.2;
     }
 }
 
