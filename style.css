@@ -58,6 +58,8 @@
     /* #F3F3F3 */
     /* #E1E1E1 */
     /* #1B1B1B */
+
+    /* --background-transition: 0.4s; */
 }
 
 /* CSS reset */
@@ -66,6 +68,7 @@
     padding: 0;
     box-sizing: border-box;
     /* filter: grayscale(1); */
+    /* transition: all var(--background-transition); */
 }
 
 /* 
@@ -90,11 +93,15 @@ body {
     /* background-color: rgba(251, 239, 214, 0.521) */
     filter: grayscale(0.2);
     /* filter: grayscale(1); */
+
+    /* transition: background 2s; */
 }
 
 body.dark-theme {
     background: var(--body-background--dark);
     filter: grayscale(0.45);
+
+    /* transition: background 2s; */
 }
 
 h1 {
@@ -142,12 +149,27 @@ h3 {
     /* margin: 50px auto; */
     border: 1px solid var(--border-grey);
     border-radius: var(--wrap-border-radius);
+    /* THIS WILL AFFECT BORDER COLOUR CHANGE WHEN SWITCHING TO DARK MODE */
+    /* transition: border-color 1s; */
+
+    /* transition: background var(--background-transition); */
+    /* transition: all var(--background-transition); */
+
 }
+
+/* .container.timer-style__container {
+    transition: border-color 1s;
+} */
 
 .container.dark-theme {
     border: 1px solid var(--border-gold);
     background-color: rgb(28, 28, 28);
+    /* transition: border-color 1s; */
 }
+
+/* .container.dark-theme.timer-style__container {
+    transition: border-color 1s;
+} */
 
 .wrapper {
     width: var(--app__main-wrap-width);
@@ -191,7 +213,13 @@ button:disabled:hover {
     justify-content: space-between;
     margin: 25px 0px 0px 0px;
     height: 150px;
+
+    /* transition: background var(--background-transition); */
 }
+
+/* .controls-container.dark-theme {
+    transition: background var(--background-transition);
+} */
 
 .control-wrap {
     display: flex;
@@ -202,6 +230,7 @@ button:disabled:hover {
     height: 150px;
     padding: 10px 0px 10px 0px;
 
+    /* transition: background var(--background-transition); */
 }
 
 .spacer-div {
@@ -240,6 +269,7 @@ button:disabled:hover {
 /* TEXT  (20-50) AND CURRENT LENGTH*/
 .control-wrap.dark-theme {
     color: darkgoldenrod;
+    /* transition: background var(--background-transition); */
 }
 
 
@@ -275,12 +305,14 @@ button:disabled:hover {
     background: var(--wrap-highlight--light);
     border: 1px solid var(--border-grey);
     border-radius: var(--wrap-border-radius);
+
 }
 
 .card__face--front--controls.dark-theme {
     background: var(--wrap-highlight--dark);
     border: 1px solid var(--border-gold);
     border-radius: var(--wrap-border-radius);
+
 }
 
 /* BEGINNER LEVEL */
@@ -481,12 +513,16 @@ button:disabled:hover {
     border: 1px solid var(--border-grey);
     border-radius: var(--wrap-border-radius);
     /* border: 1px solid red; */
+
+    /* transition: background var(--background-transition); */
 }
 
 .text-fields-wrap.dark-theme {
 
     background: var(--wrap-highlight--dark);
     border: 1px solid var(--border-gold);
+
+    /* transition: background var(--background-transition); */
 }
 
 .active-container {
@@ -644,6 +680,8 @@ p .active-txt-span.active-txt-span--enter {
     height: 50px;
     margin: 50px 0px 0px 0px;
     padding: 0px 25px 0px 25px;
+
+    /* transition: background var(--background-transition); */
 }
 
 /* TIMER */
@@ -656,6 +694,8 @@ p .active-txt-span.active-txt-span--enter {
     /* background: var(--text-field-offwhite); */
     background: var(--wrap-highlight--light);
     border: 1px solid var(--border-grey);
+
+    /* transition: background var(--background-transition); */
 }
 
 .counter-div.dark-theme {
@@ -665,11 +705,15 @@ p .active-txt-span.active-txt-span--enter {
 
     border: 1px solid var(--border-gold);
     border: 1px solid rgba(184, 135, 11, 0.253);
+
+    /* transition: background var(--background-transition); */
 }
 
 .counter-div.dark-theme {
     /* color: beige; */
     color: darkgoldenrod;
+
+    /* transition: background var(--background-transition); */
 }
 
 .input {
@@ -694,6 +738,8 @@ p .active-txt-span.active-txt-span--enter {
     border: 1px solid var(--border-grey);
     border-radius: var(--small-border-radius);
     background: var(--text-field-white);
+
+    /* transition: background var(--background-transition); */
 }
 
 .text-input.dark-theme {
@@ -703,6 +749,8 @@ p .active-txt-span.active-txt-span--enter {
     /* border: none; */
     border: 1px solid rgba(184, 135, 11, 0.253);
     background: rgba(48, 75, 92, 0.291);
+
+    /* transition: background var(--background-transition); */
 }
 
 
@@ -758,12 +806,16 @@ p .active-txt-span.active-txt-span--enter {
 
     /* background: rgba(184, 135, 11, 0.199); */
     background: var(--wrap-highlight--light);
+
+    /* transition: background var(--background-transition); */
 }
 
 .stat-wrap.dark-theme {
     /* SLIGTHLY LIGHTER THAN KEYBOARD KEYS */
     background: var(--wrap-highlight--dark);
     border: 1px solid var(--border-gold);
+
+    /* transition: background var(--background-transition); */
 }
 
 .speed-span {
@@ -792,6 +844,8 @@ p .active-txt-span.active-txt-span--enter {
     padding: 10px;
     border: 1px solid var(--border-grey);
     border-radius: var(--small-border-radius);
+
+    /* transition: background var(--background-transition); */
 }
 
 .message-div.dark-theme {
@@ -799,6 +853,8 @@ p .active-txt-span.active-txt-span--enter {
     border: 1px solid rgba(184, 135, 11, 0.253);
     background: rgba(135, 206, 250, 0.12);
     background: rgba(48, 75, 92, 0.08);
+
+    /* transition: background var(--background-transition); */
 }
 
 /* // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 KEYBOARD 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 */
@@ -861,6 +917,8 @@ p .active-txt-span.active-txt-span--enter {
     /* box-shadow: 0 0.2em 0 0.05em #222; */
     /* box-shadow: 0 0.1em 0 0.03em #222; */
     /* border-bottom-color: #555; */
+
+    /* transition: background var(--background-transition); */
 }
 
 .keyboard.dark-theme .keyboard__row>* {
@@ -878,6 +936,8 @@ p .active-txt-span.active-txt-span--enter {
     /* box-shadow: 0 0.2em 0 0.05em #222; */
     /* box-shadow: 0 0.1em 0 0.03em #222; */
     /* border-bottom-color: #555; */
+
+    /* transition: background var(--background-transition); */
 }
 
 .keyboard__row--h1>div {
@@ -1002,12 +1062,16 @@ p .active-txt-span.active-txt-span--enter {
     line-height: 1.6rem;
     /* background: rgba(184, 135, 11, 0.199); */
     background: var(--wrap-highlight--light);
+
+    /* transition: background var(--background-transition); */
 }
 
 .colour-code-wrap.dark-theme {
     /* SLIGHTLY DARKER THAN KEYBOARD KEYS */
     background: var(--wrap-highlight--dark);
     border: 1px solid var(--border-gold);
+
+    /* transition: background var(--background-transition); */
 }
 
 /* EXAMPLE TEXT */
@@ -1362,7 +1426,7 @@ p .active-txt-span.active-txt-span--enter {
 .fadeOut {
     /* DISABLE WITH Z INDEX */
     /* z-index: -1; */
-    animation: fadeOut 2s linear;
+    animation: fadeOut 1s linear;
     /* FADE OUT AND STAY SO */
     animation-fill-mode: forwards;
 }
@@ -1405,39 +1469,30 @@ p .active-txt-span.active-txt-span--enter {
     }
 }
 
+/* CONTAINER (APP) WHILE TIMER IS RUNNING */
 .timer-style__container {
-    border: none;
-    /* animation: timer-style__container 2s linear; */
+
+    border-color: transparent;
 }
 
 .timer-style__container.dark-theme {
-    border: none;
+    border-color: transparent;
     background: black;
-    /* animation: timer-style__container 2s linear; */
 }
 
-/* @keyframes timer-style__container {
-    0% {
-        border: none;
-    }
-
-    100% {
-        border: 2px solid var(--border-grey);
-    }
-} */
-
-
+/* BODY WHILE TIMER IS RUNNING */
 .timer-style__body {
     background: var(--app-background--light);
 }
 
+/* MESSAGE DIV WHILE TIMER IS RUNNING */
 .timer-style__message-div {
-    border: none;
+    border-color: transparent;
     background: var(--app-background--light);
 }
 
 .timer-style__message-div.dark-theme {
-    border: none;
+    border-color: transparent;
     background: black;
 }
 
@@ -2262,6 +2317,7 @@ button.btn--flip:hover {
     background: #68b6ff;
     border: 1px solid var(--border-grey);
     /* border: 1px solid black; */
+    /* transition: background var(--background-transition); */
 }
 
 .btn--start:disabled:hover {
@@ -2277,6 +2333,7 @@ button.btn--flip:hover {
     /* background: #184e81; */
     background: #175ea0;
     border: 1px solid darkgoldenrod;
+    /* transition: background var(--background-transition); */
 }
 
 .btn--start.apply--active.dark-theme:hover {
@@ -2285,7 +2342,7 @@ button.btn--flip:hover {
 
 .btn--start.apply--active:hover {
     font-weight: 400;
-    border: 2px solid rgb(118, 118, 118);
+    border: 2px solid rgb(156, 156, 156);
 }
 
 .btn--start.apply--active:disabled:hover {

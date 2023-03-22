@@ -1952,6 +1952,7 @@ const countdown = () => {
 
     let seconds = 60;
     // seconds = 10;
+    // seconds = 5;
     const tick = () => {
         const counter = document.getElementById("counter-div");
         seconds -= 1;
