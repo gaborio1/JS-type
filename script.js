@@ -48,12 +48,18 @@ const lengthDisplaySpan = document.getElementById("length-display-span");
 // PUNCTUATION
 const punctuationToggle = document.getElementById("punctuation-toggle");
 const punctuationApply = document.getElementById("punctuation-apply");
-const punctuationToggleBeginner = document.getElementById("punctuation-toggle__beginner");
-const punctuationApplyBegineer = document.getElementById("punctuation-apply__beginner");
+const punctuationToggleBeginner = document.getElementById(
+    "punctuation-toggle__beginner"
+);
+const punctuationApplyBegineer = document.getElementById(
+    "punctuation-apply__beginner"
+);
 // CAPITAL
 const capitalToggle = document.getElementById("capital-toggle");
 const capitalApply = document.getElementById("capital-apply");
-const capitalToggleBeginner = document.getElementById("capital-toggle__beginner");
+const capitalToggleBeginner = document.getElementById(
+    "capital-toggle__beginner"
+);
 const capitalApplyBeginner = document.getElementById("capital-apply__beginner");
 // ENTER
 const enterToggle = document.getElementById("enter-toggle");
@@ -283,8 +289,6 @@ const toggleButtonState = (element) => {
     // console.log(element);
     // if (!beginnerOn) {
     if (element.classList.contains("toggle-on")) {
-
-
         //     if (element === punctuationToggle) {
         //         punctuationOn = true;
         //     }
@@ -373,9 +377,7 @@ const toggleButtonState = (element) => {
             case themeToggle:
                 darkThemeOn = true;
         }
-
     } else {
-
         switch (element) {
             case punctuationToggle:
                 punctuationOn = false;
@@ -607,7 +609,6 @@ const setDifficultyLevel = () => {
 const findAndApplyProblemKeyWords = () => {
     if (problemKeysSet.size > 0) {
         problemKeysSet.forEach((key) => {
-
             common100.forEach((word) => {
                 if (word.indexOf(key) > -1) {
                     tempProbWordsArr.push(word);
@@ -615,9 +616,7 @@ const findAndApplyProblemKeyWords = () => {
             });
         });
         targetArray = [...tempProbWordsArr]; // UPDATE TARGET ARRAY WITH FILTERED WORDS ARRAY
-
     } else {
-
         // FIND WHICH LEVEL IS SELECTED AND UPDATE TARGET ARRAY ACCORDINGLY
         if (!beginnerOn) {
             setDifficultyLevel();
@@ -669,7 +668,6 @@ const createSpans = (lineIdx, location) => {
         .join("")
         .split("")
         .entries()) {
-
         const span = document.createElement("span"); // CREATE ELEMENT
         // SET TEXT CONTENT / CLASS / ID
         span.innerText = char;
@@ -687,7 +685,6 @@ const createSpans = (lineIdx, location) => {
 
         location.appendChild(span); // APPEND TO PARENT DIV
     }
-
 };
 
 // KEY EVENT START LOGS
@@ -1044,7 +1041,6 @@ textInput.disabled = true;
 
 // ADD LISTENER
 startButton.addEventListener("click", (event) => {
-
     // RESET WRONG COUNTER
     wrongCounter = 0;
 
@@ -1151,7 +1147,6 @@ startButton.addEventListener("click", (event) => {
     const firstCharacter = document.getElementById("span-0");
     firstCharacter.classList.add("background", "black-border");
 
-
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 KEY EVENTS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
@@ -1168,7 +1163,9 @@ startButton.addEventListener("click", (event) => {
                 letterKeys[i].classList.add("green-background__keyboard");
 
                 setTimeout(function () {
-                    letterKeys[i].classList.remove("green-background__keyboard");
+                    letterKeys[i].classList.remove(
+                        "green-background__keyboard"
+                    );
                 }, 100);
             }
         }
@@ -1400,10 +1397,8 @@ startButton.addEventListener("click", (event) => {
                 problemKeysSet.add(wordArrays[lineIdx][wordIdx][charIdx]);
             }
 
-
             // IF PROBLEMKEYS SET HAS LENGTH LOOP OVER problemKeysSet AND FIND CORRESPONDING problem-key-span FOR EACH ELEMENT
             if (problemKeysSet.size > 0) {
-
                 // HIGHLIGHT PROBLEM KEYS ON KEYBOARD
                 highlightProblemKeys();
             }
@@ -1579,6 +1574,22 @@ difficultyApply.addEventListener("click", function () {
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BEGINNER GRAMS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
+const disableRowsControls = () => {
+    for (let i = 0, length = rowRadios.length; i < length; i++) {
+        rowRadios[i].checked = false;
+    }
+    rowsApply.disabled = true;
+    rowsApply.classList.remove("apply--active");
+};
+
+const disableGramsControls = () => {
+    for (let i = 0, length = gramRadios.length; i < length; i++) {
+        gramRadios[i].checked = false;
+    }
+    gramsApply.disabled = true;
+    gramsApply.classList.remove("apply--active");
+};
+
 const gramRadios = document.getElementsByClassName("gram-radio");
 const gramsApply = document.getElementById("grams-apply");
 
@@ -1596,17 +1607,10 @@ for (let i = 0, length = gramRadios.length; i < length; i++) {
             enableStartButton();
         }
         // DISABLE ROWS
-        for (let i = 0, length = rowRadios.length; i < length; i++) {
-            rowRadios[i].checked = false;
-        }
-        rowsApply.disabled = true;
-        rowsApply.classList.remove("apply--active");
+        disableRowsControls();
         // DISABLE LEVELS AND LEVELS APPLY
         for (let i = 0; i < levelButtons.length; i += 1) {
-            levelButtons[i].classList.remove(
-                "apply--active",
-                "toggle-on"
-            );
+            levelButtons[i].classList.remove("apply--active", "toggle-on");
         }
         levelsApply.disabled = true;
         levelsApply.classList.remove("apply--active", "toggle-on");
@@ -1614,7 +1618,6 @@ for (let i = 0, length = gramRadios.length; i < length; i++) {
 }
 
 gramsApply.addEventListener("click", function () {
-
     // ENABLE BEGINNER TOGGLES (PUNCTUATION, CAPITAL AND ENTER)
     for (let i = 0; i < beginnerToggles.length; i += 1) {
         beginnerToggles[i].disabled = false;
@@ -1662,17 +1665,10 @@ for (let i = 0, length = rowRadios.length; i < length; i++) {
             enableStartButton();
         }
         // DISABLE GRAMS
-        for (let i = 0, length = gramRadios.length; i < length; i++) {
-            gramRadios[i].checked = false;
-        }
-        gramsApply.disabled = true;
-        gramsApply.classList.remove("apply--active");
+        disableGramsControls();
         // DISABLE LEVELS AND LEVELS APPLY
         for (let i = 0; i < levelButtons.length; i += 1) {
-            levelButtons[i].classList.remove(
-                "apply--active",
-                "toggle-on"
-            );
+            levelButtons[i].classList.remove("apply--active", "toggle-on");
         }
         levelsApply.disabled = true;
         levelsApply.classList.remove("apply--active", "toggle-on");
@@ -1680,7 +1676,6 @@ for (let i = 0, length = rowRadios.length; i < length; i++) {
 }
 
 rowsApply.addEventListener("click", function () {
-
     // ENABLE BEGINNER TOGGLES (PUNCTUATION, CAPITAL AND ENTER)
     for (let i = 0; i < beginnerToggles.length; i += 1) {
         beginnerToggles[i].disabled = false;
@@ -1748,15 +1743,15 @@ const handlePunctuationToggle = () => {
     // 1. TOGGLE CLASS
     punctuationApply.classList.toggle("apply--active");
     // 2. SET STATUS BASED ON CLASS
-    punctuationApply.disabled = punctuationApply.classList.contains("apply--active")
+    punctuationApply.disabled = punctuationApply.classList.contains(
+        "apply--active"
+    )
         ? false
         : true;
 
-    startButton.disabled = allChangesApplied()
-        ? false
-        : true;
+    startButton.disabled = allChangesApplied() ? false : true;
 
-    messageDiv.textContent = "Apply changes!"
+    messageDiv.textContent = "Apply changes!";
 };
 
 punctuationToggle.addEventListener("click", handlePunctuationToggle);
@@ -1785,18 +1780,20 @@ const handlePunctuationToggleBeginner = () => {
     // console.log("BEGINNER PUNCTUATION TOGGLE");
     toggleButtonStyle(punctuationToggleBeginner);
     punctuationApplyBegineer.classList.toggle("apply--active");
-    punctuationApplyBegineer.disabled = punctuationApplyBegineer.classList.contains("apply--active")
-        ? false
-        : true;
+    punctuationApplyBegineer.disabled =
+        punctuationApplyBegineer.classList.contains("apply--active")
+            ? false
+            : true;
 
-    startButton.disabled = allChangesApplied()
-        ? false
-        : true;
+    startButton.disabled = allChangesApplied() ? false : true;
 
     messageDiv.textContent = "Apply changes!";
 };
 
-punctuationToggleBeginner.addEventListener("click", handlePunctuationToggleBeginner);
+punctuationToggleBeginner.addEventListener(
+    "click",
+    handlePunctuationToggleBeginner
+);
 
 punctuationApplyBegineer.addEventListener("click", function () {
     clearDataAndDisplay();
@@ -1820,9 +1817,7 @@ const handleCapitalToggle = () => {
         ? false
         : true;
 
-    startButton.disabled = allChangesApplied()
-        ? false
-        : true;
+    startButton.disabled = allChangesApplied() ? false : true;
 
     messageDiv.textContent = "Apply changes!";
 };
@@ -1847,16 +1842,15 @@ capitalApply.addEventListener("click", function () {
 const handleCapitalToggleBeginner = () => {
     toggleButtonStyle(capitalToggleBeginner);
     capitalApplyBeginner.classList.toggle("apply--active");
-    capitalApplyBeginner.disabled = capitalApplyBeginner.classList.contains("apply--active")
+    capitalApplyBeginner.disabled = capitalApplyBeginner.classList.contains(
+        "apply--active"
+    )
         ? false
         : true;
 
-    startButton.disabled = allChangesApplied()
-        ? false
-        : true;
+    startButton.disabled = allChangesApplied() ? false : true;
 
     messageDiv.textContent = "Apply changes!";
-
 };
 
 capitalToggleBeginner.addEventListener("click", handleCapitalToggleBeginner);
@@ -1883,9 +1877,7 @@ const handleEnterToggle = () => {
         ? false
         : true;
 
-    startButton.disabled = allChangesApplied()
-        ? false
-        : true;
+    startButton.disabled = allChangesApplied() ? false : true;
 
     messageDiv.textContent = "Apply changes!";
 };
@@ -1910,13 +1902,13 @@ enterApply.addEventListener("click", function () {
 const handleEnterToggleBeginner = () => {
     toggleButtonStyle(enterToggleBeginner);
     enterApplyBeginner.classList.toggle("apply--active");
-    enterApplyBeginner.disabled = enterApplyBeginner.classList.contains("apply--active")
+    enterApplyBeginner.disabled = enterApplyBeginner.classList.contains(
+        "apply--active"
+    )
         ? false
         : true;
 
-    startButton.disabled = allChangesApplied()
-        ? false
-        : true;
+    startButton.disabled = allChangesApplied() ? false : true;
 
     messageDiv.textContent = "Apply changes!";
 };
@@ -1991,7 +1983,6 @@ const countdown = () => {
         // }
 
         if (seconds === 0) {
-
             // console.log("times up");
             // document.removeEventListener("keydown", handleKeyEvent);
             timerRunning = false;
@@ -2017,7 +2008,9 @@ const countdown = () => {
             textSpanContainerNextParagraph.classList.add("totalFadeOut");
             textSpanContainerActive.classList.add("totalFadeOut");
 
-            document.querySelector(".body").classList.remove("timer-style__body");
+            document
+                .querySelector(".body")
+                .classList.remove("timer-style__body");
             container.classList.remove("timer-style__container");
             messageDiv.classList.remove("timer-style__message-div");
 
@@ -2044,9 +2037,7 @@ const handleTimerToggle = () => {
         ? false
         : true;
 
-    startButton.disabled = allChangesApplied()
-        ? false
-        : true;
+    startButton.disabled = allChangesApplied() ? false : true;
 
     messageDiv.textContent = "Apply changes!";
 };
@@ -2168,6 +2159,27 @@ themeToggle.addEventListener("click", handleThemeToggle);
 
 // 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 BEGINNER CONTROLS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
+// ONLY ENABLE LEVELS APPLY IF AT LEAST ONE GROUP IS SELECTED
+const enableLevelsApply = () => {
+    // 1. CHECK IF AT LEAST ONE LEVEL IS SELECTED
+    let selectionMade = false; // RESET TO FALSE BEFORE LOOP
+    for (let i = 0; i < levelButtons.length; i += 1) {
+        if (levelButtons[i].classList.contains("apply--active")) {
+            selectionMade = true;
+            break;
+        }
+    }
+
+    // 2. ONLY ACTIVATE APPLY IF AT LEAST ONE LEVEL IS SELECTED
+    if (selectionMade) {
+        levelsApply.classList.add("apply--active");
+        levelsApply.disabled = false;
+    } else {
+        levelsApply.classList.remove("apply--active");
+        levelsApply.disabled = true;
+    }
+};
+
 // ARRAY FOR THE CURRENTLY SELECTED KEYS
 let selectedBeginerKeys = [];
 
@@ -2175,14 +2187,17 @@ let selectedBeginerKeys = [];
 let randomKeyWordsArray = [];
 
 // ALL 3 TOGGLE BUTTONS (PUNCTUATION, CAPITAL AND ENTER)
-const beginnerToggles = document.getElementsByClassName("btn--toggle__beginner");
-
+const beginnerToggles = document.getElementsByClassName(
+    "btn--toggle__beginner"
+);
 
 // CHOOSE SELECTION TYPE (RANDOM (ONE AT A TIME) OR INCLUSIVE (UP TO SELECTED))
 // INCLUSIVE UP TO SELECTION IS NOW DEFAULT
 let inclusiveSelected = true;
 
-const selectInclusiveToggle = document.getElementById("btn--toggle__selection-type");
+const selectInclusiveToggle = document.getElementById(
+    "btn--toggle__selection-type"
+);
 selectInclusiveToggle.addEventListener("click", function () {
     levelsApply.disabled = true;
 
@@ -2228,22 +2243,19 @@ for (let i = 0; i < levelButtons.length; i += 1) {
             // LOOP THROUGH LEVELBUTTOONS AND ACTIVATE THEM UP TO INDEX OF SELECTED LEVEL
             for (let j = 0; j <= i; j += 1) {
                 // console.log("INCLUSIVE SELECTION:", levelButtons[j]);
-                levelButtons[j].classList.add(
-                    "apply--active",
-                    "toggle-on"
-                );
+                levelButtons[j].classList.add("apply--active", "toggle-on");
             }
 
             disableStartButton();
             clearDataAndDisplay();
+            enableLevelsApply();
+
             messageDiv.textContent = "Apply changes!";
 
             // 1. CHECK IF AT LEAST ONE LEVEL IS SELECTED
             let selectionMade = false; // RESET TO FALSE BEFORE LOOP
             for (let i = 0; i < levelButtons.length; i += 1) {
-                if (
-                    levelButtons[i].classList.contains("apply--active")
-                ) {
+                if (levelButtons[i].classList.contains("apply--active")) {
                     // console.log("FOUND", levelButtons[i]);
                     selectionMade = true;
                     break;
@@ -2273,47 +2285,23 @@ for (let i = 0; i < levelButtons.length; i += 1) {
             toggleLevelButtonStyle(this);
             // console.log(levelButtons);
 
-            // 1. CHECK IF AT LEAST ONE LEVEL IS SELECTED
-            let selectionMade = false; // RESET TO FALSE BEFORE LOOP
-            for (let i = 0; i < levelButtons.length; i += 1) {
-                if (
-                    levelButtons[i].classList.contains("apply--active")
-                ) {
-                    // console.log("FOUND", levelButtons[i]);
-                    selectionMade = true;
-                    break;
-                }
-            }
+            enableLevelsApply();
 
-            // console.log("SELECTION MADE:", selectionMade);
-
-            // 2. ONLY ACTIVATE APPLY IF AT LEAST ONE LEVEL IS SELECTED
-            if (selectionMade) {
-                levelsApply.classList.add("apply--active");
-                levelsApply.disabled = false;
+            // ONLY DISPLAY MESSAGE IF CHANGES HAVE BEEN MADE (APPLY BUTTON IS ACTIVE)
+            if (levelsApply.classList.contains("apply--active")) {
+                messageDiv.textContent = "Apply changes!";
             } else {
-                levelsApply.classList.remove("apply--active");
-                levelsApply.disabled = true;
+                messageDiv.textContent = "";
             }
 
             // RESET SELECTED BEGINNER KEYS ARRAY, IT WILL BE UPDATED WITH APPLY BUTTON
             selectedBeginerKeys = [];
         }
         // DISABLE RADIOS
-        for (let i = 0, length = gramRadios.length; i < length; i++) {
-            gramRadios[i].checked = false;
-        }
-        gramsApply.disabled = true;
-        gramsApply.classList.remove("apply--active");
-
-        for (let i = 0, length = rowRadios.length; i < length; i++) {
-            rowRadios[i].checked = false;
-        }
-        rowsApply.disabled = true;
-        rowsApply.classList.remove("apply--active");
+        disableGramsControls();
+        disableRowsControls();
     });
 }
-
 
 // TOGGLE LEVEL BUTTON STYLE, CLASSES ARE NOW USED TO STYLE
 const toggleLevelButtonStyle = (element) => {
@@ -2333,7 +2321,6 @@ const toggleLevelButtonStyle = (element) => {
 const toggleLevelButtonState = (element) => {
     // console.log(element);
     if (element.classList.contains("toggle-on")) {
-
         switch (element) {
             case level_1:
                 level_1_On = true;
@@ -2363,7 +2350,6 @@ const toggleLevelButtonState = (element) => {
                 level_9_On = true;
         }
     } else {
-
         switch (element) {
             case level_1:
                 level_1_On = false;
@@ -2392,13 +2378,11 @@ const toggleLevelButtonState = (element) => {
             case level_9:
                 level_9_On = false;
         }
-
     }
 };
 
 // 2. APPLY CHANGES TO ALL LEVELS WHEN APPLY CLICKED
 levelsApply.addEventListener("click", function () {
-
     // ENABLE BEGINNER TOGGLES (PUNCTUATION, CAPITAL AND ENTER)
     for (let i = 0; i < beginnerToggles.length; i += 1) {
         beginnerToggles[i].disabled = false;
@@ -2496,7 +2480,6 @@ beginnerShowButton.addEventListener("click", function () {
     enterToggleBeginner.classList.add("toggle-off");
     enterToggleBeginner.innerText = "Off";
 
-
     targetArray = [];
 
     /*
@@ -2547,15 +2530,11 @@ beginnerHideButton.addEventListener("click", function () {
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰 CAPITAL 🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-    capitalOn = capitalToggle.classList.contains("toggle-on")
-        ? true
-        : false;
+    capitalOn = capitalToggle.classList.contains("toggle-on") ? true : false;
 
     // 🀰🀰🀰🀰🀰🀰🀰🀰🀰 ENTER 🀰🀰🀰🀰🀰🀰🀰🀰🀰
 
-    enterOn = enterToggle.classList.contains("toggle-on")
-        ? true
-        : false;
+    enterOn = enterToggle.classList.contains("toggle-on") ? true : false;
 
     // +++++++++++++++++++++++++++++++++++++++++++++
     // if (timerToggle.innerText === "On") {
@@ -2585,7 +2564,6 @@ beginnerHideButton.addEventListener("click", function () {
     }
     rowsApply.disabled = true;
     rowsApply.classList.remove("apply--active");
-
 });
 
 // JS NOT IN USE, POSITION IS NOW STICKY IN CSS
