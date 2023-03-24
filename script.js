@@ -152,7 +152,10 @@ const keystrokesSpan = document.getElementById("keystrokes-span");
 const accuracySpan = document.getElementById("accuracy-span");
 // KEYBOARD
 const keyboard = document.getElementById("keyboard");
-const letterKeys = document.getElementsByClassName("key--letter");
+
+// .key--letter IS NOW BEING REPLACED BY .key--tracked, THIS CLASS WILL BE ADDED TO NUMERIC KEYS
+// const letterKeys = document.getElementsByClassName("key--letter");
+const letterKeys = document.getElementsByClassName("key--tracked");
 
 // MESSAGE DIV
 const messageDiv = document.getElementById("message-div");
@@ -1158,12 +1161,25 @@ startButton.addEventListener("click", (event) => {
 
         // TRACK TYPED KEY ON KEYBOARD (100MS FLASH)
         for (let i = 0; i < letterKeys.length; i += 1) {
+            // console.log(typedKey);
+
+            // ENTER KEY IS HANDLED SEPARATELY AS ITS TEXT CONTENT IS "RETURN" VS "ENTER" !
+            const enterKey = document.getElementById("key--enter");
+
             if (typedKey.toUpperCase() === letterKeys[i].innerText) {
                 // CLASS COLOUR: rgba(0, 128, 0, 0.304)
                 letterKeys[i].classList.add("green-background__keyboard");
 
                 setTimeout(function () {
                     letterKeys[i].classList.remove(
+                        "green-background__keyboard"
+                    );
+                }, 100);
+            } else if (typedKey === "Enter") {
+                enterKey.classList.add("green-background__keyboard");
+
+                setTimeout(function () {
+                    enterKey.classList.remove(
                         "green-background__keyboard"
                     );
                 }, 100);
@@ -2030,7 +2046,7 @@ const countdown = () => {
 };
 
 const handleTimerToggle = () => {
-    console.log("TIMER TOGGLE", enterOn);
+    // console.log("TIMER TOGGLE", enterOn);
     toggleButtonStyle(timerToggle);
     timerApply.classList.toggle("apply--active");
     timerApply.disabled = timerApply.classList.contains("apply--active")
@@ -2051,7 +2067,7 @@ timerApply.addEventListener("click", function () {
     clearArrAndString();
     // console.log("TIMER APPLY", enterOn);
     toggleButtonState(timerToggle);
-    console.log("TIMER APPLY", enterOn);
+    // console.log("TIMER APPLY", enterOn);
     timerApply.classList.remove("apply--active");
     timerApply.disabled = true;
     if (allChangesApplied()) {
@@ -2592,34 +2608,17 @@ CURRENT BRANCH: none
 
     ☑️ BEGINNER: DO NOT ACTIVATE START BUTTON WITH PUNCT/CAPITAL/ENTER APPLY UNTIL LEVEL HAS BEEN SELECTED!
 
-    CSS VARIABLES
-        CONTAINER HEIGHT
-        COLOURS
+    REFACTOR
+        CSS VARIABLES
+            CONTAINER HEIGHT
+            COLOURS
 
     RESTORE DIFFICULTY LEVEL SETTING WHEN COMING BACK FROM BEGINNER ? (NOT WORKING)
-    TRY RESETTING LEVEL TO COMMON100 - LINE 2317
-
-
-     !!! WRITE A FUNCTION FOR THESE !!! (disableGrams(), disableRows()) !!!
-
-    DISABLE ALL OTHER OPTIONS
-        for (let i = 0, length = gramRadios.length; i < length; i++) {
-            gramRadios[i].checked = false;
-        }
-        gramsApply.disabled = true;
-        gramsApply.classList.remove("apply--active");
-
-        for (let i = 0, length = rowRadios.length; i < length; i++) {
-            rowRadios[i].checked = false;
-        }
-        rowsApply.disabled = true;
-        rowsApply.classList.remove("apply--active");
-
-
+        TRY RESETTING LEVEL TO COMMON100 - LINE 2317
 
     ADD COLOUR-THEME CLASS TO EVERY ELEMENT AFFECTED ???
 
-     ACCURACY SPAN COLOUR CODES NOT WORKING WITH NEW SPAN COLOUR (CSS: .accuracy-span.dark-theme)
+    ACCURACY SPAN COLOUR CODES NOT WORKING WITH NEW SPAN COLOUR (CSS: .accuracy-span.dark-theme)
 
     
     FEATURES:
@@ -2634,8 +2633,6 @@ CURRENT BRANCH: none
         DISPLAY MESSAGES IN MESSAGE DIV
             ☑️ CHANGE MESSAGE DIV COLOR TO GREY OR ORANGE?
             CAPSLOCK WARNING
-
-        ADD NUMERIC CHARACTERS
 
         GREEN WORDS COUNTER
 
@@ -2664,24 +2661,17 @@ CURRENT BRANCH: none
 
         SHOW ALL TEXT AS ONE BLOCK ?
 
-        INCLUDE ENTER KEY IN REAL TIME HIGHLIGHT ?
+        ☑️ INCLUDE ENTER KEY IN REAL TIME HIGHLIGHT ?
        
+        ADD NUMERIC CHARACTERS
+            INCLUDE THEM IN HIGHLIGHT
             
     PROBLEMS:
 
         ☑️ RESET WRONG KEY COUNTER WITH START !!! IT IS KEEPING TRACK OF IT FROM PREVIOUS SESSION !!!
 
-        LINE:2339 HOW TO HANDLE APPLY BUTTONS WHEN SWITCHING BETWEEN ADV/BEGINNER ???
-
         ENTER AND SPACE KEYS TRIGGER CARD FLIP AFTER FLIP BUTTON IS CLICKED (FOCUS???)
-
-        REFACTOR
-            FUNCTIONS
-            IF / ELSE BLOCKS
-            CSS CLASSES
                
-
-    
         END OF LINE ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'classList')
                 at countSpanColours (script.js:721:26)
                 at HTMLInputElement.handleKeyEvent (script.js:1092:17)
@@ -2701,7 +2691,9 @@ CURRENT BRANCH: none
             LINE LENGTH 
             TIMER
             SOUND
+
         LINE LENGTH SLIDER SHOULD NOT HIGHLIGHT ON HOVER WHILE TIMER IS ON
+
         WHEN BEGINNER PANEL COMES ON, CHECK IF ANY LEVELS PRE-SELECTED FROM PREVIOUS SESSION (LINE 1614)
             ☑️ HIGHLIGHT APPLY BUTTON TO RE-SUBMIT ???
             OR RESET ALL SETTINGS ???
@@ -2711,18 +2703,14 @@ CURRENT BRANCH: none
             ☑️ RADIO LABELS
             SLIDER
       
-        CAPSLOCK MUST NOT ACTIVATE TIMER ?
+        CAPSLOCK MUST NOT ACTIVATE TIMER 
+
         CONTROL APPLY BUTTONS DELETES "CLICK START" MESSAGE FROM TXT INPUT
         
         ADD EVENTLISTENER TO CONTROL OPTIONS WHEN PAGE LOADS? BEFORE START BUTTON IS CLICKED?
-        REMOVE EVENTLISTENER WHEN APPLY CHANGES AS START BUTTON WILL ADD IT AGAIN !!!
         
         STOP MOVING CURSOR WHEN LETTER CHARACTER IS TYPED INSTEAD OF SPACE AFTER WORD IS TYPED ?
         NOTES:
             !!! WHEN TIMER HAS ENDED FIRST START BUTTON PRESS WILL GENERATE POBLEM KEY WORDS ONLY, SECOND CLICK WILL USE COMMON100 !!!
        
-    
-        ☑️ DO NOT DISABLE START BUTTON  WITH SOUND ON/OFF ?
-        ☑️ DO NOT RESET DATA WITH SOUND ON/OFF
-
 */
