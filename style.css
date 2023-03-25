@@ -666,7 +666,7 @@ p .active-txt-span.active-txt-span--enter {
     margin: 50px 0px 0px 0px;
     padding: 0px 25px 0px 25px;
 
-    border: 2px solid red;
+    /* border: 2px solid red; */
 
     /* transition: background var(--background-transition); */
 }
@@ -770,7 +770,7 @@ p .active-txt-span.active-txt-span--enter {
     flex-direction: column;
     justify-content: space-between;
 
-    border: 2px solid red;
+    /* border: 2px solid red; */
 }
 
 /* SAME AS CONTROL WRAP */
@@ -861,7 +861,7 @@ p .active-txt-span.active-txt-span--enter {
     font-weight: 500;
     /* padding: 20px 0px 20px 0px; */
     /* border: 1px solid var(--border-gold); */
-    border: 2px solid red;
+    /* border: 2px solid red; */
 }
 
 .keyboard__row {
@@ -1038,7 +1038,7 @@ p .active-txt-span.active-txt-span--enter {
     justify-content: space-between;
     margin: 25px 0px 0px 0px;
 
-    border: 2px solid red;
+    /* border: 2px solid red; */
 }
 
 .colour-code-wrap {

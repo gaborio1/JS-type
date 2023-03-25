@@ -2590,7 +2590,7 @@ beginnerHideButton.addEventListener("click", function () {
 // instructionsContainer.addEventListener("mouseover", trackCursor);
 
 /*
-MACBOOK 25/3/23 09:57
+
 CURRENT BRANCH: none
     MAKE TIMER DISABLED BY DEFAULT???
     ☑️ MAKE STYLE CHANGES BASED ON timerRunning INSTEAD OF timerOn
@@ -2706,5 +2706,35 @@ CURRENT BRANCH: none
         STOP MOVING CURSOR WHEN LETTER CHARACTER IS TYPED INSTEAD OF SPACE AFTER WORD IS TYPED ?
         NOTES:
             !!! WHEN TIMER HAS ENDED FIRST START BUTTON PRESS WILL GENERATE POBLEM KEY WORDS ONLY, SECOND CLICK WILL USE COMMON100 !!!
+
+
+        🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰 CHRIS' IDEAS 🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰🀰
+
+        MAKE DIFFICULTY LEVEL OPTIONS SIMPLER
+            EASY
+            MEDIUM
+            HARD
+
+            EASY: RANDOM 100
+            MEDIUM: RANDOM 200 OR 500
+            HARD: INCLUDE RANDOM SENTENCES
+
+        CHANGE THE NUMBER OF CONSECUTIVE ERRORS ALLOWED
+            EASY:15
+            MEDIUM:10
+            HARD:5
+
+        WHEN MAX NUM OF ERRORS HAVE BEEN MADE:
+            DO NOT RESET COUNTERS
+            DO NOR RELOAD PAGE
+            MOVE CURSOR BACK TO FIRST RED KEY
+            CONTINUE SESSSION AS NORMAL AND REVEAL STATS AT THE END
+
+        GET RID OF APPLY BUTTONS
+
+        USE "HOW TO" INSTEAD OF "INFO"
+
+
+        MACBOOK 25/3/23 15:31
        
 */
