@@ -1175,12 +1175,6 @@ startButton.addEventListener("click", (event) => {
                         "green-background__keyboard"
                     );
                 }, 100);
-            } else if (typedKey === "Enter") {
-                enterKey.classList.add("green-background__keyboard");
-
-                setTimeout(function () {
-                    enterKey.classList.remove("green-background__keyboard");
-                }, 100);
             }
         }
 
@@ -2601,14 +2595,36 @@ CURRENT BRANCH: none
     MAKE TIMER DISABLED BY DEFAULT???
     ☑️ MAKE STYLE CHANGES BASED ON timerRunning INSTEAD OF timerOn
     ☑️ BEGINNER: DO NOT ACTIVATE START BUTTON WITH PUNCT/CAPITAL/ENTER APPLY UNTIL LEVEL HAS BEEN SELECTED!
-    REFACTOR
-        CSS VARIABLES
-            CONTAINER HEIGHT
-            COLOURS
+
+    CSS VARIABLES
+        CONTAINER HEIGHT
+        COLOURS
+
     RESTORE DIFFICULTY LEVEL SETTING WHEN COMING BACK FROM BEGINNER ? (NOT WORKING)
-        TRY RESETTING LEVEL TO COMMON100 - LINE 2317
+    TRY RESETTING LEVEL TO COMMON100 - LINE 2317
+
+
+     !!! WRITE A FUNCTION FOR THESE !!! (disableGrams(), disableRows()) !!!
+
+    DISABLE ALL OTHER OPTIONS
+        for (let i = 0, length = gramRadios.length; i < length; i++) {
+            gramRadios[i].checked = false;
+        }
+        gramsApply.disabled = true;
+        gramsApply.classList.remove("apply--active");
+
+        for (let i = 0, length = rowRadios.length; i < length; i++) {
+            rowRadios[i].checked = false;
+        }
+        rowsApply.disabled = true;
+        rowsApply.classList.remove("apply--active");
+
+
+
     ADD COLOUR-THEME CLASS TO EVERY ELEMENT AFFECTED ???
-    ACCURACY SPAN COLOUR CODES NOT WORKING WITH NEW SPAN COLOUR (CSS: .accuracy-span.dark-theme)
+
+     ACCURACY SPAN COLOUR CODES NOT WORKING WITH NEW SPAN COLOUR (CSS: .accuracy-span.dark-theme)
+
     
     FEATURES:
         CONNECT BEGINNER CONTROLS TO JAVASCRIPT
@@ -2619,6 +2635,9 @@ CURRENT BRANCH: none
         DISPLAY MESSAGES IN MESSAGE DIV
             ☑️ CHANGE MESSAGE DIV COLOR TO GREY OR ORANGE?
             CAPSLOCK WARNING
+
+        ADD NUMERIC CHARACTERS
+
         GREEN WORDS COUNTER
         COMPLETE WORDS COUNTER
         TRACK KEYS TYPED IN REAL TIME ON KEYBOARD?
@@ -2637,13 +2656,15 @@ CURRENT BRANCH: none
         ☑️ PROBLEM KEYS
         DYNAMICALLY GENERATE NEXT LINE + 1 ?
         SHOW ALL TEXT AS ONE BLOCK ?
-        ☑️ INCLUDE ENTER KEY IN REAL TIME HIGHLIGHT ?
+
+        INCLUDE ENTER KEY IN REAL TIME HIGHLIGHT ?
        
-        ADD NUMERIC CHARACTERS
-            INCLUDE THEM IN HIGHLIGHT
             
     PROBLEMS:
         ☑️ RESET WRONG KEY COUNTER WITH START !!! IT IS KEEPING TRACK OF IT FROM PREVIOUS SESSION !!!
+
+        LINE:2339 HOW TO HANDLE APPLY BUTTONS WHEN SWITCHING BETWEEN ADV/BEGINNER ???
+
         ENTER AND SPACE KEYS TRIGGER CARD FLIP AFTER FLIP BUTTON IS CLICKED (FOCUS???)
                
         END OF LINE ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'classList')
@@ -2665,7 +2686,9 @@ CURRENT BRANCH: none
             LINE LENGTH 
             TIMER
             SOUND
+
         LINE LENGTH SLIDER SHOULD NOT HIGHLIGHT ON HOVER WHILE TIMER IS ON
+
         WHEN BEGINNER PANEL COMES ON, CHECK IF ANY LEVELS PRE-SELECTED FROM PREVIOUS SESSION (LINE 1614)
             ☑️ HIGHLIGHT APPLY BUTTON TO RE-SUBMIT ???
             OR RESET ALL SETTINGS ???
@@ -2675,7 +2698,7 @@ CURRENT BRANCH: none
             ☑️ RADIO LABELS
             SLIDER
       
-        CAPSLOCK MUST NOT ACTIVATE TIMER 
+        CAPSLOCK MUST NOT ACTIVATE TIMER ?
         CONTROL APPLY BUTTONS DELETES "CLICK START" MESSAGE FROM TXT INPUT
         
         ADD EVENTLISTENER TO CONTROL OPTIONS WHEN PAGE LOADS? BEFORE START BUTTON IS CLICKED?
